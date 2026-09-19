@@ -6,7 +6,8 @@ interface Props {
   image: string;
   rating: string;
   price: string;
-  gygLink: string;
+  gygLink?: string;
+  expediaLink?: string;
   locale?: string;
   region?: string;
   category?: string;
@@ -20,14 +21,16 @@ const {
   image,
   rating,
   price,
-  gygLink,
+  gygLink = '',
+  expediaLink = '',
   locale = 'en',
-  region = 'Europe',
-  category = 'Luxury Experience',
+  region = 'Global Luxury',
+  category = '5-Star Luxury Stay',
   postId = slug
 } = Astro.props;
 
 const detailUrl = locale === 'en' ? `/experience/${slug}/` : `/${locale}/experience/${slug}/`;
+const bookingUrl = expediaLink || gygLink || `/go/${slug}`;
 ---
 
 <div
@@ -45,7 +48,7 @@ const detailUrl = locale === 'en' ? `/experience/${slug}/` : `/${locale}/experie
       src={image}
       alt={title}
       loading="eager"
-      onerror="this.onerror=null;this.src='/media/GYG_FR_PARIS_seine-river-gourmet-dinner-cruise-bateaux-parisiens_sunset-eiffel-landscape-4k.jpg'"
+      onerror="this.onerror=null;this.src='/media/expedia_hotels/expedia_paris_four_seasons_george_v_hero_4k.jpg'"
       class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
     />
     <div class="absolute inset-0 bg-gradient-to-t from-[#0b1726] via-transparent to-black/40"></div>
@@ -65,8 +68,8 @@ const detailUrl = locale === 'en' ? `/experience/${slug}/` : `/${locale}/experie
         type="button"
         class="bookmark-btn w-8 h-8 rounded-full bg-[#07111e]/90 backdrop-blur-md border border-slate-700 text-slate-300 hover:text-red-500 hover:border-red-500/50 flex items-center justify-center transition-all shadow-md focus:outline-none"
         data-slug={slug}
-        title="Bookmark this experience"
-        aria-label="Bookmark this experience"
+        title="Save to Wishlist"
+        aria-label="Save to Wishlist"
       >
         <svg class="heart-icon w-4 h-4 transition-transform duration-200 active:scale-125" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
@@ -79,8 +82,8 @@ const detailUrl = locale === 'en' ? `/experience/${slug}/` : `/${locale}/experie
         class="card-share-btn w-8 h-8 rounded-full bg-[#07111e]/90 backdrop-blur-md border border-slate-700 text-slate-300 hover:text-[#c9a54e] hover:border-[#c9a54e]/50 flex items-center justify-center transition-all shadow-md focus:outline-none"
         data-url={detailUrl}
         data-title={title}
-        title="Share with friends"
-        aria-label="Share with friends"
+        title="Share Luxury Sanctuary"
+        aria-label="Share Luxury Sanctuary"
       >
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path>
@@ -91,7 +94,7 @@ const detailUrl = locale === 'en' ? `/experience/${slug}/` : `/${locale}/experie
 
     <!-- Bottom Left: Price Overlay -->
     <div class="absolute bottom-3 left-3.5">
-      <span class="text-[10px] text-slate-300 block uppercase tracking-wider font-medium">Starting from</span>
+      <span class="text-[10px] text-slate-300 block uppercase tracking-wider font-medium">Nightly Rate</span>
       <span class="text-base font-bold text-white font-serif">{price}</span>
     </div>
 
@@ -113,7 +116,7 @@ const detailUrl = locale === 'en' ? `/experience/${slug}/` : `/${locale}/experie
         </a>
       </h3>
       <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed mb-4">
-        {rating} · Curated VIP priority fast-track access & 24h free cancellation.
+        {rating} · Verified 5-star sanctuary with VIP breakfast, upgrade eligibility & Expedia Partner rates.
       </p>
     </div>
 
@@ -123,17 +126,17 @@ const detailUrl = locale === 'en' ? `/experience/${slug}/` : `/${locale}/experie
         href={detailUrl}
         class="text-xs font-bold text-slate-300 hover:text-white flex items-center space-x-1 transition-colors"
       >
-        <span>Read Guide</span>
+        <span>View Suite</span>
         <span>→</span>
       </a>
 
       <a
-        href={gygLink}
+        href={bookingUrl}
         target="_blank"
         rel="nofollow sponsored noopener"
-        class="bg-[#ff7043] hover:bg-[#f4511e] text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-md shadow-[#ff7043]/20 hover:shadow-[#ff7043]/40 transition-all text-center flex items-center space-x-1.5"
+        class="bg-[#c9a54e] hover:bg-[#d8b560] text-[#07111e] text-xs font-bold px-4 py-2.5 rounded-xl shadow-md shadow-[#c9a54e]/20 hover:shadow-[#c9a54e]/40 transition-all text-center flex items-center space-x-1.5"
       >
-        <span>Reserve VIP</span>
+        <span>Check Rates</span>
         <span>→</span>
       </a>
     </div>
