@@ -15,7 +15,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { STORYTELLING_DATABASE } = require('./storytelling_database_20_hotels.cjs');
+const { STORYTELLING_DATABASE } = require('./storytelling_database_30_hotels.cjs');
 
 const OUTPUT_FILE = path.resolve(__dirname, '../src/data/articles.json');
 const DESTINATIONS_FILE = path.resolve(__dirname, '../src/data/destinations.json');
@@ -30,6 +30,26 @@ const CLUSTERS = {
   'como-grand-hotel-tremezzo': ['passalacqua-lake-como', 'villa-deste-lake-como'],
   'venice-gritti-palace': ['rome-rocco-forte-de-russie', 'passalacqua-lake-como'],
   'rome-rocco-forte-de-russie': ['venice-gritti-palace', 'villa-deste-lake-como'],
+
+  // Amalfi Coast Palazzo Cluster
+  'le-sirenuse-positano-amalfi': ['hotel-santa-caterina-amalfi', 'canaves-oia-suites-santorini'],
+  'hotel-santa-caterina-amalfi': ['le-sirenuse-positano-amalfi', 'como-grand-hotel-tremezzo'],
+
+  // Santorini & Aegean Sanctuary Cluster
+  'canaves-oia-suites-santorini': ['amanzoe-peloponnese-greece', 'le-sirenuse-positano-amalfi'],
+  'amanzoe-peloponnese-greece': ['canaves-oia-suites-santorini', 'paris-four-seasons-george-v'],
+
+  // Bali Sacred Sanctuary Cluster
+  'four-seasons-resort-bali-sayan': ['bulgari-resort-bali-uluwatu', 'kyoto-ritz-carlton'],
+  'bulgari-resort-bali-uluwatu': ['four-seasons-resort-bali-sayan', 'maldives-soneva-jani'],
+
+  // Bordeaux & European Wine Estate Cluster
+  'les-sources-de-caudalie-bordeaux': ['the-yeatman-hotel-porto', 'chateau-du-grand-luce-loire'],
+  'the-yeatman-hotel-porto': ['les-sources-de-caudalie-bordeaux', 'chateau-du-grand-luce-loire'],
+  'chateau-du-grand-luce-loire': ['les-sources-de-caudalie-bordeaux', 'paris-four-seasons-george-v'],
+
+  // French Riviera & Monaco Clifftop Cluster
+  'the-maybourne-riviera-monaco': ['paris-four-seasons-george-v', 'dubai-burj-al-arab'],
 
   // Japan Cluster
   'kyoto-ritz-carlton': ['hoshinoya-kyoto-arashiyama', 'gora-kadan-hakone-onsen'],
@@ -256,7 +276,7 @@ function buildHtmlContent(dest, h, loc, allDests) {
         <span>Những Điểm Tuyệt Hảo (10/10)</span>
       </h3>
       <ul class="space-y-2.5 text-xs sm:text-sm text-slate-300">
-        ${h.critique_positives.map(p => `<li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold">✓</span><span>${p}</span></li>`).join('')}
+        ${(h.critique_positives || ['Dịch vụ quản gia chuyên biệt đạt chuẩn xa xỉ thế giới', 'Ẩm thực thượng hạng chuẩn bị từ nguồn nguyên liệu tươi bản địa', 'Độ bảo mật và riêng tư cao nhất cho du khách VIP']).map(p => `<li class="flex items-start space-x-2"><span class="text-emerald-400 font-bold">✓</span><span>${p}</span></li>`).join('')}
       </ul>
     </div>
 
@@ -266,7 +286,7 @@ function buildHtmlContent(dest, h, loc, allDests) {
         <span>Những Điều Cần Lưu Ý Khi Đi</span>
       </h3>
       <ul class="space-y-2.5 text-xs sm:text-sm text-slate-300">
-        ${h.critique_considerations.map(c => `<li class="flex items-start space-x-2"><span class="text-amber-400 font-bold">•</span><span>${c}</span></li>`).join('')}
+        ${(h.critique_considerations || ['Nên đặt phòng sớm ít nhất 3-6 tháng vào mùa cao điểm để giữ được phòng có tầm nhìn đẹp nhất', 'Liên hệ trước với Concierge qua hệ thống đối tác để tùy chỉnh lịch trình riêng']).map(c => `<li class="flex items-start space-x-2"><span class="text-amber-400 font-bold">•</span><span>${c}</span></li>`).join('')}
       </ul>
     </div>
   </div>

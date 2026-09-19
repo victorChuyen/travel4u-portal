@@ -4918,5 +4918,95 @@
     "size_bytes": 169399,
     "md5_hash": "fcd9bcff1db106d47638c639f4c97aa4",
     "status": "POSTCODE_MATCHED_ARCHIVE"
+  },
+  "expedia_santorini_canaves_oia_hero_4k.jpg": {
+    "filename": "expedia_santorini_canaves_oia_hero_4k.jpg",
+    "local_path": "/media/expedia_hotels/expedia_santorini_canaves_oia_hero_4k.jpg",
+    "size_bytes": 896007,
+    "size_mb": "0.85",
+    "md5_hash": "c7a7ddaa8114c85ac14d629ba0684dd6",
+    "verified_at": "2026-09-19T11:55:57.066Z",
+    "quality_gate": "4K_UHD_CERTIFIED"
+  },
+  "expedia_amalfi_le_sirenuse_hero_4k.jpg": {
+    "filename": "expedia_amalfi_le_sirenuse_hero_4k.jpg",
+    "local_path": "/media/expedia_hotels/expedia_amalfi_le_sirenuse_hero_4k.jpg",
+    "size_bytes": 177918,
+    "size_mb": "0.17",
+    "md5_hash": "359a0e73052a8c2b785374a437933897",
+    "verified_at": "2026-09-19T11:55:58.104Z",
+    "quality_gate": "HD_COMPLIANT"
+  },
+  "expedia_amalfi_santa_caterina_hero_4k.jpg": {
+    "filename": "expedia_amalfi_santa_caterina_hero_4k.jpg",
+    "local_path": "/media/expedia_hotels/expedia_amalfi_santa_caterina_hero_4k.jpg",
+    "size_bytes": 78418,
+    "size_mb": "0.07",
+    "md5_hash": "bb28787d08b9ae6181947e7418b7ebd1",
+    "verified_at": "2026-09-19T11:55:58.492Z",
+    "quality_gate": "HD_COMPLIANT"
+  },
+  "expedia_bali_four_seasons_sayan_hero_4k.jpg": {
+    "filename": "expedia_bali_four_seasons_sayan_hero_4k.jpg",
+    "local_path": "/media/expedia_hotels/expedia_bali_four_seasons_sayan_hero_4k.jpg",
+    "size_bytes": 202816,
+    "size_mb": "0.19",
+    "md5_hash": "f6cde134262b4b74bd1fdc5044c10f38",
+    "verified_at": "2026-09-19T11:55:59.446Z",
+    "quality_gate": "HD_COMPLIANT"
+  },
+  "expedia_bali_bulgari_resort_hero_4k.jpg": {
+    "filename": "expedia_bali_bulgari_resort_hero_4k.jpg",
+    "local_path": "/media/expedia_hotels/expedia_bali_bulgari_resort_hero_4k.jpg",
+    "size_bytes": 726536,
+    "size_mb": "0.69",
+    "md5_hash": "77057ea5f4e3044bbec0de4bd0948055",
+    "verified_at": "2026-09-19T11:56:02.477Z",
+    "quality_gate": "4K_UHD_CERTIFIED"
+  },
+  "expedia_bordeaux_sources_caudalie_hero_4k.jpg": {
+    "filename": "expedia_bordeaux_sources_caudalie_hero_4k.jpg",
+    "local_path": "/media/expedia_hotels/expedia_bordeaux_sources_caudalie_hero_4k.jpg",
+    "size_bytes": 367615,
+    "size_mb": "0.35",
+    "md5_hash": "5a24ed3d6eb06cf53c170e282cf2fe26",
+    "verified_at": "2026-09-19T11:56:10.782Z",
+    "quality_gate": "HD_COMPLIANT"
+  },
+  "expedia_greece_amanzoe_hero_4k.jpg": {
+    "filename": "expedia_greece_amanzoe_hero_4k.jpg",
+    "local_path": "/media/expedia_hotels/expedia_greece_amanzoe_hero_4k.jpg",
+    "size_bytes": 1378200,
+    "size_mb": "1.31",
+    "md5_hash": "643dc4cb32556e6abe135b92e2d02045",
+    "verified_at": "2026-09-19T11:56:18.427Z",
+    "quality_gate": "4K_UHD_CERTIFIED"
+  },
+  "expedia_riviera_maybourne_hero_4k.jpg": {
+    "filename": "expedia_riviera_maybourne_hero_4k.jpg",
+    "local_path": "/media/expedia_hotels/expedia_riviera_maybourne_hero_4k.jpg",
+    "size_bytes": 115538,
+    "size_mb": "0.11",
+    "md5_hash": "1bc75636357df697061ca7eb9d054c63",
+    "verified_at": "2026-09-19T11:56:19.596Z",
+    "quality_gate": "HD_COMPLIANT"
+  },
+  "expedia_loire_grand_luce_hero_4k.jpg": {
+    "filename": "expedia_loire_grand_luce_hero_4k.jpg",
+    "local_path": "/media/expedia_hotels/expedia_loire_grand_luce_hero_4k.jpg",
+    "size_bytes": 291188,
+    "size_mb": "0.28",
+    "md5_hash": "b35b7e8ae07100a1c4f29b1cd3a54f2e",
+    "verified_at": "2026-09-19T11:56:20.955Z",
+    "quality_gate": "HD_COMPLIANT"
+  },
+  "expedia_porto_yeatman_hero_4k.jpg": {
+    "filename": "expedia_porto_yeatman_hero_4k.jpg",
+    "local_path": "/media/expedia_hotels/expedia_porto_yeatman_hero_4k.jpg",
+    "size_bytes": 239726,
+    "size_mb": "0.23",
+    "md5_hash": "30d9d50e489f88d4f907b7c66d2a5cb8",
+    "verified_at": "2026-09-19T11:56:22.784Z",
+    "quality_gate": "HD_COMPLIANT"
   }
 }
