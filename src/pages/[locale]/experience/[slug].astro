@@ -11,6 +11,7 @@ import EmotionalWoaCallout from '../../../components/EmotionalWoaCallout.astro';
 import ExpediaPerksCallout from '../../../components/ExpediaPerksCallout.astro';
 import PodcastDialogueSection from '../../../components/PodcastDialogueSection.astro';
 import articlesData from '../../../data/articles.json';
+import destinationsData from '../../../data/destinations.json';
 
 export async function getStaticPaths() {
   const nonEnArticles = (articlesData as any[]).filter(art => art.locale !== 'en');
@@ -22,6 +23,14 @@ export async function getStaticPaths() {
 
 const { article } = Astro.props;
 const locale = article.locale;
+
+const currentDest = (destinationsData as any[]).find(d => Object.values(d.slugs).includes(article.slug)) || destinationsData[0];
+const alternateUrls: Record<string, string> = {};
+for (const [loc, slug] of Object.entries(currentDest.slugs as Record<string, string>)) {
+  alternateUrls[loc] = loc === 'en' ? `https://travel4u.us/experience/${slug}/` : `https://travel4u.us/${loc}/experience/${slug}/`;
+}
+alternateUrls['x-default'] = `https://travel4u.us/experience/${currentDest.slugs.en}/`;
+const canonicalUrl = `https://travel4u.us/${locale}/experience/${article.slug}/`;
 
 const schemaData = {
   "@context": "https://schema.org",
@@ -87,6 +96,9 @@ const schemaData = {
   description={article.excerpt}
   locale={locale}
   image={article.hero_image?.url}
+  canonicalUrl={canonicalUrl}
+  alternateUrls={alternateUrls}
+  type="article"
   schema={schemaData}
 >
   <Header currentLocale={locale} />
