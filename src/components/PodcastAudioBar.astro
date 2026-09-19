@@ -1,0 +1,83 @@
+---
+interface Props {
+  episodeTitle?: string;
+  duration?: string;
+  teaser?: string;
+}
+
+const {
+  episodeTitle = "The Story Behind the Sanctuary",
+  duration = "4:32",
+  teaser = "Listen to Victor & Lucky discuss their sensory arrival, the suite's private sunset vantage, and how they unlocked VIP breakfast perks."
+} = Astro.props;
+---
+
+<div class="podcast-audio-bar bg-[#06101c] border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-xl my-8 relative overflow-hidden group hover:border-[#c9a54e]/50 transition-all duration-300">
+  <!-- Accent highlight -->
+  <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#c9a54e] to-transparent opacity-60"></div>
+
+  <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+    
+    <!-- Left: Podcast Identity & Play Button -->
+    <div class="flex items-center space-x-4">
+      <!-- Play Button -->
+      <button
+        type="button"
+        class="podcast-play-btn w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#c9a54e] hover:bg-[#dfba63] text-[#07111e] flex items-center justify-center transition-all shadow-lg shadow-[#c9a54e]/20 active:scale-95 flex-shrink-0"
+        aria-label="Play Victor & Lucky Podcast Episode"
+      >
+        <svg class="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+      </button>
+
+      <div>
+        <div class="flex items-center space-x-2 mb-0.5">
+          <span class="text-[10px] font-bold text-[#c9a54e] uppercase tracking-wider flex items-center space-x-1">
+            <span class="w-2 h-2 rounded-full bg-red-500 animate-ping mr-1 inline-block"></span>
+            <span>Travel4U Audio Story · {duration}</span>
+          </span>
+          <span class="text-slate-600 text-xs">·</span>
+          <span class="text-[10px] text-slate-400 font-medium">Victor & Lucky In-Depth</span>
+        </div>
+        <h4 class="font-serif text-sm sm:text-base font-bold text-white group-hover:text-[#c9a54e] transition-colors line-clamp-1">
+          {episodeTitle}
+        </h4>
+      </div>
+    </div>
+
+    <!-- Center: Dynamic Audio Waveform Visualizer -->
+    <div class="hidden lg:flex items-center space-x-1 h-6 px-4">
+      <span class="w-1 bg-[#c9a54e]/40 rounded-full h-3 animate-pulse"></span>
+      <span class="w-1 bg-[#c9a54e]/60 rounded-full h-5"></span>
+      <span class="w-1 bg-[#c9a54e] rounded-full h-6 animate-pulse duration-700"></span>
+      <span class="w-1 bg-[#c9a54e]/80 rounded-full h-4"></span>
+      <span class="w-1 bg-[#c9a54e]/50 rounded-full h-2"></span>
+      <span class="w-1 bg-[#c9a54e] rounded-full h-5 animate-pulse duration-500"></span>
+      <span class="w-1 bg-[#c9a54e]/70 rounded-full h-6"></span>
+      <span class="w-1 bg-[#c9a54e]/40 rounded-full h-3"></span>
+      <span class="w-1 bg-[#c9a54e]/90 rounded-full h-5"></span>
+      <span class="w-1 bg-[#c9a54e]/60 rounded-full h-2"></span>
+      <span class="w-1 bg-[#c9a54e] rounded-full h-4 animate-pulse duration-1000"></span>
+      <span class="w-1 bg-[#c9a54e]/40 rounded-full h-2"></span>
+    </div>
+
+    <!-- Right: YouTube / Podcast Destination Link -->
+    <div class="flex items-center space-x-2 sm:space-x-3 self-end md:self-center">
+      <span class="text-[11px] text-slate-400 hidden sm:inline">Coming to YouTube Podcast</span>
+      <a
+        href="#podcast-dialogue"
+        class="text-xs font-semibold text-white bg-slate-800 hover:bg-slate-700 border border-slate-700 px-3.5 py-2 rounded-xl transition-colors flex items-center space-x-1.5"
+      >
+        <span>Read Dialogue Script</span>
+        <span>↓</span>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Teaser snippet -->
+  <p class="text-xs text-slate-400 mt-3 pt-3 border-t border-slate-800/60 leading-relaxed italic">
+    "{teaser}"
+  </p>
+</div>

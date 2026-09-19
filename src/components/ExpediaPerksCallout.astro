@@ -1,0 +1,89 @@
+---
+interface Props {
+  bookingUrl: string;
+  hotelName: string;
+  minPrice?: string;
+}
+
+const {
+  bookingUrl,
+  hotelName,
+  minPrice = "From $1,450 / night"
+} = Astro.props;
+---
+
+<div class="expedia-vip-perks-box bg-gradient-to-br from-[#071322] via-[#091b30] to-[#050e1a] border-2 border-[#c9a54e]/50 rounded-2xl p-6 sm:p-8 shadow-2xl my-12 relative overflow-hidden">
+  
+  <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-slate-800">
+    <div>
+      <div class="inline-flex items-center space-x-2 bg-[#c9a54e]/20 border border-[#c9a54e]/40 rounded-full px-3.5 py-1 text-[11px] font-bold text-[#c9a54e] uppercase tracking-wider mb-2.5">
+        <span>🛡️</span>
+        <span>Verified Expedia Partner Network Access</span>
+      </div>
+      <h3 class="font-serif text-xl sm:text-2xl font-bold text-white tracking-tight">
+        How Victor & Lucky Secured VIP Perks at {hotelName}
+      </h3>
+      <p class="text-xs sm:text-sm text-slate-400 mt-1 max-w-2xl">
+        Avoid rigid non-refundable bookings. Securing your reservation through our verified partner link unlocks sovereign perks without paying a penny more.
+      </p>
+    </div>
+
+    <div class="text-left lg:text-right flex-shrink-0">
+      <span class="text-[11px] text-slate-400 uppercase tracking-wider block font-medium">Verified Partner Rate</span>
+      <span class="font-serif text-xl sm:text-2xl font-bold text-[#c9a54e]">{minPrice}</span>
+    </div>
+  </div>
+
+  <!-- Perks Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 my-6">
+    <div class="p-4 rounded-xl bg-[#06101c] border border-slate-800/90 flex items-start space-x-3">
+      <span class="text-[#c9a54e] text-lg font-bold">✓</span>
+      <div>
+        <h4 class="text-xs font-bold text-white mb-0.5">Complimentary Breakfast</h4>
+        <p class="text-[11px] text-slate-400">Daily chef-prepared breakfast for two included.</p>
+      </div>
+    </div>
+
+    <div class="p-4 rounded-xl bg-[#06101c] border border-slate-800/90 flex items-start space-x-3">
+      <span class="text-[#c9a54e] text-lg font-bold">✓</span>
+      <div>
+        <h4 class="text-xs font-bold text-white mb-0.5">Room Upgrade Eligibility</h4>
+        <p class="text-[11px] text-slate-400">Priority upgrade upon check-in based on availability.</p>
+      </div>
+    </div>
+
+    <div class="p-4 rounded-xl bg-[#06101c] border border-slate-800/90 flex items-start space-x-3">
+      <span class="text-[#c9a54e] text-lg font-bold">✓</span>
+      <div>
+        <h4 class="text-xs font-bold text-white mb-0.5">$100 Property Credit</h4>
+        <p class="text-[11px] text-slate-400">Applicable for Michelin dining or wellness spa.</p>
+      </div>
+    </div>
+
+    <div class="p-4 rounded-xl bg-[#06101c] border border-slate-800/90 flex items-start space-x-3">
+      <span class="text-[#c9a54e] text-lg font-bold">✓</span>
+      <div>
+        <h4 class="text-xs font-bold text-white mb-0.5">Flexible Cancellation</h4>
+        <p class="text-[11px] text-slate-400">Free cancellation up to 24–48h before check-in.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Action CTA -->
+  <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-800/60">
+    <p class="text-[11px] text-slate-400 italic">
+      "Booking through our link tags your reservation with our curator VIP code, ensuring personal concierge attention."
+    </p>
+
+    <a
+      href={bookingUrl}
+      target="_blank"
+      rel="nofollow sponsored noopener"
+      class="w-full sm:w-auto bg-gradient-to-r from-[#c9a54e] to-[#dfba63] hover:from-[#dfba63] hover:to-[#eed07e] text-[#07111e] font-bold text-xs uppercase tracking-wider px-7 py-3.5 rounded-xl shadow-lg shadow-[#c9a54e]/20 transition-all text-center flex items-center justify-center space-x-2"
+    >
+      <span>Check Live Availability via Expedia</span>
+      <span>→</span>
+    </a>
+  </div>
+
+</div>

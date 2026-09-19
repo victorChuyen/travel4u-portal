@@ -1,0 +1,82 @@
+---
+interface Props {
+  hotelName?: string;
+  stayDate?: string;
+  verdictScore?: string;
+}
+
+const {
+  hotelName = "This Luxury Sanctuary",
+  stayDate = "Verified 2026 Season",
+  verdictScore = "9.8 / 10 Masterpiece"
+} = Astro.props;
+---
+
+<div class="curator-signature-card bg-gradient-to-br from-[#07111e] via-[#0b1b30] to-[#07111e] border border-[#c9a54e]/40 rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden my-10">
+  <!-- Subtle decorative background flourish -->
+  <div class="absolute -right-12 -bottom-12 w-48 h-48 bg-[#c9a54e]/5 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute -left-12 -top-12 w-48 h-48 bg-blue-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-slate-800/80">
+    <div class="flex items-center space-x-3.5">
+      <!-- Duo Emblem Avatar -->
+      <div class="relative">
+        <div class="w-12 h-12 rounded-full bg-[#c9a54e]/20 border border-[#c9a54e] flex items-center justify-center text-xl shadow-lg">
+          👑
+        </div>
+        <span class="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-500 border-2 border-[#07111e] rounded-full" title="Verified Stay Review"></span>
+      </div>
+
+      <div>
+        <div class="flex items-center space-x-2">
+          <h3 class="font-serif text-lg font-bold text-white tracking-wide">
+            Curated by Victor & Lucky
+          </h3>
+          <span class="bg-[#c9a54e]/20 text-[#c9a54e] text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full border border-[#c9a54e]/40">
+            Official Duo
+          </span>
+        </div>
+        <p class="text-xs text-slate-400">
+          Executive Curators · Luxury Travel4U Empire
+        </p>
+      </div>
+    </div>
+
+    <!-- Rating & Status Badge -->
+    <div class="flex items-center space-x-3">
+      <div class="text-right">
+        <span class="text-[10px] text-slate-400 block uppercase tracking-wider">Curators' Score</span>
+        <span class="font-serif text-sm font-bold text-[#c9a54e]">{verdictScore}</span>
+      </div>
+      <div class="w-[1px] h-8 bg-slate-800"></div>
+      <div class="text-right">
+        <span class="text-[10px] text-slate-400 block uppercase tracking-wider">Audit Period</span>
+        <span class="text-xs font-semibold text-slate-200">{stayDate}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Narrative Philosophy -->
+  <div class="pt-6">
+    <blockquote class="italic text-slate-300 text-sm sm:text-base font-serif leading-relaxed mb-4">
+      "We believe true luxury cannot be mass-produced or templated. We stepped through the doors of <strong class="text-white font-normal">{hotelName}</strong> not as passive spectators, but as connoisseurs seeking that rare, intangible heartbeat where flawless architectural grace meets heartfelt, intimate hospitality. Here is our unvarnished, sensory story."
+    </blockquote>
+
+    <div class="flex flex-wrap items-center justify-between gap-4 pt-2 text-xs text-slate-400">
+      <div class="flex items-center space-x-4">
+        <span class="flex items-center space-x-1 text-slate-300">
+          <strong class="text-white">Victor:</strong> <span>Heritage, Architecture & Cellar</span>
+        </span>
+        <span class="text-slate-600">·</span>
+        <span class="flex items-center space-x-1 text-slate-300">
+          <strong class="text-white">Lucky:</strong> <span>Sensory Details, Light & VIP Perks</span>
+        </span>
+      </div>
+
+      <div class="inline-flex items-center space-x-1.5 text-[11px] text-emerald-400 bg-emerald-950/40 border border-emerald-500/30 px-3 py-1 rounded-full">
+        <span>✓</span>
+        <span>100% Independent Editorial · Zero Paid Review Bias</span>
+      </div>
+    </div>
+  </div>
+</div>

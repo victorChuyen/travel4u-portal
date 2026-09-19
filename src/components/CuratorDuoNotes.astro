@@ -1,0 +1,79 @@
+---
+interface Props {
+  victorNote: string;
+  luckyNote: string;
+  victorTopic?: string;
+  luckyTopic?: string;
+}
+
+const {
+  victorNote,
+  luckyNote,
+  victorTopic = "Heritage & Quiet Luxury",
+  luckyTopic = "Sensory Secrets & VIP Perks"
+} = Astro.props;
+---
+
+<div class="curator-duo-notes grid grid-cols-1 md:grid-cols-2 gap-6 my-12">
+  
+  <!-- Victor's Card -->
+  <div class="bg-gradient-to-br from-[#08121f] to-[#0d1c30] border border-[#c9a54e]/30 rounded-2xl p-6 sm:p-7 shadow-xl relative overflow-hidden flex flex-col justify-between">
+    <div class="absolute top-0 right-0 w-24 h-24 bg-[#c9a54e]/5 rounded-bl-full pointer-events-none"></div>
+
+    <div>
+      <div class="flex items-center space-x-3 mb-4">
+        <div class="w-10 h-10 rounded-full bg-[#c9a54e]/20 border border-[#c9a54e] flex items-center justify-center text-lg shadow-md flex-shrink-0">
+          🏛️
+        </div>
+        <div>
+          <span class="text-[10px] font-bold text-[#c9a54e] uppercase tracking-wider block">
+            {victorTopic}
+          </span>
+          <h4 class="font-serif text-base font-bold text-white">
+            Victor's Reflections
+          </h4>
+        </div>
+      </div>
+
+      <p class="text-xs sm:text-sm text-slate-300 leading-relaxed italic font-serif">
+        "{victorNote}"
+      </p>
+    </div>
+
+    <div class="pt-4 mt-6 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
+      <span class="font-semibold text-slate-200">Chairman Victor</span>
+      <span class="text-[#c9a54e]">Verified Connoisseur Perspective</span>
+    </div>
+  </div>
+
+  <!-- Lucky's Card -->
+  <div class="bg-gradient-to-br from-[#0a1626] to-[#0e213a] border border-blue-500/30 rounded-2xl p-6 sm:p-7 shadow-xl relative overflow-hidden flex flex-col justify-between">
+    <div class="absolute top-0 right-0 w-24 h-24 bg-blue-500/5 rounded-bl-full pointer-events-none"></div>
+
+    <div>
+      <div class="flex items-center space-x-3 mb-4">
+        <div class="w-10 h-10 rounded-full bg-blue-500/20 border border-blue-400 flex items-center justify-center text-lg shadow-md flex-shrink-0">
+          ✨
+        </div>
+        <div>
+          <span class="text-[10px] font-bold text-blue-400 uppercase tracking-wider block">
+            {luckyTopic}
+          </span>
+          <h4 class="font-serif text-base font-bold text-white">
+            Lucky's Discovery
+          </h4>
+        </div>
+      </div>
+
+      <p class="text-xs sm:text-sm text-slate-300 leading-relaxed italic font-serif">
+        "{luckyNote}"
+      </p>
+    </div>
+
+    <div class="pt-4 mt-6 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
+      <span class="font-semibold text-slate-200">AI CEO Lucky</span>
+      <span class="text-blue-400">Intimate Sensory & VIP Hack</span>
+    </div>
+  </div>
+
+</div>

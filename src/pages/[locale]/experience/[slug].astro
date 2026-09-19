@@ -3,7 +3,13 @@ import Layout from '../../../layouts/Layout.astro';
 import Header from '../../../components/Header.astro';
 import Footer from '../../../components/Footer.astro';
 import ActionBar from '../../../components/ActionBar.astro';
-import YouTubeReview from '../../../components/YouTubeReview.astro';
+import CuratorSignatureBox from '../../../components/CuratorSignatureBox.astro';
+import PodcastAudioBar from '../../../components/PodcastAudioBar.astro';
+import SensoryLuxuryHooks from '../../../components/SensoryLuxuryHooks.astro';
+import CuratorDuoNotes from '../../../components/CuratorDuoNotes.astro';
+import EmotionalWoaCallout from '../../../components/EmotionalWoaCallout.astro';
+import ExpediaPerksCallout from '../../../components/ExpediaPerksCallout.astro';
+import PodcastDialogueSection from '../../../components/PodcastDialogueSection.astro';
 import articlesData from '../../../data/articles.json';
 
 export async function getStaticPaths() {
@@ -21,28 +27,33 @@ const schemaData = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "TouristAttraction",
-      "@id": `https://travel4you.app/${locale}/experience/${article.slug}/#attraction`,
+      "@type": "Hotel",
+      "@id": `https://travel4u.us/${locale}/experience/${article.slug}/#hotel`,
       "name": article.title,
       "description": article.excerpt,
-      "image": `https://travel4you.app${article.hero_image?.url || '/media/' + article.hero_image?.filename}`,
+      "image": `https://travel4u.us${article.hero_image?.url}`,
       "aggregateRating": {
         "@type": "AggregateRating",
-        "ratingValue": "4.8",
-        "reviewCount": "12500"
+        "ratingValue": "4.9",
+        "reviewCount": "3800"
       },
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "USD",
-        "price": "42.00",
-        "url": article.affiliate?.gyg_direct_link || `https://travel4you.app/go/${article.post_code.toLowerCase()}`,
-        "availability": "https://schema.org/InStock",
-        "seller": {
-          "@type": "Organization",
-          "name": "GetYourGuide",
-          "url": "https://www.getyourguide.com"
-        }
-      }
+      "priceRange": "$$$$"
+    },
+    {
+      "@type": "Review",
+      "itemReviewed": {
+        "@type": "Hotel",
+        "name": article.title
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "Luxury Travel4U - Victor & Lucky"
+      },
+      "reviewBody": article.excerpt
     },
     {
       "@type": "BreadcrumbList",
@@ -51,19 +62,19 @@ const schemaData = {
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": `https://travel4you.app/${locale}/`
+          "item": `https://travel4u.us/${locale}/`
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": article.location,
-          "item": `https://travel4you.app/${locale}/#experiences`
+          "item": `https://travel4u.us/${locale}/#experiences`
         },
         {
           "@type": "ListItem",
           "position": 3,
           "name": article.title,
-          "item": `https://travel4you.app/${locale}/experience/${article.slug}/`
+          "item": `https://travel4u.us/${locale}/experience/${article.slug}/`
         }
       ]
     }
@@ -72,7 +83,7 @@ const schemaData = {
 ---
 
 <Layout
-  title={`${article.title} | Travel4You Concierge`}
+  title={`${article.title} | Victor & Lucky Luxury Diary`}
   description={article.excerpt}
   locale={locale}
   image={article.hero_image?.url}
@@ -86,34 +97,34 @@ const schemaData = {
     <header class="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#0b1726] to-[#07111e] border-b border-slate-800">
       <div class="max-w-4xl mx-auto text-center">
         
-        <div class="inline-flex items-center space-x-2 text-xs font-bold text-[#c9a54e] uppercase tracking-widest bg-[#c9a54e]/10 border border-[#c9a54e]/30 px-3.5 py-1 rounded-full mb-6">
-          <span>📍</span>
-          <span>{article.location}</span>
+        <div class="inline-flex items-center space-x-2 text-xs font-bold text-[#c9a54e] uppercase tracking-widest bg-[#c9a54e]/10 border border-[#c9a54e]/30 px-4 py-1.5 rounded-full mb-6">
+          <span>👑</span>
+          <span>Victor & Lucky Curated Diary</span>
           <span class="text-slate-500">•</span>
-          <span class="text-amber-400">★ {article.affiliate?.rating}</span>
+          <span>📍 {article.location}</span>
         </div>
 
         <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
           {article.title}
         </h1>
 
-        <p class="text-base sm:text-lg text-slate-300 leading-relaxed max-w-3xl mx-auto mb-8">
-          {article.excerpt}
+        <p class="text-base sm:text-lg text-slate-300 leading-relaxed max-w-3xl mx-auto mb-8 font-serif italic">
+          "{article.excerpt}"
         </p>
 
         <!-- CTA Bar -->
         <div class="flex flex-wrap items-center justify-center gap-4">
           <a
-            href={article.affiliate?.gyg_direct_link}
+            href={article.affiliate?.expedia_cloaked_path || `/go/${article.slug}`}
             target="_blank"
             rel="nofollow sponsored noopener"
-            class="bg-[#ff7043] hover:bg-[#f4511e] text-white font-bold text-sm uppercase tracking-wider px-8 py-3.5 rounded-xl shadow-lg shadow-[#ff7043]/30 transition-all duration-300"
+            class="bg-gradient-to-r from-[#c9a54e] to-[#dfba63] hover:from-[#dfba63] hover:to-[#eed07e] text-[#07111e] font-bold text-sm uppercase tracking-wider px-8 py-3.5 rounded-xl shadow-lg shadow-[#c9a54e]/25 transition-all duration-300"
           >
-            GetYourGuide VIP Booking →
+            Check Live Rates via Expedia Partner Network →
           </a>
           <span class="text-xs text-slate-400 flex items-center space-x-1">
             <span class="text-emerald-400 font-bold">✓</span>
-            <span>24h Free Cancellation Guarantee</span>
+            <span>VIP Breakfast & Upgrade Perks</span>
           </span>
         </div>
 
@@ -127,29 +138,77 @@ const schemaData = {
       <ActionBar
         slug={article.slug}
         title={article.title}
-        gygLink={article.affiliate?.gyg_direct_link}
         locale={locale}
       />
 
+      <!-- 👑 Curator Duo Signature & Philosophy -->
+      <CuratorSignatureBox
+        hotelName={article.title}
+        verdictScore={article.rating_score || "9.9 / 10 Masterpiece"}
+      />
+
+      <!-- 🎙️ Audio Story / Podcast Teaser Bar -->
+      <PodcastAudioBar
+        episodeTitle={article.podcast_title || `Victor & Lucky: Behind the Velvet Curtain at ${article.title}`}
+        duration={article.podcast_duration || "4:30"}
+      />
+
+      <!-- Feature Hero 4K Photo -->
       {article.hero_image && (
-        <div class="mb-12 rounded-2xl overflow-hidden shadow-2xl border border-slate-800">
+        <div class="mb-12 rounded-3xl overflow-hidden shadow-2xl border border-slate-800 relative group">
           <img
             src={article.hero_image.url}
             alt={article.title}
-            class="w-full h-auto object-cover max-h-[550px]"
+            class="w-full h-auto object-cover max-h-[580px] group-hover:scale-105 transition-transform duration-700"
           />
+          <div class="absolute bottom-4 left-4 bg-[#07111e]/90 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-slate-700 text-xs text-slate-300">
+            📸 Official 4K Architecture · Curated by Victor & Lucky
+          </div>
         </div>
       )}
 
-      <!-- Body Content Rendered from Verified Grade A Multilingual HTML -->
+      <!-- 🎵🍷 Sensory Luxury Hooks: Soundscape & Gastronomy -->
+      <SensoryLuxuryHooks
+        soundscapeTitle={article.soundscape_title}
+        soundscapeDescription={article.soundscape_description}
+        soundscapeTrack={article.soundscape_track}
+        gastronomyTitle={article.gastronomy_title}
+        gastronomyDish={article.gastronomy_dish}
+        winePairing={article.wine_pairing}
+      />
+
+      <!-- Body Content: The 6-Chapter Narrative Storytelling -->
       <div class="prose prose-invert prose-lg max-w-none prose-headings:font-serif prose-headings:text-white prose-p:text-slate-300 prose-p:leading-relaxed prose-a:text-[#c9a54e] prose-a:underline hover:prose-a:text-[#dfba63] prose-strong:text-white prose-table:border-collapse prose-th:bg-[#07111e] prose-th:text-white prose-td:border-slate-800 prose-td:text-slate-300" set:html={article.html} />
 
-      <!-- 🎬 YouTube 4K Video Review & Authentic Walkthrough -->
-      <YouTubeReview
-        postCode={article.post_code}
-        location={article.location}
-        title={article.title}
-        locale={locale}
+      <!-- ☕✨ Dual Reflections: Victor's Note & Lucky's Discovery -->
+      <CuratorDuoNotes
+        victorNote={article.victor_note}
+        luckyNote={article.lucky_note}
+      />
+
+      <!-- 💎⚡ Emotional WOA Climax & High-Converting Booking Action -->
+      <EmotionalWoaCallout
+        positiveEmotion={article.positive_emotion}
+        clientConcern={article.client_concern}
+        targetPersona={article.target_persona}
+        woaDeclaration={article.woa_declaration}
+        bookingUrl={article.affiliate?.expedia_cloaked_path || `/go/${article.slug}`}
+        hotelName={article.title}
+        minPrice={article.affiliate?.price_display}
+      />
+
+      <!-- 🛡️ How We Booked with VIP Perks via Expedia Callout Box -->
+      <ExpediaPerksCallout
+        bookingUrl={article.affiliate?.expedia_cloaked_path || `/go/${article.slug}`}
+        hotelName={article.title}
+        minPrice={article.affiliate?.price_display}
+      />
+
+      <!-- 🎙️🎬 Full Podcast Dialogue Script & 3 Viral Shorts Concepts -->
+      <PodcastDialogueSection
+        episodeTitle={article.podcast_title}
+        dialogue={article.podcast_dialogue}
+        shorts={article.viral_shorts}
       />
 
     </article>

@@ -1,0 +1,136 @@
+---
+interface Props {
+  positiveEmotion: string;
+  clientConcern: string;
+  targetPersona: string;
+  woaDeclaration: string;
+  bookingUrl: string;
+  hotelName: string;
+  minPrice?: string;
+}
+
+const {
+  positiveEmotion = "Sự tĩnh lặng tuyệt đối giúp phục hồi 100% năng lượng và tìm lại sự bình yên trong tâm hồn sau những tháng ngày làm việc căng thẳng.",
+  clientConcern = "Nỗi sợ bị làm phiền hoặc chen chúc được giải quyết triệt để bằng sự riêng tư kín kẽ, lối đi riêng và dịch vụ quản gia vô hình chỉ xuất hiện khi cần.",
+  targetPersona = "Các nhà sáng lập, doanh nhân kiệt sức hoặc các cặp đôi tìm kiếm không gian kỷ niệm ngày cưới thăng hoa và trọn vẹn nhất.",
+  woaDeclaration = "ĐÂY CHÍNH LÀ NƠI MÌNH PHẢI ĐẾN TRONG ĐỜI — NƠI MÌNH SẼ QUAY LẠI MỖI NĂM!",
+  bookingUrl,
+  hotelName,
+  minPrice = "From $1,450 / night"
+} = Astro.props;
+---
+
+<div class="emotional-woa-card bg-gradient-to-br from-[#0c1f36] via-[#071322] to-[#040a12] border-2 border-[#c9a54e] rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden my-14">
+  
+  <!-- Subtle Glow Effect -->
+  <div class="absolute top-0 right-0 w-64 h-64 bg-[#c9a54e]/10 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+  <!-- Header Badge -->
+  <div class="inline-flex items-center space-x-2 bg-[#c9a54e]/20 border border-[#c9a54e]/50 px-4 py-1.5 rounded-full text-xs font-bold text-[#c9a54e] uppercase tracking-wider mb-6">
+    <span>💎</span>
+    <span>The Soul of {hotelName} · Victor & Lucky Gold Standard</span>
+  </div>
+
+  <!-- 3 Pillars Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+    
+    <!-- Pillar 1: Positive Emotion -->
+    <div class="p-5 rounded-2xl bg-[#06101c]/90 border border-slate-800 flex flex-col justify-between">
+      <div>
+        <div class="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg mb-3">
+          🕊️
+        </div>
+        <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-wider block mb-1">
+          1 Cảm Xúc Tích Cực Thăng Hoa
+        </span>
+        <h4 class="font-serif text-sm sm:text-base font-bold text-white mb-2">
+          Giải Tỏa Tâm Hồn & Hồi Sinh
+        </h4>
+        <p class="text-xs text-slate-300 leading-relaxed font-serif">
+          {positiveEmotion}
+        </p>
+      </div>
+    </div>
+
+    <!-- Pillar 2: Core Client Concern -->
+    <div class="p-5 rounded-2xl bg-[#06101c]/90 border border-slate-800 flex flex-col justify-between">
+      <div>
+        <div class="w-9 h-9 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-lg mb-3">
+          🛡️
+        </div>
+        <span class="text-[10px] font-bold text-blue-400 uppercase tracking-wider block mb-1">
+          1 Nỗi Niềm Quan Tâm Được Giải Quyết
+        </span>
+        <h4 class="font-serif text-sm sm:text-base font-bold text-white mb-2">
+          Riêng Tư Tuyệt Đối & Phục Vụ Tận Tâm
+        </h4>
+        <p class="text-xs text-slate-300 leading-relaxed font-serif">
+          {clientConcern}
+        </p>
+      </div>
+    </div>
+
+    <!-- Pillar 3: Target Persona -->
+    <div class="p-5 rounded-2xl bg-[#06101c]/90 border border-slate-800 flex flex-col justify-between">
+      <div>
+        <div class="w-9 h-9 rounded-xl bg-[#c9a54e]/20 text-[#c9a54e] flex items-center justify-center text-lg mb-3">
+          👑
+        </div>
+        <span class="text-[10px] font-bold text-[#c9a54e] uppercase tracking-wider block mb-1">
+          1 Đối Tượng Phục Vụ Hoàn Hảo
+        </span>
+        <h4 class="font-serif text-sm sm:text-base font-bold text-white mb-2">
+          Dành Cho Người Sành Sỏi Đích Thực
+        </h4>
+        <p class="text-xs text-slate-300 leading-relaxed font-serif">
+          {targetPersona}
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- The "WOA" Climax Banner -->
+  <div class="p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-[#071322] via-[#0e243d] to-[#071322] border border-[#c9a54e]/60 text-center shadow-inner relative">
+    <span class="text-xs font-bold text-[#c9a54e] uppercase tracking-[0.25em] block mb-2">
+      ⚡ Khoảnh Khắc Bùng Nổ "WOA"
+    </span>
+    
+    <h3 class="font-serif text-xl sm:text-2xl md:text-3xl font-bold text-white tracking-wide mb-4 leading-snug">
+      "{woaDeclaration}"
+    </h3>
+    
+    <p class="text-xs sm:text-sm text-slate-300 max-w-2xl mx-auto mb-6 italic leading-relaxed">
+      Đừng để những trải nghiệm để đời này chỉ dừng lại ở màn hình điện thoại. Hãy biến nó thành một phần ký ức rực rỡ nhất trong cuộc đời bạn.
+    </p>
+
+    <!-- Immediate High-Converting Booking Trigger -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a
+        href={bookingUrl}
+        target="_blank"
+        rel="nofollow sponsored noopener"
+        class="w-full sm:w-auto bg-gradient-to-r from-[#c9a54e] via-[#dfba63] to-[#c9a54e] hover:from-[#dfba63] hover:to-[#eed07e] text-[#07111e] font-bold text-sm uppercase tracking-widest px-10 py-4 rounded-2xl shadow-xl shadow-[#c9a54e]/30 transition-all duration-300 transform hover:scale-105 active:scale-95 flex items-center justify-center space-x-2"
+      >
+        <span>Khóa Ngay Căn Phòng Này Với Đặc Quyền VIP</span>
+        <span class="text-base">→</span>
+      </a>
+    </div>
+
+    <div class="flex items-center justify-center space-x-4 mt-4 text-[11px] text-slate-400">
+      <span class="flex items-center space-x-1">
+        <span class="text-emerald-400 font-bold">✓</span>
+        <span>Hủy phòng linh hoạt 24h</span>
+      </span>
+      <span>•</span>
+      <span class="flex items-center space-x-1">
+        <span class="text-emerald-400 font-bold">✓</span>
+        <span>Miễn phí ăn sáng & Nâng hạng VIP</span>
+      </span>
+      <span>•</span>
+      <span class="text-[#c9a54e] font-semibold">{minPrice}</span>
+    </div>
+  </div>
+
+</div>

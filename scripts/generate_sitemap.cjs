@@ -47,4 +47,4 @@ ${urlsXml}</urlset>`;
 
 fs.writeFileSync(path.join(DIST_DIR, 'sitemap.xml'), sitemapXml);
 fs.writeFileSync(path.join(DIST_DIR, 'sitemap-index.xml'), sitemapXml);
-console.log('✅ Generated sitemap.xml & sitemap-index.xml with full 11-locale hreflang clusters!');
+console.log(`✅ Generated sitemap.xml & sitemap-index.xml with full ${LOCALES.length}-locale hreflang clusters (including Vietnamese 'vi')!`);

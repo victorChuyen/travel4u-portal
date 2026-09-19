@@ -1,0 +1,85 @@
+---
+interface Props {
+  soundscapeTitle?: string;
+  soundscapeDescription?: string;
+  soundscapeTrack?: string;
+  gastronomyTitle?: string;
+  gastronomyDish?: string;
+  winePairing?: string;
+}
+
+const {
+  soundscapeTitle = "The Acoustic Soul & Soundscape",
+  soundscapeDescription = "Soft vinyl Jazz drifting from Bang & Olufsen acoustics, interwoven with gentle water murmurs.",
+  soundscapeTrack = "Bespoke Chopin Nocturnes & Sunset Bossa Nova",
+  gastronomyTitle = "Sensory Gastronomy & Provenance",
+  gastronomyDish = "Chef's signature heirloom delicacy prepared with morning market harvests",
+  winePairing = "Hand-selected vintage Grand Cru by the Master Sommelier"
+} = Astro.props;
+---
+
+<div class="sensory-luxury-hooks grid grid-cols-1 md:grid-cols-2 gap-6 my-10">
+  
+  <!-- 🎵 The Soundscape Card -->
+  <div class="bg-gradient-to-br from-[#06101c] via-[#091728] to-[#050d18] border border-[#c9a54e]/30 rounded-2xl p-6 sm:p-7 shadow-xl relative overflow-hidden group hover:border-[#c9a54e]/60 transition-all duration-300">
+    <div class="absolute -right-8 -bottom-8 w-28 h-28 bg-[#c9a54e]/5 rounded-full blur-2xl pointer-events-none"></div>
+
+    <div class="flex items-center space-x-3 mb-4">
+      <div class="w-10 h-10 rounded-full bg-[#c9a54e]/20 border border-[#c9a54e] flex items-center justify-center text-lg shadow-md flex-shrink-0 group-hover:scale-110 transition-transform">
+        🎵
+      </div>
+      <div>
+        <span class="text-[10px] font-bold text-[#c9a54e] uppercase tracking-wider block">
+          Acoustic Atmosphere
+        </span>
+        <h4 class="font-serif text-base sm:text-lg font-bold text-white">
+          {soundscapeTitle}
+        </h4>
+      </div>
+    </div>
+
+    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed italic font-serif mb-4">
+      "{soundscapeDescription}"
+    </p>
+
+    <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
+      <div class="flex items-center space-x-1.5 text-slate-300">
+        <span class="w-2 h-2 rounded-full bg-[#c9a54e] animate-pulse"></span>
+        <span><strong>Ambiance:</strong> {soundscapeTrack}</span>
+      </div>
+      <span class="text-[10px] text-[#c9a54e] font-semibold">Curated Playlist</span>
+    </div>
+  </div>
+
+  <!-- 🍷 The Gastronomy Card -->
+  <div class="bg-gradient-to-br from-[#08121f] via-[#0d1c30] to-[#060e18] border border-amber-500/30 rounded-2xl p-6 sm:p-7 shadow-xl relative overflow-hidden group hover:border-amber-400/60 transition-all duration-300">
+    <div class="absolute -right-8 -bottom-8 w-28 h-28 bg-amber-500/5 rounded-full blur-2xl pointer-events-none"></div>
+
+    <div class="flex items-center space-x-3 mb-4">
+      <div class="w-10 h-10 rounded-full bg-amber-500/20 border border-amber-400 flex items-center justify-center text-lg shadow-md flex-shrink-0 group-hover:scale-110 transition-transform">
+        🍷
+      </div>
+      <div>
+        <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wider block">
+          Palate & Cellar
+        </span>
+        <h4 class="font-serif text-base sm:text-lg font-bold text-white">
+          {gastronomyTitle}
+        </h4>
+      </div>
+    </div>
+
+    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed italic font-serif mb-4">
+      "{gastronomyDish}"
+    </p>
+
+    <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
+      <div class="flex items-center space-x-1.5 text-slate-300">
+        <span class="text-amber-400">🍾</span>
+        <span><strong>Pairing:</strong> {winePairing}</span>
+      </div>
+      <span class="text-[10px] text-amber-400 font-semibold">Michelin Caliber</span>
+    </div>
+  </div>
+
+</div>
