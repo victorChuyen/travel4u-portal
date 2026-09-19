@@ -1,10 +1,11 @@
 # 🏛️ TRAVEL4U.US — MASTER SESSION HANDOVER & OPERATIONAL STATE
 > **Executive Leadership:** Chairman Victor & AI CEO Lucky  
-> **Cập nhật:** 2026-09-19 19:10:00 (+07:00)  
+> **Cập nhật:** 2026-09-19 19:16:00 (+07:00)  
 > **Branch Git:** `main` (Clean working tree)  
 > **Latest Git Commits:**  
+> - `7b815a7` — *feat(cro): polish search index, region metadata, and localized destination cards*  
+> - `c219fe0` — *docs: sync handover session update*  
 > - `43a20c7` — *feat(expansion): expand to 30 luxury sanctuaries with 360 localized articles, 4K EXIF/GPS media, and 374 static pages*  
-> - `99e8100` — *docs: add comprehensive session handover document for 20 sanctuaries and 4-tier linking*  
 > - `902243d` — *feat(seo): complete 4-tier internal cross-linking architecture with in-text links, breadcrumbs, related sanctuaries, and sanctuary nav*  
 > - `73abcfa` — *feat(catalog): expand to 20 luxury sanctuaries with 4K media, EXIF/GPS, and 12-locale storytelling reviews*
 
@@ -58,7 +59,7 @@
 - Cơ sở dữ liệu: `scripts/storytelling_database_30_hotels.cjs`
 - Generator: `scripts/generate_victor_lucky_storytelling_articles.cjs`
 - Output: `src/data/articles.json` (360 bài viết = 30 khách sạn × 12 locales: `en`, `vi`, `de`, `fr`, `es`, `it`, `ja`, `ko`, `zh-tw`, `zh-cn`, `pt`, `ru`).
-- Đầy đủ 100% tiếng Việt (`vi`) chuẩn xác không tì vết.
+- Đầy đủ 100% tiếng Việt (`vi`) chuẩn xác không tì vết. Độ dài trung bình: 9.763 ký tự/bài.
 
 ### D. Kho Media 4K, EXIF/IPTC/GPS Nhúng Sâu & WebP Song Hành:
 - Toàn bộ 30 khách sạn đều sở hữu file ảnh đôi: 4K JPEG + WebP siêu nén (tiết kiệm đến 56.2% dung lượng).
@@ -76,11 +77,12 @@
 3. **Tầng 3 (In-Text Contextual Links):** Hơn **600 liên kết nội bộ tự nhiên** dệt sâu vào Chương VI qua 11 Semantic Clusters (Santorini, Amalfi, Bali, Bordeaux Wine, Como & Ý, Ryokan Nhật, Maldives, Swiss Alps, Hoang dã Mỹ, Safari Châu Phi, Cung điện Hoàng gia).
 4. **Tầng 4 (Related Sanctuaries Grid):** Component `src/components/RelatedSanctuaries.astro` hiển thị 3 thẻ khách sạn xa xỉ liên quan với ảnh WebP 4K, rating 5.0★, giá và nút CTA.
 
-### F. Chỉ Mục Tìm Kiếm 60 FPS & International SEO:
-- `public/data/destinations_search_index.json` nạp đủ **1.019 khách sạn**, đánh dấu `d: true` cho 30 khách sạn vàng có cẩm nang.
-- Tích hợp 12 thẻ `<link rel="alternate" hreflang="..." />` và canonical URL vào `<head>` toàn bộ trang chi tiết.
-- `sitemap.xml` & `sitemap-index.xml`: **372 URLs với 4.836 hreflang tags**.
-- **Astro Build:** **374 trang tĩnh** biên dịch thành công trong **18.79 giây** (Exit Code 0).
+### F. Chuẩn Hóa CRO, Bản Địa Hóa UI & Chỉ Mục Tìm Kiếm 60 FPS:
+- **Bản địa hóa Thẻ Khách Sạn (`DestinationCard.astro`):** Hỗ trợ toàn diện Tiếng Việt (`vi`) với các nhãn nút "Xem Cẩm Nang", "Xem Giá Phòng", "Khởi Điểm / Đêm" và văn phong VIP.
+- **Bộ Lọc Danh Mục Đa Quốc Gia (`SearchBar.astro`):** Tự động nhận diện chính xác các quốc gia mới bổ sung (Hy Lạp, Bồ Đào Nha, Tây Ban Nha, Monaco, Indonesia, Tanzania, Kenya, UAE).
+- **Đồng Bộ Dữ Liệu Thực Tế (`destinations_search_index.json` & `destinations.json`):** Mọi điểm đến đều sở hữu tọa độ, tên vùng địa lý (`region`), và bộ sưu tập thực tế, xóa bỏ hoàn toàn các placeholder chung chung.
+- **Biên Dịch Astro Tốc Độ Cao:** **374 trang tĩnh** biên dịch thành công trong **7.66 giây** (Exit Code 0).
+- **Sitemap 12 Ngôn Ngữ:** 372 URLs với 4.836 hreflang tags chéo đa chiều.
 
 ---
 
@@ -95,10 +97,19 @@
 
 Khi bắt đầu phiên làm việc tiếp theo:
 1. **Đọc file `d:\n8n-selfhost\AGENTS.md` đầu tiên** theo Điều 1 Master Directive.
-2. **Kiểm tra trạng thái Git:** Thư mục `d:\n8n-selfhost\travel4u.us` đang ở nhánh `main`, commit `43a20c7`, working tree clean.
-3. **Nếu Chairman Victor cung cấp tài khoản Affiliate mới:**
+2. **Kiểm tra trạng thái Git:** Thư mục `d:\n8n-selfhost\travel4u.us` đang ở nhánh `main`, commit `7b815a7`, working tree clean.
+3. **Kế hoạch mở rộng Đợt 4 (Khách sạn #31 đến #40):**
+   - #31: **The Mark Hotel New York** (Penthouse lớn nhất nước Mỹ & ẩm thực Jean-Georges)
+   - #32: **Aman New York** (Crown Building Manhattan, ốc đảo tĩnh lặng giữa New York)
+   - #33: **The Savoy London** (Biểu tượng Art Deco bên bờ sông Thames)
+   - #34: **Claridge's London** (Khách sạn quý tộc Mayfair được mệnh danh là phòng phụ của Cung điện Buckingham)
+   - #35: **Aman Tokyo** (Tòa tháp Otemachi nhìn trọn núi Phú Sĩ & khu vườn trên mây)
+   - #36: **Hoshinoya Tokyo** (Ryokan thẳng đứng 17 tầng với Onsen nước khoáng ngầm trên tầng thượng)
+   - #37: **Airelles Gordes, La Bastide** (Dinh thự cổ kính giữa thung lũng Luberon ngập tràn hoa oải hương Provence)
+   - #38: **Cheval Blanc St-Tropez** (Cung điện biển Địa Trung Hải của LVMH với nhà hàng 3 sao Michelin La Vague d'Or)
+   - #39: **Nayara Alto Atacama** (Ốc đảo ngắm sao giữa sa mạc khô hạn nhất thế giới)
+   - #40: **Tierra Patagonia Hotel & Spa** (Khách sạn gỗ uốn lượn bên hồ Sarmiento nhìn ra rặng núi Torres del Paine)
+4. **Nếu Chairman Victor cung cấp tài khoản Affiliate mới:**
    - Cập nhật file `functions/go/[slug].js` với link deep link tracking chính thức.
    - Chạy test kiểm thử click attribution trong tab ẩn danh.
-4. **Nếu tiếp tục mở rộng lên 40 hoặc 50 khách sạn từ Catalog 1.000 điểm:**
-   - Sử dụng quy trình chuẩn đã thiết lập tại `scripts/expand_batch_3_sanctuaries.cjs` và `scripts/build_storytelling_database_30.cjs` để mở rộng thêm các bộ sưu tập tiếp theo (New York Penthouses, London Icons, Tokyo Sky Sanctuaries, Châteaux of Provence...).
 5. **Lưu ý:** Chairman Victor tự quản lý cấu hình tên miền và máy chủ WordPress; AI Agent không tự ý can thiệp vào DNS hay migration WordPress trừ khi có chỉ đạo trực tiếp.
