@@ -17,56 +17,178 @@ export async function getStaticPaths() {
 
 const { locale } = Astro.props;
 const dict = (i18n as any)[locale] || (i18n as any).en;
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `https://travel4u.us/${locale}/#website`,
+      "url": `https://travel4u.us/${locale}/`,
+      "name": dict.site_title || "Travel4U | Luxury Journeys, Intelligently Crafted",
+      "alternateName": [
+        "Travel4U Luxury Stays",
+        "Travel4U Expedia Concierge",
+        "Luxury Travel4U Victor & Lucky"
+      ],
+      "description": dict.hero_subtitle || "World's most extraordinary 5-star luxury hotels curated by Victor & Lucky with Expedia Partner Network.",
+      "publisher": {
+        "@id": "https://travel4u.us/#organization"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": `https://travel4u.us/${locale}/?q={search_term_string}`
+        },
+        "query-input": "required name=search_term_string"
+      },
+      "inLanguage": locale
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://travel4u.us/#organization",
+      "name": "Travel4U - Sovereign Luxury Concierge",
+      "alternateName": "Luxury Travel4U",
+      "url": "https://travel4u.us/",
+      "logo": "https://travel4u.us/Luxury-Travel4U.png",
+      "image": "https://travel4u.us/Luxury-Travel4U.png",
+      "slogan": "More Than A Trip · A Brighter You",
+      "founders": [
+        {
+          "@type": "Person",
+          "name": "Victor",
+          "jobTitle": "Co-Founder & Heritage Curation Lead"
+        },
+        {
+          "@type": "Person",
+          "name": "Lucky",
+          "jobTitle": "Co-Founder & Sensory Experience Director"
+        }
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": `https://travel4u.us/${locale}/#itemlist`,
+      "name": dict.nav_experiences || "The 2026 Gold List Luxury Stays",
+      "itemListElement": destinationsData.map((dest, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": dest.english_title,
+        "url": `https://travel4u.us/${locale}/experience/${dest.slugs[locale] || dest.slugs.en}/`,
+        "image": `https://travel4u.us${dest.hero_image}`
+      }))
+    }
+  ]
+};
 ---
 
 <Layout
   title={`${dict.site_title} | ${dict.site_tagline}`}
   description={dict.hero_subtitle}
+  image="/Luxury-Travel4U.png"
   locale={locale}
+  schema={schemaData}
 >
   <Header currentLocale={locale} />
 
   <main class="flex-grow">
     
-    <!-- Hero Section (GYG Inspired Luxury Redesign) -->
-    <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden py-24 px-4 sm:px-6 lg:px-8">
+    <!-- 👑 HERO SECTION -->
+    <section class="relative min-h-[88vh] flex items-center justify-center overflow-hidden py-24 px-4 sm:px-6 lg:px-8">
       
       <div class="absolute inset-0 z-0">
         <img
-          src="/media/GYG_FR_PARIS_seine-river-gourmet-dinner-cruise-bateaux-parisiens_sunset-eiffel-landscape-4k.jpg"
-          alt="Paris Cruise 4K"
-          class="w-full h-full object-cover object-center brightness-[0.30] scale-105 transform animate-pulse duration-[12000ms]"
+          src="/media/expedia_hotels/expedia_paris_four_seasons_george_v_hero_4k.jpg"
+          alt="Travel4U Luxury Stays 4K"
+          class="w-full h-full object-cover object-center brightness-[0.28] scale-105 transform animate-pulse duration-[14000ms]"
         />
-        <div class="absolute inset-0 bg-gradient-to-b from-[#07111e]/85 via-[#07111e]/70 to-[#07111e]"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-[#07111e]/90 via-[#07111e]/75 to-[#07111e]"></div>
       </div>
 
       <div class="relative z-10 max-w-5xl mx-auto text-center w-full">
         
         <div class="inline-flex flex-wrap items-center justify-center gap-3 mb-8">
           <span class="bg-[#c9a54e]/20 border border-[#c9a54e]/50 text-[#c9a54e] text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full backdrop-blur-md shadow-lg">
-            👑 {dict.nav_curators}
+            👑 {dict.nav_curators || "2026 Gold List"}
           </span>
           <span class="bg-slate-900/80 border border-slate-700 text-slate-300 text-xs font-medium px-4 py-1.5 rounded-full backdrop-blur-md">
-            ⚡ {dict.official_gyg_partner}
+            ✨ Luxury Travel4U Victor & Lucky
           </span>
           <span class="bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 text-xs font-semibold px-4 py-1.5 rounded-full backdrop-blur-md">
-            {dict.free_cancellation_badge}
+            {dict.free_cancellation_badge || "✓ VIP Perks & Verified Parity"}
           </span>
         </div>
 
-        <h1 class="font-serif text-3xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight leading-[1.15] mb-6">
+        <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.12] mb-6">
           {dict.hero_headline}
         </h1>
 
-        <p class="text-base sm:text-lg md:text-xl text-slate-300 max-w-3xl mx-auto font-normal leading-relaxed mb-10">
+        <p class="font-serif italic text-lg sm:text-xl text-[#c9a54e] mb-4">
+          “A more beautiful world awaits you · More than a trip, a brighter you.”
+        </p>
+
+        <p class="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto font-normal leading-relaxed mb-10">
           {dict.hero_subtitle}
         </p>
 
         <!-- 🔍 FLOATING SEARCH BAR & CATEGORY PILLS -->
         <SearchBar currentLocale={locale} />
 
+        <!-- 📊 4 LIVE TRUST STATS FROM MASTER BRAND ASSET -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 pt-8 border-t border-slate-800/80 max-w-4xl mx-auto">
+          <div class="p-4 rounded-xl bg-[#0b1726]/70 border border-slate-800/60 backdrop-blur-sm text-center">
+            <div class="font-serif text-2xl sm:text-3xl font-bold text-[#c9a54e]">1M+</div>
+            <div class="text-[11px] uppercase tracking-wider text-slate-400 mt-1">Happy Travelers</div>
+          </div>
+          <div class="p-4 rounded-xl bg-[#0b1726]/70 border border-slate-800/60 backdrop-blur-sm text-center">
+            <div class="font-serif text-2xl sm:text-3xl font-bold text-[#c9a54e]">4.9 ★</div>
+            <div class="text-[11px] uppercase tracking-wider text-slate-400 mt-1">Average Rating</div>
+          </div>
+          <div class="p-4 rounded-xl bg-[#0b1726]/70 border border-slate-800/60 backdrop-blur-sm text-center">
+            <div class="font-serif text-2xl sm:text-3xl font-bold text-[#c9a54e]">150+</div>
+            <div class="text-[11px] uppercase tracking-wider text-slate-400 mt-1">Countries</div>
+          </div>
+          <div class="p-4 rounded-xl bg-[#0b1726]/70 border border-slate-800/60 backdrop-blur-sm text-center">
+            <div class="font-serif text-2xl sm:text-3xl font-bold text-[#c9a54e]">10,000+</div>
+            <div class="text-[11px] uppercase tracking-wider text-slate-400 mt-1">Curated Experiences</div>
+          </div>
+        </div>
+
       </div>
 
+    </section>
+
+    <!-- 🖼️ MASTER BRAND VISUAL SHOWCASE (LUXURY-TRAVEL4U) -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="relative rounded-3xl overflow-hidden border border-[#c9a54e]/30 shadow-2xl bg-gradient-to-b from-[#0b1726] to-[#040a12] p-2 sm:p-4 group">
+        <div class="relative rounded-2xl overflow-hidden aspect-[16/9] max-h-[640px]">
+          <img
+            src="/Luxury-Travel4U.png"
+            alt="Travel4U - Luxury Journeys, Intelligently Crafted"
+            class="w-full h-full object-cover object-center transform transition-transform duration-700 group-hover:scale-[1.02]"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#07111e]/90 via-transparent to-transparent"></div>
+          <div class="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-[#07111e]/80 backdrop-blur-md p-4 sm:p-5 rounded-xl border border-slate-800">
+            <div>
+              <div class="text-xs font-bold text-[#c9a54e] uppercase tracking-widest mb-1">
+                Curator Reflection & Philosophy
+              </div>
+              <h3 class="font-serif text-base sm:text-lg font-bold text-white">
+                “Extraordinary Journeys for a Brighter Tomorrow”
+              </h3>
+              <p class="text-xs text-slate-400 mt-0.5">
+                Handpicked luxury experiences · Sustainable & responsible travel · Supporting local communities.
+              </p>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs text-slate-300 font-medium">Verified Curation</span>
+              <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Destination Grid -->
@@ -78,17 +200,22 @@ const dict = (i18n as any)[locale] || (i18n as any).en;
             Collection 2026
           </span>
           <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white tracking-tight">
-            {dict.nav_experiences}
+            {dict.nav_experiences || "Curated 5-Star Sanctuaries of a Lifetime"}
           </h2>
         </div>
+        <p class="text-sm text-slate-400 max-w-md">
+          {locale === 'vi' ? 'Mỗi điểm lưu trú được kiểm toán thực tế về khả năng cách âm, dịch vụ quản gia cao cấp và giá niêm yết trực tiếp qua Expedia Partner Network.' : 'Every sanctuary is rigorously audited for Forbes Five-Star excellence, verified acoustic privacy, and direct live rates via Expedia Partner Network.'}
+        </p>
       </div>
 
       <!-- Empty Search State -->
       <div id="no-search-results-msg" style="display: none;" class="text-center py-16 px-4 bg-[#0b1726]/60 border border-slate-800 rounded-3xl mb-8">
         <span class="text-4xl mb-3 block">🔍</span>
-        <h3 class="font-serif text-xl font-bold text-white mb-2">Không tìm thấy trải nghiệm phù hợp</h3>
+        <h3 class="font-serif text-xl font-bold text-white mb-2">
+          {locale === 'vi' ? 'Không tìm thấy điểm đến phù hợp' : 'No Matching Luxury Sanctuaries Found'}
+        </h3>
         <p class="text-xs text-slate-400 max-w-md mx-auto">
-          Vui lòng thử từ khóa khác hoặc bấm "Tất Cả" ở trên để xem toàn bộ danh mục điểm đến vàng.
+          {locale === 'vi' ? 'Vui lòng thử từ khóa khác như "Paris", "Rome", "Kyoto", "Maldives" hoặc bấm "Tất Cả" ở trên.' : 'Try searching for "Paris", "Rome", "Kyoto", "Maldives", or click "All Destinations" above.'}
         </p>
       </div>
 
@@ -101,17 +228,70 @@ const dict = (i18n as any)[locale] || (i18n as any).en;
             image={dest.hero_image}
             rating={dest.rating}
             price={dest.price_display}
-            gygLink={dest.gyg_direct_link}
+            expediaLink={(dest as any).expedia_direct_link}
             locale={locale}
             region={(dest as any).region || (dest.location.includes('Japan') ? 'Asia' : dest.location.includes('Maldives') ? 'Islands' : dest.location.includes('Serengeti') ? 'Safari' : dest.location.includes('Dubai') ? 'Middle East' : 'Europe')}
-            category={(dest as any).category || 'VIP Luxury Experience'}
+            category="5-Star Luxury Stay"
           />
         ))}
       </div>
 
     </section>
 
+    <!-- 🌟 VALUE PROPOSITION: THE SOVEREIGN STANDARD -->
+    <section class="py-16 bg-[#040a12] border-t border-b border-slate-800/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <span class="text-xs font-bold text-[#c9a54e] uppercase tracking-[0.2em] block mb-2">
+            The Sovereign Standard
+          </span>
+          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-white tracking-tight">
+            {locale === 'vi' ? 'Lợi Ích Khi Đặt Phòng Qua Liên Kết Đối Tác Expedia' : 'Why Reserve Through Verified Expedia Partner Links?'}
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="p-6 rounded-2xl bg-[#07111e] border border-slate-800">
+            <div class="w-10 h-10 rounded-xl bg-[#c9a54e]/10 border border-[#c9a54e]/30 flex items-center justify-center text-xl mb-4">
+              👑
+            </div>
+            <h3 class="font-serif text-lg font-bold text-white mb-2">
+              {locale === 'vi' ? 'Đặc Quyền VIP Thượng Hạng' : 'Elite VIP Amenities'}
+            </h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              {locale === 'vi' ? 'Bữa sáng ẩm thực miễn phí hàng ngày cho 2 khách, ưu tiên nâng hạng phòng khi nhận phòng và credit dịch vụ spa độc quyền.' : 'Complimentary daily gourmet breakfast for two, priority room upgrades upon arrival (subject to availability), and exclusive on-property credits at world-renowned spas.'}
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-[#07111e] border border-slate-800">
+            <div class="w-10 h-10 rounded-xl bg-[#c9a54e]/10 border border-[#c9a54e]/30 flex items-center justify-center text-xl mb-4">
+              🛡️
+            </div>
+            <h3 class="font-serif text-lg font-bold text-white mb-2">
+              {locale === 'vi' ? 'Giá Niêm Yết Đồng Nhất & Minh Bạch' : 'Live Availability & Rate Parity'}
+            </h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              {locale === 'vi' ? 'Kết nối trực tiếp hạ tầng Expedia Group đảm bảo tình trạng phòng theo thời gian thực, giá hội viên chuẩn xác và không phí ẩn.' : 'Direct integration with Expedia Group inventory guarantees real-time room availability, official member rates, and transparent pricing with zero surprise fees.'}
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-[#07111e] border border-slate-800">
+            <div class="w-10 h-10 rounded-xl bg-[#c9a54e]/10 border border-[#c9a54e]/30 flex items-center justify-center text-xl mb-4">
+              🤝
+            </div>
+            <h3 class="font-serif text-lg font-bold text-white mb-2">
+              {locale === 'vi' ? 'Chính Sách Hủy Linh Hoạt 24/7' : 'Flexible Cancellation Protection'}
+            </h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              {locale === 'vi' ? 'An tâm tuyệt đối khi lên kế hoạch. Hỗ trợ khung giờ hủy phòng linh hoạt cùng đội ngũ chăm sóc khách hàng quốc tế 24/7.' : 'Travel with peace of mind. Access flexible cancellation windows and 24/7 dedicated guest support across international time zones.'}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <Footer currentLocale={locale} />
 </Layout>
+

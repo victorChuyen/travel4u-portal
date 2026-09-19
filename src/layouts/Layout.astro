@@ -4,20 +4,58 @@ interface Props {
   description: string;
   locale?: string;
   image?: string;
+  keywords?: string;
   schema?: any;
   canonicalUrl?: string;
+  type?: 'website' | 'article';
+  alternateUrls?: Record<string, string>;
 }
 
 const {
   title,
   description,
   locale = 'en',
-  image = '/media/GYG_FR_PARIS_seine-river-gourmet-dinner-cruise-bateaux-parisiens_sunset-eiffel-landscape-4k.jpg',
+  image = '/Luxury-Travel4U.png',
+  keywords = 'luxury hotels, 5 star presidential suites, private overwater villas, Lake Como luxury stays, Kyoto luxury ryokan, luxury safari camps, Swiss Alps luxury chalets, Expedia VIP perks, Travel4U Victor and Lucky, luxury travel concierge',
   schema,
-  canonicalUrl = Astro.url.href
+  canonicalUrl = Astro.url.href,
+  type = 'website',
+  alternateUrls
 } = Astro.props;
 
 const locales = ['en', 'vi', 'de', 'fr', 'es', 'it', 'ja', 'ko', 'zh-tw', 'zh-cn', 'pt', 'ru'];
+
+const ogLocales: Record<string, string> = {
+  en: 'en_US',
+  vi: 'vi_VN',
+  de: 'de_DE',
+  fr: 'fr_FR',
+  es: 'es_ES',
+  it: 'it_IT',
+  ja: 'ja_JP',
+  ko: 'ko_KR',
+  'zh-tw': 'zh_TW',
+  'zh-cn': 'zh_CN',
+  pt: 'pt_PT',
+  ru: 'ru_RU'
+};
+
+const ogLocale = ogLocales[locale] || 'en_US';
+const otherOgLocales = Object.entries(ogLocales)
+  .filter(([l]) => l !== locale)
+  .map(([_, v]) => v);
+
+const siteOrigin = 'https://travel4u.us';
+const fullImageUrl = image.startsWith('http') ? image : `${siteOrigin}${image.startsWith('/') ? image : '/' + image}`;
+
+// Compute default alternates if not provided
+const effectiveAlternates: Record<string, string> = alternateUrls || {};
+if (Object.keys(effectiveAlternates).length === 0) {
+  locales.forEach(loc => {
+    effectiveAlternates[loc] = loc === 'en' ? `${siteOrigin}/` : `${siteOrigin}/${loc}/`;
+  });
+  effectiveAlternates['x-default'] = `${siteOrigin}/`;
+}
 ---
 
 <!doctype html>
@@ -28,36 +66,60 @@ const locales = ['en', 'vi', 'de', 'fr', 'es', 'it', 'ja', 'ko', 'zh-tw', 'zh-cn
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonicalUrl} />
     
+    <!-- Primary Search & AI Search Engine Tags -->
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="Victor & Lucky, Luxury Travel4U" />
+    <meta name="creator" content="Luxury Travel4U Victor & Lucky" />
+    <meta name="publisher" content="Travel4U - Sovereign Luxury Concierge" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="theme-color" content="#07111e" />
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.url.href} />
+    <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content="Travel4U | Luxury Journeys, Intelligently Crafted" />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(image, Astro.site || Astro.url.origin).href} />
+    <meta property="og:image" content={fullImageUrl} />
+    <meta property="og:image:secure_url" content={fullImageUrl} />
+    <meta property="og:image:width" content="1920" />
+    <meta property="og:image:height" content="1080" />
+    <meta property="og:image:alt" content="Travel4U - Luxury Journeys, Intelligently Crafted (Curated by Victor & Lucky)" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:locale" content={ogLocale} />
+    {otherOgLocales.map(alt => (
+      <meta property="og:locale:alternate" content={alt} />
+    ))}
 
-    <!-- Twitter -->
+    <!-- Twitter / X Cards -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={Astro.url.href} />
+    <meta property="twitter:site" content="@Travel4U_VIP" />
+    <meta property="twitter:creator" content="@VictorLucky_VIP" />
+    <meta property="twitter:url" content={canonicalUrl} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={new URL(image, Astro.site || Astro.url.origin).href} />
+    <meta property="twitter:image" content={fullImageUrl} />
+    <meta property="twitter:image:alt" content="Travel4U - Luxury Journeys, Intelligently Crafted" />
+
+    <!-- Alternate Hreflang Clusters (Google & AI Search Geotargeting) -->
+    {Object.entries(effectiveAlternates).map(([altLoc, altUrl]) => (
+      <link rel="alternate" hreflang={altLoc} href={altUrl} />
+    ))}
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-    <!-- Schema.org JSON-LD -->
+    <!-- Schema.org JSON-LD Structured Data for Google & AI Search Engines -->
     {schema && (
       <script type="application/ld+json" set:html={JSON.stringify(schema)} />
     )}
-
-    <!-- GetYourGuide Official Widget Loader -->
-    <script async defer src="https://widget.getyourguide.com/v2/widget.js"></script>
 
     <!-- Multi-Tenant Team Member Attribution Engine -->
     <script is:inline src="/scripts/team_attribution.js"></script>

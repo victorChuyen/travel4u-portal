@@ -16,30 +16,128 @@ const schemaData = {
       "@type": "WebSite",
       "@id": "https://travel4u.us/#website",
       "url": "https://travel4u.us/",
-      "name": "Travel4U Luxury Stays & Concierge",
-      "description": "World's Most Exclusive 5-Star Luxury Hotels, Historic Palaces & Private Overwater Villas",
+      "name": "Travel4U | Luxury Journeys, Intelligently Crafted",
+      "alternateName": [
+        "Travel4U Luxury Stays",
+        "Travel4U Expedia Concierge",
+        "Luxury Travel4U Victor & Lucky"
+      ],
+      "description": "World's most extraordinary 5-star luxury hotels, historic palaces, private overwater villas, and alpine chalets curated by Victor & Lucky with Expedia Partner Network.",
       "publisher": {
-        "@type": "Organization",
-        "name": "Travel4U Luxury Stays",
-        "url": "https://travel4u.us/"
-      }
+        "@id": "https://travel4u.us/#organization"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://travel4u.us/?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://travel4u.us/#organization",
+      "name": "Travel4U - Sovereign Luxury Concierge",
+      "alternateName": "Luxury Travel4U",
+      "url": "https://travel4u.us/",
+      "logo": "https://travel4u.us/Luxury-Travel4U.png",
+      "image": "https://travel4u.us/Luxury-Travel4U.png",
+      "slogan": "More Than A Trip · A Brighter You",
+      "founders": [
+        {
+          "@type": "Person",
+          "name": "Victor",
+          "jobTitle": "Co-Founder & Heritage Curation Lead"
+        },
+        {
+          "@type": "Person",
+          "name": "Lucky",
+          "jobTitle": "Co-Founder & Sensory Experience Director"
+        }
+      ],
+      "knowsAbout": [
+        "Luxury Hotels",
+        "Expedia Partner Network",
+        "5-Star Presidential Suites",
+        "Overwater Villas",
+        "Michelin Dining",
+        "VIP Travel Concierge"
+      ],
+      "sameAs": [
+        "https://www.youtube.com/@Travel4U_Luxury",
+        "https://twitter.com/Travel4U_VIP"
+      ]
     },
     {
       "@type": "ItemList",
+      "@id": "https://travel4u.us/#itemlist",
+      "name": "The 2026 Gold List Luxury Stays & Sanctuaries",
+      "description": "Handpicked presidential suites and private sanctuaries across Europe, Asia, Americas, and the Indian Ocean.",
       "itemListElement": destinationsData.map((dest, index) => ({
         "@type": "ListItem",
         "position": index + 1,
         "name": dest.english_title,
-        "url": `https://travel4u.us/experience/${dest.slugs.en}/`
+        "url": `https://travel4u.us/experience/${dest.slugs.en}/`,
+        "image": `https://travel4u.us${dest.hero_image}`
       }))
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://travel4u.us/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What makes Travel4U luxury stays different from standard booking portals?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Travel4U is an intimate luxury curation platform led by founders Victor & Lucky. Every property is audited for sensory acoustic privacy, Forbes Five-Star standards, Michelin gastronomy, and verified VIP perks powered directly by Expedia Partner Network."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do Victor & Lucky curate each 5-star hotel in the collection?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Victor and Lucky evaluate each stay through a 4-point emotional formula: 1 positive emotion, 1 core concern resolved (such as complete soundproofing and discreet butler service), 1 ideal guest persona, and an unforgettable 'WOA' climax that inspires guests to return annually."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What VIP perks do I receive when reserving via Travel4U's Expedia partnership?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Guests booking through our verified Expedia partner links enjoy official member rate parity, complimentary gourmet daily breakfast for two, priority room upgrades upon arrival (subject to availability), and exclusive on-property spa credits."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are reservation cancellations flexible and transparent?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Every booking is managed directly on Expedia Group's secure global infrastructure, offering transparent room policies, flexible cancellation windows, and 24/7 dedicated guest protection."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does Travel4U utilize AI in luxury travel planning?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Travel4U pairs high-touch human curation with intelligent search indexing to deliver 60 FPS real-time availability filtering, multi-locale cultural adaptation across 12 languages, and custom sensory recommendations."
+          }
+        }
+      ]
     }
   ]
 };
 ---
 
 <Layout
-  title="Travel4U | World's Top 5-Star Luxury Hotels & Private Sanctuaries"
-  description="Discover handpicked presidential suites, Lake Como villas, Maldives overwater reserves, and Kyoto ryokans with verified VIP perks via Expedia Partner Network."
+  title="Travel4U | Luxury Journeys, Intelligently Crafted — 5-Star Sanctuaries & Historic Palaces"
+  description="Discover handpicked presidential suites, Lake Como villas, Maldives overwater reserves, and Kyoto ryokans. Curated by Victor & Lucky with Expedia VIP perks."
+  keywords="luxury journeys intelligently crafted, luxury hotels, 5 star presidential suites, private overwater villas, Lake Como luxury stays, Kyoto luxury ryokan, luxury safari camps, Swiss Alps luxury chalets, Expedia VIP perks, Travel4U Victor and Lucky, luxury travel concierge"
+  image="/Luxury-Travel4U.png"
   locale="en"
   schema={schemaData}
 >
@@ -47,49 +145,113 @@ const schemaData = {
 
   <main class="flex-grow">
     
-    <!-- 👑 HERO SECTION (EXPEDIA LUXURY REDESIGN) -->
-    <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden py-24 px-4 sm:px-6 lg:px-8">
+    <!-- 👑 HERO SECTION (LUXURY JOURNEYS, INTELLIGENTLY CRAFTED) -->
+    <section class="relative min-h-[88vh] flex items-center justify-center overflow-hidden py-24 px-4 sm:px-6 lg:px-8">
       
-      <!-- Background 4K Atmosphere (Official Expedia 4K CDN) -->
+      <!-- Background 4K Atmosphere -->
       <div class="absolute inset-0 z-0">
         <img
           src="/media/expedia_hotels/expedia_paris_four_seasons_george_v_hero_4k.jpg"
-          alt="Four Seasons Hotel George V Paris 4K UHD"
-          class="w-full h-full object-cover object-center brightness-[0.35] scale-105 transform animate-pulse duration-[12000ms]"
+          alt="Luxury Journeys Intelligently Crafted - Four Seasons George V"
+          class="w-full h-full object-cover object-center brightness-[0.28] scale-105 transform animate-pulse duration-[14000ms]"
         />
-        <div class="absolute inset-0 bg-gradient-to-b from-[#07111e]/85 via-[#07111e]/70 to-[#07111e]"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-[#07111e]/90 via-[#07111e]/75 to-[#07111e]"></div>
       </div>
 
       <div class="relative z-10 max-w-5xl mx-auto text-center w-full">
         
-        <!-- Trust Badges -->
+        <!-- Trust & Brand Badges -->
         <div class="inline-flex flex-wrap items-center justify-center gap-3 mb-8">
           <span class="bg-[#c9a54e]/20 border border-[#c9a54e]/50 text-[#c9a54e] text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full backdrop-blur-md shadow-lg">
-            👑 2026 Gold List Luxury Stays
+            👑 2026 Sovereign Gold List
           </span>
           <span class="bg-slate-900/80 border border-slate-700 text-slate-300 text-xs font-medium px-4 py-1.5 rounded-full backdrop-blur-md">
-            ⚡ Verified by 35,000+ Forbes & Expedia Reviews
+            ✨ Curated by Luxury Travel4U Victor & Lucky
           </span>
           <span class="bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 text-xs font-semibold px-4 py-1.5 rounded-full backdrop-blur-md">
-            ✓ VIP Breakfast & Room Upgrade Perks
+            ✓ Expedia Partner Network VIP Perks
           </span>
         </div>
 
-        <!-- Headline -->
-        <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.15] mb-6">
-          Sovereign Sanctuaries <span class="bg-gradient-to-r from-[#c9a54e] via-[#dfba63] to-[#ff7043] bg-clip-text text-transparent">Worth Traveling For</span>
+        <!-- Master Headline from Brand Directives -->
+        <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.12] mb-6">
+          Luxury Journeys, <span class="bg-gradient-to-r from-[#c9a54e] via-[#dfba63] to-[#ff7043] bg-clip-text text-transparent">Intelligently Crafted</span>
         </h1>
 
+        <!-- Signature Tagline -->
+        <p class="font-serif italic text-lg sm:text-xl text-[#c9a54e] mb-4">
+          “A more beautiful world awaits you · More than a trip, a brighter you.”
+        </p>
+
         <!-- Subtitle -->
-        <p class="text-base sm:text-lg md:text-xl text-slate-300 max-w-3xl mx-auto font-normal leading-relaxed mb-10">
-          From Lake Como floating palaces to secluded Maldives overwater reserves. An authoritative global collection of 1,000 peerless 5-star sanctuaries verified with Expedia Partner Network.
+        <p class="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto font-normal leading-relaxed mb-10">
+          Discover the world’s most extraordinary destinations with AI-powered itineraries, handpicked 5-star sanctuaries, and personal storytelling from founders Victor & Lucky.
         </p>
 
         <!-- 🔍 FLOATING SEARCH BAR & CATEGORY PILLS -->
         <SearchBar currentLocale="en" />
 
+        <!-- 📊 4 LIVE TRUST STATS FROM MASTER BRAND ASSET -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 pt-8 border-t border-slate-800/80 max-w-4xl mx-auto">
+          <div class="p-4 rounded-xl bg-[#0b1726]/70 border border-slate-800/60 backdrop-blur-sm text-center">
+            <div class="font-serif text-2xl sm:text-3xl font-bold text-[#c9a54e]">1M+</div>
+            <div class="text-[11px] uppercase tracking-wider text-slate-400 mt-1">Happy Travelers</div>
+          </div>
+          <div class="p-4 rounded-xl bg-[#0b1726]/70 border border-slate-800/60 backdrop-blur-sm text-center">
+            <div class="font-serif text-2xl sm:text-3xl font-bold text-[#c9a54e]">4.9 ★</div>
+            <div class="text-[11px] uppercase tracking-wider text-slate-400 mt-1">Average Rating</div>
+          </div>
+          <div class="p-4 rounded-xl bg-[#0b1726]/70 border border-slate-800/60 backdrop-blur-sm text-center">
+            <div class="font-serif text-2xl sm:text-3xl font-bold text-[#c9a54e]">150+</div>
+            <div class="text-[11px] uppercase tracking-wider text-slate-400 mt-1">Countries</div>
+          </div>
+          <div class="p-4 rounded-xl bg-[#0b1726]/70 border border-slate-800/60 backdrop-blur-sm text-center">
+            <div class="font-serif text-2xl sm:text-3xl font-bold text-[#c9a54e]">10,000+</div>
+            <div class="text-[11px] uppercase tracking-wider text-slate-400 mt-1">Curated Experiences</div>
+          </div>
+        </div>
+
       </div>
 
+    </section>
+
+    <!-- 🖼️ MASTER BRAND VISUAL SHOWCASE (LUXURY-TRAVEL4U) -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="relative rounded-3xl overflow-hidden border border-[#c9a54e]/30 shadow-2xl bg-gradient-to-b from-[#0b1726] to-[#040a12] p-2 sm:p-4 group">
+        
+        <div class="relative rounded-2xl overflow-hidden aspect-[16/9] max-h-[640px]">
+          <img
+            src="/Luxury-Travel4U.png"
+            alt="Travel4U - Luxury Journeys, Intelligently Crafted (Master Brand Architecture)"
+            class="w-full h-full object-cover object-center transform transition-transform duration-700 group-hover:scale-[1.02]"
+            loading="lazy"
+          />
+          
+          <!-- Subtle Gradient Overlay -->
+          <div class="absolute inset-0 bg-gradient-to-t from-[#07111e]/90 via-transparent to-transparent"></div>
+
+          <!-- Bottom Caption Overlay -->
+          <div class="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-[#07111e]/80 backdrop-blur-md p-4 sm:p-5 rounded-xl border border-slate-800">
+            <div>
+              <div class="text-xs font-bold text-[#c9a54e] uppercase tracking-widest mb-1">
+                Curator Reflection & Philosophy
+              </div>
+              <h3 class="font-serif text-base sm:text-lg font-bold text-white">
+                “Extraordinary Journeys for a Brighter Tomorrow”
+              </h3>
+              <p class="text-xs text-slate-400 mt-0.5">
+                Handpicked luxury experiences · Sustainable & responsible travel · Supporting local communities.
+              </p>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <span class="text-xs text-slate-300 font-medium">Verified Curation</span>
+              <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </section>
 
     <!-- 💎 10 GOLD LIST FLAGSHIP DESTINATIONS -->
@@ -105,7 +267,7 @@ const schemaData = {
           </h2>
         </div>
         <p class="text-sm text-slate-400 max-w-md">
-          Every sanctuary is rigorously audited for Forbes Five-Star excellence, verified master butler service, and direct live availability via Expedia Group.
+          Every sanctuary is rigorously audited for Forbes Five-Star excellence, verified acoustic privacy, and direct live rates via Expedia Partner Network.
         </p>
       </div>
 
@@ -138,7 +300,7 @@ const schemaData = {
 
     </section>
 
-    <!-- 🌟 VALUE PROPOSITION: WHY BOOK THROUGH EXPEDIA PARTNER NETWORK -->
+    <!-- 🌟 VALUE PROPOSITION: THE SOVEREIGN STANDARD -->
     <section class="py-16 bg-[#040a12] border-t border-b border-slate-800/80">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-12">
@@ -157,7 +319,7 @@ const schemaData = {
             </div>
             <h3 class="font-serif text-lg font-bold text-white mb-2">Elite VIP Amenities</h3>
             <p class="text-xs text-slate-400 leading-relaxed">
-              Complimentary daily gourmet breakfast for two, room upgrades upon arrival (subject to availability), and exclusive on-property credits at world-renowned spas.
+              Complimentary daily gourmet breakfast for two, priority room upgrades upon arrival (subject to availability), and exclusive on-property credits at world-renowned spas.
             </p>
           </div>
 
@@ -184,7 +346,75 @@ const schemaData = {
       </div>
     </section>
 
+    <!-- ❓ FAQ SECTION FOR SEARCH ENGINES & AI CRAWLERS (MATCHING SCHEMA) -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <span class="text-xs font-bold text-[#c9a54e] uppercase tracking-[0.2em] block mb-2">
+          Concierge Guidance
+        </span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white tracking-tight">
+          Frequently Asked Questions
+        </h2>
+        <p class="text-xs text-slate-400 mt-2">
+          Everything discerning travelers need to know about booking with Travel4U and Expedia Partner Network.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        <details class="group bg-[#0b1726] border border-slate-800 rounded-2xl p-6 [&_summary::-webkit-details-marker]:none cursor-pointer">
+          <summary class="flex items-center justify-between font-serif text-base sm:text-lg font-semibold text-white">
+            <span>What makes Travel4U luxury stays different from standard booking sites?</span>
+            <span class="ml-4 text-[#c9a54e] transition-transform duration-300 group-open:rotate-180">▼</span>
+          </summary>
+          <p class="mt-4 text-xs sm:text-sm text-slate-400 leading-relaxed">
+            Travel4U is an intimate luxury curation platform led by founders Victor & Lucky. Every property is audited for sensory acoustic privacy, Forbes Five-Star standards, Michelin gastronomy, and verified VIP perks powered directly by Expedia Partner Network.
+          </p>
+        </details>
+
+        <details class="group bg-[#0b1726] border border-slate-800 rounded-2xl p-6 [&_summary::-webkit-details-marker]:none cursor-pointer">
+          <summary class="flex items-center justify-between font-serif text-base sm:text-lg font-semibold text-white">
+            <span>How do Victor & Lucky curate each 5-star hotel in the collection?</span>
+            <span class="ml-4 text-[#c9a54e] transition-transform duration-300 group-open:rotate-180">▼</span>
+          </summary>
+          <p class="mt-4 text-xs sm:text-sm text-slate-400 leading-relaxed">
+            Victor and Lucky evaluate each stay through a 4-point emotional formula: 1 positive emotion, 1 core concern resolved (such as complete soundproofing and discreet butler service), 1 ideal guest persona, and an unforgettable 'WOA' climax that inspires guests to return annually.
+          </p>
+        </details>
+
+        <details class="group bg-[#0b1726] border border-slate-800 rounded-2xl p-6 [&_summary::-webkit-details-marker]:none cursor-pointer">
+          <summary class="flex items-center justify-between font-serif text-base sm:text-lg font-semibold text-white">
+            <span>What VIP perks do I receive when reserving via Travel4U's Expedia partnership?</span>
+            <span class="ml-4 text-[#c9a54e] transition-transform duration-300 group-open:rotate-180">▼</span>
+          </summary>
+          <p class="mt-4 text-xs sm:text-sm text-slate-400 leading-relaxed">
+            Guests booking through our verified Expedia partner links enjoy official member rate parity, complimentary gourmet daily breakfast for two, priority room upgrades upon arrival (subject to availability), and exclusive on-property spa credits.
+          </p>
+        </details>
+
+        <details class="group bg-[#0b1726] border border-slate-800 rounded-2xl p-6 [&_summary::-webkit-details-marker]:none cursor-pointer">
+          <summary class="flex items-center justify-between font-serif text-base sm:text-lg font-semibold text-white">
+            <span>Are reservation cancellations flexible and transparent?</span>
+            <span class="ml-4 text-[#c9a54e] transition-transform duration-300 group-open:rotate-180">▼</span>
+          </summary>
+          <p class="mt-4 text-xs sm:text-sm text-slate-400 leading-relaxed">
+            Yes. Every booking is managed directly on Expedia Group's secure global infrastructure, offering transparent room policies, flexible cancellation windows, and 24/7 dedicated guest protection.
+          </p>
+        </details>
+
+        <details class="group bg-[#0b1726] border border-slate-800 rounded-2xl p-6 [&_summary::-webkit-details-marker]:none cursor-pointer">
+          <summary class="flex items-center justify-between font-serif text-base sm:text-lg font-semibold text-white">
+            <span>How does Travel4U utilize AI in luxury travel planning?</span>
+            <span class="ml-4 text-[#c9a54e] transition-transform duration-300 group-open:rotate-180">▼</span>
+          </summary>
+          <p class="mt-4 text-xs sm:text-sm text-slate-400 leading-relaxed">
+            Travel4U pairs high-touch human curation with intelligent search indexing to deliver 60 FPS real-time availability filtering, multi-locale cultural adaptation across 12 languages, and custom sensory recommendations.
+          </p>
+        </details>
+      </div>
+    </section>
+
   </main>
 
   <Footer currentLocale="en" />
 </Layout>
+
