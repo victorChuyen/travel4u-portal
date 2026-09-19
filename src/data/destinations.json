@@ -22,7 +22,8 @@
       "vi": "khach-san-four-seasons-george-v-paris-vip",
       "zh-cn": "paris-four-seasons-george-v-zh-cn",
       "zh-tw": "paris-four-seasons-george-v-zh-tw"
-    }
+    },
+    "region": "Europe"
   },
   {
     "hub_folder": "expedia_002_rome_rocco_forte_de_russie",
@@ -47,7 +48,8 @@
       "vi": "khach-san-rocco-forte-hotel-de-russie-rome-vip",
       "zh-cn": "rome-rocco-forte-de-russie-zh-cn",
       "zh-tw": "rome-rocco-forte-de-russie-zh-tw"
-    }
+    },
+    "region": "Europe"
   },
   {
     "hub_folder": "expedia_003_como_grand_hotel_tremezzo",
@@ -72,7 +74,8 @@
       "vi": "khach-san-grand-hotel-tremezzo-ho-como-vip",
       "zh-cn": "como-grand-hotel-tremezzo-zh-cn",
       "zh-tw": "como-grand-hotel-tremezzo-zh-tw"
-    }
+    },
+    "region": "Europe"
   },
   {
     "hub_folder": "expedia_004_kyoto_ritz_carlton",
@@ -97,7 +100,8 @@
       "vi": "khach-san-the-ritz-carlton-kyoto-song-kamogawa-vip",
       "zh-cn": "kyoto-ritz-carlton-zh-cn",
       "zh-tw": "kyoto-ritz-carlton-zh-tw"
-    }
+    },
+    "region": "Asia"
   },
   {
     "hub_folder": "expedia_005_maldives_soneva_jani",
@@ -122,7 +126,8 @@
       "vi": "khu-nghi-duong-soneva-jani-maldives-biet-thu-bien-vip",
       "zh-cn": "maldives-soneva-jani-zh-cn",
       "zh-tw": "maldives-soneva-jani-zh-tw"
-    }
+    },
+    "region": "Islands"
   },
   {
     "hub_folder": "expedia_006_utah_sorrel_river_ranch",
@@ -147,7 +152,8 @@
       "vi": "resort-sorrel-river-ranch-moab-utah-vip",
       "zh-cn": "utah-sorrel-river-ranch-zh-cn",
       "zh-tw": "utah-sorrel-river-ranch-zh-tw"
-    }
+    },
+    "region": "Americas"
   },
   {
     "hub_folder": "expedia_007_serengeti_four_seasons_safari",
@@ -172,7 +178,8 @@
       "vi": "four-seasons-safari-lodge-serengeti-chau-phi-vip",
       "zh-cn": "serengeti-four-seasons-safari-zh-cn",
       "zh-tw": "serengeti-four-seasons-safari-zh-tw"
-    }
+    },
+    "region": "Safari"
   },
   {
     "hub_folder": "expedia_008_venice_gritti_palace",
@@ -197,7 +204,8 @@
       "vi": "khach-san-cung-dien-the-gritti-palace-venice-vip",
       "zh-cn": "venice-gritti-palace-zh-cn",
       "zh-tw": "venice-gritti-palace-zh-tw"
-    }
+    },
+    "region": "Europe"
   },
   {
     "hub_folder": "expedia_009_swiss_chedi_andermatt",
@@ -222,7 +230,8 @@
       "vi": "resort-the-chedi-andermatt-thuy-sy-day-alps-vip",
       "zh-cn": "swiss-chedi-andermatt-zh-cn",
       "zh-tw": "swiss-chedi-andermatt-zh-tw"
-    }
+    },
+    "region": "Europe"
   },
   {
     "hub_folder": "expedia_010_dubai_burj_al_arab",
@@ -247,7 +256,8 @@
       "vi": "khach-san-canh-buom-7-sao-burj-al-arab-dubai-vip",
       "zh-cn": "dubai-burj-al-arab-zh-cn",
       "zh-tw": "dubai-burj-al-arab-zh-tw"
-    }
+    },
+    "region": "Middle East"
   },
   {
     "hub_folder": "expedia_011_como_passalacqua",
@@ -272,7 +282,8 @@
       "vi": "khach-san-passalacqua-ho-como-vip",
       "zh-cn": "passalacqua-lake-como-zh-cn",
       "zh-tw": "passalacqua-lake-como-zh-tw"
-    }
+    },
+    "region": "Europe"
   },
   {
     "hub_folder": "expedia_012_como_villa_deste",
@@ -297,7 +308,8 @@
       "vi": "biet-thu-cung-dien-villa-deste-cernobbio-ho-como-vip",
       "zh-cn": "villa-deste-lake-como-zh-cn",
       "zh-tw": "villa-deste-lake-como-zh-tw"
-    }
+    },
+    "region": "Europe"
   },
   {
     "hub_folder": "expedia_013_swiss_badrutts_palace",
@@ -322,7 +334,8 @@
       "vi": "khach-san-cung-dien-badrutts-palace-st-moritz-thuy-sy-vip",
       "zh-cn": "badrutts-palace-st-moritz-zh-cn",
       "zh-tw": "badrutts-palace-st-moritz-zh-tw"
-    }
+    },
+    "region": "Europe"
   },
   {
     "hub_folder": "expedia_014_maldives_cheval_blanc",
@@ -347,7 +360,8 @@
       "vi": "khu-nghi-duong-cheval-blanc-randheli-maldives-vip",
       "zh-cn": "cheval-blanc-randheli-maldives-zh-cn",
       "zh-tw": "cheval-blanc-randheli-maldives-zh-tw"
-    }
+    },
+    "region": "Islands"
   },
   {
     "hub_folder": "expedia_015_maldives_the_nautilus",
@@ -372,7 +386,8 @@
       "vi": "khu-nghi-duong-the-nautilus-maldives-baa-atoll-vip",
       "zh-cn": "the-nautilus-maldives-zh-cn",
       "zh-tw": "the-nautilus-maldives-zh-tw"
-    }
+    },
+    "region": "Islands"
   },
   {
     "hub_folder": "expedia_016_kyoto_hoshinoya",
@@ -397,7 +412,8 @@
       "vi": "ryokan-hoshinoya-kyoto-song-oi-arashiyama-vip",
       "zh-cn": "hoshinoya-kyoto-arashiyama-zh-cn",
       "zh-tw": "hoshinoya-kyoto-arashiyama-zh-tw"
-    }
+    },
+    "region": "Asia"
   },
   {
     "hub_folder": "expedia_017_hakone_gora_kadan",
@@ -422,7 +438,8 @@
       "vi": "ryokan-onsen-gora-kadan-hakone-nhat-ban-vip",
       "zh-cn": "gora-kadan-hakone-onsen-zh-cn",
       "zh-tw": "gora-kadan-hakone-onsen-zh-tw"
-    }
+    },
+    "region": "Asia"
   },
   {
     "hub_folder": "expedia_018_utah_amangiri",
@@ -447,7 +464,8 @@
       "vi": "resort-amangiri-canyon-point-utah-sa-mac-vip",
       "zh-cn": "amangiri-canyon-point-utah-zh-cn",
       "zh-tw": "amangiri-canyon-point-utah-zh-tw"
-    }
+    },
+    "region": "Americas"
   },
   {
     "hub_folder": "expedia_019_serengeti_singita_sasakwa",
@@ -472,7 +490,8 @@
       "vi": "khu-nghi-duong-singita-sasakwa-lodge-serengeti-chau-phi-vip",
       "zh-cn": "singita-sasakwa-lodge-serengeti-zh-cn",
       "zh-tw": "singita-sasakwa-lodge-serengeti-zh-tw"
-    }
+    },
+    "region": "Safari"
   },
   {
     "hub_folder": "expedia_020_swiss_clinique_la_prairie",
@@ -497,7 +516,8 @@
       "vi": "trung-tam-tri-lieu-clinique-la-prairie-montreux-thuy-sy-vip",
       "zh-cn": "clinique-la-prairie-montreux-zh-cn",
       "zh-tw": "clinique-la-prairie-montreux-zh-tw"
-    }
+    },
+    "region": "Europe"
   },
   {
     "hub_folder": "expedia_021_santorini_canaves_oia",
@@ -522,7 +542,8 @@
       "zh-cn": "canaves-oia-suites-santorini-zh-cn",
       "pt": "canaves-oia-suites-santorini-pt",
       "ru": "canaves-oia-suites-santorini-ru"
-    }
+    },
+    "region": "Europe"
   },
   {
     "hub_folder": "expedia_022_amalfi_le_sirenuse",
@@ -547,7 +568,8 @@
       "zh-cn": "le-sirenuse-positano-amalfi-zh-cn",
       "pt": "le-sirenuse-positano-amalfi-pt",
       "ru": "le-sirenuse-positano-amalfi-ru"
-    }
+    },
+    "region": "Europe"
   },
   {
     "hub_folder": "expedia_023_amalfi_santa_caterina",
@@ -572,7 +594,8 @@
       "zh-cn": "hotel-santa-caterina-amalfi-zh-cn",
       "pt": "hotel-santa-caterina-amalfi-pt",
       "ru": "hotel-santa-caterina-amalfi-ru"
-    }
+    },
+    "region": "Europe"
   },
   {
     "hub_folder": "expedia_024_bali_four_seasons_sayan",
@@ -597,7 +620,8 @@
       "zh-cn": "four-seasons-resort-bali-sayan-zh-cn",
       "pt": "four-seasons-resort-bali-sayan-pt",
       "ru": "four-seasons-resort-bali-sayan-ru"
-    }
+    },
+    "region": "Asia"
   },
   {
     "hub_folder": "expedia_025_bali_bulgari_resort",
@@ -622,7 +646,8 @@
       "zh-cn": "bulgari-resort-bali-uluwatu-zh-cn",
       "pt": "bulgari-resort-bali-uluwatu-pt",
       "ru": "bulgari-resort-bali-uluwatu-ru"
-    }
+    },
+    "region": "Asia"
   },
   {
     "hub_folder": "expedia_026_bordeaux_sources_caudalie",
@@ -647,7 +672,8 @@
       "zh-cn": "les-sources-de-caudalie-bordeaux-zh-cn",
       "pt": "les-sources-de-caudalie-bordeaux-pt",
       "ru": "les-sources-de-caudalie-bordeaux-ru"
-    }
+    },
+    "region": "Europe"
   },
   {
     "hub_folder": "expedia_027_greece_amanzoe",
@@ -672,7 +698,8 @@
       "zh-cn": "amanzoe-peloponnese-greece-zh-cn",
       "pt": "amanzoe-peloponnese-greece-pt",
       "ru": "amanzoe-peloponnese-greece-ru"
-    }
+    },
+    "region": "Europe"
   },
   {
     "hub_folder": "expedia_028_riviera_maybourne",
@@ -697,7 +724,8 @@
       "zh-cn": "the-maybourne-riviera-monaco-zh-cn",
       "pt": "the-maybourne-riviera-monaco-pt",
       "ru": "the-maybourne-riviera-monaco-ru"
-    }
+    },
+    "region": "Europe"
   },
   {
     "hub_folder": "expedia_029_loire_grand_luce",
@@ -722,7 +750,8 @@
       "zh-cn": "chateau-du-grand-luce-loire-zh-cn",
       "pt": "chateau-du-grand-luce-loire-pt",
       "ru": "chateau-du-grand-luce-loire-ru"
-    }
+    },
+    "region": "Europe"
   },
   {
     "hub_folder": "expedia_030_porto_yeatman",
@@ -747,6 +776,7 @@
       "zh-cn": "the-yeatman-hotel-porto-zh-cn",
       "pt": "the-yeatman-hotel-porto-pt",
       "ru": "the-yeatman-hotel-porto-ru"
-    }
+    },
+    "region": "Europe"
   }
 ]

@@ -453,19 +453,19 @@ const t = placeholders[currentLocale] || placeholders.en;
 
         let matchesFilter = true;
         if (activeFilter === 'europe') {
-          matchesFilter = item.r.toLowerCase().includes('europe') || item.l.toLowerCase().includes('italy') || item.l.toLowerCase().includes('france') || item.l.toLowerCase().includes('swiss');
+          matchesFilter = item.r.toLowerCase().includes('europe') || item.l.toLowerCase().includes('italy') || item.l.toLowerCase().includes('france') || item.l.toLowerCase().includes('swiss') || item.l.toLowerCase().includes('greece') || item.l.toLowerCase().includes('portugal') || item.l.toLowerCase().includes('spain') || item.l.toLowerCase().includes('monaco');
         } else if (activeFilter === 'asia') {
-          matchesFilter = item.r.toLowerCase().includes('asia') || item.l.toLowerCase().includes('japan') || item.l.toLowerCase().includes('bali') || item.l.toLowerCase().includes('thailand');
+          matchesFilter = item.r.toLowerCase().includes('asia') || item.l.toLowerCase().includes('japan') || item.l.toLowerCase().includes('bali') || item.l.toLowerCase().includes('indonesia') || item.l.toLowerCase().includes('thailand') || item.l.toLowerCase().includes('vietnam');
         } else if (activeFilter === 'islands') {
-          matchesFilter = item.r.toLowerCase().includes('islands') || item.l.toLowerCase().includes('maldives');
+          matchesFilter = item.r.toLowerCase().includes('islands') || item.l.toLowerCase().includes('maldives') || item.l.toLowerCase().includes('seychelles');
         } else if (activeFilter === 'safari') {
-          matchesFilter = item.r.toLowerCase().includes('safari') || item.l.toLowerCase().includes('serengeti') || item.l.toLowerCase().includes('africa');
+          matchesFilter = item.r.toLowerCase().includes('safari') || item.l.toLowerCase().includes('serengeti') || item.l.toLowerCase().includes('africa') || item.l.toLowerCase().includes('tanzania') || item.l.toLowerCase().includes('kenya');
         } else if (activeFilter === 'me') {
-          matchesFilter = item.r.toLowerCase().includes('middle east') || item.l.toLowerCase().includes('dubai');
+          matchesFilter = item.r.toLowerCase().includes('middle east') || item.l.toLowerCase().includes('dubai') || item.l.toLowerCase().includes('emirates');
         } else if (activeFilter === 'wellness') {
-          matchesFilter = item.c.toLowerCase().includes('wellness') || item.c.toLowerCase().includes('spa');
+          matchesFilter = item.c.toLowerCase().includes('wellness') || item.c.toLowerCase().includes('spa') || item.c.toLowerCase().includes('retreat') || item.t.toLowerCase().includes('spa') || item.t.toLowerCase().includes('onsen');
         } else if (activeFilter === 'hotels') {
-          matchesFilter = item.c.toLowerCase().includes('hotel') || item.c.toLowerCase().includes('sanctuaries');
+          matchesFilter = item.c.toLowerCase().includes('hotel') || item.c.toLowerCase().includes('sanctuaries') || item.c.toLowerCase().includes('palace') || item.t.toLowerCase().includes('hotel') || item.t.toLowerCase().includes('resort');
         }
 
         return matchesSearch && matchesFilter;
