@@ -1,0 +1,117 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import DestinationCard from '../../components/DestinationCard.astro';
+import SearchBar from '../../components/SearchBar.astro';
+import destinationsData from '../../data/destinations.json';
+import i18n from '../../data/i18n.json';
+
+export async function getStaticPaths() {
+  const nonEnLocales = ['vi', 'de', 'fr', 'es', 'it', 'ja', 'ko', 'zh-tw', 'zh-cn', 'pt', 'ru'];
+  return nonEnLocales.map(locale => ({
+    params: { locale },
+    props: { locale }
+  }));
+}
+
+const { locale } = Astro.props;
+const dict = (i18n as any)[locale] || (i18n as any).en;
+---
+
+<Layout
+  title={`${dict.site_title} | ${dict.site_tagline}`}
+  description={dict.hero_subtitle}
+  locale={locale}
+>
+  <Header currentLocale={locale} />
+
+  <main class="flex-grow">
+    
+    <!-- Hero Section (GYG Inspired Luxury Redesign) -->
+    <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden py-24 px-4 sm:px-6 lg:px-8">
+      
+      <div class="absolute inset-0 z-0">
+        <img
+          src="/media/GYG_FR_PARIS_seine-river-gourmet-dinner-cruise-bateaux-parisiens_sunset-eiffel-landscape-4k.jpg"
+          alt="Paris Cruise 4K"
+          class="w-full h-full object-cover object-center brightness-[0.30] scale-105 transform animate-pulse duration-[12000ms]"
+        />
+        <div class="absolute inset-0 bg-gradient-to-b from-[#07111e]/85 via-[#07111e]/70 to-[#07111e]"></div>
+      </div>
+
+      <div class="relative z-10 max-w-5xl mx-auto text-center w-full">
+        
+        <div class="inline-flex flex-wrap items-center justify-center gap-3 mb-8">
+          <span class="bg-[#c9a54e]/20 border border-[#c9a54e]/50 text-[#c9a54e] text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full backdrop-blur-md shadow-lg">
+            👑 {dict.nav_curators}
+          </span>
+          <span class="bg-slate-900/80 border border-slate-700 text-slate-300 text-xs font-medium px-4 py-1.5 rounded-full backdrop-blur-md">
+            ⚡ {dict.official_gyg_partner}
+          </span>
+          <span class="bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 text-xs font-semibold px-4 py-1.5 rounded-full backdrop-blur-md">
+            {dict.free_cancellation_badge}
+          </span>
+        </div>
+
+        <h1 class="font-serif text-3xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight leading-[1.15] mb-6">
+          {dict.hero_headline}
+        </h1>
+
+        <p class="text-base sm:text-lg md:text-xl text-slate-300 max-w-3xl mx-auto font-normal leading-relaxed mb-10">
+          {dict.hero_subtitle}
+        </p>
+
+        <!-- 🔍 FLOATING SEARCH BAR & CATEGORY PILLS -->
+        <SearchBar currentLocale={locale} />
+
+      </div>
+
+    </section>
+
+    <!-- Destination Grid -->
+    <section id="experiences" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div>
+          <span class="text-xs font-bold text-[#c9a54e] uppercase tracking-[0.2em] block mb-2">
+            Collection 2026
+          </span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white tracking-tight">
+            {dict.nav_experiences}
+          </h2>
+        </div>
+      </div>
+
+      <!-- Empty Search State -->
+      <div id="no-search-results-msg" style="display: none;" class="text-center py-16 px-4 bg-[#0b1726]/60 border border-slate-800 rounded-3xl mb-8">
+        <span class="text-4xl mb-3 block">🔍</span>
+        <h3 class="font-serif text-xl font-bold text-white mb-2">Không tìm thấy trải nghiệm phù hợp</h3>
+        <p class="text-xs text-slate-400 max-w-md mx-auto">
+          Vui lòng thử từ khóa khác hoặc bấm "Tất Cả" ở trên để xem toàn bộ danh mục điểm đến vàng.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="destinations-grid-container">
+        {destinationsData.map((dest) => (
+          <DestinationCard
+            title={dest.english_title}
+            slug={dest.slugs[locale] || dest.slugs.en}
+            location={dest.location}
+            image={dest.hero_image}
+            rating={dest.rating}
+            price={dest.price_display}
+            gygLink={dest.gyg_direct_link}
+            locale={locale}
+            region={(dest as any).region || (dest.location.includes('Japan') ? 'Asia' : dest.location.includes('Maldives') ? 'Islands' : dest.location.includes('Serengeti') ? 'Safari' : dest.location.includes('Dubai') ? 'Middle East' : 'Europe')}
+            category={(dest as any).category || 'VIP Luxury Experience'}
+          />
+        ))}
+      </div>
+
+    </section>
+
+  </main>
+
+  <Footer currentLocale={locale} />
+</Layout>
