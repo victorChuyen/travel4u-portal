@@ -1,0 +1,215 @@
+---
+interface Props {
+  currentSlug: string;
+  locale?: string;
+  destinations: any[];
+}
+
+const { currentSlug, locale = 'en', destinations } = Astro.props;
+
+// Determine current destination
+const currentDest = destinations.find(d => Object.values(d.slugs).includes(currentSlug)) || destinations[0];
+const currentEnSlug = currentDest.slugs.en;
+
+// Define Semantic Clusters for intelligent cross-linking
+const CLUSTERS: Record<string, string[]> = {
+  // Lake Como & Italy Cluster
+  'passalacqua-lake-como': ['villa-deste-lake-como', 'como-grand-hotel-tremezzo', 'venice-gritti-palace', 'rome-rocco-forte-de-russie'],
+  'villa-deste-lake-como': ['passalacqua-lake-como', 'como-grand-hotel-tremezzo', 'venice-gritti-palace', 'rome-rocco-forte-de-russie'],
+  'como-grand-hotel-tremezzo': ['passalacqua-lake-como', 'villa-deste-lake-como', 'venice-gritti-palace', 'rome-rocco-forte-de-russie'],
+  'venice-gritti-palace': ['rome-rocco-forte-de-russie', 'passalacqua-lake-como', 'villa-deste-lake-como', 'como-grand-hotel-tremezzo'],
+  'rome-rocco-forte-de-russie': ['venice-gritti-palace', 'passalacqua-lake-como', 'villa-deste-lake-como', 'paris-four-seasons-george-v'],
+
+  // Japan Cluster
+  'kyoto-ritz-carlton': ['hoshinoya-kyoto-arashiyama', 'gora-kadan-hakone-onsen', 'passalacqua-lake-como'],
+  'hoshinoya-kyoto-arashiyama': ['kyoto-ritz-carlton', 'gora-kadan-hakone-onsen', 'the-nautilus-maldives'],
+  'gora-kadan-hakone-onsen': ['hoshinoya-kyoto-arashiyama', 'kyoto-ritz-carlton', 'swiss-chedi-andermatt'],
+
+  // Maldives Cluster
+  'maldives-soneva-jani': ['cheval-blanc-randheli-maldives', 'the-nautilus-maldives', 'dubai-burj-al-arab'],
+  'cheval-blanc-randheli-maldives': ['maldives-soneva-jani', 'the-nautilus-maldives', 'paris-four-seasons-george-v'],
+  'the-nautilus-maldives': ['cheval-blanc-randheli-maldives', 'maldives-soneva-jani', 'amangiri-canyon-point-utah'],
+
+  // Swiss Alps & Longevity Cluster
+  'swiss-chedi-andermatt': ['badrutts-palace-st-moritz', 'clinique-la-prairie-montreux', 'gora-kadan-hakone-onsen'],
+  'badrutts-palace-st-moritz': ['swiss-chedi-andermatt', 'clinique-la-prairie-montreux', 'paris-four-seasons-george-v'],
+  'clinique-la-prairie-montreux': ['swiss-chedi-andermatt', 'badrutts-palace-st-moritz', 'hoshinoya-kyoto-arashiyama'],
+
+  // US Wilderness & Desert Cluster
+  'utah-sorrel-river-ranch': ['amangiri-canyon-point-utah', 'singita-sasakwa-lodge-serengeti', 'serengeti-four-seasons-safari'],
+  'amangiri-canyon-point-utah': ['utah-sorrel-river-ranch', 'swiss-chedi-andermatt', 'the-nautilus-maldives'],
+
+  // African Safari Cluster
+  'serengeti-four-seasons-safari': ['singita-sasakwa-lodge-serengeti', 'utah-sorrel-river-ranch', 'maldives-soneva-jani'],
+  'singita-sasakwa-lodge-serengeti': ['serengeti-four-seasons-safari', 'amangiri-canyon-point-utah', 'badrutts-palace-st-moritz'],
+
+  // Palaces & Global Icons
+  'paris-four-seasons-george-v': ['dubai-burj-al-arab', 'venice-gritti-palace', 'badrutts-palace-st-moritz'],
+  'dubai-burj-al-arab': ['paris-four-seasons-george-v', 'cheval-blanc-randheli-maldives', 'maldives-soneva-jani']
+};
+
+const siblingSlugs = CLUSTERS[currentEnSlug] || [];
+let relatedDestinations = destinations.filter(d => siblingSlugs.includes(d.slugs.en)).slice(0, 3);
+
+// Fallback if needed
+if (relatedDestinations.length < 3) {
+  const others = destinations.filter(d => d.slugs.en !== currentEnSlug && !relatedDestinations.some(r => r.slugs.en === d.slugs.en));
+  relatedDestinations = [...relatedDestinations, ...others].slice(0, 3);
+}
+
+const dict: Record<string, { title: string; subtitle: string; readGuide: string; reserve: string }> = {
+  en: {
+    title: 'Explore Sibling Sanctuaries in Our 2026 Gold List',
+    subtitle: 'Handpicked 5-star properties sharing the same pedigree of acoustic privacy, Michelin gastronomy, and verified Expedia VIP perks.',
+    readGuide: 'Read Review Guide',
+    reserve: 'Reserve VIP'
+  },
+  vi: {
+    title: 'Khám Phá Các Điểm Đến Cùng Bộ Sưu Tập Hoàng Gia 2026',
+    subtitle: 'Những kiệt tác nghỉ dưỡng 5 sao cùng đẳng cấp về sự tĩnh lặng, ẩm thực Michelin và đặc quyền VIP qua mạng lưới đối tác Expedia.',
+    readGuide: 'Xem Cẩm Nang Review',
+    reserve: 'Đặt Chỗ VIP'
+  },
+  de: {
+    title: 'Entdecken Sie verwandte Refugien der Goldliste 2026',
+    subtitle: 'Handverlesene 5-Sterne-Hotels mit unvergleichlicher Privatsphäre und Michelin-Gastronomie.',
+    readGuide: 'Erfahrungsbericht lesen',
+    reserve: 'VIP Reservieren'
+  },
+  fr: {
+    title: "Explorez d'autres sanctuaires de notre Liste d'Or 2026",
+    subtitle: 'Propriétés 5 étoiles triées sur le volet partageant la même exigence de raffinement et de calme absolu.',
+    readGuide: 'Lire le guide',
+    reserve: 'Réserver VIP'
+  },
+  es: {
+    title: 'Explore otros santuarios de nuestra Lista de Oro 2026',
+    subtitle: 'Propiedades de 5 estrellas seleccionadas con la misma excelencia gastronómica y acústica.',
+    readGuide: 'Leer reseña',
+    reserve: 'Reservar VIP'
+  },
+  it: {
+    title: "Esplora altri santuari della nostra Lista d'Oro 2026",
+    subtitle: 'Strutture a 5 stelle selezionate per privacy acustica, alta cucina e vantaggi esclusivi.',
+    readGuide: 'Leggi la recensione',
+    reserve: 'Prenota VIP'
+  },
+  ja: {
+    title: '2026 ゴールドリストの関連サンクチュアリを探す',
+    subtitle: '徹底した静寂、ミシュランの美食、Expedia VIP特典を共有する厳選のラグジュアリーホテル。',
+    readGuide: 'レビューを読む',
+    reserve: 'VIP予約'
+  },
+  ko: {
+    title: '2026 골드 리스트 관련 럭셔리 생크추어리 둘러보기',
+    subtitle: '완벽한 프라이버시, 미슐랭 미식, Expedia VIP 혜택을 공유하는 엄선된 5성급 숙소.',
+    readGuide: '가이드 읽기',
+    reserve: 'VIP 예약'
+  },
+  'zh-tw': {
+    title: '探索 2026 黃金典藏同系列頂級旅宿',
+    subtitle: '同樣具備極致隱私、米其林美饌與 Expedia VIP 禮遇的傳奇五星級殿堂。',
+    readGuide: '閱讀奢華評測',
+    reserve: 'VIP 預訂'
+  },
+  'zh-cn': {
+    title: '探索 2026 黄金典藏同系列顶级旅宿',
+    subtitle: '同样具备极致隐私、米其林美馔与 Expedia VIP 礼遇的传奇五星级殿堂。',
+    readGuide: '阅读奢华评测',
+    reserve: 'VIP 预订'
+  },
+  pt: {
+    title: 'Explore outros santuários da nossa Lista de Ouro 2026',
+    subtitle: 'Propriedades 5 estrelas selecionadas com a mesma excelência gastronômica e acústica.',
+    readGuide: 'Ler avaliação',
+    reserve: 'Reservar VIP'
+  },
+  ru: {
+    title: 'Исследуйте другие убежища из Золотого списка 2026',
+    subtitle: 'Отели высшей категории с безупречной тишиной, мишленовской кухней и привилегиями Expedia VIP.',
+    readGuide: 'Читать обзор',
+    reserve: 'VIP Бронь'
+  }
+};
+
+const t = dict[locale] || dict.en;
+---
+
+<section class="mt-16 pt-12 border-t border-slate-800">
+  <div class="text-center max-w-2xl mx-auto mb-10">
+    <span class="text-xs font-bold text-[#c9a54e] uppercase tracking-[0.2em] block mb-2">
+      Topical Sovereign Mesh
+    </span>
+    <h2 class="font-serif text-2xl sm:text-3xl font-bold text-white tracking-tight">
+      {t.title}
+    </h2>
+    <p class="text-xs text-slate-400 mt-2">
+      {t.subtitle}
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    {relatedDestinations.map((rel) => {
+      const relSlug = rel.slugs[locale] || rel.slugs.en;
+      const relUrl = locale === 'en' ? `/experience/${relSlug}/` : `/${locale}/experience/${relSlug}/`;
+      const relTitle = rel.english_title.split(':')[0];
+      const webpImg = rel.hero_image.replace('.jpg', '.webp');
+
+      return (
+        <div class="group bg-[#0b1726] border border-slate-800 rounded-2xl overflow-hidden hover:border-[#c9a54e]/60 transition-all duration-300 hover:shadow-2xl hover:shadow-[#c9a54e]/10 flex flex-col justify-between">
+          <div class="relative aspect-[16/10] overflow-hidden bg-slate-900">
+            <picture>
+              <source srcset={webpImg} type="image/webp" />
+              <img
+                src={rel.hero_image}
+                alt={relTitle}
+                loading="lazy"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </picture>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0b1726] via-transparent to-transparent"></div>
+            <div class="absolute top-3 left-3 bg-[#07111e]/90 backdrop-blur-md px-2.5 py-1 rounded-full border border-slate-700 text-[10px] text-[#c9a54e] font-bold uppercase tracking-wider">
+              {rel.location}
+            </div>
+            <div class="absolute bottom-2.5 right-3 text-amber-400 text-xs font-bold flex items-center space-x-1 bg-[#07111e]/80 px-2 py-0.5 rounded-full border border-slate-700">
+              <span>★</span>
+              <span>5.0</span>
+            </div>
+          </div>
+
+          <div class="p-5 flex flex-col flex-grow justify-between">
+            <div>
+              <h3 class="font-serif text-base font-bold text-white group-hover:text-[#c9a54e] transition-colors line-clamp-1 mb-1">
+                <a href={relUrl}>
+                  {relTitle}
+                </a>
+              </h3>
+              <p class="text-xs text-slate-400 font-mono mb-4">
+                {rel.price_display.split('(')[0]}
+              </p>
+            </div>
+
+            <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between gap-2">
+              <a
+                href={relUrl}
+                class="text-xs font-bold text-slate-300 hover:text-white flex items-center space-x-1 transition-colors"
+              >
+                <span>{t.readGuide}</span>
+                <span>→</span>
+              </a>
+
+              <a
+                href={rel.expedia_direct_link || `/go/${rel.slugs.en}`}
+                target="_blank"
+                rel="nofollow sponsored noopener"
+                class="bg-gradient-to-r from-[#c9a54e] to-[#dfba63] text-[#07111e] text-[11px] font-bold px-3 py-1.5 rounded-lg shadow hover:brightness-110 transition-all"
+              >
+                {t.reserve}
+              </a>
+            </div>
+          </div>
+        </div>
+      );
+    })}
+  </div>
+</section>

@@ -1,0 +1,48 @@
+---
+interface Props {
+  currentTitle: string;
+  locale?: string;
+}
+
+const { currentTitle, locale = 'en' } = Astro.props;
+
+const dict: Record<string, { home: string; collection: string }> = {
+  en: { home: 'Home', collection: '2026 Gold List' },
+  vi: { home: 'Trang Chủ', collection: 'Danh Mục Vàng 2026' },
+  de: { home: 'Startseite', collection: 'Goldene Liste 2026' },
+  fr: { home: 'Accueil', collection: "Liste d'Or 2026" },
+  es: { home: 'Inicio', collection: 'Lista de Oro 2026' },
+  it: { home: 'Home', collection: "Lista d'Oro 2026" },
+  ja: { home: 'ホーム', collection: '2026 ゴールドリスト' },
+  ko: { home: '홈', collection: '2026 골드 리스트' },
+  'zh-tw': { home: '首頁', collection: '2026 黃金典藏' },
+  'zh-cn': { home: '首页', collection: '2026 黄金典藏' },
+  pt: { home: 'Início', collection: 'Lista de Ouro 2026' },
+  ru: { home: 'Главная', collection: 'Золотой список 2026' }
+};
+
+const labels = dict[locale] || dict.en;
+const homeUrl = locale === 'en' ? '/' : `/${locale}/`;
+const collectionUrl = locale === 'en' ? '/#experiences' : `/${locale}/#experiences`;
+---
+
+<nav aria-label="Breadcrumb" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2">
+  <ol class="flex items-center flex-wrap gap-2 text-xs text-slate-400">
+    <li class="flex items-center space-x-2">
+      <a href={homeUrl} class="hover:text-[#c9a54e] transition-colors flex items-center space-x-1">
+        <span>🏛️</span>
+        <span>{labels.home}</span>
+      </a>
+      <span class="text-slate-600">/</span>
+    </li>
+    <li class="flex items-center space-x-2">
+      <a href={collectionUrl} class="hover:text-[#c9a54e] transition-colors">
+        {labels.collection}
+      </a>
+      <span class="text-slate-600">/</span>
+    </li>
+    <li class="text-slate-200 font-medium truncate max-w-[240px] sm:max-w-none" aria-current="page">
+      {currentTitle.split(':')[0]}
+    </li>
+  </ol>
+</nav>

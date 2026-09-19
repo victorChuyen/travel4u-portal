@@ -1,0 +1,79 @@
+---
+interface Props {
+  currentSlug: string;
+  locale?: string;
+  destinations: any[];
+}
+
+const { currentSlug, locale = 'en', destinations } = Astro.props;
+
+const currentIndex = destinations.findIndex(d => Object.values(d.slugs).includes(currentSlug));
+const safeIndex = currentIndex === -1 ? 0 : currentIndex;
+const total = destinations.length;
+
+const prevDest = destinations[(safeIndex - 1 + total) % total];
+const nextDest = destinations[(safeIndex + 1) % total];
+
+const prevSlug = prevDest.slugs[locale] || prevDest.slugs.en;
+const nextSlug = nextDest.slugs[locale] || nextDest.slugs.en;
+
+const prevUrl = locale === 'en' ? `/experience/${prevSlug}/` : `/${locale}/experience/${prevSlug}/`;
+const nextUrl = locale === 'en' ? `/experience/${nextSlug}/` : `/${locale}/experience/${nextSlug}/`;
+
+const dict: Record<string, { prev: string; next: string }> = {
+  en: { prev: 'Previous Sanctuary', next: 'Next Sanctuary' },
+  vi: { prev: 'Điểm Đến Trước', next: 'Điểm Đến Tiếp Theo' },
+  de: { prev: 'Vorheriges Refugium', next: 'Nächstes Refugium' },
+  fr: { prev: 'Sanctuaire Précédent', next: 'Sanctuaire Suivant' },
+  es: { prev: 'Santuario Anterior', next: 'Siguiente Santuario' },
+  it: { prev: 'Santuario Precedente', next: 'Santuario Successivo' },
+  ja: { prev: '前のサンクチュアリ', next: '次のサンクチュアリ' },
+  ko: { prev: '이전 생크추어리', next: '다음 생크추어리' },
+  'zh-tw': { prev: '上一個頂級旅宿', next: '下一個頂級旅宿' },
+  'zh-cn': { prev: '上一个顶级旅宿', next: '下一个顶级旅宿' },
+  pt: { prev: 'Santuário Anterior', next: 'Próximo Santuário' },
+  ru: { prev: 'Предыдущее убежище', next: 'Следующее убежище' }
+};
+
+const labels = dict[locale] || dict.en;
+---
+
+<nav aria-label="Sanctuary Navigation" class="my-12 pt-8 border-t border-slate-800">
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <!-- Previous Link -->
+    <a
+      href={prevUrl}
+      class="group p-5 rounded-2xl bg-[#07111e] border border-slate-800 hover:border-[#c9a54e]/50 transition-all flex items-center space-x-4"
+    >
+      <span class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-700 group-hover:border-[#c9a54e]/50 flex items-center justify-center text-[#c9a54e] text-lg transition-colors flex-shrink-0">
+        ←
+      </span>
+      <div class="overflow-hidden">
+        <span class="text-[10px] uppercase font-bold text-slate-400 block tracking-wider mb-0.5">
+          {labels.prev}
+        </span>
+        <span class="font-serif text-sm font-semibold text-white group-hover:text-[#c9a54e] transition-colors truncate block">
+          {prevDest.english_title.split(':')[0]}
+        </span>
+      </div>
+    </a>
+
+    <!-- Next Link -->
+    <a
+      href={nextUrl}
+      class="group p-5 rounded-2xl bg-[#07111e] border border-slate-800 hover:border-[#c9a54e]/50 transition-all flex items-center justify-between space-x-4 text-right sm:flex-row-reverse sm:space-x-reverse"
+    >
+      <span class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-700 group-hover:border-[#c9a54e]/50 flex items-center justify-center text-[#c9a54e] text-lg transition-colors flex-shrink-0">
+        →
+      </span>
+      <div class="overflow-hidden">
+        <span class="text-[10px] uppercase font-bold text-slate-400 block tracking-wider mb-0.5">
+          {labels.next}
+        </span>
+        <span class="font-serif text-sm font-semibold text-white group-hover:text-[#c9a54e] transition-colors truncate block">
+          {nextDest.english_title.split(':')[0]}
+        </span>
+      </div>
+    </a>
+  </div>
+</nav>

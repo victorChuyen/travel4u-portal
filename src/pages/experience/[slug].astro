@@ -10,6 +10,9 @@ import CuratorDuoNotes from '../../components/CuratorDuoNotes.astro';
 import EmotionalWoaCallout from '../../components/EmotionalWoaCallout.astro';
 import ExpediaPerksCallout from '../../components/ExpediaPerksCallout.astro';
 import PodcastDialogueSection from '../../components/PodcastDialogueSection.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import RelatedSanctuaries from '../../components/RelatedSanctuaries.astro';
+import SanctuaryNav from '../../components/SanctuaryNav.astro';
 import articlesData from '../../data/articles.json';
 import destinationsData from '../../data/destinations.json';
 
@@ -103,6 +106,8 @@ const schemaData = {
   <Header currentLocale="en" />
 
   <main class="flex-grow pb-24">
+    <!-- 🧭 Visual Clickable Breadcrumbs -->
+    <Breadcrumbs currentTitle={article.title} locale="en" />
     
     <!-- Hero Article Header -->
     <header class="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#0b1726] to-[#07111e] border-b border-slate-800">
@@ -220,6 +225,20 @@ const schemaData = {
         episodeTitle={article.podcast_title}
         dialogue={article.podcast_dialogue}
         shorts={article.viral_shorts}
+      />
+
+      <!-- 🧭 Next / Previous Sanctuary Navigation -->
+      <SanctuaryNav
+        currentSlug={article.slug}
+        locale="en"
+        destinations={destinationsData}
+      />
+
+      <!-- 👑 Sibling Sanctuaries in the 2026 Gold List -->
+      <RelatedSanctuaries
+        currentSlug={article.slug}
+        locale="en"
+        destinations={destinationsData}
       />
 
     </article>

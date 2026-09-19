@@ -2,14 +2,15 @@
  * 🎙️ VICTOR & LUCKY LUXURY STORYTELLING ARTICLE GENERATOR (EMOTIONAL CONVERSION & SENSORY HOOKS)
  * Domain: travel4u.us
  * Generates authentic, sensory, non-duplicated 6-chapter narrative reviews across all 12 locales
- * Incorporates:
+ * Integrates:
  *   1. Soundscape & Acoustic Luxury (Âm nhạc)
  *   2. Sensory Gastronomy & Wine Provenance (Ẩm thực)
  *   3. 1 Positive Emotion Resolved (1 Cảm xúc tích cực)
  *   4. 1 Core Client Concern Addressed (1 Điều khách hàng quan tâm)
  *   5. 1 Target Persona (1 Đối tượng hài lòng tuyệt đối)
  *   6. The "WOA" Revelation & Immediate Booking Trigger
- *   7. YouTube Podcast Dialogue & 3 Viral Shorts Concepts
+ *   7. Contextual In-Text Cross-Links (Liên kết nội bộ chéo chuẩn SEO & GEO)
+ *   8. YouTube Podcast Dialogue & 3 Viral Shorts Concepts
  */
 
 const fs = require('fs');
@@ -20,6 +21,117 @@ const OUTPUT_FILE = path.resolve(__dirname, '../src/data/articles.json');
 const DESTINATIONS_FILE = path.resolve(__dirname, '../src/data/destinations.json');
 
 const destinations = JSON.parse(fs.readFileSync(DESTINATIONS_FILE, 'utf-8'));
+
+// Semantic clusters for natural in-text cross-linking
+const CLUSTERS = {
+  // Lake Como & Italy Cluster
+  'passalacqua-lake-como': ['villa-deste-lake-como', 'como-grand-hotel-tremezzo'],
+  'villa-deste-lake-como': ['passalacqua-lake-como', 'como-grand-hotel-tremezzo'],
+  'como-grand-hotel-tremezzo': ['passalacqua-lake-como', 'villa-deste-lake-como'],
+  'venice-gritti-palace': ['rome-rocco-forte-de-russie', 'passalacqua-lake-como'],
+  'rome-rocco-forte-de-russie': ['venice-gritti-palace', 'villa-deste-lake-como'],
+
+  // Japan Cluster
+  'kyoto-ritz-carlton': ['hoshinoya-kyoto-arashiyama', 'gora-kadan-hakone-onsen'],
+  'hoshinoya-kyoto-arashiyama': ['kyoto-ritz-carlton', 'gora-kadan-hakone-onsen'],
+  'gora-kadan-hakone-onsen': ['hoshinoya-kyoto-arashiyama', 'kyoto-ritz-carlton'],
+
+  // Maldives Cluster
+  'maldives-soneva-jani': ['cheval-blanc-randheli-maldives', 'the-nautilus-maldives'],
+  'cheval-blanc-randheli-maldives': ['maldives-soneva-jani', 'the-nautilus-maldives'],
+  'the-nautilus-maldives': ['cheval-blanc-randheli-maldives', 'maldives-soneva-jani'],
+
+  // Swiss Alps & Longevity Cluster
+  'swiss-chedi-andermatt': ['badrutts-palace-st-moritz', 'clinique-la-prairie-montreux'],
+  'badrutts-palace-st-moritz': ['swiss-chedi-andermatt', 'clinique-la-prairie-montreux'],
+  'clinique-la-prairie-montreux': ['swiss-chedi-andermatt', 'badrutts-palace-st-moritz'],
+
+  // US Wilderness & Desert Cluster
+  'utah-sorrel-river-ranch': ['amangiri-canyon-point-utah'],
+  'amangiri-canyon-point-utah': ['utah-sorrel-river-ranch'],
+
+  // African Safari Cluster
+  'serengeti-four-seasons-safari': ['singita-sasakwa-lodge-serengeti'],
+  'singita-sasakwa-lodge-serengeti': ['serengeti-four-seasons-safari'],
+
+  // Palaces & Global Icons
+  'paris-four-seasons-george-v': ['dubai-burj-al-arab', 'venice-gritti-palace'],
+  'dubai-burj-al-arab': ['paris-four-seasons-george-v', 'cheval-blanc-randheli-maldives']
+};
+
+function buildContextualCrossLinks(dest, loc, allDests) {
+  const siblings = CLUSTERS[dest.slugs.en] || [];
+  if (siblings.length === 0) return '';
+  
+  const sibDests = allDests.filter(d => siblings.includes(d.slugs.en));
+  if (sibDests.length === 0) return '';
+
+  const d1 = sibDests[0];
+  const slug1 = d1.slugs[loc] || d1.slugs.en;
+  const url1 = loc === 'en' ? `/experience/${slug1}/` : `/${loc}/experience/${slug1}/`;
+  const name1 = d1.english_title.split(':')[0];
+
+  let d2 = sibDests[1];
+  let link2Str = '';
+  if (d2) {
+    const slug2 = d2.slugs[loc] || d2.slugs.en;
+    const url2 = loc === 'en' ? `/experience/${slug2}/` : `/${loc}/experience/${slug2}/`;
+    const name2 = d2.english_title.split(':')[0];
+    if (loc === 'vi') link2Str = ` và kiệt tác <a href="${url2}" class="text-[#c9a54e] font-semibold underline hover:text-[#dfba63]">${name2}</a>`;
+    else if (loc === 'ja') link2Str = `ならびに名門 <a href="${url2}" class="text-[#c9a54e] font-semibold underline hover:text-[#dfba63]">${name2}</a>`;
+    else if (loc === 'ko') link2Str = ` 및 전설적인 <a href="${url2}" class="text-[#c9a54e] font-semibold underline hover:text-[#dfba63]">${name2}</a>`;
+    else if (loc === 'zh-tw' || loc === 'zh-cn') link2Str = ` 與傳奇名邸 <a href="${url2}" class="text-[#c9a54e] font-semibold underline hover:text-[#dfba63]">${name2}</a>`;
+    else if (loc === 'de') link2Str = ` und das legendäre <a href="${url2}" class="text-[#c9a54e] font-semibold underline hover:text-[#dfba63]">${name2}</a>`;
+    else if (loc === 'fr') link2Str = ` ainsi que le prestigieux <a href="${url2}" class="text-[#c9a54e] font-semibold underline hover:text-[#dfba63]">${name2}</a>`;
+    else if (loc === 'es') link2Str = ` y el emblemático <a href="${url2}" class="text-[#c9a54e] font-semibold underline hover:text-[#dfba63]">${name2}</a>`;
+    else if (loc === 'it') link2Str = ` e l'iconico <a href="${url2}" class="text-[#c9a54e] font-semibold underline hover:text-[#dfba63]">${name2}</a>`;
+    else if (loc === 'pt') link2Str = ` e o lendário <a href="${url2}" class="text-[#c9a54e] font-semibold underline hover:text-[#dfba63]">${name2}</a>`;
+    else if (loc === 'ru') link2Str = ` и легендарного <a href="${url2}" class="text-[#c9a54e] font-semibold underline hover:text-[#dfba63]">${name2}</a>`;
+    else link2Str = ` alongside the legendary <a href="${url2}" class="text-[#c9a54e] font-semibold underline hover:text-[#dfba63]">${name2}</a>`;
+  }
+
+  if (loc === 'vi') {
+    return `<div class="my-8 p-5 rounded-2xl bg-[#0b1726] border border-[#c9a54e]/30 text-slate-300 text-sm leading-relaxed shadow-lg">
+      <span class="text-[#c9a54e] font-bold flex items-center space-x-2 mb-2">
+        <span>🔗</span>
+        <span>Khám Phá Thêm Cùng Bộ Sưu Tập:</span>
+      </span>
+      Trong hành trình du ngoạn đỉnh cao, Victor & Lucky đặc biệt khuyên bạn nên kết hợp tham khảo cẩm nang về <a href="${url1}" class="text-[#c9a54e] font-semibold underline hover:text-[#dfba63]">${name1}</a>${link2Str} để có sự lựa chọn hoàn mỹ nhất cho kỳ nghỉ của mình.
+    </div>`;
+  } else if (loc === 'ja') {
+    return `<div class="my-8 p-5 rounded-2xl bg-[#0b1726] border border-[#c9a54e]/30 text-slate-300 text-sm leading-relaxed shadow-lg">
+      <span class="text-[#c9a54e] font-bold flex items-center space-x-2 mb-2">
+        <span>🔗</span>
+        <span>同コレクションの推薦ホテル：</span>
+      </span>
+      至高の旅の体験を深めるため、Victor & Luckyは <a href="${url1}" class="text-[#c9a54e] font-semibold underline hover:text-[#dfba63]">${name1}</a>${link2Str} の滞在記も併せてご覧いただくことを推奨しています。
+    </div>`;
+  } else if (loc === 'ko') {
+    return `<div class="my-8 p-5 rounded-2xl bg-[#0b1726] border border-[#c9a54e]/30 text-slate-300 text-sm leading-relaxed shadow-lg">
+      <span class="text-[#c9a54e] font-bold flex items-center space-x-2 mb-2">
+        <span>🔗</span>
+        <span>연관 럭셔리 컬렉션 둘러보기：</span>
+      </span>
+      완벽한 하이엔드 여정을 위해 Victor & Lucky는 <a href="${url1}" class="text-[#c9a54e] font-semibold underline hover:text-[#dfba63]">${name1}</a>${link2Str} 의 큐레이션 리뷰도 함께 확인하시길 권장합니다.
+    </div>`;
+  } else if (loc === 'zh-tw' || loc === 'zh-cn') {
+    return `<div class="my-8 p-5 rounded-2xl bg-[#0b1726] border border-[#c9a54e]/30 text-slate-300 text-sm leading-relaxed shadow-lg">
+      <span class="text-[#c9a54e] font-bold flex items-center space-x-2 mb-2">
+        <span>🔗</span>
+        <span>探索同系列頂級名邸：</span>
+      </span>
+      作為極致奢華旅宿評測的一部分，Victor & Lucky 特別推薦您同時參考 <a href="${url1}" class="text-[#c9a54e] font-semibold underline hover:text-[#dfba63]">${name1}</a>${link2Str} 的深度體驗誌。
+    </div>`;
+  } else {
+    return `<div class="my-8 p-5 rounded-2xl bg-[#0b1726] border border-[#c9a54e]/30 text-slate-300 text-sm leading-relaxed shadow-lg">
+      <span class="text-[#c9a54e] font-bold flex items-center space-x-2 mb-2">
+        <span>🔗</span>
+        <span>Sibling Sanctuary Curation:</span>
+      </span>
+      As part of our Sovereign Curation, Victor & Lucky also recommend exploring our in-depth diaries on <a href="${url1}" class="text-[#c9a54e] font-semibold underline hover:text-[#dfba63]">${name1}</a>${link2Str} to complete your luxury itinerary.
+    </div>`;
+  }
+}
 
 function getFallbackData(dest) {
   const name = dest.english_title.split(':')[0];
@@ -65,7 +177,9 @@ function getFallbackData(dest) {
   };
 }
 
-function buildHtmlContent(dest, h) {
+function buildHtmlContent(dest, h, loc, allDests) {
+  const crossLinksHtml = buildContextualCrossLinks(dest, loc, allDests);
+
   return `
 <!-- 🎙️ CHAPTER 1: THE ARRIVAL & FIRST BREATH -->
 <section class="story-chapter mb-12">
@@ -176,7 +290,7 @@ function buildHtmlContent(dest, h) {
   </p>
 </section>
 
-<!-- 👑 CHAPTER 6: THE CURATORS' VERDICT -->
+<!-- 👑 CHAPTER 6: THE CURATORS' VERDICT & TOPICAL SIBLING LINKS -->
 <section class="story-chapter mb-12">
   <div class="flex items-center space-x-2 text-xs font-bold text-[#c9a54e] uppercase tracking-widest mb-2">
     <span>Chapter VI</span>
@@ -195,6 +309,9 @@ function buildHtmlContent(dest, h) {
   <p class="text-base text-slate-300 leading-relaxed mb-6 font-serif">
     Cuộc đời là một chuỗi của những khoảnh khắc được tích lũy. Nếu bạn đang tìm kiếm một nơi chốn để kỷ niệm một dấu mốc trọng đại, hâm nóng tình yêu hay đơn giản là tự thưởng cho bản thân sau những nỗ lực không ngừng nghỉ, <strong>${h.hotel_name}</strong> là một sự lựa chọn sẽ không bao giờ làm bạn thất vọng.
   </p>
+
+  <!-- 🔗 In-Text Contextual Internal Linking Box -->
+  ${crossLinksHtml}
 </section>
 `;
 }
@@ -217,19 +334,19 @@ function getLocalizedTitle(name, loc) {
 }
 
 function run() {
-  console.log(`🎙️ Generating Victor & Lucky Storytelling Articles across ALL ${LOCALES.length} LOCALES (including Vietnamese 'vi')...`);
+  console.log(`🎙️ Generating Victor & Lucky Storytelling Articles across ALL ${LOCALES.length} LOCALES with Contextual Cross-Links...`);
   
   const articles = [];
 
   for (const dest of destinations) {
     const defaultSlug = dest.slugs.en;
     const data = STORYTELLING_DATABASE[defaultSlug] || getFallbackData(dest);
-    const htmlContent = buildHtmlContent(dest, data);
     const hotelBaseName = dest.english_title.split(':')[0];
 
     for (const loc of LOCALES) {
       const locSlug = dest.slugs[loc] || dest.slugs.en;
       const title = getLocalizedTitle(hotelBaseName, loc);
+      const htmlContent = buildHtmlContent(dest, data, loc, destinations);
       const excerpt = loc === 'vi'
         ? `Một bản ký sự du lịch chân thực, giàu xúc cảm về ${hotelBaseName} tại ${dest.location} bởi Victor & Lucky. Khám phá bí mật phòng suite, âm nhạc, ẩm thực và cách nhận trọn đặc quyền VIP qua Expedia Partner Network.`
         : `An unvarnished, sensory luxury review of ${hotelBaseName} in ${dest.location} by Victor & Lucky. Discover authentic suite secrets, acoustics, gastronomy, and how to secure VIP perks via Expedia Partner Network.`;
@@ -282,7 +399,7 @@ function run() {
   }
 
   fs.writeFileSync(OUTPUT_FILE, JSON.stringify(articles, null, 2), 'utf-8');
-  console.log(`🎉 Successfully wrote ${articles.length} enriched storytelling articles across ${LOCALES.length} locales to: ${OUTPUT_FILE}`);
+  console.log(`🎉 Successfully wrote ${articles.length} enriched storytelling articles with active in-text cross-links to: ${OUTPUT_FILE}`);
 }
 
 run();
