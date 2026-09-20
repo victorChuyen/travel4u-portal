@@ -23,11 +23,11 @@ const placeholders: Record<string, {
   showing: string;
 }> = {
   en: {
-    search: "Search 1,000+ luxury places, tours, private yachts...",
+    search: "Search 1,000+ luxury sanctuaries, suites, villas...",
     date: "Anytime",
     guests: "1 - 2 Guests",
     btn: "Search",
-    all: "✨ All (1,000)",
+    all: "✨ All (1,000+)",
     europe: "🇫🇷 Europe",
     asia: "🇯🇵 Asia",
     islands: "🇲🇻 Islands",
@@ -35,16 +35,16 @@ const placeholders: Record<string, {
     me: "🇦🇪 Middle East",
     wellness: "🌿 Wellness Spas",
     hotels: "👑 5-Star Sanctuaries",
-    found: "Sovereign Experiences Found",
-    loadMore: "Load More Experiences ↓",
+    found: "Luxury Sanctuaries Found",
+    loadMore: "Load More Sanctuaries ↓",
     showing: "Showing"
   },
   vi: {
-    search: "Tìm kiếm 1.000+ điểm đến, du thuyền, trải nghiệm thượng lưu...",
+    search: "Tìm kiếm 1.000+ khách sạn 5 sao, biệt thự, du thuyền...",
     date: "Thời gian: Bất kỳ",
     guests: "1 - 2 Khách",
     btn: "Khám Phá",
-    all: "✨ Tất Cả (1.000)",
+    all: "✨ Tất Cả (1.000+)",
     europe: "🇫🇷 Châu Âu",
     asia: "🇯🇵 Châu Á",
     islands: "🇲🇻 Đảo Ngọc",
@@ -52,9 +52,179 @@ const placeholders: Record<string, {
     me: "🇦🇪 Trung Đông",
     wellness: "🌿 Spa & Trị Liệu",
     hotels: "👑 Khách Sạn 5 Sao",
-    found: "Hành Trình Thượng Lưu Được Tìm Thấy",
-    loadMore: "Khám Phá Thêm Trải Nghiệm ↓",
+    found: "Điểm Đến Thượng Lưu Phù Hợp",
+    loadMore: "Khám Phá Thêm Điểm Đến ↓",
     showing: "Đang hiển thị"
+  },
+  de: {
+    search: "1.000+ Luxus-Refugien, Suiten, Villen durchsuchen...",
+    date: "Jederzeit",
+    guests: "1 - 2 Gäste",
+    btn: "Suchen",
+    all: "✨ Alle (1.000+)",
+    europe: "🇫🇷 Europa",
+    asia: "🇯🇵 Asien",
+    islands: "🇲🇻 Inseln",
+    safari: "🦒 Safari",
+    me: "🇦🇪 Naher Osten",
+    wellness: "🌿 Wellness & Spa",
+    hotels: "👑 5-Sterne-Paläste",
+    found: "Luxus-Refugien gefunden",
+    loadMore: "Mehr Refugien laden ↓",
+    showing: "Angezeigt"
+  },
+  fr: {
+    search: "Rechercher parmi 1 000+ sanctuaires d'exception...",
+    date: "Dates flexibles",
+    guests: "1 - 2 Personnes",
+    btn: "Explorer",
+    all: "✨ Tous (1 000+)",
+    europe: "🇫🇷 Europe",
+    asia: "🇯🇵 Asie",
+    islands: "🇲🇻 Îles Privées",
+    safari: "🦒 Safari Africain",
+    me: "🇦🇪 Moyen-Orient",
+    wellness: "🌿 Bien-être & Spas",
+    hotels: "👑 Palaces 5 Étoiles",
+    found: "Sanctuaires de Luxe Trouvés",
+    loadMore: "Afficher plus d'adresses ↓",
+    showing: "Affichage"
+  },
+  es: {
+    search: "Buscar entre más de 1.000 santuarios de lujo...",
+    date: "Cualquier fecha",
+    guests: "1 - 2 Huéspedes",
+    btn: "Buscar",
+    all: "✨ Todos (1.000+)",
+    europe: "🇫🇷 Europa",
+    asia: "🇯🇵 Asia",
+    islands: "🇲🇻 Islas Exclusivas",
+    safari: "🦒 Safari Africano",
+    me: "🇦🇪 Oriente Medio",
+    wellness: "🌿 Bienestar y Spas",
+    hotels: "👑 Palacios de 5 Estrellas",
+    found: "Santuarios de Lujo Encontrados",
+    loadMore: "Cargar más santuarios ↓",
+    showing: "Mostrando"
+  },
+  it: {
+    search: "Cerca tra oltre 1.000 santuari di lusso...",
+    date: "Qualsiasi data",
+    guests: "1 - 2 Ospiti",
+    btn: "Cerca",
+    all: "✨ Tutti (1.000+)",
+    europe: "🇫🇷 Europa",
+    asia: "🇯🇵 Asia",
+    islands: "🇲🇻 Isole Private",
+    safari: "🦒 Safari Africano",
+    me: "🇦🇪 Medio Oriente",
+    wellness: "🌿 Benessere & Spa",
+    hotels: "👑 Palazzi a 5 Stelle",
+    found: "Santuari di Lusso Trovati",
+    loadMore: "Carica altri santuari ↓",
+    showing: "Mostrati"
+  },
+  ja: {
+    search: "1,000件以上の至高リゾート、スイート、ヴィラを検索...",
+    date: "指定なし",
+    guests: "1 - 2名",
+    btn: "検索",
+    all: "✨ すべて (1,000+)",
+    europe: "🇫🇷 ヨーロッパ",
+    asia: "🇯🇵 アジア",
+    islands: "🇲🇻 孤島リゾート",
+    safari: "🦒 アフリカサファリ",
+    me: "🇦🇪 中東ラグジュアリー",
+    wellness: "🌿 ウェルネス＆スパ",
+    hotels: "👑 5つ星パレス",
+    found: "件の至高の宿が見つかりました",
+    loadMore: "さらに読み込む ↓",
+    showing: "表示中"
+  },
+  ko: {
+    search: "1,000개 이상의 최고급 생크추어리, 스위트, 빌라 검색...",
+    date: "일정 무관",
+    guests: "1 - 2인",
+    btn: "검색",
+    all: "✨ 전체 (1,000+)",
+    europe: "🇫🇷 유럽",
+    asia: "🇯🇵 아시아",
+    islands: "🇲🇻 프라이빗 아일랜드",
+    safari: "🦒 아프리카 사파리",
+    me: "🇦🇪 중동 럭셔리",
+    wellness: "🌿 웰니스 & 스파",
+    hotels: "👑 5성급 럭셔리 팰리스",
+    found: "개의 럭셔리 생크추어리를 찾았습니다",
+    loadMore: "더 많은 생크추어리 보기 ↓",
+    showing: "표시 중"
+  },
+  'zh-tw': {
+    search: "搜尋全球 1,000+ 頂級奢華旅宿、總統套房、私人別墅...",
+    date: "不限日期",
+    guests: "1 - 2 位貴賓",
+    btn: "立即探索",
+    all: "✨ 全部 (1,000+)",
+    europe: "🇫🇷 歐洲頂級",
+    asia: "🇯🇵 亞洲秘境",
+    islands: "🇲🇻 海島渡假",
+    safari: "🦒 非洲原野",
+    me: "🇦🇪 中東奢華",
+    wellness: "🌿 身心療癒養生",
+    hotels: "👑 五星傳世宮殿",
+    found: "間頂級奢華旅宿已為您呈現",
+    loadMore: "載入更多奢華旅宿 ↓",
+    showing: "正在顯示"
+  },
+  'zh-cn': {
+    search: "搜索全球 1,000+ 顶级奢华酒店、总统套房、私人别墅...",
+    date: "不限日期",
+    guests: "1 - 2 位贵宾",
+    btn: "立即探索",
+    all: "✨ 全部 (1,000+)",
+    europe: "🇫🇷 欧洲顶级",
+    asia: "🇯🇵 亚洲秘境",
+    islands: "🇲🇻 海岛度假",
+    safari: "🦒 非洲原野",
+    me: "🇦🇪 中东奢华",
+    wellness: "🌿 身心疗愈养生",
+    hotels: "👑 五星传世宫殿",
+    found: "间顶级奢华酒店已为您呈现",
+    loadMore: "加载更多奢华酒店 ↓",
+    showing: "正在显示"
+  },
+  pt: {
+    search: "Pesquisar mais de 1.000 santuários de luxo, suítes, vilas...",
+    date: "Qualquer data",
+    guests: "1 - 2 Hóspedes",
+    btn: "Pesquisar",
+    all: "✨ Todos (1.000+)",
+    europe: "🇫🇷 Europa",
+    asia: "🇯🇵 Ásia",
+    islands: "🇲🇻 Ilhas Privadas",
+    safari: "🦒 Safari Africano",
+    me: "🇦🇪 Médio Oriente",
+    wellness: "🌿 Bem-Estar e Spas",
+    hotels: "👑 Palácios 5 Estrelas",
+    found: "Santuários de Luxo Encontrados",
+    loadMore: "Carregar mais santuários ↓",
+    showing: "A apresentar"
+  },
+  ru: {
+    search: "Поиск среди 1 000+ роскошных отелей, люксов, вилл...",
+    date: "В любое время",
+    guests: "1 - 2 гостя",
+    btn: "Найти",
+    all: "✨ Все (1 000+)",
+    europe: "🇫🇷 Европа",
+    asia: "🇯🇵 Азия",
+    islands: "🇲🇻 Острова",
+    safari: "🦒 Сафари",
+    me: "🇦🇪 Ближний Восток",
+    wellness: "🌿 Спа и оздоровление",
+    hotels: "👑 5-звездочные дворцы",
+    found: "Роскошных отелей найдено",
+    loadMore: "Загрузить ещё отели ↓",
+    showing: "Показано"
   }
 };
 
@@ -336,21 +506,21 @@ const t = placeholders[currentLocale] || placeholders.en;
 
             <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between gap-3">
               ${item.d ? `
-                <a href="${detailUrl}" class="text-xs font-bold text-slate-300 hover:text-white flex items-center space-x-1 transition-colors">
+                <a href="${detailUrl}" class="text-xs font-bold text-slate-300 hover:text-[#c9a54e] flex items-center space-x-1 transition-colors">
                   <span>${ctaText}</span>
                   <span>→</span>
                 </a>
               ` : `
-                <span class="text-[11px] text-slate-400 font-medium">GetYourGuide Verified</span>
+                <span class="text-[11px] text-slate-400 font-medium">Expedia Partner Verified</span>
               `}
 
               <a
                 href="${item.u}"
                 target="_blank"
                 rel="nofollow sponsored noopener"
-                class="bg-[#ff7043] hover:bg-[#f4511e] text-white text-xs font-bold px-4 py-2 rounded-xl shadow-md shadow-[#ff7043]/20 hover:shadow-[#ff7043]/40 transition-all text-center flex items-center space-x-1"
+                class="bg-gradient-to-r from-[#c9a54e] to-[#dfba63] hover:from-[#dfba63] hover:to-[#e8c878] text-[#07111e] text-xs font-bold px-4 py-2 rounded-xl shadow-md transition-all text-center flex items-center space-x-1"
               >
-                <span>${isVietnamese ? 'Đặt Chỗ' : 'Reserve VIP'}</span>
+                <span>${isVietnamese ? 'Xem Giá Phòng' : 'Check Rates'}</span>
                 <span>→</span>
               </a>
             </div>
@@ -379,14 +549,11 @@ const t = placeholders[currentLocale] || placeholders.en;
           removeLoadMoreBtn();
         }
 
-        // Trigger immediate layout/scroll event so browsers calculate lazy images
+        // Trigger layout scroll event
         try {
           window.dispatchEvent(new Event('scroll'));
         } catch (e) {}
       }
-
-      if (window.initBookmarks) window.initBookmarks();
-    }
 
       if (window.initBookmarks) window.initBookmarks();
     }
@@ -402,7 +569,7 @@ const t = placeholders[currentLocale] || placeholders.en;
 
       const btnText = isVietnamese 
         ? `Khám Phá Thêm (${currentRenderCount}/${total}) ↓` 
-        : `Load More Experiences (Showing ${currentRenderCount} of ${total}) ↓`;
+        : `Load More Sanctuaries (Showing ${currentRenderCount} of ${total}) ↓`;
 
       loadMoreContainer.innerHTML = `
         <button
@@ -434,7 +601,7 @@ const t = placeholders[currentLocale] || placeholders.en;
         clearBtn.style.display = searchQuery ? 'flex' : 'none';
       }
 
-      // If no query and filter is 'all', restore initial 10 curated cards
+      // If no query and filter is 'all', restore initial curated cards
       if (!searchQuery && activeFilter === 'all') {
         if (container) container.innerHTML = initialHtml;
         if (noResultsEl) noResultsEl.style.display = 'none';
@@ -448,24 +615,29 @@ const t = placeholders[currentLocale] || placeholders.en;
       if (!index) return;
 
       currentFilteredList = index.filter(item => {
-        const text = (item.t + ' ' + item.l + ' ' + item.c).toLowerCase();
+        const text = ((item.t || '') + ' ' + (item.l || '') + ' ' + (item.c || '')).toLowerCase();
         const matchesSearch = !searchQuery || text.includes(searchQuery);
 
         let matchesFilter = true;
+        const regionLower = (item.r || '').toLowerCase();
+        const locLower = (item.l || '').toLowerCase();
+        const catLower = (item.c || '').toLowerCase();
+        const titleLower = (item.t || '').toLowerCase();
+
         if (activeFilter === 'europe') {
-          matchesFilter = item.r.toLowerCase().includes('europe') || item.l.toLowerCase().includes('italy') || item.l.toLowerCase().includes('france') || item.l.toLowerCase().includes('swiss') || item.l.toLowerCase().includes('greece') || item.l.toLowerCase().includes('portugal') || item.l.toLowerCase().includes('spain') || item.l.toLowerCase().includes('monaco');
+          matchesFilter = regionLower.includes('europe') || regionLower.includes('palace') || locLower.includes('italy') || locLower.includes('france') || locLower.includes('swiss') || locLower.includes('greece') || locLower.includes('portugal') || locLower.includes('spain') || locLower.includes('monaco') || locLower.includes('paris') || locLower.includes('rome') || locLower.includes('como') || locLower.includes('venice') || locLower.includes('london') || locLower.includes('united kingdom') || locLower.includes('ireland') || locLower.includes('amalfi') || locLower.includes('santorini') || locLower.includes('bordeaux');
         } else if (activeFilter === 'asia') {
-          matchesFilter = item.r.toLowerCase().includes('asia') || item.l.toLowerCase().includes('japan') || item.l.toLowerCase().includes('bali') || item.l.toLowerCase().includes('indonesia') || item.l.toLowerCase().includes('thailand') || item.l.toLowerCase().includes('vietnam');
+          matchesFilter = regionLower.includes('asia') || regionLower.includes('ryokan') || locLower.includes('japan') || locLower.includes('bali') || locLower.includes('indonesia') || locLower.includes('thailand') || locLower.includes('vietnam') || locLower.includes('kyoto') || locLower.includes('tokyo') || locLower.includes('bangkok') || locLower.includes('hong kong') || locLower.includes('sri lanka') || locLower.includes('cambodia');
         } else if (activeFilter === 'islands') {
-          matchesFilter = item.r.toLowerCase().includes('islands') || item.l.toLowerCase().includes('maldives') || item.l.toLowerCase().includes('seychelles');
+          matchesFilter = regionLower.includes('overwater') || regionLower.includes('island') || locLower.includes('maldives') || locLower.includes('seychelles') || locLower.includes('polynesia') || locLower.includes('tetiaroa') || locLower.includes('bora') || locLower.includes('fiji') || locLower.includes('hawaii') || locLower.includes('barth') || locLower.includes('atoll') || catLower.includes('island') || catLower.includes('overwater');
         } else if (activeFilter === 'safari') {
-          matchesFilter = item.r.toLowerCase().includes('safari') || item.l.toLowerCase().includes('serengeti') || item.l.toLowerCase().includes('africa') || item.l.toLowerCase().includes('tanzania') || item.l.toLowerCase().includes('kenya');
+          matchesFilter = regionLower.includes('safari') || locLower.includes('serengeti') || locLower.includes('africa') || locLower.includes('tanzania') || locLower.includes('kenya') || locLower.includes('kruger') || locLower.includes('south africa') || catLower.includes('safari');
         } else if (activeFilter === 'me') {
-          matchesFilter = item.r.toLowerCase().includes('middle east') || item.l.toLowerCase().includes('dubai') || item.l.toLowerCase().includes('emirates');
+          matchesFilter = regionLower.includes('middle east') || locLower.includes('dubai') || locLower.includes('emirates') || locLower.includes('oman') || locLower.includes('qatar') || locLower.includes('morocco') || locLower.includes('marrakech') || locLower.includes('abu dhabi');
         } else if (activeFilter === 'wellness') {
-          matchesFilter = item.c.toLowerCase().includes('wellness') || item.c.toLowerCase().includes('spa') || item.c.toLowerCase().includes('retreat') || item.t.toLowerCase().includes('spa') || item.t.toLowerCase().includes('onsen');
+          matchesFilter = catLower.includes('wellness') || catLower.includes('spa') || catLower.includes('retreat') || titleLower.includes('spa') || titleLower.includes('onsen') || titleLower.includes('wellness') || catLower.includes('onsen') || locLower.includes('montreux') || locLower.includes('geneva') || locLower.includes('hakone');
         } else if (activeFilter === 'hotels') {
-          matchesFilter = item.c.toLowerCase().includes('hotel') || item.c.toLowerCase().includes('sanctuaries') || item.c.toLowerCase().includes('palace') || item.t.toLowerCase().includes('hotel') || item.t.toLowerCase().includes('resort');
+          matchesFilter = catLower.includes('palace') || catLower.includes('hotel') || catLower.includes('sanctuaries') || titleLower.includes('hotel') || titleLower.includes('palace') || titleLower.includes('resort') || titleLower.includes('château') || regionLower.includes('palace');
         }
 
         return matchesSearch && matchesFilter;
@@ -480,7 +652,7 @@ const t = placeholders[currentLocale] || placeholders.en;
       renderCardsWithPagination();
     }
 
-    // Debounced input handler (150ms for ultra-smooth typing on mobile)
+    // Debounced input handler
     if (searchInput) {
       searchInput.addEventListener('focus', loadIndex);
       searchInput.addEventListener('input', (e) => {
@@ -489,6 +661,18 @@ const t = placeholders[currentLocale] || placeholders.en;
           searchQuery = e.target.value.toLowerCase().trim();
           applyFilters();
         }, 120);
+      });
+
+      searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          searchQuery = searchInput.value.toLowerCase().trim();
+          applyFilters();
+          const target = document.getElementById('experiences') || document.getElementById('destinations-grid-container');
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
       });
     }
 
@@ -513,17 +697,29 @@ const t = placeholders[currentLocale] || placeholders.en;
         
         activeFilter = pill.getAttribute('data-filter') || 'all';
         applyFilters();
+
+        if (activeFilter !== 'all') {
+          const target = document.getElementById('experiences') || document.getElementById('destinations-grid-container');
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
       });
     });
 
     if (searchBtn) {
       searchBtn.addEventListener('click', () => {
-        const target = document.getElementById('experiences');
+        searchQuery = searchInput ? searchInput.value.toLowerCase().trim() : '';
+        applyFilters();
+        const target = document.getElementById('experiences') || document.getElementById('destinations-grid-container');
         if (target) {
           target.scrollIntoView({ behavior: 'smooth' });
         }
       });
     }
+
+    // Preload index in background
+    setTimeout(loadIndex, 800);
   }
 
   if (document.readyState === 'loading') {

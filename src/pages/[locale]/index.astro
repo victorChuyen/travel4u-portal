@@ -18,6 +18,270 @@ export async function getStaticPaths() {
 const { locale } = Astro.props;
 const dict = (i18n as any)[locale] || (i18n as any).en;
 
+const pageDict: Record<string, {
+  stat_travelers: string;
+  stat_rating: string;
+  stat_countries: string;
+  stat_experiences: string;
+  curator_reflection: string;
+  curator_quote: string;
+  curator_subquote: string;
+  verified_curation: string;
+  collection_desc: string;
+  empty_title: string;
+  empty_desc: string;
+  why_reserve_title: string;
+  perk1_title: string;
+  perk1_desc: string;
+  perk2_title: string;
+  perk2_desc: string;
+  perk3_title: string;
+  perk3_desc: string;
+}> = {
+  en: {
+    stat_travelers: "Happy Travelers",
+    stat_rating: "Average Rating",
+    stat_countries: "Countries & Regions",
+    stat_experiences: "Curated Experiences",
+    curator_reflection: "Curator Reflection & Philosophy",
+    curator_quote: "“Extraordinary Journeys for a Brighter Tomorrow”",
+    curator_subquote: "Handpicked luxury experiences · Sustainable & responsible travel · Supporting local communities.",
+    verified_curation: "Verified Curation",
+    collection_desc: "Every sanctuary is rigorously audited for Forbes Five-Star excellence, acoustic privacy, and direct live rates via Expedia Partner Network.",
+    empty_title: "No Matching Luxury Sanctuaries Found",
+    empty_desc: "Try searching for 'Paris', 'Rome', 'Kyoto', 'Maldives', or click 'All Sanctuaries' above.",
+    why_reserve_title: "Why Reserve Through Verified Expedia Partner Links?",
+    perk1_title: "Elite VIP Amenities",
+    perk1_desc: "Complimentary daily gourmet breakfast for two, priority room upgrades upon arrival, and exclusive on-property spa credits.",
+    perk2_title: "Live Availability & Rate Parity",
+    perk2_desc: "Direct integration with Expedia Group inventory guarantees real-time room availability, official member rates, and transparent pricing with zero surprise fees.",
+    perk3_title: "Flexible Cancellation Protection",
+    perk3_desc: "Travel with peace of mind. Access flexible cancellation windows and 24/7 dedicated guest support across international time zones."
+  },
+  vi: {
+    stat_travelers: "Du Khách Hài Lòng",
+    stat_rating: "Đánh Giá Trung Bình",
+    stat_countries: "Quốc Gia & Lãnh Thổ",
+    stat_experiences: "Hành Trình Giám Tuyển",
+    curator_reflection: "Triết Lý Giám Tuyển Của Victor & Lucky",
+    curator_quote: "“Những Hành Trình Phi Thường Khai Mở Ngày Mai Tươi Sáng”",
+    curator_subquote: "Trải nghiệm thượng lưu tuyển chọn · Du lịch bền vững & trách nhiệm · Đồng hành cùng văn hóa bản địa.",
+    verified_curation: "Kiểm Định Độc Bản",
+    collection_desc: "Mỗi điểm lưu trú được kiểm toán thực tế về khả năng cách âm, dịch vụ quản gia cao cấp và giá niêm yết trực tiếp qua Expedia Partner Network.",
+    empty_title: "Không Tìm Thấy Điểm Đến Phù Hợp",
+    empty_desc: "Vui lòng thử từ khóa khác như 'Paris', 'Rome', 'Kyoto', 'Maldives' hoặc bấm 'Tất Cả Điểm Đến' ở trên.",
+    why_reserve_title: "Lợi Ích Khi Đặt Phòng Qua Liên Kết Đối Tác Expedia",
+    perk1_title: "Đặc Quyền VIP Thượng Hạng",
+    perk1_desc: "Bữa sáng ẩm thực miễn phí hàng ngày cho 2 khách, ưu tiên nâng hạng phòng khi nhận phòng và credit dịch vụ spa độc quyền.",
+    perk2_title: "Giá Niêm Yết Đồng Nhất & Minh Bạch",
+    perk2_desc: "Kết nối trực tiếp hạ tầng Expedia Group đảm bảo tình trạng phòng theo thời gian thực, giá hội viên chuẩn xác và không phí ẩn.",
+    perk3_title: "Chính Sách Hủy Linh Hoạt 24/7",
+    perk3_desc: "An tâm tuyệt đối khi lên kế hoạch. Hỗ trợ khung giờ hủy phòng linh hoạt cùng đội ngũ chăm sóc khách hàng quốc tế 24/7."
+  },
+  de: {
+    stat_travelers: "Zufriedene Reisende",
+    stat_rating: "Durchschnittsbewertung",
+    stat_countries: "Länder & Regionen",
+    stat_experiences: "Kuratierte Erlebnisse",
+    curator_reflection: "Philosophie der Kuratoren",
+    curator_quote: "„Außergewöhnliche Reisen für eine strahlendere Zukunft“",
+    curator_subquote: "Handverlesene Luxuserlebnisse · Nachhaltiges & verantwortungsvolles Reisen · Förderung lokaler Kulturen.",
+    verified_curation: "Verifizierte Kuration",
+    collection_desc: "Jedes Refugium wird streng auf Forbes Fünf-Sterne-Exzellenz, akustische Ruhe und Live-Verfügbarkeit geprüft.",
+    empty_title: "Keine passenden Luxus-Refugien gefunden",
+    empty_desc: "Versuchen Sie Suchbegriffe wie 'Paris', 'Rom', 'Kyoto', 'Malediven' oder wählen Sie oben 'Alle Refugien'.",
+    why_reserve_title: "Warum über verifizierte Expedia-Partnerlinks buchen?",
+    perk1_title: "Exklusive VIP-Annehmlichkeiten",
+    perk1_desc: "Kostenloses Gourmet-Frühstück für zwei Personen, bevorzugte Zimmer-Upgrades bei Ankunft und Spa-Guthaben.",
+    perk2_title: "Live-Verfügbarkeit & Preistransparenz",
+    perk2_desc: "Direkte Anbindung an die Expedia Group garantiert Echtzeit-Zimmerverfügbarkeit, offizielle Mitgliederraten und null versteckte Kosten.",
+    perk3_title: "Flexibler Stornierungsschutz",
+    perk3_desc: "Reisen Sie mit maximaler Sicherheit. Nutzen Sie flexible Stornierungsfenster und 24/7-Kundenservice."
+  },
+  fr: {
+    stat_travelers: "Voyageurs Comblés",
+    stat_rating: "Note Moyenne",
+    stat_countries: "Pays & Régions",
+    stat_experiences: "Expériences d'Exception",
+    curator_reflection: "Philosophie des Curateurs",
+    curator_quote: "« Des Voyages Extraordinaires pour un Horizon Éblouissant »",
+    curator_subquote: "Sélection d'adresses d'exception · Tourisme durable & bienveillant · Soutien aux communautés locales.",
+    verified_curation: "Sélection Certifiée",
+    collection_desc: "Chaque sanctuaire fait l'objet d'un audit rigoureux : insonorisation parfaite, excellence 5 étoiles et tarifs directs Expedia.",
+    empty_title: "Aucun sanctuaire trouvé",
+    empty_desc: "Essayez avec 'Paris', 'Rome', 'Kyoto', 'Maldives', ou cliquez sur 'Tous les Sanctuaires' ci-dessus.",
+    why_reserve_title: "Pourquoi réserver via les liens partenaires certifiés Expedia ?",
+    perk1_title: "Privilèges VIP Exclusifs",
+    perk1_desc: "Petit-déjeuner gastronomique quotidien pour deux personnes, surclassement prioritaire à l'arrivée et crédits bien-être sur place.",
+    perk2_title: "Disponibilité en Temps Réel & Tarifs Garantis",
+    perk2_desc: "L'intégration directe avec Expedia Group garantit les disponibilités réelles des chambres et l'absence totale de frais cachés.",
+    perk3_title: "Protection & Annulation Flexible",
+    perk3_desc: "Voyagez en toute sérénité. Profitez de conditions d'annulation souples et d'une assistance client internationale 24h/24 et 7j/7."
+  },
+  es: {
+    stat_travelers: "Viajeros Satisfechos",
+    stat_rating: "Puntuación Media",
+    stat_countries: "Países y Regiones",
+    stat_experiences: "Experiencias Seleccionadas",
+    curator_reflection: "Filosofía de los Curadores",
+    curator_quote: "“Viajes Extraordinarios para un Futuro Brillante”",
+    curator_subquote: "Experiencias de gran lujo seleccionadas a mano · Viajes sostenibles y responsables · Compromiso local.",
+    verified_curation: "Selección Verificada",
+    collection_desc: "Cada santuario se audita en privacidad acústica, excelencia Forbes 5 estrellas y tarifas en vivo de Expedia.",
+    empty_title: "No se encontraron santuarios que coincidan",
+    empty_desc: "Pruebe con palabras como 'París', 'Roma', 'Kioto', 'Maldivas' o pulse 'Todos los Santuarios' arriba.",
+    why_reserve_title: "¿Por qué reservar a través de los enlaces de socio de Expedia?",
+    perk1_title: "Privilegios VIP Exclusivos",
+    perk1_desc: "Desayuno gourmet diario para dos personas, prioridad de mejora de habitación a la llegada y créditos para spa.",
+    perk2_title: "Disponibilidad en Vivo y Precios Transparentes",
+    perk2_desc: "La integración directa con Expedia Group garantiza disponibilidad de habitaciones al instante y cero comisiones ocultas.",
+    perk3_title: "Protección de Cancelación Flexible",
+    perk3_desc: "Viaje con total tranquilidad. Disfrute de ventanas de cancelación flexibles y asistencia para huéspedes las 24 horas del día."
+  },
+  it: {
+    stat_travelers: "Viaggiatori Soddisfatti",
+    stat_rating: "Valutazione Media",
+    stat_countries: "Paesi e Regioni",
+    stat_experiences: "Esperienze Curate",
+    curator_reflection: "Filosofia dei Curatori",
+    curator_quote: "“Viaggi Straordinari per un Domani Radioso”",
+    curator_subquote: "Esperienze di altissimo lusso selezionate con cura · Viaggi sostenibili · Valorizzazione delle culture locali.",
+    verified_curation: "Selezione Certificata",
+    collection_desc: "Ogni hotel è auditato per isolamento acustico, eccellenza Forbes 5 stelle e tariffe dirette Expedia.",
+    empty_title: "Nessun santuario trovato",
+    empty_desc: "Prova a cercare 'Parigi', 'Roma', 'Kyoto', 'Maldive' o clicca su 'Tutti i Santuari' in alto.",
+    why_reserve_title: "Perché prenotare tramite i link partner certificati Expedia?",
+    perk1_title: "Privilegi VIP Esclusivi",
+    perk1_desc: "Colazione gourmet giornaliera per due persone, upgrade prioritario della camera all'arrivo e crediti spa in loco.",
+    perk2_title: "Disponibilità Live e Tariffe Ufficiali",
+    perk2_desc: "L'integrazione diretta con Expedia Group assicura disponibilità in tempo reale e tariffe trasparenti senza costi nascosti.",
+    perk3_title: "Cancellazione Flessibile e Sicurezza",
+    perk3_desc: "Viaggiate con serenità. Finestre di cancellazione flessibili e assistenza clienti attiva 24 ore su 24, 7 giorni su 7."
+  },
+  ja: {
+    stat_travelers: "ご満足いただいた旅行者",
+    stat_rating: "平均評価",
+    stat_countries: "国と地域",
+    stat_experiences: "厳選された体験",
+    curator_reflection: "キュレーターのフィロソフィー",
+    curator_quote: "“輝く明日のための、唯一無二の旅を路標に”",
+    curator_subquote: "厳選された最高峰の体験 · 持続可能で責任ある旅 · 地域文化への敬意と共生。",
+    verified_curation: "実地検証済みキュレーション",
+    collection_desc: "客室の遮音性、フォーブス5つ星水準のホスピタリティ、Expedia直結の即時予約性を厳格に監査。",
+    empty_title: "条件に一致するラグジュアリーホテルが見つかりませんでした",
+    empty_desc: "「パリ」「ローマ」「京都」「モルディブ」などの都市名でお試しいただくか、上の「すべての隠れ家」をクリックしてください。",
+    why_reserve_title: "公式Expediaパートナーリンクから予約する理由",
+    perk1_title: "エリートVIP限定アメニティ",
+    perk1_desc: "毎日のシェフ特製フルブレックファスト2名様分無料、到着時の優先客室アップグレード、ホテルクレジット進呈。",
+    perk2_title: "リアルタイムの空室照会＆透明な正規料金",
+    perk2_desc: "Expedia Groupのグローバルシステムと直結。正確なリアルタイム空室状況と隠れた手数料ゼロの正規レートを提供。",
+    perk3_title: "柔軟なキャンセルポリシーと安心サポート",
+    perk3_desc: "予期せぬ予定変更にも安心。無料キャンセル対応プランと24時間365日の日本語対応カスタマーサポート。"
+  },
+  ko: {
+    stat_travelers: "만족한 여행자",
+    stat_rating: "평균 평점",
+    stat_countries: "국가 및 지역",
+    stat_experiences: "엄선된 여정",
+    curator_reflection: "큐레이터의 철학",
+    curator_quote: "“더 눈부신 내일을 여는 특별한 여정으로의 초대”",
+    curator_subquote: "엄선된 하이엔드 럭셔리 경험 · 지속 가능하고 책임 있는 여행 · 현지 고유문화와의 조화.",
+    verified_curation: "공식 실사 검증 완료",
+    collection_desc: "객실 차음성, 포브스 5성급 수준의 서비스, 익스피디아 파트너 직결 요금을 꼼꼼하게 검증했습니다.",
+    empty_title: "조건에 맞는 럭셔리 숙소를 찾을 수 없습니다",
+    empty_desc: "'파리', '로마', '교토', '몰디브' 등의 도시명으로 다시 검색하시거나 상단의 '모든 생크추어리'를 선택해 보세요.",
+    why_reserve_title: "검증된 익스피디아 파트너 링크로 예약해야 하는 이유",
+    perk1_title: "엘리트 VIP 전용 특전",
+    perk1_desc: "2인 매일 고급 조식 무료 제공, 체크인 시 객실 우선 업그레이드, 호텔 스파 크레딧 제공.",
+    perk2_title: "실시간 예약 가능 여부 및 투명한 정가제",
+    perk2_desc: "익스피디아 그룹 인벤토리 직접 연동으로 실시간 잔여 객실 확인 및 숨겨진 수수료 없는 정직한 요금을 보장합니다.",
+    perk3_title: "유연한 취소 규정 및 안심 보호",
+    perk3_desc: "일정 변경 걱정 없는 편안한 예약. 유연한 무료 취소 지원과 24시간 연중무휴 고객 응대 지원."
+  },
+  'zh-tw': {
+    stat_travelers: "滿意旅客",
+    stat_rating: "平均評分",
+    stat_countries: "國家與地區",
+    stat_experiences: "精選奢華秘境",
+    curator_reflection: "策劃人核心哲學",
+    curator_quote: "“卓越非凡的旅程，點亮更璀璨的自我與未來”",
+    curator_subquote: "嚴選世界極致體驗 · 永續與負責任的旅行 · 尊重並回饋在地文化。",
+    verified_curation: "官方實地評鑑認證",
+    collection_desc: "每座旅宿均經過實地隔音測試、富比士五星級標準與Expedia即時直連預訂驗證。",
+    empty_title: "未找到符合條件的頂級旅宿",
+    empty_desc: "請嘗試搜尋「巴黎」、「羅馬」、「京都」、「馬爾地夫」或點擊上方的「全部奢華旅宿」。",
+    why_reserve_title: "為何選擇透過Expedia官方認證夥伴連結預訂？",
+    perk1_title: "VIP 尊榮專屬禮遇",
+    perk1_desc: "每日為兩位貴賓提供免費主廚精緻早餐、抵達時享有客房優先升等機會及館內水療消費抵用金。",
+    perk2_title: "即時房況直連與透明公開價格",
+    perk2_desc: "直接串接 Expedia Group 全球庫存，確保即時房間確認、官方會員專屬優惠價格，絕無隱藏費用。",
+    perk3_title: "安心保障與彈性免費取消",
+    perk3_desc: "隨心規劃行程無後顧之憂。享有符合資格的彈性取消機制與全天候 24/7 跨國客戶支援服務。"
+  },
+  'zh-cn': {
+    stat_travelers: "满意旅客",
+    stat_rating: "平均评分",
+    stat_countries: "国家与地区",
+    stat_experiences: "精选奢华秘境",
+    curator_reflection: "策划人核心哲学",
+    curator_quote: "“卓越非凡的旅程，点亮更璀璨的自我与未来”",
+    curator_subquote: "严选世界极致体验 · 可持续与负责任的旅行 · 尊重并回馈在地文化。",
+    verified_curation: "官方实地评鉴认证",
+    collection_desc: "每座酒店均经过实地隔音测试、福布斯五星级标准与Expedia实时直连预订验证。",
+    empty_title: "未找到符合条件的顶级酒店",
+    empty_desc: "请尝试搜索“巴黎”、“罗马”、“京都”、“马尔代夫”或点击上方的“全部奢华旅宿”。",
+    why_reserve_title: "为何选择通过Expedia官方认证伙伴链接预订？",
+    perk1_title: "VIP 尊荣专属礼遇",
+    perk1_desc: "每日为两位贵宾提供免费主厨精致早餐、抵达时享有客房优先升等机会及馆内水疗消费抵用金。",
+    perk2_title: "实时房况直连与透明公开价格",
+    perk2_desc: "直接串接 Expedia Group 全球库存，确保实时房间确认、官方会员专属优惠价格，绝无隐藏费用。",
+    perk3_title: "安心保障与灵活免费取消",
+    perk3_desc: "随心规划行程无后顾之忧。享有符合资格的灵活取消机制与全天候 24/7 跨国客户支持服务。"
+  },
+  pt: {
+    stat_travelers: "Viajantes Satisfeitos",
+    stat_rating: "Avaliação Média",
+    stat_countries: "Países e Regiões",
+    stat_experiences: "Experiências Selecionadas",
+    curator_reflection: "Filosofia dos Curadores",
+    curator_quote: "“Viagens Extraordinárias para um Futuro Radiante”",
+    curator_subquote: "Experiências de alto luxo selecionadas com rigor · Viagens responsáveis · Valorização das comunidades locais.",
+    verified_curation: "Curadoria Verificada",
+    collection_desc: "Cada santuário é submetido a uma auditoria rigorosa de acústica, serviço 5 estrelas e tarifas em direto.",
+    empty_title: "Nenhum santuário de luxo encontrado",
+    empty_desc: "Tente pesquisar por 'Paris', 'Roma', 'Quioto', 'Maldivas' ou clique em 'Todos os Santuários' acima.",
+    why_reserve_title: "Por que reservar através dos links certificados Expedia?",
+    perk1_title: "Privilégios VIP Exclusivos",
+    perk1_desc: "Pequeno-almoço gourmet diário de cortesia para duas pessoas, prioridade no upgrade de quarto à chegada e créditos de spa.",
+    perk2_title: "Disponibilidade em Tempo Real e Transparência",
+    perk2_desc: "Integração direta com o inventário da Expedia Group garante quartos disponíveis em tempo real e zero taxas ocultas.",
+    perk3_title: "Cancelamento Flexível e Tranquilidade",
+    perk3_desc: "Viaje com total tranquilidade. Acesso a prazos flexíveis de cancelamento e apoio ao cliente internacional 24/7."
+  },
+  ru: {
+    stat_travelers: "Довольных гостей",
+    stat_rating: "Средняя оценка",
+    stat_countries: "Стран и регионов",
+    stat_experiences: "Отобранных отелей",
+    curator_reflection: "Философия кураторов",
+    curator_quote: "«Необыкновенные путешествия ради прекрасного будущего»",
+    curator_subquote: "Безупречная коллекция роскошных отелей · Ответственный туризм · Уважение к культурному наследию.",
+    verified_curation: "Проверенная селекция",
+    collection_desc: "Каждый отель проходит аудит на Forbes 5 звезд: идеальная звукоизоляция, персональный батлер и прямые цены Expedia.",
+    empty_title: "Не найдено подходящих отелей",
+    empty_desc: "Попробуйте поискать 'Париж', 'Рим', 'Киото', 'Мальдивы' или выберите 'Все отели-убежища' выше.",
+    why_reserve_title: "Преимущества бронирования через официальные ссылки Expedia",
+    perk1_title: "Эксклюзивные VIP-привилегии",
+    perk1_desc: "Бесплатный ежедневный изысканный завтрак на двоих, приоритетное повышение категории номера по прибытии и спа-кредиты.",
+    perk2_title: "Гарантия лучшей цены и мгновенная доступность",
+    perk2_desc: "Прямая интеграция с Expedia Group гарантирует актуальное наличие номеров и отсутствие скрытых комиссий.",
+    perk3_title: "Гибкие правила отмены и надежность",
+    perk3_desc: "Путешествуйте уверенно. Доступ к гибким срокам отмены бронирования и круглосуточная поддержка 24/7."
+  }
+};
+
+const pDict = pageDict[locale] || pageDict.en;
+
 const schemaData = {
   "@context": "https://schema.org",
   "@graph": [
@@ -139,19 +403,19 @@ const schemaData = {
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 pt-8 border-t border-slate-800/80 max-w-4xl mx-auto">
           <div class="p-4 rounded-xl bg-[#0b1726]/70 border border-slate-800/60 backdrop-blur-sm text-center">
             <div class="font-serif text-2xl sm:text-3xl font-bold text-[#c9a54e]">1M+</div>
-            <div class="text-[11px] uppercase tracking-wider text-slate-400 mt-1">Happy Travelers</div>
+            <div class="text-[11px] uppercase tracking-wider text-slate-400 mt-1">{pDict.stat_travelers}</div>
           </div>
           <div class="p-4 rounded-xl bg-[#0b1726]/70 border border-slate-800/60 backdrop-blur-sm text-center">
             <div class="font-serif text-2xl sm:text-3xl font-bold text-[#c9a54e]">4.9 ★</div>
-            <div class="text-[11px] uppercase tracking-wider text-slate-400 mt-1">Average Rating</div>
+            <div class="text-[11px] uppercase tracking-wider text-slate-400 mt-1">{pDict.stat_rating}</div>
           </div>
           <div class="p-4 rounded-xl bg-[#0b1726]/70 border border-slate-800/60 backdrop-blur-sm text-center">
             <div class="font-serif text-2xl sm:text-3xl font-bold text-[#c9a54e]">150+</div>
-            <div class="text-[11px] uppercase tracking-wider text-slate-400 mt-1">Countries</div>
+            <div class="text-[11px] uppercase tracking-wider text-slate-400 mt-1">{pDict.stat_countries}</div>
           </div>
           <div class="p-4 rounded-xl bg-[#0b1726]/70 border border-slate-800/60 backdrop-blur-sm text-center">
             <div class="font-serif text-2xl sm:text-3xl font-bold text-[#c9a54e]">10,000+</div>
-            <div class="text-[11px] uppercase tracking-wider text-slate-400 mt-1">Curated Experiences</div>
+            <div class="text-[11px] uppercase tracking-wider text-slate-400 mt-1">{pDict.stat_experiences}</div>
           </div>
         </div>
 
@@ -173,17 +437,17 @@ const schemaData = {
           <div class="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-[#07111e]/80 backdrop-blur-md p-4 sm:p-5 rounded-xl border border-slate-800">
             <div>
               <div class="text-xs font-bold text-[#c9a54e] uppercase tracking-widest mb-1">
-                Curator Reflection & Philosophy
+                {pDict.curator_reflection}
               </div>
               <h3 class="font-serif text-base sm:text-lg font-bold text-white">
-                “Extraordinary Journeys for a Brighter Tomorrow”
+                {pDict.curator_quote}
               </h3>
               <p class="text-xs text-slate-400 mt-0.5">
-                Handpicked luxury experiences · Sustainable & responsible travel · Supporting local communities.
+                {pDict.curator_subquote}
               </p>
             </div>
             <div class="flex items-center gap-2">
-              <span class="text-xs text-slate-300 font-medium">Verified Curation</span>
+              <span class="text-xs text-slate-300 font-medium">{pDict.verified_curation}</span>
               <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
             </div>
           </div>
@@ -204,7 +468,7 @@ const schemaData = {
           </h2>
         </div>
         <p class="text-sm text-slate-400 max-w-md">
-          {locale === 'vi' ? 'Mỗi điểm lưu trú được kiểm toán thực tế về khả năng cách âm, dịch vụ quản gia cao cấp và giá niêm yết trực tiếp qua Expedia Partner Network.' : 'Every sanctuary is rigorously audited for Forbes Five-Star excellence, verified acoustic privacy, and direct live rates via Expedia Partner Network.'}
+          {pDict.collection_desc}
         </p>
       </div>
 
@@ -212,10 +476,10 @@ const schemaData = {
       <div id="no-search-results-msg" style="display: none;" class="text-center py-16 px-4 bg-[#0b1726]/60 border border-slate-800 rounded-3xl mb-8">
         <span class="text-4xl mb-3 block">🔍</span>
         <h3 class="font-serif text-xl font-bold text-white mb-2">
-          {locale === 'vi' ? 'Không tìm thấy điểm đến phù hợp' : 'No Matching Luxury Sanctuaries Found'}
+          {pDict.empty_title}
         </h3>
         <p class="text-xs text-slate-400 max-w-md mx-auto">
-          {locale === 'vi' ? 'Vui lòng thử từ khóa khác như "Paris", "Rome", "Kyoto", "Maldives" hoặc bấm "Tất Cả" ở trên.' : 'Try searching for "Paris", "Rome", "Kyoto", "Maldives", or click "All Destinations" above.'}
+          {pDict.empty_desc}
         </p>
       </div>
 
@@ -246,7 +510,7 @@ const schemaData = {
             The Sovereign Standard
           </span>
           <h2 class="font-serif text-2xl sm:text-3xl font-bold text-white tracking-tight">
-            {locale === 'vi' ? 'Lợi Ích Khi Đặt Phòng Qua Liên Kết Đối Tác Expedia' : 'Why Reserve Through Verified Expedia Partner Links?'}
+            {pDict.why_reserve_title}
           </h2>
         </div>
 
@@ -256,10 +520,10 @@ const schemaData = {
               👑
             </div>
             <h3 class="font-serif text-lg font-bold text-white mb-2">
-              {locale === 'vi' ? 'Đặc Quyền VIP Thượng Hạng' : 'Elite VIP Amenities'}
+              {pDict.perk1_title}
             </h3>
             <p class="text-xs text-slate-400 leading-relaxed">
-              {locale === 'vi' ? 'Bữa sáng ẩm thực miễn phí hàng ngày cho 2 khách, ưu tiên nâng hạng phòng khi nhận phòng và credit dịch vụ spa độc quyền.' : 'Complimentary daily gourmet breakfast for two, priority room upgrades upon arrival (subject to availability), and exclusive on-property credits at world-renowned spas.'}
+              {pDict.perk1_desc}
             </p>
           </div>
 
@@ -268,10 +532,10 @@ const schemaData = {
               🛡️
             </div>
             <h3 class="font-serif text-lg font-bold text-white mb-2">
-              {locale === 'vi' ? 'Giá Niêm Yết Đồng Nhất & Minh Bạch' : 'Live Availability & Rate Parity'}
+              {pDict.perk2_title}
             </h3>
             <p class="text-xs text-slate-400 leading-relaxed">
-              {locale === 'vi' ? 'Kết nối trực tiếp hạ tầng Expedia Group đảm bảo tình trạng phòng theo thời gian thực, giá hội viên chuẩn xác và không phí ẩn.' : 'Direct integration with Expedia Group inventory guarantees real-time room availability, official member rates, and transparent pricing with zero surprise fees.'}
+              {pDict.perk2_desc}
             </p>
           </div>
 
@@ -280,10 +544,10 @@ const schemaData = {
               🤝
             </div>
             <h3 class="font-serif text-lg font-bold text-white mb-2">
-              {locale === 'vi' ? 'Chính Sách Hủy Linh Hoạt 24/7' : 'Flexible Cancellation Protection'}
+              {pDict.perk3_title}
             </h3>
             <p class="text-xs text-slate-400 leading-relaxed">
-              {locale === 'vi' ? 'An tâm tuyệt đối khi lên kế hoạch. Hỗ trợ khung giờ hủy phòng linh hoạt cùng đội ngũ chăm sóc khách hàng quốc tế 24/7.' : 'Travel with peace of mind. Access flexible cancellation windows and 24/7 dedicated guest support across international time zones.'}
+              {pDict.perk3_desc}
             </p>
           </div>
         </div>

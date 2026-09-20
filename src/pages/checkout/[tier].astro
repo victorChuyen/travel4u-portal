@@ -1,5 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
 
 export function getStaticPaths() {
   return [
@@ -58,14 +60,22 @@ const pageDescription = `Trang xác nhận đặt hàng và thanh toán tự đ�
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
+  <Header currentLocale="vi" />
+
   <main class="min-h-screen bg-[#07111e] text-slate-100 py-10 px-4 sm:px-6 lg:px-8">
     <div class="max-w-4xl mx-auto">
       
-      <!-- Back link -->
-      <a href="/pricing" class="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-amber-400 transition mb-6">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
-        <span>Quay lại Bảng Giá</span>
-      </a>
+      <!-- Back links -->
+      <div class="flex items-center justify-between py-2 mb-6">
+        <a href="/pricing" class="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-amber-400 transition group">
+          <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+          <span>Quay lại Bảng Giá</span>
+        </a>
+        <a href="/" class="inline-flex items-center gap-1.5 text-xs font-medium text-slate-400 hover:text-[#c9a54e] transition">
+          <span>🏛️</span>
+          <span>Về Trang Chủ Travel4U</span>
+        </a>
+      </div>
 
       <!-- Header Card -->
       <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-8 mb-8 shadow-xl">
@@ -209,6 +219,7 @@ const pageDescription = `Trang xác nhận đặt hàng và thanh toán tự đ�
 
     </div>
   </main>
+  <Footer currentLocale="vi" />
 </Layout>
 
 <script define:vars={{ fullPrice, depositPrice, depositAllowed, code, packageName }}>

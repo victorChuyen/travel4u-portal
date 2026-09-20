@@ -9,18 +9,18 @@ interface Props {
 const { slug, title, gygLink, locale = 'en' } = Astro.props;
 
 const labels: Record<string, { save: string; liked: string; share: string; book: string }> = {
-  en: {
-    save: "Save to Wishlist",
-    liked: "Helpful (1.8k)",
-    share: "Share Experience",
-    book: "Reserve VIP Pass →"
-  },
-  vi: {
-    save: "Lưu Trải Nghiệm",
-    liked: "Hữu Ích (1.8k)",
-    share: "Chia Sẻ Cẩm Nang",
-    book: "Đặt Vé VIP Ngay →"
-  }
+  en: { save: "Save to Wishlist", liked: "Helpful (1.8k)", share: "Share Experience", book: "Check Expedia Rates →" },
+  vi: { save: "Lưu Cẩm Nang", liked: "Hữu Ích (1.8k)", share: "Chia Sẻ Cẩm Nang", book: "Xem Giá Phòng Expedia →" },
+  de: { save: "Auf die Wunschliste", liked: "Hilfreich (1.8k)", share: "Refugium teilen", book: "Expedia-Raten prüfen →" },
+  fr: { save: "Ajouter aux favoris", liked: "Très utile (1.8k)", share: "Partager l'adresse", book: "Voir les tarifs Expedia →" },
+  es: { save: "Guardar en favoritos", liked: "Útil (1.8k)", share: "Compartir", book: "Ver precios en Expedia →" },
+  it: { save: "Salva nei preferiti", liked: "Utile (1.8k)", share: "Condividi", book: "Vedi tariffe su Expedia →" },
+  ja: { save: "お気に入りに保存", liked: "役に立った (1.8k)", share: "共有する", book: "Expediaで空室確認 →" },
+  ko: { save: "위시리스트 저장", liked: "도움 됨 (1.8k)", share: "공유하기", book: "익스피디아 요금 확인 →" },
+  'zh-tw': { save: "收藏至心願清單", liked: "實用推薦 (1.8k)", share: "分享給朋友", book: "前往Expedia查價 →" },
+  'zh-cn': { save: "收藏至心愿单", liked: "实用推荐 (1.8k)", share: "分享给朋友", book: "前往Expedia查价 →" },
+  pt: { save: "Guardar nos favoritos", liked: "Útil (1.8k)", share: "Partilhar", book: "Ver tarifas na Expedia →" },
+  ru: { save: "В избранное", liked: "Полезно (1.8k)", share: "Поделиться", book: "Цены на Expedia →" }
 };
 
 const t = labels[locale] || labels.en;

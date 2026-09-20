@@ -32,15 +32,119 @@ const {
 const detailUrl = locale === 'en' ? `/experience/${slug}/` : `/${locale}/experience/${slug}/`;
 const bookingUrl = expediaLink || gygLink || `/go/${slug}`;
 
-const isVi = locale === 'vi';
-const nightlyRateLabel = isVi ? 'Khởi Điểm / Đêm' : 'Nightly Rate';
-const verifiedDesc = isVi
-  ? `${rating} · Điểm lưu trú 5 sao danh giá với đặc quyền ăn sáng VIP & giá ưu đãi đối tác Expedia.`
-  : `${rating} · Verified 5-star sanctuary with VIP breakfast, upgrade eligibility & Expedia Partner rates.`;
-const viewSuiteLabel = isVi ? 'Xem Cẩm Nang' : 'View Suite';
-const checkRatesLabel = isVi ? 'Xem Giá Phòng' : 'Check Rates';
-const saveWishlistLabel = isVi ? 'Lưu Vào Wishlist' : 'Save to Wishlist';
-const shareLabel = isVi ? 'Chia Sẻ Điểm Đến' : 'Share Luxury Sanctuary';
+const cardLabels: Record<string, {
+  nightlyRate: string;
+  verifiedDesc: string;
+  viewSuite: string;
+  checkRates: string;
+  saveWishlist: string;
+  share: string;
+}> = {
+  en: {
+    nightlyRate: 'Nightly Rate',
+    verifiedDesc: `${rating} · Verified 5-star sanctuary with VIP breakfast, upgrade eligibility & Expedia Partner rates.`,
+    viewSuite: 'View Guide',
+    checkRates: 'Check Rates',
+    saveWishlist: 'Save to Wishlist',
+    share: 'Share Luxury Sanctuary'
+  },
+  vi: {
+    nightlyRate: 'Khởi Điểm / Đêm',
+    verifiedDesc: `${rating} · Điểm lưu trú 5 sao danh giá với đặc quyền ăn sáng VIP & giá ưu đãi đối tác Expedia.`,
+    viewSuite: 'Xem Cẩm Nang',
+    checkRates: 'Xem Giá Phòng',
+    saveWishlist: 'Lưu Vào Wishlist',
+    share: 'Chia Sẻ Điểm Đến'
+  },
+  de: {
+    nightlyRate: 'Ab / Nacht',
+    verifiedDesc: `${rating} · Verifiziertes 5-Sterne-Refugium mit VIP-Frühstück, Upgrade-Option & Expedia-Vorteilen.`,
+    viewSuite: 'Führer ansehen',
+    checkRates: 'Preise prüfen',
+    saveWishlist: 'Auf die Wunschliste',
+    share: 'Refugium teilen'
+  },
+  fr: {
+    nightlyRate: 'Dès / Nuit',
+    verifiedDesc: `${rating} · Sanctuaire 5 étoiles vérifié avec petit-déjeuner VIP, surclassement éligible et tarifs Expedia.`,
+    viewSuite: 'Voir le guide',
+    checkRates: 'Vérifier les tarifs',
+    saveWishlist: 'Ajouter aux favoris',
+    share: 'Partager le sanctuaire'
+  },
+  es: {
+    nightlyRate: 'Desde / Noche',
+    verifiedDesc: `${rating} · Santuario de 5 estrellas verificado con desayuno VIP, opción de mejora y tarifas Expedia.`,
+    viewSuite: 'Ver guía',
+    checkRates: 'Consultar precios',
+    saveWishlist: 'Guardar en favoritos',
+    share: 'Compartir santuario'
+  },
+  it: {
+    nightlyRate: 'A partire da / Notte',
+    verifiedDesc: `${rating} · Santuario a 5 stelle verificato con colazione VIP, possibilità di upgrade e tariffe Expedia.`,
+    viewSuite: 'Vedi guida',
+    checkRates: 'Verifica prezzi',
+    saveWishlist: 'Salva nei preferiti',
+    share: 'Condividi santuario'
+  },
+  ja: {
+    nightlyRate: '1泊あたりの目安',
+    verifiedDesc: `${rating} · VIP朝食、客室アップグレード優先権、Expedia公式パートナー優待が確認された5つ星ホテル。`,
+    viewSuite: '詳細ガイドを見る',
+    checkRates: '空室と料金を確認',
+    saveWishlist: 'お気に入りに保存',
+    share: 'この宿を共有'
+  },
+  ko: {
+    nightlyRate: '1박 기준 요금',
+    verifiedDesc: `${rating} · VIP 조식 무료, 객실 업그레이드 우선권 및 익스피디아 파트너 혜택이 검증된 5성급 호텔.`,
+    viewSuite: '가이드 보기',
+    checkRates: '요금 확인',
+    saveWishlist: '위시리스트 저장',
+    share: '생크추어리 공유'
+  },
+  'zh-tw': {
+    nightlyRate: '每晚起價',
+    verifiedDesc: `${rating} · 官方認證五星級頂級旅宿，享雙人VIP精緻早餐、優先升等資格與Expedia夥伴特惠。`,
+    viewSuite: '查看深度指南',
+    checkRates: '查詢即時房價',
+    saveWishlist: '收藏至心願清單',
+    share: '分享這座秘境'
+  },
+  'zh-cn': {
+    nightlyRate: '每晚起价',
+    verifiedDesc: `${rating} · 官方认证五星级顶级酒店，享双人VIP精致早餐、优先升等资格与Expedia伙伴特惠。`,
+    viewSuite: '查看深度指南',
+    checkRates: '查询实时房价',
+    saveWishlist: '收藏至心愿单',
+    share: '分享这座秘境'
+  },
+  pt: {
+    nightlyRate: 'A partir de / Noite',
+    verifiedDesc: `${rating} · Santuário de 5 estrelas verificado com pequeno-almoço VIP, elegibilidade a upgrade e tarifas Expedia.`,
+    viewSuite: 'Ver guia',
+    checkRates: 'Verificar tarifas',
+    saveWishlist: 'Guardar nos favoritos',
+    share: 'Partilhar santuário'
+  },
+  ru: {
+    nightlyRate: 'От / ночь',
+    verifiedDesc: `${rating} · Проверенный 5-звездочный отель с бесплатным VIP-завтраком, возможностью повышения категории и ценами Expedia.`,
+    viewSuite: 'Смотреть гид',
+    checkRates: 'Узнать цены',
+    saveWishlist: 'Сохранить в избранное',
+    share: 'Поделиться'
+  }
+};
+
+const labels = cardLabels[locale] || cardLabels.en;
+const nightlyRateLabel = labels.nightlyRate;
+const verifiedDesc = labels.verifiedDesc;
+const viewSuiteLabel = labels.viewSuite;
+const checkRatesLabel = labels.checkRates;
+const saveWishlistLabel = labels.saveWishlist;
+const shareLabel = labels.share;
 ---
 
 <div
