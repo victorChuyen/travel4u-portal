@@ -114,6 +114,31 @@ export async function onRequestPost({ request, env }) {
       .eq('status', 'pending');
     if (updateError) throw updateError;
 
+    // Fire Telegram Alert to Chairman Victor
+    const botToken = env.TELEGRAM_BOT_TOKEN || '8257466148:AAGjwgPgoGWMknWizOvAmQ_78RaJX60owz8';
+    const chatId = env.TELEGRAM_CHAT_ID || '-1001828947537';
+    if (botToken && chatId) {
+      try {
+        const alertText = `
+💰 <b>[TING TING!] XÁC NHẬN TIỀN VỀ TÀI KHOẢN QUA SEPAY</b>
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+💵 <b>Số tiền thực nhận:</b> <b>${Number(amount).toLocaleString('vi-VN')} VNĐ</b>
+🏦 <b>Nội dung chuyển khoản:</b> <code>${orderReference}</code>
+📝 <b>Mã giao dịch SePay:</b> <code>${eventId}</code>
+🕒 <b>Thời gian:</b> ${new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' })}
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+📊 <b>Google Sheet CRM:</b> <a href="https://docs.google.com/spreadsheets/d/15G6SYG8KmtYF9DYg4g1UyOchJ3p8bjBAIEahC47z1nU/edit">Kiểm tra Master CRM</a>
+`.trim();
+        await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ chat_id: chatId, text: alertText, parse_mode: 'HTML', disable_web_page_preview: true })
+        });
+      } catch (teleErr) {
+        console.error('Failed sending SePay Telegram alert:', teleErr);
+      }
+    }
+
     if (plan) {
       const periodStart = new Date();
       const periodEnd = new Date(periodStart);

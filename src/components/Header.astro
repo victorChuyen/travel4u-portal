@@ -53,6 +53,10 @@ const homeUrl = currentLocale === 'en' ? '/' : `/${currentLocale}/`;
         <a href="#experiences" class="hover:text-[#c9a54e] transition-colors">{dict.nav_experiences}</a>
         <a href="#destinations" class="hover:text-[#c9a54e] transition-colors">{dict.nav_destinations}</a>
         <a href="#curator" class="hover:text-[#c9a54e] transition-colors">{dict.nav_curators}</a>
+        <a href="/pricing" class="hover:text-amber-400 text-amber-400 font-semibold transition-colors flex items-center space-x-1">
+          <span>⚡</span>
+          <span>{currentLocale === 'vi' ? 'Bảng Giá AI' : 'AI Solutions'}</span>
+        </a>
       </nav>
 
       <!-- Right Actions: Language & VIP CTA & Mobile Toggle -->
@@ -152,6 +156,13 @@ const homeUrl = currentLocale === 'en' ? '/' : `/${currentLocale}/`;
       >
         <span>👑</span>
         <span class="ml-3">{dict.nav_curators}</span>
+      </a>
+      <a
+        href="/pricing"
+        class="flex items-center h-12 px-4 rounded-lg text-amber-400 bg-amber-500/10 border border-amber-500/30 text-sm font-semibold transition-colors"
+      >
+        <span>⚡</span>
+        <span class="ml-3">{currentLocale === 'vi' ? 'Bảng Giá Giải Pháp AI' : 'AI Solutions & Pricing'}</span>
       </a>
     </div>
 
