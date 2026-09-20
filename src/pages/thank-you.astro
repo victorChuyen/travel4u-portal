@@ -49,10 +49,28 @@ const description = "Cảm ơn quý khách đã đặt hàng giải pháp AI th�
       </div>
 
       <!-- Next Steps -->
-      <div class="text-left bg-blue-950/20 border border-blue-800/40 rounded-2xl p-5 mb-8 text-xs sm:text-sm text-slate-300 space-y-2">
+      <div class="text-left bg-blue-950/20 border border-blue-800/40 rounded-2xl p-5 mb-6 text-xs sm:text-sm text-slate-300 space-y-2">
         <strong class="text-blue-300 block mb-1">📌 Bước tiếp theo của bạn:</strong>
         <p>• <strong>Đối với Gói 01 (DIY):</strong> Hướng dẫn tải tài nguyên số và eBook đã được gửi vào Email của bạn.</p>
         <p>• <strong>Đối với Gói 02 &amp; Gói 03 (DWY / DFY):</strong> Victor Chuyen sẽ trực tiếp liên hệ qua Zalo / SĐT bạn đã đăng ký để thống nhất phạm vi và sắp xếp lịch làm việc 1:1.</p>
+      </div>
+
+      <!-- Affiliate VIP Tier Activation Box -->
+      <div class="text-left bg-gradient-to-r from-amber-950/40 via-slate-900 to-amber-950/40 border border-amber-500/40 rounded-2xl p-5 mb-8 text-xs sm:text-sm text-slate-300 space-y-2">
+        <div class="flex items-center justify-between">
+          <strong class="text-amber-400 flex items-center gap-2">
+            <span>💎 KÍCH HOẠT QUYỀN LỢI AFFILIATE VIP:</span>
+          </strong>
+          <span id="res-aff-rate" class="px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 font-extrabold text-xs border border-amber-500/40">
+            Hoa hồng 10% - 30%
+          </span>
+        </div>
+        <p class="text-slate-300 text-xs leading-relaxed">
+          Đơn hàng của bạn đủ điều kiện kích hoạt <strong>Chính sách Hoa Hồng Đối Tác VIP</strong> (Gói 1: 10%, Gói 2: 20%, Gói 3: 30%). Bạn có thể nhận tới <strong>3.000.000 VNĐ</strong> cho mỗi lượt giới thiệu thành công.
+        </p>
+        <p class="text-amber-300 text-xs font-semibold">
+          ➔ Nhắn Zalo Victor Chuyen với cú pháp: <em>"Kích hoạt Affiliate [Mã Đơn]"</em> để nhận Mã Đối Tác và link giới thiệu cá nhân!
+        </p>
       </div>
 
       <!-- CTA Buttons -->
@@ -76,10 +94,17 @@ const description = "Cảm ơn quý khách đã đặt hàng giải pháp AI th�
   const urlParams = new URLSearchParams(window.location.search);
   const orderId = urlParams.get('order_id') || 'OPC-DIRECT';
   const name = urlParams.get('name') || 'Quý khách';
+  const tier = urlParams.get('tier') || '';
 
   const elOrder = document.getElementById('res-order-id');
   const elName = document.getElementById('res-cust-name');
+  const affRateEl = document.getElementById('res-aff-rate');
 
   if (elOrder) elOrder.innerText = orderId;
   if (elName) elName.innerText = decodeURIComponent(name);
+  if (affRateEl) {
+    if (tier === 'starter-kit') affRateEl.innerText = 'Hoa hồng VIP 10%';
+    else if (tier === 'builder-sprint') affRateEl.innerText = 'Hoa hồng VIP 20%';
+    else if (tier === 'revenue-system') affRateEl.innerText = 'Hoa hồng VIP 30% 🔥';
+  }
 </script>

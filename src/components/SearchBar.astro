@@ -231,9 +231,9 @@ const placeholders: Record<string, {
 const t = placeholders[currentLocale] || placeholders.en;
 ---
 
-<div class="w-full max-w-4xl mx-auto mb-12">
+<div class="w-full max-w-4xl mx-auto mb-12 relative z-30">
   <!-- GYG-Style Floating Search Bar Pill -->
-  <div class="bg-[#0b1726]/95 backdrop-blur-xl border border-slate-700/80 rounded-2xl sm:rounded-full p-2.5 shadow-2xl shadow-black/50 transition-all duration-300 hover:border-[#c9a54e]/60">
+  <div class="bg-[#0b1726]/95 backdrop-blur-xl border border-slate-700/80 rounded-2xl sm:rounded-full p-2.5 shadow-2xl shadow-black/50 transition-all duration-300 hover:border-[#c9a54e]/60 relative z-30">
     <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-0">
       
       <!-- Input 1: Destination / Experience Keyword Search -->
@@ -262,21 +262,154 @@ const t = placeholders[currentLocale] || placeholders.en;
       <!-- Divider (Desktop) -->
       <div class="hidden sm:block w-[1px] h-8 bg-slate-700/80 mx-1"></div>
 
-      <!-- Dropdown 2: Date Selector (Visual Luxury Touch) -->
-      <div class="hidden md:flex items-center px-4 py-1 text-slate-300 text-xs font-medium cursor-pointer hover:text-white transition-colors">
-        <span class="mr-2">📅</span>
-        <span>{t.date}</span>
-        <span class="text-slate-500 ml-2 text-[10px]">▼</span>
+      <!-- Dropdown 2: Date Selector (Interactive Luxury Popover) -->
+      <div class="relative hidden md:block" id="date-selector-wrapper">
+        <button
+          type="button"
+          id="search-date-trigger"
+          class="flex items-center px-4 py-2 text-slate-300 text-xs font-medium cursor-pointer hover:text-white transition-colors rounded-full hover:bg-slate-800/60 focus:outline-none"
+          aria-expanded="false"
+          aria-haspopup="true"
+        >
+          <span class="mr-2 text-sm">📅</span>
+          <span id="search-date-display">{t.date}</span>
+          <span class="text-[#c9a54e] ml-2 text-[10px] transition-transform duration-200" id="search-date-arrow">▼</span>
+        </button>
+
+        <!-- Floating Date Popover Modal -->
+        <div
+          id="search-date-dropdown"
+          class="hidden absolute top-full mt-3 left-1/2 -translate-x-1/2 w-80 sm:w-96 bg-[#091424] border border-[#c9a54e]/50 rounded-2xl p-5 shadow-2xl shadow-black/95 z-[99] backdrop-blur-2xl animate-fadeIn"
+        >
+          <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
+            <h4 class="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-2">
+              <span>📅</span> <span>Chọn Thời Gian Nghỉ Dưỡng</span>
+            </h4>
+            <button type="button" id="close-date-dropdown" class="text-slate-400 hover:text-white text-xs w-6 h-6 flex items-center justify-center rounded-full hover:bg-slate-800">✕</button>
+          </div>
+
+          <!-- Quick Seasons Buttons -->
+          <div class="mb-4">
+            <span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block mb-2">Gợi Ý Mùa Du Lịch Hoàng Gia:</span>
+            <div class="grid grid-cols-2 gap-2">
+              <button type="button" class="quick-season-btn text-left p-2.5 rounded-xl bg-slate-900 border border-slate-800 hover:border-[#c9a54e] text-xs text-slate-300 hover:text-white transition" data-season="autumn" data-dates="15 Oct - 25 Oct 2026">
+                <span class="font-bold text-[#c9a54e] block text-xs">🍂 Mùa Thu Vàng</span>
+                <span class="text-[10px] text-slate-400">15 Oct - 25 Oct 2026</span>
+              </button>
+              <button type="button" class="quick-season-btn text-left p-2.5 rounded-xl bg-slate-900 border border-slate-800 hover:border-[#c9a54e] text-xs text-slate-300 hover:text-white transition" data-season="winter" data-dates="20 Dec - 02 Jan 2027">
+                <span class="font-bold text-[#c9a54e] block text-xs">❄️ Năm Mới VIP</span>
+                <span class="text-[10px] text-slate-400">20 Dec - 02 Jan 2027</span>
+              </button>
+              <button type="button" class="quick-season-btn text-left p-2.5 rounded-xl bg-slate-900 border border-slate-800 hover:border-[#c9a54e] text-xs text-slate-300 hover:text-white transition" data-season="spring" data-dates="25 Mar - 05 Apr 2027">
+                <span class="font-bold text-[#c9a54e] block text-xs">🌸 Hoa Anh Đào</span>
+                <span class="text-[10px] text-slate-400">25 Mar - 05 Apr 2027</span>
+              </button>
+              <button type="button" class="quick-season-btn text-left p-2.5 rounded-xl bg-slate-900 border border-slate-800 hover:border-[#c9a54e] text-xs text-slate-300 hover:text-white transition" data-season="summer" data-dates="15 Jun - 25 Jun 2027">
+                <span class="font-bold text-[#c9a54e] block text-xs">☀️ Biển Đảo Nghỉ Hè</span>
+                <span class="text-[10px] text-slate-400">15 Jun - 25 Jun 2027</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Specific Dates Pickers -->
+          <div class="mb-4">
+            <span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block mb-2">Hoặc Chọn Ngày Check-in &amp; Check-out:</span>
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label for="input-checkin-date" class="block text-[10px] text-slate-400 mb-1">Check-in</label>
+                <input type="date" id="input-checkin-date" class="w-full bg-slate-900 border border-slate-700 focus:border-[#c9a54e] rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none" />
+              </div>
+              <div>
+                <label for="input-checkout-date" class="block text-[10px] text-slate-400 mb-1">Check-out</label>
+                <input type="date" id="input-checkout-date" class="w-full bg-slate-900 border border-slate-700 focus:border-[#c9a54e] rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Footer -->
+          <div class="flex items-center justify-between pt-3 border-t border-slate-800 text-xs">
+            <button type="button" id="reset-date-btn" class="text-slate-400 hover:text-white font-medium">Bất kỳ ngày nào</button>
+            <button type="button" id="apply-date-btn" class="px-5 py-2 rounded-xl bg-gradient-to-r from-[#c9a54e] to-[#a88230] text-slate-950 font-bold hover:brightness-110 transition shadow-lg shadow-[#c9a54e]/20">Áp Dụng</button>
+          </div>
+        </div>
       </div>
 
       <!-- Divider (Desktop) -->
       <div class="hidden md:block w-[1px] h-8 bg-slate-700/80 mx-1"></div>
 
-      <!-- Dropdown 3: Guests (Visual Luxury Touch) -->
-      <div class="hidden lg:flex items-center px-4 py-1 text-slate-300 text-xs font-medium cursor-pointer hover:text-white transition-colors">
-        <span class="mr-2">👥</span>
-        <span>{t.guests}</span>
-        <span class="text-slate-500 ml-2 text-[10px]">▼</span>
+      <!-- Dropdown 3: Guests (Interactive Luxury Popover) -->
+      <div class="relative hidden lg:block" id="guests-selector-wrapper">
+        <button
+          type="button"
+          id="search-guests-trigger"
+          class="flex items-center px-4 py-2 text-slate-300 text-xs font-medium cursor-pointer hover:text-white transition-colors rounded-full hover:bg-slate-800/60 focus:outline-none"
+          aria-expanded="false"
+          aria-haspopup="true"
+        >
+          <span class="mr-2 text-sm">👥</span>
+          <span id="search-guests-display">{t.guests}</span>
+          <span class="text-[#c9a54e] ml-2 text-[10px] transition-transform duration-200" id="search-guests-arrow">▼</span>
+        </button>
+
+        <!-- Floating Guests Popover Modal -->
+        <div
+          id="search-guests-dropdown"
+          class="hidden absolute top-full mt-3 right-0 w-80 bg-[#091424] border border-[#c9a54e]/50 rounded-2xl p-5 shadow-2xl shadow-black/95 z-[99] backdrop-blur-2xl animate-fadeIn"
+        >
+          <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
+            <h4 class="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-2">
+              <span>👥</span> <span>Số Lượng Khách &amp; Biệt Thự</span>
+            </h4>
+            <button type="button" id="close-guests-dropdown" class="text-slate-400 hover:text-white text-xs w-6 h-6 flex items-center justify-center rounded-full hover:bg-slate-800">✕</button>
+          </div>
+
+          <div class="space-y-4 mb-5 text-xs">
+            <!-- Adults -->
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="font-bold text-white block text-xs">Người Lớn</span>
+                <span class="text-[10px] text-slate-400">Từ 18 tuổi trở lên</span>
+              </div>
+              <div class="flex items-center gap-3 bg-slate-900 border border-slate-800 px-2 py-1 rounded-lg">
+                <button type="button" id="btn-adults-minus" class="w-6 h-6 rounded flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-800 transition font-bold">-</button>
+                <span id="val-adults" class="font-bold text-white text-sm w-4 text-center">2</span>
+                <button type="button" id="btn-adults-plus" class="w-6 h-6 rounded flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-800 transition font-bold">+</button>
+              </div>
+            </div>
+
+            <!-- Children -->
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="font-bold text-white block text-xs">Trẻ Em</span>
+                <span class="text-[10px] text-slate-400">Từ 0 - 17 tuổi</span>
+              </div>
+              <div class="flex items-center gap-3 bg-slate-900 border border-slate-800 px-2 py-1 rounded-lg">
+                <button type="button" id="btn-children-minus" class="w-6 h-6 rounded flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-800 transition font-bold">-</button>
+                <span id="val-children" class="font-bold text-white text-sm w-4 text-center">0</span>
+                <button type="button" id="btn-children-plus" class="w-6 h-6 rounded flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-800 transition font-bold">+</button>
+              </div>
+            </div>
+
+            <!-- Suites / Rooms -->
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="font-bold text-white block text-xs">Phòng / Biệt Thự</span>
+                <span class="text-[10px] text-slate-400">Suites, Royal Villas</span>
+              </div>
+              <div class="flex items-center gap-3 bg-slate-900 border border-slate-800 px-2 py-1 rounded-lg">
+                <button type="button" id="btn-rooms-minus" class="w-6 h-6 rounded flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-800 transition font-bold">-</button>
+                <span id="val-rooms" class="font-bold text-white text-sm w-4 text-center">1</span>
+                <button type="button" id="btn-rooms-plus" class="w-6 h-6 rounded flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-800 transition font-bold">+</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Footer -->
+          <div class="flex items-center justify-between pt-3 border-t border-slate-800 text-xs">
+            <button type="button" id="reset-guests-btn" class="text-slate-400 hover:text-white font-medium">Mặc định (2 khách)</button>
+            <button type="button" id="apply-guests-btn" class="px-5 py-2 rounded-xl bg-gradient-to-r from-[#c9a54e] to-[#a88230] text-slate-950 font-bold hover:brightness-110 transition shadow-lg shadow-[#c9a54e]/20">Áp Dụng</button>
+          </div>
+        </div>
       </div>
 
       <!-- Search Action Button -->
@@ -410,10 +543,14 @@ const t = placeholders[currentLocale] || placeholders.en;
 
     function createCardHtml(item, index = 0) {
       const gygUrl = window.getAttributedGygUrl ? window.getAttributedGygUrl(item.u) : item.u;
-      const detailUrl = item.d 
+      let detailUrl = item.d 
         ? (currentLocale === 'en' ? `/experience/${item.k}/` : `/${currentLocale}/experience/${item.k}/`)
         : gygUrl;
-      const ctaText = item.d ? (isVietnamese ? 'Xem Cẩm Nang' : 'Read Guide') : (isVietnamese ? 'Đặt Chỗ VIP' : 'Reserve VIP');
+      const bookingParams = window.t4uGetBookingParams ? window.t4uGetBookingParams() : '';
+      if (bookingParams) {
+        detailUrl += (detailUrl.includes('?') ? '&' : '?') + bookingParams;
+      }
+      const ctaText = item.d ? (isVietnamese ? 'Xem Cẩm Nang' : 'Read Guide') : (isVietnamese ? 'Xem Giá Phòng' : 'Check Rates');
       
       let isSaved = false;
       try {
@@ -707,10 +844,260 @@ const t = placeholders[currentLocale] || placeholders.en;
       });
     });
 
+    // -------------------------------------------------------------
+    // INTERACTIVE DATE PICKER & GUESTS SELECTOR LOGIC
+    // -------------------------------------------------------------
+    let selectedDates = { checkin: '', checkout: '', display: '' };
+    let selectedGuests = { adults: 2, children: 0, rooms: 1, display: '' };
+
+    // DOM Elements - Date
+    const dateTrigger = document.getElementById('search-date-trigger');
+    const dateDropdown = document.getElementById('search-date-dropdown');
+    const dateDisplay = document.getElementById('search-date-display');
+    const dateArrow = document.getElementById('search-date-arrow');
+    const closeDateBtn = document.getElementById('close-date-dropdown');
+    const quickSeasonBtns = document.querySelectorAll('.quick-season-btn');
+    const inputCheckin = document.getElementById('input-checkin-date');
+    const inputCheckout = document.getElementById('input-checkout-date');
+    const applyDateBtn = document.getElementById('apply-date-btn');
+    const resetDateBtn = document.getElementById('reset-date-btn');
+
+    // DOM Elements - Guests
+    const guestsTrigger = document.getElementById('search-guests-trigger');
+    const guestsDropdown = document.getElementById('search-guests-dropdown');
+    const guestsDisplay = document.getElementById('search-guests-display');
+    const guestsArrow = document.getElementById('search-guests-arrow');
+    const closeGuestsBtn = document.getElementById('close-guests-dropdown');
+    const applyGuestsBtn = document.getElementById('apply-guests-btn');
+    const resetGuestsBtn = document.getElementById('reset-guests-btn');
+
+    const valAdults = document.getElementById('val-adults');
+    const btnAdultsMinus = document.getElementById('btn-adults-minus');
+    const btnAdultsPlus = document.getElementById('btn-adults-plus');
+
+    const valChildren = document.getElementById('val-children');
+    const btnChildrenMinus = document.getElementById('btn-children-minus');
+    const btnChildrenPlus = document.getElementById('btn-children-plus');
+
+    const valRooms = document.getElementById('val-rooms');
+    const btnRoomsMinus = document.getElementById('btn-rooms-minus');
+    const btnRoomsPlus = document.getElementById('btn-rooms-plus');
+
+    let curAdults = 2;
+    let curChildren = 0;
+    let curRooms = 1;
+
+    // Toast helper
+    function showFilterToast(msg) {
+      let toast = document.getElementById('search-filter-toast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'search-filter-toast';
+        toast.className = 'fixed bottom-6 right-6 z-50 bg-[#07111e]/95 border border-[#c9a54e] text-white text-xs font-semibold px-5 py-3.5 rounded-2xl shadow-2xl shadow-black/80 flex items-center gap-3 transform transition-all duration-300 opacity-0 translate-y-4';
+        document.body.appendChild(toast);
+      }
+      toast.innerHTML = `<span class="text-[#c9a54e] text-lg">✨</span> <span class="leading-tight">${msg}</span>`;
+      toast.classList.remove('opacity-0', 'translate-y-4');
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-4');
+      }, 3500);
+    }
+
+    function toggleDateDropdown(open) {
+      if (!dateDropdown) return;
+      const isOpen = open !== undefined ? open : dateDropdown.classList.contains('hidden');
+      if (isOpen) {
+        dateDropdown.classList.remove('hidden');
+        if (dateArrow) dateArrow.style.transform = 'rotate(180deg)';
+        toggleGuestsDropdown(false);
+      } else {
+        dateDropdown.classList.add('hidden');
+        if (dateArrow) dateArrow.style.transform = 'rotate(0deg)';
+      }
+    }
+
+    function toggleGuestsDropdown(open) {
+      if (!guestsDropdown) return;
+      const isOpen = open !== undefined ? open : guestsDropdown.classList.contains('hidden');
+      if (isOpen) {
+        guestsDropdown.classList.remove('hidden');
+        if (guestsArrow) guestsArrow.style.transform = 'rotate(180deg)';
+        toggleDateDropdown(false);
+      } else {
+        guestsDropdown.classList.add('hidden');
+        if (guestsArrow) guestsArrow.style.transform = 'rotate(0deg)';
+      }
+    }
+
+    if (dateTrigger) {
+      dateTrigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleDateDropdown();
+      });
+    }
+
+    if (guestsTrigger) {
+      guestsTrigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleGuestsDropdown();
+      });
+    }
+
+    if (closeDateBtn) closeDateBtn.addEventListener('click', () => toggleDateDropdown(false));
+    if (closeGuestsBtn) closeGuestsBtn.addEventListener('click', () => toggleGuestsDropdown(false));
+
+    // Stop propagation so clicking inside forms does not close them
+    if (dateDropdown) dateDropdown.addEventListener('click', (e) => e.stopPropagation());
+    if (guestsDropdown) guestsDropdown.addEventListener('click', (e) => e.stopPropagation());
+
+    // Click outside to close both
+    document.addEventListener('click', () => {
+      toggleDateDropdown(false);
+      toggleGuestsDropdown(false);
+    });
+
+    // Quick season picks
+    quickSeasonBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const dates = btn.getAttribute('data-dates') || '';
+        const seasonName = btn.querySelector('.font-bold')?.textContent || dates;
+        selectedDates.display = seasonName;
+        selectedDates.checkin = dates.split(' - ')[0] || '';
+        selectedDates.checkout = dates.split(' - ')[1] || '';
+        if (dateDisplay) {
+          dateDisplay.textContent = seasonName;
+          dateDisplay.classList.add('text-[#c9a54e]', 'font-bold');
+        }
+        toggleDateDropdown(false);
+        showFilterToast(isVietnamese ? `Đã chọn lịch trình: ${seasonName} (${dates})` : `Selected Season: ${seasonName} (${dates})`);
+      });
+    });
+
+    // Custom dates apply
+    if (applyDateBtn) {
+      applyDateBtn.addEventListener('click', () => {
+        const inVal = inputCheckin?.value;
+        const outVal = inputCheckout?.value;
+        if (inVal && outVal) {
+          const display = `${inVal.slice(5)} → ${outVal.slice(5)}`;
+          selectedDates.checkin = inVal;
+          selectedDates.checkout = outVal;
+          selectedDates.display = display;
+          if (dateDisplay) {
+            dateDisplay.textContent = display;
+            dateDisplay.classList.add('text-[#c9a54e]', 'font-bold');
+          }
+          showFilterToast(isVietnamese ? `Đã chọn ngày: ${inVal} đến ${outVal}` : `Selected Dates: ${inVal} to ${outVal}`);
+        }
+        toggleDateDropdown(false);
+      });
+    }
+
+    // Date reset
+    if (resetDateBtn) {
+      resetDateBtn.addEventListener('click', () => {
+        selectedDates = { checkin: '', checkout: '', display: '' };
+        if (dateDisplay) {
+          dateDisplay.textContent = isVietnamese ? 'Thời gian: Bất kỳ' : 'Anytime';
+          dateDisplay.classList.remove('text-[#c9a54e]', 'font-bold');
+        }
+        if (inputCheckin) inputCheckin.value = '';
+        if (inputCheckout) inputCheckout.value = '';
+        toggleDateDropdown(false);
+        showFilterToast(isVietnamese ? 'Đã đặt lại: Bất kỳ ngày nào' : 'Reset to: Anytime');
+      });
+    }
+
+    // Guests +/- controls
+    function updateGuestsUI() {
+      if (valAdults) valAdults.textContent = curAdults;
+      if (valChildren) valChildren.textContent = curChildren;
+      if (valRooms) valRooms.textContent = curRooms;
+    }
+
+    if (btnAdultsMinus) btnAdultsMinus.addEventListener('click', () => {
+      if (curAdults > 1) { curAdults--; updateGuestsUI(); }
+    });
+    if (btnAdultsPlus) btnAdultsPlus.addEventListener('click', () => {
+      if (curAdults < 10) { curAdults++; updateGuestsUI(); }
+    });
+
+    if (btnChildrenMinus) btnChildrenMinus.addEventListener('click', () => {
+      if (curChildren > 0) { curChildren--; updateGuestsUI(); }
+    });
+    if (btnChildrenPlus) btnChildrenPlus.addEventListener('click', () => {
+      if (curChildren < 8) { curChildren++; updateGuestsUI(); }
+    });
+
+    if (btnRoomsMinus) btnRoomsMinus.addEventListener('click', () => {
+      if (curRooms > 1) { curRooms--; updateGuestsUI(); }
+    });
+    if (btnRoomsPlus) btnRoomsPlus.addEventListener('click', () => {
+      if (curRooms < 6) { curRooms++; updateGuestsUI(); }
+    });
+
+    // Apply Guests
+    if (applyGuestsBtn) {
+      applyGuestsBtn.addEventListener('click', () => {
+        selectedGuests.adults = curAdults;
+        selectedGuests.children = curChildren;
+        selectedGuests.rooms = curRooms;
+        const totalGuests = curAdults + curChildren;
+        const label = isVietnamese 
+          ? `${totalGuests} Khách, ${curRooms} Phòng`
+          : `${totalGuests} Guests, ${curRooms} Suite${curRooms > 1 ? 's' : ''}`;
+        selectedGuests.display = label;
+        if (guestsDisplay) {
+          guestsDisplay.textContent = label;
+          guestsDisplay.classList.add('text-[#c9a54e]', 'font-bold');
+        }
+        toggleGuestsDropdown(false);
+        showFilterToast(isVietnamese ? `Đã chọn: ${label}` : `Selected: ${label}`);
+      });
+    }
+
+    // Reset Guests
+    if (resetGuestsBtn) {
+      resetGuestsBtn.addEventListener('click', () => {
+        curAdults = 2;
+        curChildren = 0;
+        curRooms = 1;
+        updateGuestsUI();
+        selectedGuests = { adults: 2, children: 0, rooms: 1, display: '' };
+        if (guestsDisplay) {
+          guestsDisplay.textContent = isVietnamese ? '1 - 2 Khách' : '1 - 2 Guests';
+          guestsDisplay.classList.remove('text-[#c9a54e]', 'font-bold');
+        }
+        toggleGuestsDropdown(false);
+        showFilterToast(isVietnamese ? 'Đã đặt lại: 1 - 2 Khách' : 'Reset to: 1 - 2 Guests');
+      });
+    }
+
+    // Expose booking query generator for cards
+    window.t4uGetBookingParams = function() {
+      const p = new URLSearchParams();
+      if (selectedDates.checkin) p.set('checkin', selectedDates.checkin);
+      if (selectedDates.checkout) p.set('checkout', selectedDates.checkout);
+      if (selectedGuests.adults) p.set('adults', selectedGuests.adults);
+      if (selectedGuests.children) p.set('children', selectedGuests.children);
+      if (selectedGuests.rooms) p.set('rooms', selectedGuests.rooms);
+      return p.toString();
+    };
+
     if (searchBtn) {
       searchBtn.addEventListener('click', () => {
         searchQuery = searchInput ? searchInput.value.toLowerCase().trim() : '';
         applyFilters();
+        
+        let toastMsg = [];
+        if (searchQuery) toastMsg.push(`"${searchQuery}"`);
+        if (selectedDates.display) toastMsg.push(selectedDates.display);
+        if (selectedGuests.display) toastMsg.push(selectedGuests.display);
+        
+        if (toastMsg.length > 0) {
+          showFilterToast(isVietnamese ? `Đang tìm kiếm: ${toastMsg.join(' • ')}` : `Searching for: ${toastMsg.join(' • ')}`);
+        }
+
         const target = document.getElementById('experiences') || document.getElementById('destinations-grid-container');
         if (target) {
           target.scrollIntoView({ behavior: 'smooth' });
