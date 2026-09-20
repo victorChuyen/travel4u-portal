@@ -71,6 +71,33 @@ ${amount_remaining ? `⏳ <b>Số tiền còn lại sau cọc:</b> ${Number(amou
       }
     }
 
+    // Optional Webhook for CRM (n8n / Google Sheets)
+    const crmWebhook = env?.CRM_WEBHOOK_URL;
+    if (crmWebhook) {
+      try {
+        await fetch(crmWebhook, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            event: 'checkout_order_created',
+            order_id,
+            name,
+            phone,
+            email,
+            business,
+            tier,
+            tier_name,
+            payment_type,
+            amount_paid,
+            amount_remaining,
+            created_at: new Date().toISOString()
+          })
+        });
+      } catch (webhookErr) {
+        console.error('CRM Webhook error:', webhookErr);
+      }
+    }
+
     return new Response(JSON.stringify({
       ok: true,
       order_id,

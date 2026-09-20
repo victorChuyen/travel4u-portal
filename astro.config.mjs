@@ -3,7 +3,7 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://travel4u.us',
+  site: process.env.SITE_URL || 'https://app.travel4u.us',
   integrations: [
     tailwind({
       applyBaseStyles: true,
@@ -12,7 +12,7 @@ export default defineConfig({
   ],
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'de', 'fr', 'es', 'it', 'ja', 'ko', 'zh-tw', 'zh-cn', 'pt', 'ru'],
+    locales: ['en', 'vi', 'de', 'fr', 'es', 'it', 'ja', 'ko', 'zh-tw', 'zh-cn', 'pt', 'ru'],
     routing: {
       prefixDefaultLocale: false,
     },

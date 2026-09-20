@@ -9,7 +9,7 @@ const DESTINATIONS_PATH = path.join(ROOT_APP, 'src/data/destinations.json');
 const articles = JSON.parse(fs.readFileSync(ARTICLES_PATH, 'utf8'));
 const destinations = JSON.parse(fs.readFileSync(DESTINATIONS_PATH, 'utf8'));
 
-const SITE_URL = 'https://travel4u.us';
+const SITE_URL = process.env.SITE_URL || 'https://app.travel4u.us';
 const LOCALES = ['en', 'vi', 'de', 'fr', 'es', 'it', 'ja', 'ko', 'zh-tw', 'zh-cn', 'pt', 'ru'];
 
 let urlsXml = '';
@@ -24,6 +24,13 @@ LOCALES.forEach(loc => {
   });
   urlsXml += `    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE_URL}/"/>\n  </url>\n`;
 });
+
+// 1b. AI Solutions & Pricing Funnel Page
+urlsXml += `  <url>\n    <loc>${SITE_URL}/pricing/</loc>\n    <changefreq>daily</changefreq>\n    <priority>0.9</priority>\n`;
+LOCALES.forEach(altLoc => {
+  urlsXml += `    <xhtml:link rel="alternate" hreflang="${altLoc}" href="${SITE_URL}/pricing/"/>\n`;
+});
+urlsXml += `    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE_URL}/pricing/"/>\n  </url>\n`;
 
 // 2. Hub Articles with cross-hreflang
 destinations.forEach(dest => {

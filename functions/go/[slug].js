@@ -62,7 +62,19 @@ const SANCTUARIES_REGISTRY = {
   'airelles-gordes-la-bastide-provence': { id: '719284', name: 'Airelles Gordes, La Bastide', city: 'Gordes, Luberon, Provence, France' },
   'cheval-blanc-st-tropez-riviera': { id: '2819405', name: 'Cheval Blanc St-Tropez', city: 'Saint-Tropez, French Riviera, France' },
   'nayara-alto-atacama-desert-lodge': { id: '2194820', name: 'Nayara Alto Atacama', city: 'San Pedro de Atacama, Chile' },
-  'tierra-patagonia-hotel-spa': { id: '4918203', name: 'Tierra Patagonia Hotel & Spa', city: 'Torres del Paine, Patagonia, Chile' }
+  'tierra-patagonia-hotel-spa': { id: '4918203', name: 'Tierra Patagonia Hotel & Spa', city: 'Torres del Paine, Patagonia, Chile' },
+
+  // --- BATCH 5 (41 - 50) ---
+  'the-lana-hotel-dubai': { id: '10049281', name: 'The Lana Dubai', city: 'Business Bay Canal, Dubai, UAE' },
+  'royal-mansour-marrakech': { id: '3782910', name: 'Royal Mansour Marrakech', city: 'Medina, Marrakech, Morocco' },
+  'splendido-belmond-portofino': { id: '16482', name: 'Splendido Belmond Portofino', city: 'Portofino, Liguria, Italy' },
+  'the-brando-tetiaroa': { id: '8392019', name: 'The Brando Tetiaroa', city: 'Tetiaroa Atoll, French Polynesia' },
+  'hotel-de-paris-monte-carlo': { id: '15291', name: 'Hôtel de Paris Monte-Carlo', city: 'Place du Casino, Monte-Carlo, Monaco' },
+  'mandarin-oriental-bangkok': { id: '11982', name: 'Mandarin Oriental Bangkok', city: 'Chao Phraya River, Bangkok, Thailand' },
+  'cheval-blanc-st-barth': { id: '4892019', name: 'Cheval Blanc St-Barth', city: 'Baie des Flamands, Saint-Barthélemy' },
+  'hotel-du-cap-eden-roc-antibes': { id: '29102', name: 'Hôtel du Cap-Eden-Roc Antibes', city: 'Cap d\'Antibes, French Riviera, France' },
+  'nihi-sumba-indonesia': { id: '9281039', name: 'Nihi Sumba Indonesia', city: 'Sumba Island, East Nusa Tenggara, Indonesia' },
+  'one-and-only-reethi-rah-maldives': { id: '1249821', name: 'One&Only Reethi Rah Maldives', city: 'North Malé Atoll, Maldives' }
 };
 
 // Shorthand keywords and common aliases
@@ -136,7 +148,26 @@ const KEYWORD_ALIASES = {
   'atacama': 'nayara-alto-atacama-desert-lodge',
   'nayara-atacama': 'nayara-alto-atacama-desert-lodge',
   'patagonia': 'tierra-patagonia-hotel-spa',
-  'tierra-patagonia': 'tierra-patagonia-hotel-spa'
+  'tierra-patagonia': 'tierra-patagonia-hotel-spa',
+  'the-lana': 'the-lana-hotel-dubai',
+  'lana-dubai': 'the-lana-hotel-dubai',
+  'royal-mansour': 'royal-mansour-marrakech',
+  'marrakech': 'royal-mansour-marrakech',
+  'splendido': 'splendido-belmond-portofino',
+  'portofino': 'splendido-belmond-portofino',
+  'the-brando': 'the-brando-tetiaroa',
+  'brando': 'the-brando-tetiaroa',
+  'hotel-de-paris': 'hotel-de-paris-monte-carlo',
+  'monte-carlo': 'hotel-de-paris-monte-carlo',
+  'mandarin-bangkok': 'mandarin-oriental-bangkok',
+  'bangkok': 'mandarin-oriental-bangkok',
+  'cheval-blanc-st-barth': 'cheval-blanc-st-barth',
+  'st-barth': 'cheval-blanc-st-barth',
+  'eden-roc': 'hotel-du-cap-eden-roc-antibes',
+  'antibes': 'hotel-du-cap-eden-roc-antibes',
+  'nihi-sumba': 'nihi-sumba-indonesia',
+  'sumba': 'nihi-sumba-indonesia',
+  'reethi-rah': 'one-and-only-reethi-rah-maldives'
 };
 
 // Build fast dynamic index from destinations.json if available

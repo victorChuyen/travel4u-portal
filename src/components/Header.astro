@@ -3,9 +3,10 @@ import i18n from '../data/i18n.json';
 
 interface Props {
   currentLocale?: string;
+  alternateUrls?: Record<string, string>;
 }
 
-const { currentLocale = 'en' } = Astro.props;
+const { currentLocale = 'en', alternateUrls = {} } = Astro.props;
 const dict = (i18n as any)[currentLocale] || (i18n as any).en;
 
 const languages = [
@@ -77,15 +78,18 @@ const homeUrl = currentLocale === 'en' ? '/' : `/${currentLocale}/`;
               Select Locale
             </div>
             <div class="max-h-64 overflow-y-auto py-1">
-              {languages.map((lang) => (
-                <a
-                  href={lang.path}
-                  class={`flex items-center justify-between px-3.5 py-2 text-xs hover:bg-[#11223f] transition-colors ${currentLocale === lang.code ? 'text-[#c9a54e] font-bold bg-[#11223f]/50' : 'text-slate-300'}`}
-                >
-                  <span>{lang.label}</span>
-                  <span class="text-[10px] uppercase font-mono text-slate-400">{lang.code}</span>
-                </a>
-              ))}
+              {languages.map((lang) => {
+                const targetUrl = alternateUrls[lang.code] || lang.path;
+                return (
+                  <a
+                    href={targetUrl}
+                    class={`flex items-center justify-between px-3.5 py-2 text-xs hover:bg-[#11223f] transition-colors ${currentLocale === lang.code ? 'text-[#c9a54e] font-bold bg-[#11223f]/50' : 'text-slate-300'}`}
+                  >
+                    <span>{lang.label}</span>
+                    <span class="text-[10px] uppercase font-mono text-slate-400">{lang.code}</span>
+                  </a>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -172,14 +176,17 @@ const homeUrl = currentLocale === 'en' ? '/' : `/${currentLocale}/`;
         Select Language (12 Locales)
       </span>
       <div class="grid grid-cols-3 gap-2">
-        {languages.map((lang) => (
-          <a
-            href={lang.path}
-            class={`flex items-center justify-center py-2 px-2.5 rounded-lg text-xs font-semibold border transition-all ${currentLocale === lang.code ? 'bg-[#c9a54e]/20 border-[#c9a54e] text-[#c9a54e]' : 'bg-slate-900/80 border-slate-800 text-slate-300 hover:border-slate-700'}`}
-          >
-            {lang.label}
-          </a>
-        ))}
+        {languages.map((lang) => {
+          const targetUrl = alternateUrls[lang.code] || lang.path;
+          return (
+            <a
+              href={targetUrl}
+              class={`flex items-center justify-center py-2 px-2.5 rounded-lg text-xs font-semibold border transition-all ${currentLocale === lang.code ? 'bg-[#c9a54e]/20 border-[#c9a54e] text-[#c9a54e]' : 'bg-slate-900/80 border-slate-800 text-slate-300 hover:border-slate-700'}`}
+            >
+              {lang.label}
+            </a>
+          );
+        })}
       </div>
     </div>
 

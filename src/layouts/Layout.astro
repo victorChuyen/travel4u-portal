@@ -45,7 +45,7 @@ const otherOgLocales = Object.entries(ogLocales)
   .filter(([l]) => l !== locale)
   .map(([_, v]) => v);
 
-const siteOrigin = 'https://travel4u.us';
+const siteOrigin = import.meta.env.SITE_URL || 'https://app.travel4u.us';
 const fullImageUrl = image.startsWith('http') ? image : `${siteOrigin}${image.startsWith('/') ? image : '/' + image}`;
 
 // Compute default alternates if not provided
@@ -123,6 +123,17 @@ if (Object.keys(effectiveAlternates).length === 0) {
 
     <!-- Multi-Tenant Team Member Attribution Engine -->
     <script is:inline src="/scripts/team_attribution.js"></script>
+
+    <!-- Travelpayouts Drive Auto-Monetization & Tracking Engine (Marker 770720 / Source 575871) -->
+    <script is:inline nowprocket data-noptimize="1" data-cfasync="false" data-wpfc-render="false" seraph-accel-crit="1" data-no-defer="1" data-cmp-ab="2">
+      (function () {
+          var script = document.createElement("script");
+          script.async = 1;
+          script.setAttribute("data-cmp-ab","2");
+          script.src = 'https://tp-em.com/NTc1ODcx.js?t=575871';
+          document.head.appendChild(script);
+      })();
+    </script>
   </head>
   <body class="bg-[#07111e] text-slate-100 font-sans antialiased selection:bg-[#c9a54e] selection:text-[#07111e] min-h-screen flex flex-col">
     <slot />
