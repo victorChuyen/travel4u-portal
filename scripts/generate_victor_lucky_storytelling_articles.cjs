@@ -15,7 +15,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { STORYTELLING_DATABASE } = require('./storytelling_database_30_hotels.cjs');
+const { STORYTELLING_DATABASE } = require('./storytelling_database_40_hotels.cjs');
 
 const OUTPUT_FILE = path.resolve(__dirname, '../src/data/articles.json');
 const DESTINATIONS_FILE = path.resolve(__dirname, '../src/data/destinations.json');
@@ -24,6 +24,27 @@ const destinations = JSON.parse(fs.readFileSync(DESTINATIONS_FILE, 'utf-8'));
 
 // Semantic clusters for natural in-text cross-linking
 const CLUSTERS = {
+
+  // New York Luxury Icon Cluster
+  'the-mark-hotel-new-york': ['aman-new-york-manhattan', 'paris-four-seasons-george-v'],
+  'aman-new-york-manhattan': ['the-mark-hotel-new-york', 'aman-tokyo-otemachi'],
+
+  // London Royalty & Heritage Cluster
+  'the-savoy-london-thames': ['claridges-london-mayfair', 'venice-gritti-palace'],
+  'claridges-london-mayfair': ['the-savoy-london-thames', 'paris-four-seasons-george-v'],
+
+  // Tokyo Zen Sky & Ryokan Cluster
+  'aman-tokyo-otemachi': ['hoshinoya-tokyo-onsen', 'kyoto-ritz-carlton'],
+  'hoshinoya-tokyo-onsen': ['aman-tokyo-otemachi', 'hoshinoya-kyoto-arashiyama'],
+
+  // Provence & French Riviera Cluster
+  'airelles-gordes-la-bastide-provence': ['cheval-blanc-st-tropez-riviera', 'les-sources-de-caudalie-bordeaux'],
+  'cheval-blanc-st-tropez-riviera': ['airelles-gordes-la-bastide-provence', 'the-maybourne-riviera-monaco'],
+
+  // South American Wilderness Cluster
+  'nayara-alto-atacama-desert-lodge': ['tierra-patagonia-hotel-spa', 'amangiri-canyon-point-utah'],
+  'tierra-patagonia-hotel-spa': ['nayara-alto-atacama-desert-lodge', 'singita-sasakwa-lodge-serengeti'],
+
   // Lake Como & Italy Cluster
   'passalacqua-lake-como': ['villa-deste-lake-como', 'como-grand-hotel-tremezzo'],
   'villa-deste-lake-como': ['passalacqua-lake-como', 'como-grand-hotel-tremezzo'],

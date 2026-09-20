@@ -5008,5 +5008,95 @@
     "md5_hash": "30d9d50e489f88d4f907b7c66d2a5cb8",
     "verified_at": "2026-09-19T11:56:22.784Z",
     "quality_gate": "HD_COMPLIANT"
+  },
+  "expedia_newyork_the_mark_hero_4k.jpg": {
+    "filename": "expedia_newyork_the_mark_hero_4k.jpg",
+    "local_path": "/media/expedia_hotels/expedia_newyork_the_mark_hero_4k.jpg",
+    "size_bytes": 555822,
+    "size_mb": "0.53",
+    "md5_hash": "4b2a72e9e4105e7a76b8cf9bc58a96d5",
+    "verified_at": "2026-09-20T00:38:51.886Z",
+    "quality_gate": "4K_UHD_CERTIFIED"
+  },
+  "expedia_newyork_aman_hero_4k.jpg": {
+    "filename": "expedia_newyork_aman_hero_4k.jpg",
+    "local_path": "/media/expedia_hotels/expedia_newyork_aman_hero_4k.jpg",
+    "size_bytes": 731705,
+    "size_mb": "0.70",
+    "md5_hash": "3007e5668fdd1a3e064e59cecde12f66",
+    "verified_at": "2026-09-20T00:38:54.805Z",
+    "quality_gate": "4K_UHD_CERTIFIED"
+  },
+  "expedia_london_the_savoy_hero_4k.jpg": {
+    "filename": "expedia_london_the_savoy_hero_4k.jpg",
+    "local_path": "/media/expedia_hotels/expedia_london_the_savoy_hero_4k.jpg",
+    "size_bytes": 500428,
+    "size_mb": "0.48",
+    "md5_hash": "4d5b5ce92d3664f5d8673ebcb4b7e8b2",
+    "verified_at": "2026-09-20T00:38:56.241Z",
+    "quality_gate": "4K_UHD_CERTIFIED"
+  },
+  "expedia_london_claridges_hero_4k.jpg": {
+    "filename": "expedia_london_claridges_hero_4k.jpg",
+    "local_path": "/media/expedia_hotels/expedia_london_claridges_hero_4k.jpg",
+    "size_bytes": 122852,
+    "size_mb": "0.12",
+    "md5_hash": "0dec4f464620961607ba1eb9e1044a70",
+    "verified_at": "2026-09-20T00:38:56.554Z",
+    "quality_gate": "HD_COMPLIANT"
+  },
+  "expedia_tokyo_aman_hero_4k.jpg": {
+    "filename": "expedia_tokyo_aman_hero_4k.jpg",
+    "local_path": "/media/expedia_hotels/expedia_tokyo_aman_hero_4k.jpg",
+    "size_bytes": 211280,
+    "size_mb": "0.20",
+    "md5_hash": "5747a886f947a891c98f429774fc4f98",
+    "verified_at": "2026-09-20T00:38:56.996Z",
+    "quality_gate": "HD_COMPLIANT"
+  },
+  "expedia_tokyo_hoshinoya_hero_4k.jpg": {
+    "filename": "expedia_tokyo_hoshinoya_hero_4k.jpg",
+    "local_path": "/media/expedia_hotels/expedia_tokyo_hoshinoya_hero_4k.jpg",
+    "size_bytes": 794028,
+    "size_mb": "0.76",
+    "md5_hash": "c1f5581416bbc0e18db5060c10d72b9b",
+    "verified_at": "2026-09-20T00:38:59.197Z",
+    "quality_gate": "4K_UHD_CERTIFIED"
+  },
+  "expedia_provence_airelles_gordes_hero_4k.jpg": {
+    "filename": "expedia_provence_airelles_gordes_hero_4k.jpg",
+    "local_path": "/media/expedia_hotels/expedia_provence_airelles_gordes_hero_4k.jpg",
+    "size_bytes": 557845,
+    "size_mb": "0.53",
+    "md5_hash": "622edb966e2ad1f5c06f740d3d8de523",
+    "verified_at": "2026-09-20T00:39:01.105Z",
+    "quality_gate": "4K_UHD_CERTIFIED"
+  },
+  "expedia_riviera_cheval_blanc_st_tropez_hero_4k.jpg": {
+    "filename": "expedia_riviera_cheval_blanc_st_tropez_hero_4k.jpg",
+    "local_path": "/media/expedia_hotels/expedia_riviera_cheval_blanc_st_tropez_hero_4k.jpg",
+    "size_bytes": 1566419,
+    "size_mb": "1.49",
+    "md5_hash": "3af498062bff3e3da47776b4a7ac0b1e",
+    "verified_at": "2026-09-20T00:39:04.774Z",
+    "quality_gate": "4K_UHD_CERTIFIED"
+  },
+  "expedia_chile_nayara_alto_atacama_hero_4k.jpg": {
+    "filename": "expedia_chile_nayara_alto_atacama_hero_4k.jpg",
+    "local_path": "/media/expedia_hotels/expedia_chile_nayara_alto_atacama_hero_4k.jpg",
+    "size_bytes": 1239728,
+    "size_mb": "1.18",
+    "md5_hash": "e4ac48cdd24ae18bdd05002c6add6910",
+    "verified_at": "2026-09-20T00:39:07.203Z",
+    "quality_gate": "4K_UHD_CERTIFIED"
+  },
+  "expedia_chile_tierra_patagonia_hero_4k.jpg": {
+    "filename": "expedia_chile_tierra_patagonia_hero_4k.jpg",
+    "local_path": "/media/expedia_hotels/expedia_chile_tierra_patagonia_hero_4k.jpg",
+    "size_bytes": 1274994,
+    "size_mb": "1.22",
+    "md5_hash": "260021c529391a1d52e2fa1109a21d4b",
+    "verified_at": "2026-09-20T00:39:09.593Z",
+    "quality_gate": "4K_UHD_CERTIFIED"
   }
 }
