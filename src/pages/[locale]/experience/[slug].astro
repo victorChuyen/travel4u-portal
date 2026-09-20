@@ -15,6 +15,7 @@ import RelatedSanctuaries from '../../../components/RelatedSanctuaries.astro';
 import SanctuaryNav from '../../../components/SanctuaryNav.astro';
 import articlesData from '../../../data/articles.json';
 import destinationsData from '../../../data/destinations.json';
+import i18nData from '../../../data/i18n.json';
 
 export async function getStaticPaths() {
   const nonEnArticles = (articlesData as any[]).filter(art => art.locale !== 'en');
@@ -26,6 +27,7 @@ export async function getStaticPaths() {
 
 const { article } = Astro.props;
 const locale = article.locale;
+const t = (i18nData as any)[locale] || (i18nData as any)['en'];
 
 const currentDest = (destinationsData as any[]).find(d => Object.values(d.slugs).includes(article.slug)) || destinationsData[0];
 const alternateUrls: Record<string, string> = {};
@@ -137,11 +139,11 @@ const schemaData = {
             rel="nofollow sponsored noopener"
             class="bg-gradient-to-r from-[#c9a54e] to-[#dfba63] hover:from-[#dfba63] hover:to-[#eed07e] text-[#07111e] font-bold text-sm uppercase tracking-wider px-8 py-3.5 rounded-xl shadow-lg shadow-[#c9a54e]/25 transition-all duration-300"
           >
-            Check Live Rates via Expedia Partner Network →
+            {t.exp_check_rates_btn || "Check Live Rates via Expedia Partner Network →"}
           </a>
           <span class="text-xs text-slate-400 flex items-center space-x-1">
             <span class="text-emerald-400 font-bold">✓</span>
-            <span>VIP Breakfast & Upgrade Perks</span>
+            <span>{t.exp_vip_breakfast_badge || "VIP Breakfast & Upgrade Perks"}</span>
           </span>
         </div>
 
@@ -162,12 +164,14 @@ const schemaData = {
       <CuratorSignatureBox
         hotelName={article.title}
         verdictScore={article.rating_score || "9.9 / 10 Masterpiece"}
+        locale={locale}
       />
 
       <!-- 🎙️ Audio Story / Podcast Teaser Bar -->
       <PodcastAudioBar
         episodeTitle={article.podcast_title || `Victor & Lucky: Behind the Velvet Curtain at ${article.title}`}
         duration={article.podcast_duration || "4:30"}
+        locale={locale}
       />
 
       <!-- Feature Hero 4K Photo -->
@@ -179,7 +183,7 @@ const schemaData = {
             class="w-full h-auto object-cover max-h-[580px] group-hover:scale-105 transition-transform duration-700"
           />
           <div class="absolute bottom-4 left-4 bg-[#07111e]/90 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-slate-700 text-xs text-slate-300">
-            📸 Official 4K Architecture · Curated by Victor & Lucky
+            📸 {t.exp_official_4k_badge || "Official 4K Architecture · Curated by Victor & Lucky"}
           </div>
         </div>
       )}
@@ -192,6 +196,7 @@ const schemaData = {
         gastronomyTitle={article.gastronomy_title}
         gastronomyDish={article.gastronomy_dish}
         winePairing={article.wine_pairing}
+        locale={locale}
       />
 
       <!-- Body Content: The 6-Chapter Narrative Storytelling -->
@@ -201,6 +206,7 @@ const schemaData = {
       <CuratorDuoNotes
         victorNote={article.victor_note}
         luckyNote={article.lucky_note}
+        locale={locale}
       />
 
       <!-- 💎⚡ Emotional WOA Climax & High-Converting Booking Action -->
@@ -212,6 +218,7 @@ const schemaData = {
         bookingUrl={article.affiliate?.expedia_cloaked_path || `/go/${article.slug}`}
         hotelName={article.title}
         minPrice={article.affiliate?.price_display}
+        locale={locale}
       />
 
       <!-- 🛡️ How We Booked with VIP Perks via Expedia Callout Box -->
@@ -219,6 +226,7 @@ const schemaData = {
         bookingUrl={article.affiliate?.expedia_cloaked_path || `/go/${article.slug}`}
         hotelName={article.title}
         minPrice={article.affiliate?.price_display}
+        locale={locale}
       />
 
       <!-- 🎙️🎬 Full Podcast Dialogue Script & 3 Viral Shorts Concepts -->
@@ -226,6 +234,7 @@ const schemaData = {
         episodeTitle={article.podcast_title}
         dialogue={article.podcast_dialogue}
         shorts={article.viral_shorts}
+        locale={locale}
       />
 
       <!-- 🧭 Next / Previous Sanctuary Navigation -->

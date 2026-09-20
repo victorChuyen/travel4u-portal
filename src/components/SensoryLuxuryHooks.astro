@@ -1,4 +1,6 @@
 ---
+import i18nData from '../data/i18n.json';
+
 interface Props {
   soundscapeTitle?: string;
   soundscapeDescription?: string;
@@ -6,6 +8,7 @@ interface Props {
   gastronomyTitle?: string;
   gastronomyDish?: string;
   winePairing?: string;
+  locale?: string;
 }
 
 const {
@@ -14,8 +17,17 @@ const {
   soundscapeTrack = "Bespoke Chopin Nocturnes & Sunset Bossa Nova",
   gastronomyTitle = "Sensory Gastronomy & Provenance",
   gastronomyDish = "Chef's signature heirloom delicacy prepared with morning market harvests",
-  winePairing = "Hand-selected vintage Grand Cru by the Master Sommelier"
+  winePairing = "Hand-selected vintage Grand Cru by the Master Sommelier",
+  locale = "en"
 } = Astro.props;
+
+const t = (i18nData as any)[locale] || (i18nData as any).en;
+const acousticAtmosphere = t.exp_acoustic_atmosphere || "Acoustic Atmosphere";
+const ambianceLabel = t.exp_ambiance || "Ambiance:";
+const curatedPlaylist = t.exp_curated_playlist || "Curated Playlist";
+const culinarySignature = t.exp_culinary_signature || "Sensory Gastronomy & Provenance";
+const pairingLabel = t.exp_sommelier_pairing || "Pairing:";
+const cellarVintage = t.exp_cellar_vintage || "Cellar Vintage";
 ---
 
 <div class="sensory-luxury-hooks grid grid-cols-1 md:grid-cols-2 gap-6 my-10">
@@ -30,7 +42,7 @@ const {
       </div>
       <div>
         <span class="text-[10px] font-bold text-[#c9a54e] uppercase tracking-wider block">
-          Acoustic Atmosphere
+          {acousticAtmosphere}
         </span>
         <h4 class="font-serif text-base sm:text-lg font-bold text-white">
           {soundscapeTitle}
@@ -45,9 +57,9 @@ const {
     <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
       <div class="flex items-center space-x-1.5 text-slate-300">
         <span class="w-2 h-2 rounded-full bg-[#c9a54e] animate-pulse"></span>
-        <span><strong>Ambiance:</strong> {soundscapeTrack}</span>
+        <span><strong>{ambianceLabel}</strong> {soundscapeTrack}</span>
       </div>
-      <span class="text-[10px] text-[#c9a54e] font-semibold">Curated Playlist</span>
+      <span class="text-[10px] text-[#c9a54e] font-semibold">{curatedPlaylist}</span>
     </div>
   </div>
 
@@ -61,7 +73,7 @@ const {
       </div>
       <div>
         <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wider block">
-          Palate & Cellar
+          {culinarySignature}
         </span>
         <h4 class="font-serif text-base sm:text-lg font-bold text-white">
           {gastronomyTitle}
@@ -76,9 +88,9 @@ const {
     <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
       <div class="flex items-center space-x-1.5 text-slate-300">
         <span class="text-amber-400">🍾</span>
-        <span><strong>Pairing:</strong> {winePairing}</span>
+        <span><strong>{pairingLabel}</strong> {winePairing}</span>
       </div>
-      <span class="text-[10px] text-amber-400 font-semibold">Michelin Caliber</span>
+      <span class="text-[10px] text-amber-400 font-semibold">{cellarVintage}</span>
     </div>
   </div>
 

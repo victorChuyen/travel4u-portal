@@ -1,4 +1,6 @@
 ---
+import i18nData from '../data/i18n.json';
+
 interface DialogueLine {
   speaker: string;
   text: string;
@@ -15,6 +17,7 @@ interface Props {
   episodeTitle?: string;
   dialogue?: DialogueLine[];
   shorts?: ViralShort[];
+  locale?: string;
 }
 
 const {
@@ -22,55 +25,58 @@ const {
   dialogue = [
     {
       speaker: "Lucky",
-      text: "Anh Victor, tại sao người ta có thể sẵn sàng chi một gia tài chỉ để ngủ một đêm tại nơi này? Có phải chỉ vì cái danh tiếng hào nhoáng bên ngoài?"
+      text: "Victor, why would anyone pay a fortune to spend a night here? Is it just the superficial prestige?"
     },
     {
       speaker: "Victor",
-      text: "Không đâu Lucky. Khi em bước qua cánh cửa này, điều đầu tiên chạm vào em không phải là sự phô trương, mà là sự tĩnh lặng tuyệt đối. Từng viên đá cẩm thạch, mùi hương hoa tươi buổi sớm và cách người quản gia cúi chào mà không cần hỏi tên... đó là nghệ thuật sống mà tiền bạc thông thường không mua được."
+      text: "Not at all, Lucky. When you step through these doors, what touches you first is not ostentation, but absolute serenity. Every slab of marble, the scent of fresh morning florals, and the butler greeting you without asking your name—that is the art of living money alone cannot buy."
     },
     {
       speaker: "Lucky",
-      text: "Và điều em mê nhất chính là khoảnh khắc bình minh. Khi sương sớm vừa tan trên mặt nước, ngồi nhâm nhi ly cappuccino nóng trên ban công riêng... cảm giác như cả thế giới này chỉ thuộc về riêng hai đứa mình vậy!"
+      text: "And what I love most is dawn. Watching the mist rise over the water while savoring hot cappuccino on the private terrace... it feels as if the entire world belongs only to the two of us."
     },
     {
       speaker: "Victor",
-      text: "Đúng vậy. Nhưng nhiều người đi du lịch xa xỉ vẫn mắc một lỗi rất lớn: họ đặt qua các kênh trung gian không uy tín nên bị xếp vào những căn phòng sát thang máy hoặc không có view đẹp. Đó là lý do chúng ta luôn khuyên bạn bè đặt qua mạng lưới đối tác chính thức của Expedia để nhận quyền lợi VIP nâng hạng phòng."
+      text: "Precisely. Yet many luxury travelers make one critical mistake: booking via generic OTAs and getting assigned rooms near elevators with obstructed views. That is why we advise reserving through our verified Expedia partner link to secure guaranteed VIP room upgrades."
     }
   ],
   shorts = [
     {
       title: "Short 1: The Sensory Shock",
-      hook: "Bạn có dám chi $2,000 một đêm chỉ để ngủ tại đây?",
-      visual: "Cận cảnh mở cánh cửa ban công đón gió sớm, khay bánh croissant giòn rụm và ly champagne bên bờ vực thẳm.",
-      cta: "Xem link nhận đặc quyền VIP nâng hạng phòng tại travel4u.us"
+      hook: "Would you spend $2,000 a night just to wake up here?",
+      visual: "Close-up opening terrace doors to the morning breeze, flaky croissant tray and champagne above the abyss.",
+      cta: "Access verified VIP upgrade perks at travel4u.us"
     },
     {
       title: "Short 2: The Secret Mistake",
-      hook: "Sai lầm 90% người đi khách sạn 5 sao mắc phải khi check-in!",
-      visual: "Victor & Lucky chia sẻ kinh nghiệm yêu cầu phòng góc và tận dụng $100 spa credit có sẵn.",
-      cta: "Khám phá bí kíp du lịch xa xỉ tại travel4u.us"
+      hook: "The mistake 90% of luxury hotel guests make at check-in!",
+      visual: "Victor & Lucky reveal how to request corner sanctuaries and claim $100 resort credit.",
+      cta: "Discover sovereign luxury secrets at travel4u.us"
     },
     {
       title: "Short 3: The Unvarnished Truth",
-      hook: "Review thật: Điều duy nhất khách sạn này chưa hoàn hảo là gì?",
-      visual: "Góc quay chân thực, đánh giá thẳng thắn về thời điểm gió to và cách chọn mùa đẹp nhất trong năm.",
-      cta: "Đọc cẩm nang chi tiết tại travel4u.us"
+      hook: "Unvarnished review: The only thing this sanctuary is missing?",
+      visual: "Candid angles, honest assessment of seasonal trade winds and optimal booking windows.",
+      cta: "Read our full curated diary at travel4u.us"
     }
-  ]
+  ],
+  locale = "en"
 } = Astro.props;
+
+const t = (i18nData as any)[locale] || (i18nData as any)['en'];
 ---
 
 <section id="podcast-dialogue" class="my-16 bg-[#060f1c] border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
   <div class="flex items-center space-x-2 text-[11px] font-bold text-[#c9a54e] uppercase tracking-widest mb-2">
     <span>🎙️</span>
-    <span>Travel4U Multimedia Studio & Podcast Vault</span>
+    <span>{t.exp_podcast_studio_badge || "Travel4U Multimedia Studio & Podcast Vault"}</span>
   </div>
   
   <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white mb-2">
     {episodeTitle}
   </h3>
   <p class="text-xs sm:text-sm text-slate-400 mb-8 max-w-2xl">
-    Kịch bản trò chuyện thực tế giữa Chairman Victor & AI CEO Lucky. Nội dung độc quyền phục vụ chuỗi YouTube Podcast và Video Shorts sắp phát hành.
+    {t.exp_podcast_dialogue_sub || "Behind-the-scenes dialogue between Chairman Victor & AI CEO Lucky. Exclusive content curated for upcoming YouTube Podcast and Video Shorts series."}
   </p>
 
   <!-- Conversational Dialogue Stream -->
@@ -85,7 +91,7 @@ const {
             <span class={`text-xs font-bold ${item.speaker === 'Victor' ? 'text-[#c9a54e]' : 'text-blue-400'}`}>
               {item.speaker === 'Victor' ? 'Chairman Victor' : 'AI CEO Lucky'}
             </span>
-            <span class="text-[10px] text-slate-500">· Authentic Audio Story</span>
+            <span class="text-[10px] text-slate-500">· {t.exp_authentic_audio_story || "Authentic Audio Story"}</span>
           </div>
           <p class="text-xs sm:text-sm text-slate-200 leading-relaxed font-serif">
             "{item.text}"
@@ -100,13 +106,13 @@ const {
     <div class="flex items-center justify-between mb-6">
       <div>
         <span class="text-[10px] text-[#ff7043] font-bold uppercase tracking-wider block">
-          Viral Social Engine
+          {t.exp_viral_social_engine || "Viral Social Engine"}
         </span>
         <h4 class="font-serif text-lg font-bold text-white">
-          3 Kịch Bản Video Shorts / Reels Kéo Traffic Về Web App
+          {t.exp_viral_shorts_title || "3 Short-Form Video Scripts Driving Web App Traffic"}
         </h4>
       </div>
-      <span class="text-xs text-slate-400 hidden sm:inline">Format: 9:16 Vertical 4K</span>
+      <span class="text-xs text-slate-400 hidden sm:inline">{t.exp_vertical_format || "Format: 9:16 Vertical 4K"}</span>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -120,11 +126,11 @@ const {
               "{short.hook}"
             </h5>
             <p class="text-[11px] text-slate-400 leading-relaxed mb-3">
-              <strong>Hình ảnh:</strong> {short.visual}
+              <strong>{t.exp_visual_label || "Visual Scene:"}</strong> {short.visual}
             </p>
           </div>
           <div class="pt-2 border-t border-slate-800/80 text-[10px] text-emerald-400 font-medium">
-            🎯 CTA: {short.cta}
+            🎯 {t.exp_cta_label || "CTA:"} {short.cta}
           </div>
         </div>
       ))}

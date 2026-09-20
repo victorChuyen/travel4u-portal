@@ -161,12 +161,14 @@ const schemaData = {
       <CuratorSignatureBox
         hotelName={article.title}
         verdictScore={article.rating_score || "9.9 / 10 Masterpiece"}
+        locale="en"
       />
 
       <!-- 🎙️ Audio Story / Podcast Teaser Bar -->
       <PodcastAudioBar
         episodeTitle={article.podcast_title || `Victor & Lucky: Behind the Velvet Curtain at ${article.title}`}
         duration={article.podcast_duration || "4:30"}
+        locale="en"
       />
 
       <!-- Feature Hero 4K Photo -->
@@ -191,6 +193,7 @@ const schemaData = {
         gastronomyTitle={article.gastronomy_title}
         gastronomyDish={article.gastronomy_dish}
         winePairing={article.wine_pairing}
+        locale="en"
       />
 
       <!-- Body Content: The 6-Chapter Narrative Storytelling -->
@@ -200,6 +203,7 @@ const schemaData = {
       <CuratorDuoNotes
         victorNote={article.victor_note}
         luckyNote={article.lucky_note}
+        locale="en"
       />
 
       <!-- 💎⚡ Emotional WOA Climax & High-Converting Booking Action -->
@@ -211,6 +215,7 @@ const schemaData = {
         bookingUrl={article.affiliate?.expedia_cloaked_path || `/go/${article.slug}`}
         hotelName={article.title}
         minPrice={article.affiliate?.price_display}
+        locale="en"
       />
 
       <!-- 🛡️ How We Booked with VIP Perks via Expedia Callout Box -->
@@ -218,6 +223,7 @@ const schemaData = {
         bookingUrl={article.affiliate?.expedia_cloaked_path || `/go/${article.slug}`}
         hotelName={article.title}
         minPrice={article.affiliate?.price_display}
+        locale="en"
       />
 
       <!-- 🎙️🎬 Full Podcast Dialogue Script & 3 Viral Shorts Concepts -->
@@ -225,6 +231,7 @@ const schemaData = {
         episodeTitle={article.podcast_title}
         dialogue={article.podcast_dialogue}
         shorts={article.viral_shorts}
+        locale="en"
       />
 
       <!-- 🧭 Next / Previous Sanctuary Navigation -->

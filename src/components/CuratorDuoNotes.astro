@@ -1,17 +1,31 @@
 ---
+import i18nData from '../data/i18n.json';
+
 interface Props {
   victorNote: string;
   luckyNote: string;
   victorTopic?: string;
   luckyTopic?: string;
+  locale?: string;
 }
 
 const {
   victorNote,
   luckyNote,
-  victorTopic = "Heritage & Quiet Luxury",
-  luckyTopic = "Sensory Secrets & VIP Perks"
+  victorTopic,
+  luckyTopic,
+  locale = "en"
 } = Astro.props;
+
+const t = (i18nData as any)[locale] || (i18nData as any).en;
+const defaultVictorTopic = t.exp_victor_focus || "Heritage & Quiet Luxury";
+const defaultLuckyTopic = t.exp_lucky_focus || "Sensory Secrets & VIP Perks";
+const vTopic = victorTopic || defaultVictorTopic;
+const lTopic = luckyTopic || defaultLuckyTopic;
+const victorCardTitle = t.exp_victor_card_title || "Victor's Reflections";
+const victorVerified = t.exp_victor_verified || "Verified Connoisseur Perspective";
+const luckyCardTitle = t.exp_lucky_card_title || "Lucky's Discovery";
+const luckyVerified = t.exp_lucky_verified || "Sovereign AI Executive Perspective";
 ---
 
 <div class="curator-duo-notes grid grid-cols-1 md:grid-cols-2 gap-6 my-12">
@@ -27,10 +41,10 @@ const {
         </div>
         <div>
           <span class="text-[10px] font-bold text-[#c9a54e] uppercase tracking-wider block">
-            {victorTopic}
+            {vTopic}
           </span>
           <h4 class="font-serif text-base font-bold text-white">
-            Victor's Reflections
+            {victorCardTitle}
           </h4>
         </div>
       </div>
@@ -42,7 +56,7 @@ const {
 
     <div class="pt-4 mt-6 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
       <span class="font-semibold text-slate-200">Chairman Victor</span>
-      <span class="text-[#c9a54e]">Verified Connoisseur Perspective</span>
+      <span class="text-[#c9a54e]">{victorVerified}</span>
     </div>
   </div>
 
@@ -57,10 +71,10 @@ const {
         </div>
         <div>
           <span class="text-[10px] font-bold text-blue-400 uppercase tracking-wider block">
-            {luckyTopic}
+            {lTopic}
           </span>
           <h4 class="font-serif text-base font-bold text-white">
-            Lucky's Discovery
+            {luckyCardTitle}
           </h4>
         </div>
       </div>
@@ -72,7 +86,7 @@ const {
 
     <div class="pt-4 mt-6 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
       <span class="font-semibold text-slate-200">AI CEO Lucky</span>
-      <span class="text-blue-400">Intimate Sensory & VIP Hack</span>
+      <span class="text-blue-400">{luckyVerified}</span>
     </div>
   </div>
 
