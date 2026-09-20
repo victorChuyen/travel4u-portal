@@ -147,32 +147,45 @@ const pageDescription = `Trang xác nhận đặt hàng và thanh toán tự đ�
                 Quét mã QR bằng App Ngân hàng bất kỳ
               </h3>
 
+              <!-- RESERVATION TIMER -->
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold mb-3">
+                <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+                <span>Đang giữ chỗ ưu đãi:</span>
+                <span id="countdown-timer" class="font-mono font-bold text-amber-300">14:59</span>
+              </div>
+
               <!-- QR CODE BOX -->
               <div class="bg-white p-3 rounded-2xl shadow-2xl inline-block mb-4 max-w-[240px]">
                 <img id="vietqr-image" src="" alt="VietQR SePay Payment" class="w-full h-auto aspect-square object-contain" />
               </div>
 
               <!-- Payment Details Summary -->
-              <div class="space-y-1.5 text-xs text-slate-300 bg-slate-900 p-3 rounded-xl border border-slate-800 text-left">
-                <div class="flex justify-between">
+              <div class="space-y-2 text-xs text-slate-300 bg-slate-900 p-3.5 rounded-xl border border-slate-800 text-left">
+                <div class="flex justify-between items-center">
                   <span class="text-slate-400">Ngân hàng:</span>
-                  <strong class="text-white">BIDV (Ngân hàng Đầu tư và Phát triển)</strong>
+                  <strong class="text-white">BIDV (Việt Nam)</strong>
                 </div>
-                <div class="flex justify-between">
+                <div class="flex justify-between items-center">
                   <span class="text-slate-400">Số tài khoản:</span>
-                  <strong class="text-amber-400 font-mono text-sm">96247688688</strong>
+                  <div class="flex items-center gap-1.5">
+                    <strong class="text-amber-400 font-mono text-sm">96247688688</strong>
+                    <button type="button" id="btn-copy-acc" class="text-[10px] bg-slate-800 hover:bg-slate-700 text-amber-300 px-2 py-0.5 rounded border border-slate-700 transition">Copy</button>
+                  </div>
                 </div>
-                <div class="flex justify-between">
+                <div class="flex justify-between items-center">
                   <span class="text-slate-400">Chủ tài khoản:</span>
                   <strong class="text-white uppercase">VICTOR CHUYEN</strong>
                 </div>
-                <div class="flex justify-between">
+                <div class="flex justify-between items-center">
                   <span class="text-slate-400">Số tiền:</span>
                   <strong id="display-amount" class="text-emerald-400 text-sm font-black"></strong>
                 </div>
-                <div class="flex justify-between border-t border-slate-800 pt-1">
+                <div class="flex justify-between items-center border-t border-slate-800 pt-1.5">
                   <span class="text-slate-400">Nội dung CK:</span>
-                  <strong id="display-reference" class="text-amber-300 font-mono text-xs"></strong>
+                  <div class="flex items-center gap-1.5">
+                    <strong id="display-reference" class="text-amber-300 font-mono text-xs font-bold"></strong>
+                    <button type="button" id="btn-copy-ref" class="text-[10px] bg-slate-800 hover:bg-slate-700 text-amber-300 px-2 py-0.5 rounded border border-slate-700 transition">Copy</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -229,6 +242,52 @@ const pageDescription = `Trang xác nhận đặt hàng và thanh toán tự đ�
   });
 
   updatePaymentQR();
+
+  // 15-minute countdown timer
+  let timeLeft = 14 * 60 + 59;
+  const timerEl = document.getElementById('countdown-timer');
+  const countdownInterval = setInterval(() => {
+    if (timeLeft <= 0) {
+      clearInterval(countdownInterval);
+      if (timerEl) timerEl.innerText = '00:00';
+      return;
+    }
+    const mins = Math.floor(timeLeft / 60);
+    const secs = timeLeft % 60;
+    if (timerEl) timerEl.innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    timeLeft--;
+  }, 1000);
+
+  // Quick Copy Account & Order Reference
+  const btnCopyAcc = document.getElementById('btn-copy-acc');
+  if (btnCopyAcc) {
+    btnCopyAcc.addEventListener('click', () => {
+      navigator.clipboard.writeText('96247688688');
+      btnCopyAcc.innerText = 'Đã chép!';
+      setTimeout(() => { btnCopyAcc.innerText = 'Copy'; }, 2000);
+    });
+  }
+
+  const btnCopyRef = document.getElementById('btn-copy-ref');
+  if (btnCopyRef) {
+    btnCopyRef.addEventListener('click', () => {
+      navigator.clipboard.writeText(orderRef);
+      btnCopyRef.innerText = 'Đã chép!';
+      setTimeout(() => { btnCopyRef.innerText = 'Copy'; }, 2000);
+    });
+  }
+
+  // LocalStorage Persistence for Lead Form
+  const fieldIds = ['cust-name', 'cust-phone', 'cust-email', 'cust-business'];
+  fieldIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const saved = localStorage.getItem(`travel4u_${id}`);
+    if (saved) el.value = saved;
+    el.addEventListener('input', () => {
+      localStorage.setItem(`travel4u_${id}`, el.value);
+    });
+  });
 
   // Handle submit confirmation
   const btn = document.getElementById('btn-confirm-payment');
