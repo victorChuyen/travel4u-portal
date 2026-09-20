@@ -23,7 +23,7 @@ const placeholders: Record<string, {
   showing: string;
 }> = {
   en: {
-    search: "Search 1,000+ luxury sanctuaries, suites, villas...",
+    search: "Search 1,000+ luxury stays, suites...",
     date: "Anytime",
     guests: "1 - 2 Guests",
     btn: "Search",
@@ -40,7 +40,7 @@ const placeholders: Record<string, {
     showing: "Showing"
   },
   vi: {
-    search: "Tìm kiếm 1.000+ khách sạn 5 sao, biệt thự, du thuyền...",
+    search: "Tìm kiếm 1.000+ khách sạn, biệt thự...",
     date: "Thời gian: Bất kỳ",
     guests: "1 - 2 Khách",
     btn: "Khám Phá",
@@ -57,7 +57,7 @@ const placeholders: Record<string, {
     showing: "Đang hiển thị"
   },
   de: {
-    search: "1.000+ Luxus-Refugien, Suiten, Villen durchsuchen...",
+    search: "1.000+ Luxus-Refugien & Suiten...",
     date: "Jederzeit",
     guests: "1 - 2 Gäste",
     btn: "Suchen",
@@ -74,7 +74,7 @@ const placeholders: Record<string, {
     showing: "Angezeigt"
   },
   fr: {
-    search: "Rechercher parmi 1 000+ sanctuaires d'exception...",
+    search: "Rechercher 1 000+ sanctuaires d'exception...",
     date: "Dates flexibles",
     guests: "1 - 2 Personnes",
     btn: "Explorer",
@@ -91,7 +91,7 @@ const placeholders: Record<string, {
     showing: "Affichage"
   },
   es: {
-    search: "Buscar entre más de 1.000 santuarios de lujo...",
+    search: "Buscar 1.000+ santuarios de lujo...",
     date: "Cualquier fecha",
     guests: "1 - 2 Huéspedes",
     btn: "Buscar",
@@ -108,7 +108,7 @@ const placeholders: Record<string, {
     showing: "Mostrando"
   },
   it: {
-    search: "Cerca tra oltre 1.000 santuari di lusso...",
+    search: "Cerca oltre 1.000 santuari di lusso...",
     date: "Qualsiasi data",
     guests: "1 - 2 Ospiti",
     btn: "Cerca",
@@ -125,7 +125,7 @@ const placeholders: Record<string, {
     showing: "Mostrati"
   },
   ja: {
-    search: "1,000件以上の至高リゾート、スイート、ヴィラを検索...",
+    search: "1,000件以上の至高リゾートを検索...",
     date: "指定なし",
     guests: "1 - 2名",
     btn: "検索",
@@ -142,7 +142,7 @@ const placeholders: Record<string, {
     showing: "表示中"
   },
   ko: {
-    search: "1,000개 이상의 최고급 생크추어리, 스위트, 빌라 검색...",
+    search: "1,000개 이상의 최고급 숙소 검색...",
     date: "일정 무관",
     guests: "1 - 2인",
     btn: "검색",
@@ -159,7 +159,7 @@ const placeholders: Record<string, {
     showing: "표시 중"
   },
   'zh-tw': {
-    search: "搜尋全球 1,000+ 頂級奢華旅宿、總統套房、私人別墅...",
+    search: "搜尋全球 1,000+ 頂級奢華旅宿...",
     date: "不限日期",
     guests: "1 - 2 位貴賓",
     btn: "立即探索",
@@ -176,7 +176,7 @@ const placeholders: Record<string, {
     showing: "正在顯示"
   },
   'zh-cn': {
-    search: "搜索全球 1,000+ 顶级奢华酒店、总统套房、私人别墅...",
+    search: "搜索全球 1,000+ 顶级奢华酒店...",
     date: "不限日期",
     guests: "1 - 2 位贵宾",
     btn: "立即探索",
@@ -193,7 +193,7 @@ const placeholders: Record<string, {
     showing: "正在显示"
   },
   pt: {
-    search: "Pesquisar mais de 1.000 santuários de luxo, suítes, vilas...",
+    search: "Pesquisar 1.000+ santuários de luxo...",
     date: "Qualquer data",
     guests: "1 - 2 Hóspedes",
     btn: "Pesquisar",
@@ -210,7 +210,7 @@ const placeholders: Record<string, {
     showing: "A apresentar"
   },
   ru: {
-    search: "Поиск среди 1 000+ роскошных отелей, люксов, вилл...",
+    search: "Поиск среди 1 000+ отелей и вилл...",
     date: "В любое время",
     guests: "1 - 2 гостя",
     btn: "Найти",
@@ -231,19 +231,19 @@ const placeholders: Record<string, {
 const t = placeholders[currentLocale] || placeholders.en;
 ---
 
-<div class="w-full max-w-4xl mx-auto mb-12 relative z-30">
+<div class="w-full max-w-4xl mx-auto mb-8 sm:mb-12 relative z-30">
   <!-- GYG-Style Floating Search Bar Pill -->
-  <div class="bg-[#0b1726]/95 backdrop-blur-xl border border-slate-700/80 rounded-2xl sm:rounded-full p-2.5 shadow-2xl shadow-black/50 transition-all duration-300 hover:border-[#c9a54e]/60 relative z-30">
-    <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-0">
+  <div class="bg-[#0b1726]/95 backdrop-blur-xl border border-slate-700/80 rounded-2xl sm:rounded-full p-2 sm:p-2.5 shadow-2xl shadow-black/50 transition-all duration-300 hover:border-[#c9a54e]/60 relative z-30">
+    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-0">
       
       <!-- Input 1: Destination / Experience Keyword Search -->
-      <div class="flex items-center flex-grow w-full px-4 py-2 sm:py-1 relative">
-        <span class="text-slate-400 text-lg mr-3">🔍</span>
+      <div class="flex items-center flex-grow w-full px-3 sm:px-4 py-1.5 sm:py-1 relative">
+        <span class="text-slate-400 text-base sm:text-lg mr-2.5 sm:mr-3 shrink-0">🔍</span>
         <input
           id="global-destination-search"
           type="text"
           placeholder={t.search}
-          class="w-full bg-transparent border-none text-white placeholder-slate-400 text-sm font-medium focus:outline-none focus:ring-0 pr-8"
+          class="w-full bg-transparent border-none text-white placeholder-slate-400 text-xs sm:text-sm font-medium focus:outline-none focus:ring-0 pr-8 truncate"
           autocomplete="off"
           aria-label={t.search}
         />
@@ -416,7 +416,7 @@ const t = placeholders[currentLocale] || placeholders.en;
       <button
         id="search-trigger-btn"
         type="button"
-        class="w-full sm:w-auto bg-gradient-to-r from-[#ff7043] to-[#f4511e] hover:from-[#f4511e] hover:to-[#e64a19] text-white font-bold text-xs sm:text-sm uppercase tracking-wider px-7 py-3.5 rounded-xl sm:rounded-full shadow-lg shadow-[#ff7043]/30 transition-all duration-300 transform active:scale-95 flex items-center justify-center space-x-2"
+        class="w-full sm:w-auto bg-gradient-to-r from-[#ff7043] to-[#f4511e] hover:from-[#f4511e] hover:to-[#e64a19] text-white font-bold text-xs sm:text-sm uppercase tracking-wider px-6 sm:px-7 py-2.5 sm:py-3.5 rounded-xl sm:rounded-full shadow-lg shadow-[#ff7043]/30 transition-all duration-300 transform active:scale-95 flex items-center justify-center space-x-2 shrink-0"
       >
         <span>{t.btn}</span>
         <span>→</span>
@@ -426,63 +426,66 @@ const t = placeholders[currentLocale] || placeholders.en;
   </div>
 
   <!-- Quick Category Filter Pills (10 Sovereign Categories & Regions) -->
-  <div class="flex items-center justify-center flex-wrap gap-2 pt-5" id="category-filter-pills">
-    <button
-      type="button"
-      data-filter="all"
-      class="filter-pill active px-3.5 py-1.5 rounded-full text-xs font-semibold bg-[#c9a54e]/20 border border-[#c9a54e] text-[#c9a54e] transition-all hover:border-[#c9a54e]"
-    >
-      {t.all}
-    </button>
-    <button
-      type="button"
-      data-filter="europe"
-      class="filter-pill px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-900/80 border border-slate-700 text-slate-300 transition-all hover:border-slate-500 hover:text-white"
-    >
-      {t.europe}
-    </button>
-    <button
-      type="button"
-      data-filter="asia"
-      class="filter-pill px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-900/80 border border-slate-700 text-slate-300 transition-all hover:border-slate-500 hover:text-white"
-    >
-      {t.asia}
-    </button>
-    <button
-      type="button"
-      data-filter="islands"
-      class="filter-pill px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-900/80 border border-slate-700 text-slate-300 transition-all hover:border-slate-500 hover:text-white"
-    >
-      {t.islands}
-    </button>
-    <button
-      type="button"
-      data-filter="safari"
-      class="filter-pill px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-900/80 border border-slate-700 text-slate-300 transition-all hover:border-slate-500 hover:text-white"
-    >
-      {t.safari}
-    </button>
-    <button
-      type="button"
-      data-filter="me"
-      class="filter-pill px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-900/80 border border-slate-700 text-slate-300 transition-all hover:border-slate-500 hover:text-white"
-    >
-      {t.me}
-    </button>
-    <button
-      type="button"
-      data-filter="wellness"
-      class="filter-pill px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-900/80 border border-slate-700 text-slate-300 transition-all hover:border-slate-500 hover:text-white"
-    >
-      {t.wellness}
-    </button>
-    <button
-      type="button"
-      data-filter="hotels"
-      class="filter-pill px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-900/80 border border-slate-700 text-slate-300 transition-all hover:border-slate-500 hover:text-white"
-    >
-      {t.hotels}
-    </button>
+  <!-- Mobile: Swipeable Horizontal Carousel | Desktop: Centered Wrap -->
+  <div class="w-full overflow-x-auto no-scrollbar scroll-smooth pt-3 sm:pt-5 -mx-2 px-2 sm:mx-0 sm:px-0" id="category-filter-container">
+    <div class="flex items-center sm:justify-center gap-1.5 sm:gap-2 min-w-max sm:min-w-0 pb-1 sm:pb-0" id="category-filter-pills">
+      <button
+        type="button"
+        data-filter="all"
+        class="filter-pill active px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-semibold bg-[#c9a54e]/20 border border-[#c9a54e] text-[#c9a54e] transition-all hover:border-[#c9a54e] shrink-0 whitespace-nowrap"
+      >
+        {t.all}
+      </button>
+      <button
+        type="button"
+        data-filter="europe"
+        class="filter-pill px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-900/80 border border-slate-700 text-slate-300 transition-all hover:border-slate-500 hover:text-white shrink-0 whitespace-nowrap"
+      >
+        {t.europe}
+      </button>
+      <button
+        type="button"
+        data-filter="asia"
+        class="filter-pill px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-900/80 border border-slate-700 text-slate-300 transition-all hover:border-slate-500 hover:text-white shrink-0 whitespace-nowrap"
+      >
+        {t.asia}
+      </button>
+      <button
+        type="button"
+        data-filter="islands"
+        class="filter-pill px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-900/80 border border-slate-700 text-slate-300 transition-all hover:border-slate-500 hover:text-white shrink-0 whitespace-nowrap"
+      >
+        {t.islands}
+      </button>
+      <button
+        type="button"
+        data-filter="safari"
+        class="filter-pill px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-900/80 border border-slate-700 text-slate-300 transition-all hover:border-slate-500 hover:text-white shrink-0 whitespace-nowrap"
+      >
+        {t.safari}
+      </button>
+      <button
+        type="button"
+        data-filter="me"
+        class="filter-pill px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-900/80 border border-slate-700 text-slate-300 transition-all hover:border-slate-500 hover:text-white shrink-0 whitespace-nowrap"
+      >
+        {t.me}
+      </button>
+      <button
+        type="button"
+        data-filter="wellness"
+        class="filter-pill px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-900/80 border border-slate-700 text-slate-300 transition-all hover:border-slate-500 hover:text-white shrink-0 whitespace-nowrap"
+      >
+        {t.wellness}
+      </button>
+      <button
+        type="button"
+        data-filter="hotels"
+        class="filter-pill px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-semibold bg-slate-900/80 border border-slate-700 text-slate-300 transition-all hover:border-slate-500 hover:text-white shrink-0 whitespace-nowrap"
+      >
+        {t.hotels}
+      </button>
+    </div>
   </div>
 
   <!-- Search Results Counter Status -->
