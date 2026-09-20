@@ -80,12 +80,14 @@
     "status": "VERIFIED_LOCAL"
   },
   "cheval-blanc-st-barth": {
-    "property_name": "Cheval Blanc St-Barth",
-    "collection": "01_palaces",
-    "image_path": "/media/hotels-hotels_011-cheval-blanc-st-barth-01.jpg",
-    "size_bytes": 1241761,
-    "md5_hash": "0276ca9ddb658ccbf19c73fa39fa0bb3",
-    "status": "VERIFIED_LOCAL"
+    "name": "Cheval Blanc St-Barth",
+    "hero_image": "/media/expedia_hotels/expedia_st_barth_cheval_blanc_hero_4k.jpg",
+    "hero_webp": "/media/expedia_hotels/expedia_st_barth_cheval_blanc_hero_4k.webp",
+    "md5_hash": "2aa319c5642d5427c06414bd90438aee",
+    "lat": 17.9133,
+    "lon": -62.86,
+    "author": "Victor & Lucky Travel4U",
+    "copyright": "2026 Travel4U Luxury Empire"
   },
   "soneva-jani-maldives": {
     "property_name": "Soneva Jani Maldives",
@@ -136,12 +138,14 @@
     "status": "VERIFIED_LOCAL"
   },
   "the-brando-tetiaroa": {
-    "property_name": "The Brando Tetiaroa",
-    "collection": "01_palaces",
-    "image_path": "/media/hotels-hotels_018-the-brando-tetiaroa-01.jpg",
-    "size_bytes": 422983,
-    "md5_hash": "a69a0da38b812129c63677854e8ad258",
-    "status": "VERIFIED_LOCAL"
+    "name": "The Brando Tetiaroa",
+    "hero_image": "/media/expedia_hotels/expedia_french_polynesia_the_brando_hero_4k.jpg",
+    "hero_webp": "/media/expedia_hotels/expedia_french_polynesia_the_brando_hero_4k.webp",
+    "md5_hash": "9adcbe6485798ccd4c3624811260c7ab",
+    "lat": -17.0064,
+    "lon": -149.5606,
+    "author": "Victor & Lucky Travel4U",
+    "copyright": "2026 Travel4U Luxury Empire"
   },
   "post-ranch-inn-big-sur": {
     "property_name": "Post Ranch Inn Big Sur",
@@ -152,12 +156,14 @@
     "status": "VERIFIED_LOCAL"
   },
   "royal-mansour-marrakech": {
-    "property_name": "Royal Mansour Marrakech",
-    "collection": "01_palaces",
-    "image_path": "/media/hotels-hotels_020-royal-mansour-marrakech-01.jpg",
-    "size_bytes": 1080481,
-    "md5_hash": "954ab034df42d1e7a9e997b5a5c4a917",
-    "status": "VERIFIED_LOCAL"
+    "name": "Royal Mansour Marrakech",
+    "hero_image": "/media/expedia_hotels/expedia_marrakech_royal_mansour_hero_4k.jpg",
+    "hero_webp": "/media/expedia_hotels/expedia_marrakech_royal_mansour_hero_4k.webp",
+    "md5_hash": "4a6e1e351b7c6c8864cdff0ff52d5c75",
+    "lat": 31.6247,
+    "lon": -7.9994,
+    "author": "Victor & Lucky Travel4U",
+    "copyright": "2026 Travel4U Luxury Empire"
   },
   "ballyfin-demesne-ireland": {
     "property_name": "Ballyfin Demesne Ireland",
@@ -168,12 +174,14 @@
     "status": "VERIFIED_LOCAL"
   },
   "mandarin-oriental-bangkok": {
-    "property_name": "Mandarin Oriental Bangkok",
-    "collection": "01_palaces",
-    "image_path": "/media/hotels-hotels_022-mandarin-oriental-bangkok-01.jpg",
-    "size_bytes": 615684,
-    "md5_hash": "93edea7db756fa3714c8ada3ecb517bb",
-    "status": "VERIFIED_LOCAL"
+    "name": "Mandarin Oriental Bangkok",
+    "hero_image": "/media/expedia_hotels/expedia_bangkok_mandarin_oriental_hero_4k.jpg",
+    "hero_webp": "/media/expedia_hotels/expedia_bangkok_mandarin_oriental_hero_4k.webp",
+    "md5_hash": "3d68519f193adf52ed7fcb7cbf0ee0d6",
+    "lat": 13.7236,
+    "lon": 100.5147,
+    "author": "Victor & Lucky Travel4U",
+    "copyright": "2026 Travel4U Luxury Empire"
   },
   "the-connaught-london": {
     "property_name": "The Connaught London",
@@ -280,12 +288,14 @@
     "status": "VERIFIED_LOCAL"
   },
   "nihi-sumba-indonesia": {
-    "property_name": "Nihi Sumba Indonesia",
-    "collection": "01_palaces",
-    "image_path": "/media/hotels-hotels_036-nihi-sumba-indonesia-01.jpg",
-    "size_bytes": 199684,
-    "md5_hash": "d7bda9bc950ad4bb253052cf0d648f1a",
-    "status": "VERIFIED_LOCAL"
+    "name": "Nihi Sumba",
+    "hero_image": "/media/expedia_hotels/expedia_sumba_nihi_indonesia_hero_4k.jpg",
+    "hero_webp": "/media/expedia_hotels/expedia_sumba_nihi_indonesia_hero_4k.webp",
+    "md5_hash": "da600bb26535dce40de22b69b6fa8c0e",
+    "lat": -9.6667,
+    "lon": 119.3333,
+    "author": "Victor & Lucky Travel4U",
+    "copyright": "2026 Travel4U Luxury Empire"
   },
   "the-greenwich-hotel-new-york": {
     "property_name": "The Greenwich Hotel New York",
@@ -304,12 +314,14 @@
     "status": "VERIFIED_LOCAL"
   },
   "splendido-belmond-portofino": {
-    "property_name": "Splendido Belmond Portofino",
-    "collection": "03_villas",
-    "image_path": "/media/italy-italy_070-splendido-belmond-portofino-01.jpg",
-    "size_bytes": 1322943,
-    "md5_hash": "9ce9885b9d943e37b5e00741191eb3d7",
-    "status": "VERIFIED_LOCAL"
+    "name": "Splendido, A Belmond Hotel, Portofino",
+    "hero_image": "/media/expedia_hotels/expedia_portofino_splendido_belmond_hero_4k.jpg",
+    "hero_webp": "/media/expedia_hotels/expedia_portofino_splendido_belmond_hero_4k.webp",
+    "md5_hash": "b0004363daa4fb7ee442c456c704aaf7",
+    "lat": 44.3039,
+    "lon": 9.2089,
+    "author": "Victor & Lucky Travel4U",
+    "copyright": "2026 Travel4U Luxury Empire"
   },
   "the-gritti-palace-venice": {
     "property_name": "The Gritti Palace Venice",
@@ -5098,5 +5110,45 @@
     "md5_hash": "260021c529391a1d52e2fa1109a21d4b",
     "verified_at": "2026-09-20T00:39:09.593Z",
     "quality_gate": "4K_UHD_CERTIFIED"
+  },
+  "the-lana-hotel-dubai": {
+    "name": "The Lana, Dorchester Collection Dubai",
+    "hero_image": "/media/expedia_hotels/expedia_dubai_the_lana_hero_4k.jpg",
+    "hero_webp": "/media/expedia_hotels/expedia_dubai_the_lana_hero_4k.webp",
+    "md5_hash": "756576370c1f51aca9329bf07f7c29dd",
+    "lat": 25.1887,
+    "lon": 55.2818,
+    "author": "Victor & Lucky Travel4U",
+    "copyright": "2026 Travel4U Luxury Empire"
+  },
+  "hotel-de-paris-monte-carlo": {
+    "name": "Hôtel de Paris Monte-Carlo",
+    "hero_image": "/media/expedia_hotels/expedia_monaco_hotel_de_paris_hero_4k.jpg",
+    "hero_webp": "/media/expedia_hotels/expedia_monaco_hotel_de_paris_hero_4k.webp",
+    "md5_hash": "a9dced9f9157c21639c9e3994d8e6c01",
+    "lat": 43.7391,
+    "lon": 7.4278,
+    "author": "Victor & Lucky Travel4U",
+    "copyright": "2026 Travel4U Luxury Empire"
+  },
+  "hotel-du-cap-eden-roc-antibes": {
+    "name": "Hôtel du Cap-Eden-Roc",
+    "hero_image": "/media/expedia_hotels/expedia_antibes_hotel_du_cap_eden_roc_hero_4k.jpg",
+    "hero_webp": "/media/expedia_hotels/expedia_antibes_hotel_du_cap_eden_roc_hero_4k.webp",
+    "md5_hash": "c104b72f7422f0bc4dd85e5cbf79570e",
+    "lat": 43.5489,
+    "lon": 7.1219,
+    "author": "Victor & Lucky Travel4U",
+    "copyright": "2026 Travel4U Luxury Empire"
+  },
+  "one-and-only-reethi-rah-maldives": {
+    "name": "One&Only Reethi Rah Maldives",
+    "hero_image": "/media/expedia_hotels/expedia_maldives_one_and_only_reethi_rah_hero_4k.jpg",
+    "hero_webp": "/media/expedia_hotels/expedia_maldives_one_and_only_reethi_rah_hero_4k.webp",
+    "md5_hash": "76876fccb40760639cc5562ac83203d5",
+    "lat": 4.5122,
+    "lon": 73.3692,
+    "author": "Victor & Lucky Travel4U",
+    "copyright": "2026 Travel4U Luxury Empire"
   }
 }

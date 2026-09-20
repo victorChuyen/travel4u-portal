@@ -15,7 +15,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { STORYTELLING_DATABASE } = require('./storytelling_database_40_hotels.cjs');
+const { STORYTELLING_DATABASE } = require('./storytelling_database_50_hotels.cjs');
 
 const OUTPUT_FILE = path.resolve(__dirname, '../src/data/articles.json');
 const DESTINATIONS_FILE = path.resolve(__dirname, '../src/data/destinations.json');
@@ -24,6 +24,37 @@ const destinations = JSON.parse(fs.readFileSync(DESTINATIONS_FILE, 'utf-8'));
 
 // Semantic clusters for natural in-text cross-linking
 const CLUSTERS = {
+
+  // Dubai Architectural Wonder Cluster
+  'the-lana-hotel-dubai': ['dubai-burj-al-arab', 'aman-tokyo-otemachi'],
+
+  // Moroccan Royalty Cluster
+  'royal-mansour-marrakech': ['paris-four-seasons-george-v', 'the-savoy-london-thames'],
+
+  // Italian Riviera & Portofino Cluster
+  'splendido-belmond-portofino': ['hotel-santa-caterina-amalfi', 'le-sirenuse-positano-amalfi'],
+
+  // French Polynesia Atoll Cluster
+  'the-brando-tetiaroa': ['soneva-jani-maldives', 'cheval-blanc-randheli-maldives'],
+
+  // Monaco Royal Belle Époque Cluster
+  'hotel-de-paris-monte-carlo': ['the-maybourne-riviera-monaco', 'hotel-du-cap-eden-roc-antibes'],
+
+  // Historic Asian Heritage Cluster
+  'mandarin-oriental-bangkok': ['four-seasons-resort-bali-sayan', 'kyoto-ritz-carlton'],
+
+  // Caribbean Glamour Cluster
+  'cheval-blanc-st-barth': ['cheval-blanc-st-tropez-riviera', 'cheval-blanc-randheli-maldives'],
+
+  // French Riviera Clifftop Icon Cluster
+  'hotel-du-cap-eden-roc-antibes': ['hotel-de-paris-monte-carlo', 'cheval-blanc-st-tropez-riviera'],
+
+  // Untamed Indonesian Wilderness Cluster
+  'nihi-sumba-indonesia': ['bulgari-resort-bali-uluwatu', 'singita-sasakwa-lodge-serengeti'],
+
+  // Indian Ocean Master Coral Cluster
+  'one-and-only-reethi-rah-maldives': ['soneva-jani-maldives', 'the-nautilus-maldives'],
+
 
   // New York Luxury Icon Cluster
   'the-mark-hotel-new-york': ['aman-new-york-manhattan', 'paris-four-seasons-george-v'],
