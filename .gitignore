@@ -16,3 +16,8 @@ node_modules/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Firebase & GCP service accounts and credentials
+*firebase-adminsdk*.json
+*firebase-adminsdk*-info.txt
+serviceAccountKey.json

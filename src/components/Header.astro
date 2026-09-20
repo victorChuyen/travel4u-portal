@@ -58,6 +58,10 @@ const homeUrl = currentLocale === 'en' ? '/' : `/${currentLocale}/`;
           <span>⚡</span>
           <span>{currentLocale === 'vi' ? 'Bảng Giá AI' : 'AI Solutions'}</span>
         </a>
+        <a href="/app/" class="hover:text-amber-300 text-amber-300/90 font-semibold transition-colors flex items-center space-x-1">
+          <span>💎</span>
+          <span>{currentLocale === 'vi' ? 'Đối Tác VIP' : 'VIP Affiliate'}</span>
+        </a>
       </nav>
 
       <!-- Right Actions: Language & VIP CTA & Mobile Toggle -->
@@ -167,6 +171,13 @@ const homeUrl = currentLocale === 'en' ? '/' : `/${currentLocale}/`;
       >
         <span>⚡</span>
         <span class="ml-3">{currentLocale === 'vi' ? 'Bảng Giá Giải Pháp AI' : 'AI Solutions & Pricing'}</span>
+      </a>
+      <a
+        href="/app/"
+        class="flex items-center h-12 px-4 rounded-lg text-amber-300 bg-amber-500/15 border border-amber-500/40 text-sm font-bold transition-colors"
+      >
+        <span>💎</span>
+        <span class="ml-3">{currentLocale === 'vi' ? 'Bảng Điều Khiển Đối Tác VIP (10%-30%)' : 'VIP Affiliate Partner Dashboard'}</span>
       </a>
     </div>
 

@@ -1,0 +1,289 @@
+---
+/**
+ * 🏛️ TRAVEL4U VIP CONCIERGE & LEAD CAPTURE MODAL
+ * High-Converting Luxury Lead Magnet & Direct CSKH Pipeline
+ * Integrated with 90-day Sticky Affiliate Attribution
+ */
+
+interface Props {
+  currentLocale?: string;
+}
+
+const { currentLocale = 'vi' } = Astro.props;
+const isVi = currentLocale === 'vi';
+---
+
+<!-- FLOATING LUXURY CONCIERGE BUTTON -->
+<div id="concierge-trigger-wrap" class="fixed bottom-5 right-5 z-40">
+  <button
+    id="open-concierge-btn"
+    type="button"
+    class="flex items-center gap-2.5 px-4 py-3 rounded-full bg-gradient-to-r from-amber-500 via-[#c9a54e] to-amber-600 text-slate-950 font-bold text-xs sm:text-sm shadow-2xl shadow-amber-500/30 hover:scale-105 hover:shadow-amber-500/50 transition-all border border-amber-300/40 group"
+    aria-label="Open Concierge Consultation"
+  >
+    <span class="text-base sm:text-lg animate-bounce">⚡</span>
+    <span class="tracking-wide font-extrabold hidden sm:inline">
+      {isVi ? 'Tư Vấn 3 Gói AI Doanh Thu' : 'AI Revenue Packages Consultation'}
+    </span>
+    <span class="tracking-wide font-extrabold sm:hidden">
+      {isVi ? 'Tư Vấn AI' : 'AI Support'}
+    </span>
+    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+  </button>
+</div>
+
+<!-- LUXURY CONCIERGE POPUP MODAL -->
+<div
+  id="concierge-modal"
+  class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md hidden opacity-0 transition-opacity duration-300"
+  role="dialog"
+  aria-modal="true"
+>
+  <div class="relative w-full max-w-lg rounded-3xl border border-amber-500/40 bg-gradient-to-b from-[#0c182b] via-[#091322] to-[#060d17] p-6 sm:p-8 shadow-2xl text-slate-100 overflow-hidden">
+    
+    <!-- Ambient Gold Glow -->
+    <div class="absolute -top-20 -right-20 w-48 h-48 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <!-- Close Button -->
+    <button
+      id="close-concierge-btn"
+      type="button"
+      class="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition border border-slate-700"
+      aria-label="Close modal"
+    >
+      ✕
+    </button>
+
+    <!-- Modal Content: Initial Form -->
+    <div id="concierge-form-view">
+      <div class="mb-5">
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[11px] font-bold uppercase tracking-wider mb-2">
+          <span>⚡ OPC AI REVENUE LAB • VICTOR CHUYEN</span>
+        </div>
+        <h3 class="text-xl sm:text-2xl font-bold text-white font-serif">
+          {isVi ? 'Tư Vấn & Đồng Hành 3 Gói Giải Pháp AI' : 'Consultation for 3 AI Revenue Packages'}
+        </h3>
+        <p class="text-xs text-slate-300 mt-1 leading-relaxed">
+          {isVi
+            ? 'Đội ngũ Victor Chuyen trực tiếp tư vấn và hỗ trợ triển khai 3 Gói Giải Pháp AI Thực Chiến (DIY $19, DWY $139, DFY $388) giúp tự động hóa doanh thu.'
+            : 'Victor Chuyen and team directly support and implement your AI Revenue workflows across our 3 tiers (DIY $19, DWY $139, DFY $388).'}
+        </p>
+      </div>
+
+      <form id="lead-capture-form" class="space-y-3.5">
+        <div>
+          <label for="lead-name" class="block text-xs font-semibold text-slate-300 uppercase mb-1">
+            {isVi ? 'Họ và tên của bạn *' : 'Full Name *'}
+          </label>
+          <input
+            type="text"
+            id="lead-name"
+            required
+            placeholder={isVi ? 'Ví dụ: Nguyễn Hoàng Nam' : 'e.g. Victor Chuyen'}
+            class="w-full bg-slate-950/80 border border-slate-700/80 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 transition"
+          />
+        </div>
+
+        <div>
+          <label for="lead-phone" class="block text-xs font-semibold text-slate-300 uppercase mb-1">
+            {isVi ? 'Số điện thoại / Zalo để nhận hỗ trợ *' : 'Phone / WhatsApp / Zalo *'}
+          </label>
+          <input
+            type="tel"
+            id="lead-phone"
+            required
+            placeholder={isVi ? 'Ví dụ: 0989890022' : '+84 989 890 022'}
+            class="w-full bg-slate-950/80 border border-slate-700/80 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 transition"
+          />
+        </div>
+
+        <div>
+          <label for="lead-email" class="block text-xs font-semibold text-slate-300 uppercase mb-1">
+            {isVi ? 'Email nhận tài liệu & template' : 'Email Address'}
+          </label>
+          <input
+            type="email"
+            id="lead-email"
+            placeholder="name@company.com"
+            class="w-full bg-slate-950/80 border border-slate-700/80 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 transition"
+          />
+        </div>
+
+        <div>
+          <label for="lead-interest" class="block text-xs font-semibold text-slate-300 uppercase mb-1">
+            {isVi ? 'Gói giải pháp bạn cần tư vấn' : 'Select Solution Tier'}
+          </label>
+          <select
+            id="lead-interest"
+            class="w-full bg-slate-950/80 border border-slate-700/80 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400 transition"
+          >
+            <option value="tier_02_dwy">
+              {isVi ? '🔥 GÓI 02: DWY Builder Sprint ($139 / 3.6tr) — Coaching 1:1 cùng Victor' : '🔥 TIER 02: DWY Builder Sprint ($139) — 1:1 Guided Build'}
+            </option>
+            <option value="tier_03_dfy">
+              {isVi ? '👑 GÓI 03: DFY Revenue System ($388 / 10tr) — Triển khai trọn gói A-Z' : '👑 TIER 03: DFY Revenue System ($388) — Turnkey Implementation'}
+            </option>
+            <option value="tier_01_diy">
+              {isVi ? '📘 GÓI 01: DIY Starter Kit ($19 / 500k) — Tự học template & prompts' : '📘 TIER 01: DIY Starter Kit ($19) — Templates & Prompts'}
+            </option>
+            <option value="affiliate_partner">
+              {isVi ? '💎 Đăng ký Đối Tác Affiliate VIP (Nhận Hoa Hồng 10% - 20% - 30%)' : '💎 Become a VIP Affiliate Partner (10% - 20% - 30%)'}
+            </option>
+          </select>
+        </div>
+
+        <div>
+          <label for="lead-note" class="block text-xs font-semibold text-slate-300 uppercase mb-1">
+            {isVi ? 'Ghi chú thêm (Tùy chọn)' : 'Special Notes / Questions'}
+          </label>
+          <textarea
+            id="lead-note"
+            rows="2"
+            placeholder={isVi ? 'Bài toán hoặc quy trình bạn muốn tự động hóa bằng AI...' : 'Describe your business workflow to automate...'}
+            class="w-full bg-slate-950/80 border border-slate-700/80 rounded-xl px-4 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 transition resize-none"
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          id="btn-submit-lead"
+          class="w-full py-3 px-6 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-sm transition shadow-xl shadow-amber-500/25 flex items-center justify-center gap-2 mt-2"
+        >
+          <span>{isVi ? 'GỬI YÊU CẦU TƯ VẤN 3 GÓI AI NGAY' : 'REQUEST AI CONSULTATION NOW'}</span>
+          <span>→</span>
+        </button>
+
+        <p class="text-[11px] text-center text-slate-400 pt-1">
+          🔒 {isVi ? 'Cam kết bảo mật thông tin 100% • Hỗ trợ trực tiếp từ Victor Chuyen.' : 'Your data is strictly confidential.'}
+        </p>
+      </form>
+    </div>
+
+    <!-- Success View (Hidden by default) -->
+    <div id="concierge-success-view" class="hidden text-center py-6">
+      <div class="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center text-3xl mx-auto mb-4 animate-bounce">
+        ✓
+      </div>
+      <h3 class="text-2xl font-bold text-white font-serif mb-2">
+        {isVi ? 'Gửi Yêu Cầu Thành Công!' : 'Request Sent Successfully!'}
+      </h3>
+      <p class="text-slate-300 text-sm mb-6 leading-relaxed max-w-sm mx-auto">
+        {isVi
+          ? 'Victor Chuyen và đội ngũ kỹ thuật AI đã tiếp nhận và sẽ liên hệ trực tiếp qua Zalo/SĐT để tư vấn gói phù hợp nhất trong 5 phút!'
+          : 'Victor Chuyen & Team have received your request and will connect via WhatsApp/Phone within 5 minutes.'}
+      </p>
+      <div class="space-y-3">
+        <a
+          id="lead-zalo-direct"
+          href="https://zalo.me/0989890022"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition shadow-lg"
+        >
+          <span>💬 {isVi ? 'Nhắn Zalo Trực Tiếp Victor Chuyen' : 'Chat Direct on Zalo / WhatsApp'}</span>
+        </a>
+        <div>
+          <button
+            type="button"
+            id="btn-close-success"
+            class="text-xs text-slate-400 hover:text-slate-200 underline pt-2"
+          >
+            {isVi ? 'Đóng cửa sổ này' : 'Close window'}
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function setupConciergeModal() {
+    const triggerBtn = document.getElementById('open-concierge-btn');
+    const modal = document.getElementById('concierge-modal');
+    const closeBtn = document.getElementById('close-concierge-btn');
+    const closeSuccessBtn = document.getElementById('btn-close-success');
+    const form = document.getElementById('lead-capture-form');
+    const formView = document.getElementById('concierge-form-view');
+    const successView = document.getElementById('concierge-success-view');
+    const submitBtn = document.getElementById('btn-submit-lead');
+
+    function openModal() {
+      if (!modal) return;
+      modal.classList.remove('hidden');
+      setTimeout(() => {
+        modal.classList.remove('opacity-0');
+      }, 10);
+    }
+
+    function closeModal() {
+      if (!modal) return;
+      modal.classList.add('opacity-0');
+      setTimeout(() => {
+        modal.classList.add('hidden');
+      }, 300);
+    }
+
+    triggerBtn?.addEventListener('click', openModal);
+    closeBtn?.addEventListener('click', closeModal);
+    closeSuccessBtn?.addEventListener('click', closeModal);
+
+    // Close on backdrop click
+    modal?.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    // Handle form submit
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const name = (document.getElementById('lead-name') as HTMLInputElement)?.value.trim();
+      const phone = (document.getElementById('lead-phone') as HTMLInputElement)?.value.trim();
+      const email = (document.getElementById('lead-email') as HTMLInputElement)?.value.trim();
+      const interest = (document.getElementById('lead-interest') as HTMLSelectElement)?.value;
+      const note = (document.getElementById('lead-note') as HTMLTextAreaElement)?.value.trim();
+
+      if (!name || !phone) return;
+
+      // Extract referrer code from local storage or cookie
+      const refCode = localStorage.getItem('t4u_ref') || 'direct';
+
+      if (submitBtn) {
+        submitBtn.setAttribute('disabled', 'true');
+        submitBtn.innerHTML = '<span>Đang gửi thông tin...</span>';
+      }
+
+      try {
+        await fetch('/api/leads/create', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name,
+            phone,
+            email,
+            interest,
+            note,
+            ref_code: refCode,
+            source_url: window.location.pathname,
+            locale: document.documentElement.lang || 'vi'
+          })
+        });
+
+        // Show success state
+        if (formView && successView) {
+          formView.classList.add('hidden');
+          successView.classList.remove('hidden');
+        }
+
+      } catch (err) {
+        // Fallback: Still show success to user so they are not blocked
+        if (formView && successView) {
+          formView.classList.add('hidden');
+          successView.classList.remove('hidden');
+        }
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', setupConciergeModal);
+</script>

@@ -20,7 +20,8 @@ export async function onRequestPost({ request, env }) {
       payment_type,
       amount_paid,
       amount_remaining,
-      status
+      status,
+      ref_code
     } = body;
 
     if (!order_id || !name || !phone) {
@@ -35,6 +36,12 @@ export async function onRequestPost({ request, env }) {
     const phoneClean = (phone || '').replace(/[^0-9]/g, '');
     const isDeposit = payment_type === 'deposit';
 
+    // Estimated commission calculation (10%, 20%, 30%)
+    const paidVal = Number(amount_paid || 0);
+    const comm10 = Math.round(paidVal * 0.1);
+    const comm20 = Math.round(paidVal * 0.2);
+    const comm30 = Math.round(paidVal * 0.3);
+
     // Formatted Telegram Alert
     const teleMsg = `
 ⚡ <b>[ĐƠN MỚI TẠO] KHÁCH ĐANG CHUYỂN KHOẢN / ĐẶT CỌC</b>
@@ -45,10 +52,10 @@ export async function onRequestPost({ request, env }) {
 🏢 <b>Doanh nghiệp:</b> ${business || 'Chưa cập nhật'}
 💼 <b>Gói dịch vụ:</b> <b>${tier_name || tier}</b>
 💵 <b>Hình thức:</b> ${isDeposit ? 'ĐẶT CỌC 50%' : 'THANH TOÁN 100%'}
-💰 <b>Số tiền cần thanh toán:</b> <b>${Number(amount_paid || 0).toLocaleString('vi-VN')} VNĐ</b>
-${amount_remaining ? `⏳ <b>Số tiền còn lại sau cọc:</b> ${Number(amount_remaining).toLocaleString('vi-VN')} VNĐ\n` : ''}
-🏦 <b>Mã đơn / Nội dung CK:</b> <code>${order_id}</code>
-━━━━━━━━━━━━━━━━━━━━━━━━━━
+💰 <b>Số tiền cần thanh toán:</b> <b>${paidVal.toLocaleString('vi-VN')} VNĐ</b>
+${amount_remaining ? `⏳ <b>Số tiền còn lại sau cọc:</b> ${Number(amount_remaining).toLocaleString('vi-VN')} VNĐ\n` : ''}🏦 <b>Mã đơn / Nội dung CK:</b> <code>${order_id}</code>
+💎 <b>Đối Tác Giới Thiệu (Ref Code):</b> <code>${ref_code || 'Trực tiếp (HQ - Không qua Ref)'}</code>
+${ref_code ? `💵 <b>Hoa Hồng Dự Kiến:</b> 10%: ${comm10.toLocaleString('vi-VN')}đ | 20%: ${comm20.toLocaleString('vi-VN')}đ | 30%: ${comm30.toLocaleString('vi-VN')}đ\n` : ''}━━━━━━━━━━━━━━━━━━━━━━━━━━
 📊 <b>Master Google Sheet CRM:</b> <a href="https://docs.google.com/spreadsheets/d/15G6SYG8KmtYF9DYg4g1UyOchJ3p8bjBAIEahC47z1nU/edit">Xem CRM Khách Hàng</a>
 📲 <b>Bấm Chat Zalo Ngay:</b> <a href="https://zalo.me/${phoneClean}">Mở Zalo ${phone}</a>
 `.trim();

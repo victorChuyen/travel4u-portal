@@ -1,4 +1,6 @@
 ---
+import VipConciergeModal from '../components/VipConciergeModal.astro';
+
 interface Props {
   title: string;
   description: string;
@@ -255,7 +257,24 @@ if (Object.keys(effectiveAlternates).length === 0) {
         });
       }
 
+      // 90-Day Sticky Referral Attribution Engine
+      (function trackReferral() {
+        try {
+          const urlParams = new URLSearchParams(window.location.search);
+          const ref = urlParams.get('ref') || urlParams.get('m') || urlParams.get('aff');
+          if (ref) {
+            const cleanRef = ref.trim().toLowerCase();
+            localStorage.setItem('t4u_ref', cleanRef);
+            // 90-day cookie (7,776,000 seconds)
+            document.cookie = `t4u_member_ref=${cleanRef}; path=/; max-age=7776000; SameSite=Lax`;
+          }
+        } catch (e) {}
+      })();
+
       document.addEventListener('DOMContentLoaded', initBookmarks);
     </script>
+
+    <!-- Global VIP Lead Concierge Drawer Modal -->
+    <VipConciergeModal currentLocale={locale} />
   </body>
 </html>

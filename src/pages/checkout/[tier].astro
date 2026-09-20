@@ -318,7 +318,7 @@ const pageDescription = `Trang xác nhận đặt hàng và thanh toán tự đ�
       btn.disabled = true;
       btn.innerText = 'Đang ghi nhận đơn hàng...';
 
-      try {
+        const refCode = localStorage.getItem('t4u_ref') || '';
         const orderData = {
           order_id: orderRef,
           name,
@@ -330,7 +330,8 @@ const pageDescription = `Trang xác nhận đặt hàng và thanh toán tự đ�
           payment_type: paymentType,
           amount_paid: currentAmount,
           amount_remaining: paymentType === 'deposit' ? (fullPrice - depositPrice) : 0,
-          status: paymentType === 'deposit' ? 'Đã Cọc 50%' : 'Chờ Đối Soát'
+          status: paymentType === 'deposit' ? 'Đã Cọc 50%' : 'Chờ Đối Soát',
+          ref_code: refCode
         };
 
         const res = await fetch('/api/checkout/create', {
