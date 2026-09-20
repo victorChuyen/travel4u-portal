@@ -19,25 +19,25 @@ const t = (i18nData as any)[locale] || (i18nData as any)['en'];
 const expTitle = (t.exp_expedia_title || "How Victor & Lucky Secured VIP Perks at {hotelName}").replace('{hotelName}', hotelName);
 ---
 
-<div class="expedia-vip-perks-box bg-gradient-to-br from-[#071322] via-[#091b30] to-[#050e1a] border-2 border-[#c9a54e]/50 rounded-2xl p-6 sm:p-8 shadow-2xl my-12 relative overflow-hidden">
+<div class="expedia-vip-perks-box bg-gradient-to-br from-[#071322] via-[#091b30] to-[#050e1a] border-2 border-[#c9a54e]/50 rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl my-12 relative overflow-hidden">
   
-  <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-slate-800">
-    <div>
-      <div class="inline-flex items-center space-x-2 bg-[#c9a54e]/20 border border-[#c9a54e]/40 rounded-full px-3.5 py-1 text-[11px] font-bold text-[#c9a54e] uppercase tracking-wider mb-2.5">
+  <div class="flex flex-col md:flex-row md:items-start justify-between gap-6 pb-6 border-b border-slate-800">
+    <div class="flex-1 min-w-0">
+      <div class="inline-flex items-center space-x-2 bg-[#c9a54e]/20 border border-[#c9a54e]/40 rounded-full px-3.5 py-1 text-[11px] font-bold text-[#c9a54e] uppercase tracking-wider mb-3 whitespace-nowrap">
         <span>🛡️</span>
         <span>{t.exp_expedia_badge || "Verified Expedia Partner Network Access"}</span>
       </div>
-      <h3 class="font-serif text-xl sm:text-2xl font-bold text-white tracking-tight">
+      <h3 class="font-serif text-xl sm:text-2xl md:text-3xl font-bold text-white tracking-tight leading-snug">
         {expTitle}
       </h3>
-      <p class="text-xs sm:text-sm text-slate-400 mt-1 max-w-2xl">
+      <p class="text-xs sm:text-sm text-slate-300 mt-2 max-w-2xl leading-relaxed">
         {t.exp_expedia_sub || "Avoid rigid non-refundable bookings. Securing your reservation through our verified partner link unlocks sovereign perks without paying a penny more."}
       </p>
     </div>
 
-    <div class="text-left lg:text-right flex-shrink-0">
-      <span class="text-[11px] text-slate-400 uppercase tracking-wider block font-medium">{t.exp_expedia_rate_label || "Verified Partner Rate"}</span>
-      <span class="font-serif text-xl sm:text-2xl font-bold text-[#c9a54e]">{minPrice}</span>
+    <div class="md:text-right flex-shrink-0 bg-[#06101c]/80 md:bg-transparent p-4 md:p-0 rounded-2xl border border-slate-800/80 md:border-0 md:max-w-xs">
+      <span class="text-[10px] sm:text-[11px] text-slate-400 uppercase tracking-widest block font-bold mb-1">{t.exp_expedia_rate_label || "Verified Partner Rate"}</span>
+      <span class="font-serif text-lg sm:text-xl font-bold text-[#c9a54e] block leading-snug">{minPrice}</span>
     </div>
   </div>
 
@@ -86,7 +86,7 @@ const expTitle = (t.exp_expedia_title || "How Victor & Lucky Secured VIP Perks a
       href={bookingUrl}
       target="_blank"
       rel="nofollow sponsored noopener"
-      class="w-full sm:w-auto bg-gradient-to-r from-[#c9a54e] to-[#dfba63] hover:from-[#dfba63] hover:to-[#eed07e] text-[#07111e] font-bold text-xs uppercase tracking-wider px-7 py-3.5 rounded-xl shadow-lg shadow-[#c9a54e]/20 transition-all text-center flex items-center justify-center space-x-2"
+      class="w-full sm:w-auto shrink-0 bg-gradient-to-r from-[#c9a54e] to-[#dfba63] hover:from-[#dfba63] hover:to-[#eed07e] text-[#07111e] font-bold text-xs uppercase tracking-wider px-7 py-3.5 rounded-xl shadow-lg shadow-[#c9a54e]/20 transition-all text-center flex items-center justify-center space-x-2"
     >
       <span>{t.exp_expedia_cta_btn || "Check Live Availability via Expedia"}</span>
       <span>→</span>

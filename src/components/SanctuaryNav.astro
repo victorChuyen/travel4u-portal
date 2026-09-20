@@ -53,7 +53,7 @@ const labels = dict[locale] || dict.en;
           {labels.prev}
         </span>
         <span class="font-serif text-sm font-semibold text-white group-hover:text-[#c9a54e] transition-colors truncate block">
-          {prevDest.english_title.split(':')[0]}
+          {prevDest.english_title.split(':')[0].replace(/^Inside\s+/i, '').trim()}
         </span>
       </div>
     </a>
@@ -71,7 +71,7 @@ const labels = dict[locale] || dict.en;
           {labels.next}
         </span>
         <span class="font-serif text-sm font-semibold text-white group-hover:text-[#c9a54e] transition-colors truncate block">
-          {nextDest.english_title.split(':')[0]}
+          {nextDest.english_title.split(':')[0].replace(/^Inside\s+/i, '').trim()}
         </span>
       </div>
     </a>

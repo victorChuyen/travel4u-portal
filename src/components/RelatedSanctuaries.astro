@@ -152,7 +152,7 @@ const t = dict[locale] || dict.en;
     {relatedDestinations.map((rel) => {
       const relSlug = rel.slugs[locale] || rel.slugs.en;
       const relUrl = locale === 'en' ? `/experience/${relSlug}/` : `/${locale}/experience/${relSlug}/`;
-      const relTitle = rel.english_title.split(':')[0];
+      const relTitle = rel.english_title.split(':')[0].replace(/^Inside\s+/i, '').trim();
       const webpImg = rel.hero_image.replace('.jpg', '.webp');
 
       return (

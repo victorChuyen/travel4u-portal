@@ -30,6 +30,7 @@ const locale = article.locale;
 const t = (i18nData as any)[locale] || (i18nData as any)['en'];
 
 const currentDest = (destinationsData as any[]).find(d => Object.values(d.slugs).includes(article.slug)) || destinationsData[0];
+const hotelCleanName = currentDest?.english_title ? currentDest.english_title.split(':')[0].trim() : article.title;
 const alternateUrls: Record<string, string> = {};
 for (const [loc, slug] of Object.entries(currentDest.slugs as Record<string, string>)) {
   alternateUrls[loc] = loc === 'en' ? `https://travel4u.us/experience/${slug}/` : `https://travel4u.us/${loc}/experience/${slug}/`;
@@ -162,14 +163,14 @@ const schemaData = {
 
       <!-- 👑 Curator Duo Signature & Philosophy -->
       <CuratorSignatureBox
-        hotelName={article.title}
+        hotelName={hotelCleanName}
         verdictScore={article.rating_score || "9.9 / 10 Masterpiece"}
         locale={locale}
       />
 
       <!-- 🎙️ Audio Story / Podcast Teaser Bar -->
       <PodcastAudioBar
-        episodeTitle={article.podcast_title || `Victor & Lucky: Behind the Velvet Curtain at ${article.title}`}
+        episodeTitle={article.podcast_title || `Victor & Lucky: Behind the Velvet Curtain at ${hotelCleanName}`}
         duration={article.podcast_duration || "4:30"}
         locale={locale}
       />
@@ -216,7 +217,7 @@ const schemaData = {
         targetPersona={article.target_persona}
         woaDeclaration={article.woa_declaration}
         bookingUrl={article.affiliate?.expedia_cloaked_path || `/go/${article.slug}`}
-        hotelName={article.title}
+        hotelName={hotelCleanName}
         minPrice={article.affiliate?.price_display}
         locale={locale}
       />
@@ -224,7 +225,7 @@ const schemaData = {
       <!-- 🛡️ How We Booked with VIP Perks via Expedia Callout Box -->
       <ExpediaPerksCallout
         bookingUrl={article.affiliate?.expedia_cloaked_path || `/go/${article.slug}`}
-        hotelName={article.title}
+        hotelName={hotelCleanName}
         minPrice={article.affiliate?.price_display}
         locale={locale}
       />

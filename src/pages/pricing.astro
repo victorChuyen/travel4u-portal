@@ -3,418 +3,834 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
-const title = "Bảng Giá Giải Pháp AI Thực Chiến — OPC AI Revenue Lab | Victor Chuyen";
-const description = "Biến AI thành doanh thu thực tế cho Freelancer, SME và Doanh nghiệp. 3 Gói giải pháp từ tự học DIY $19, coaching DWY $139 đến triển khai trọn gói DFY $388.";
+const pageTitle = "Bảng Giá Giải Pháp AI Thực Chiến — OPC AI Revenue Lab | Victor Chuyen";
+const pageDescription = "Biến AI thành doanh thu thực tế cho Freelancer, SME và Doanh nghiệp. 3 Gói giải pháp từ tự học DIY $19, coaching DWY $139 đến triển khai trọn gói DFY $388.";
 ---
 
-<Layout title={title} description={description}>
-  <Header currentLocale="vi" />
+<Layout title={pageTitle} description={pageDescription}>
+  <Header currentLocale="en" />
 
   <main class="min-h-screen bg-[#07111e] text-slate-100 py-8 px-4 sm:px-6 lg:px-8">
     <div class="max-w-7xl mx-auto">
       
-      <!-- TOP NAVIGATION & BACK TO HOMEPAGE BAR -->
-      <div class="flex flex-wrap items-center justify-between gap-4 py-3 px-5 mb-10 rounded-2xl bg-slate-900/80 border border-slate-800 backdrop-blur-md">
-        <a
-          href="/"
-          class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800/90 hover:bg-[#c9a54e]/20 border border-slate-700 hover:border-[#c9a54e] text-sm font-semibold text-white hover:text-[#c9a54e] transition-all shadow-md group"
-          id="pricing-back-to-home-btn"
-        >
-          <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1 text-[#c9a54e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
-          </svg>
-          <span>← Quay lại Trang Chủ Travel4U</span>
-        </a>
-
-        <!-- Breadcrumb trail -->
-        <nav aria-label="Breadcrumb" class="text-xs text-slate-400 flex items-center space-x-2">
-          <a href="/" class="hover:text-[#c9a54e] transition flex items-center gap-1">
-            <span>🏛️</span>
-            <span>Trang Chủ</span>
-          </a>
-          <span class="text-slate-600">/</span>
-          <span class="text-amber-400 font-medium">Bảng Giá AI Solutions</span>
-        </nav>
-      </div>
-
-      <!-- HEADER HERO -->
-      <div class="text-center mb-16">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs sm:text-sm font-semibold tracking-wider uppercase mb-4">
-          <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
-          OPC AI REVENUE LAB • BUILD • AUTOMATE • MONETIZE
-        </div>
-        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-4">
-          BIẾN AI THÀNH <span class="bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 bg-clip-text text-transparent">DOANH THU THỰC TẾ</span>
-        </h1>
-        <p class="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto font-medium mb-3">
-          Giải pháp AI thực chiến dành cho Freelancer, SME và Doanh nghiệp
-        </p>
-        <p class="text-sm sm:text-base text-amber-300/90 font-serif italic">
-          "Work Smarter, Grow Faster" — Victor Chuyen
-        </p>
-      </div>
-
-      <!-- 3 PRICING CARDS -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-8 items-stretch mb-16">
+      <!-- TOP NAVIGATION, BACK TO HOMEPAGE & DUAL-LANGUAGE SWITCHER -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 py-3 px-5 mb-10 rounded-2xl bg-slate-900/80 border border-slate-800 backdrop-blur-md">
         
-        <!-- GÓI 01: DIY -->
-        <div class="flex flex-col justify-between bg-slate-900/90 rounded-2xl border border-slate-800 p-6 lg:p-8 hover:border-blue-500/40 transition-all duration-300 shadow-xl relative group">
-          <div>
-            <div class="text-center pb-6 border-b border-slate-800">
-              <span class="inline-block px-3 py-1 rounded bg-blue-500/10 text-blue-400 text-xs font-bold tracking-wider uppercase mb-2">
-                GÓI 01 — DIY (DO IT YOURSELF)
-              </span>
-              <h2 class="text-xl font-bold text-white mb-1">OPC AI STARTER KIT</h2>
-              <p class="text-xs text-slate-400 mb-4">Tự xây hệ thống AI đầu tiên cho doanh nghiệp</p>
-              
-              <div class="flex items-baseline justify-center gap-2">
-                <span class="text-4xl font-extrabold text-white">$19</span>
-                <span class="text-slate-400 text-sm">/ 500.000 VNĐ</span>
-              </div>
-            </div>
-
-            <!-- Features -->
-            <ul class="space-y-3.5 my-6 text-sm text-slate-300">
-              <li class="flex items-start gap-2.5">
-                <svg class="w-5 h-5 text-blue-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                <span>eBook 25 AI Automations for SMEs</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <svg class="w-5 h-5 text-blue-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                <span>Bộ prompt và template Google Sheets CRM</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <svg class="w-5 h-5 text-blue-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                <span>Hướng dẫn từng bước dùng Gemini, AI Studio và Apps Script</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <svg class="w-5 h-5 text-blue-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                <span>Checklist triển khai và đo hiệu quả</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <svg class="w-5 h-5 text-blue-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                <span>Quyền truy cập tài liệu số và các bản cập nhật</span>
-              </li>
-              <li class="flex items-start gap-2.5 bg-blue-950/40 p-2.5 rounded-lg border border-blue-500/30">
-                <span class="text-blue-400 font-bold shrink-0 text-base">🎁</span>
-                <span class="text-xs text-blue-200"><strong>Đặc quyền Affiliate VIP:</strong> Nhận <strong>10% hoa hồng</strong> khi giới thiệu bán bất kỳ gói nào (50k - 360k - 1.000.000đ).</span>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <p class="text-xs text-center text-slate-400 mb-4 italic">
-              Hình thức: Digital Product • Tự học, tự triển khai • Không kèm hỗ trợ 1:1
-            </p>
-            <a href="/checkout/starter-kit" class="block w-full text-center py-3 px-6 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold transition shadow-lg shadow-blue-600/20">
-              BẮT ĐẦU NGAY &gt;
-            </a>
-          </div>
-        </div>
-
-        <!-- GÓI 02: DWY -->
-        <div class="flex flex-col justify-between bg-slate-900/90 rounded-2xl border border-slate-800 p-6 lg:p-8 hover:border-emerald-500/40 transition-all duration-300 shadow-xl relative group">
-          <div>
-            <div class="text-center pb-6 border-b border-slate-800">
-              <span class="inline-block px-3 py-1 rounded bg-emerald-500/10 text-emerald-400 text-xs font-bold tracking-wider uppercase mb-2">
-                GÓI 02 — DWY (DONE WITH YOU)
-              </span>
-              <h2 class="text-xl font-bold text-white mb-1">OPC AI BUILDER SPRINT</h2>
-              <p class="text-xs text-slate-400 mb-4">Cùng Victor xây một giải pháp AI chạy được thật</p>
-              
-              <div class="flex items-baseline justify-center gap-2">
-                <span class="text-4xl font-extrabold text-white">$139</span>
-                <span class="text-slate-400 text-sm">/ 3.600.000 VNĐ</span>
-              </div>
-              <p class="text-xs text-emerald-400 mt-1 font-medium">Hỗ trợ đặt cọc 50%: 1.800.000 VNĐ</p>
-            </div>
-
-            <!-- Features -->
-            <ul class="space-y-3.5 my-6 text-sm text-slate-300">
-              <li class="flex items-start gap-2.5">
-                <svg class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                <span><strong>Bao gồm toàn bộ</strong> Starter Kit ($19)</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <svg class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                <span>01 phiên AI Business Audit & xác định bottleneck</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <svg class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                <span><strong>02 phiên coaching 1:1 trực tuyến</strong> (mỗi phiên 60 phút)</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <svg class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                <span>Cùng thiết kế và triển khai 01 workflow AI cụ thể</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <svg class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                <span>Hướng dẫn kết nối Google Sheets, Apps Script, Gmail hoặc Telegram</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <svg class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                <span>Checklist QA và tài liệu bàn giao tự vận hành</span>
-              </li>
-              <li class="flex items-start gap-2.5 bg-emerald-950/40 p-2.5 rounded-lg border border-emerald-500/30">
-                <span class="text-emerald-400 font-bold shrink-0 text-base">🔥</span>
-                <span class="text-xs text-emerald-200"><strong>Đặc quyền Affiliate VIP:</strong> Nhận <strong>20% hoa hồng</strong> khi giới thiệu bán bất kỳ gói nào (100k - 720k - 2.000.000đ). <em>Hoàn vốn chỉ sau 2 sales!</em></span>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <p class="text-xs text-center text-slate-400 mb-4 italic">
-              Hình thức: Coaching + Guided Build • Tối đa 01 workflow thống nhất
-            </p>
-            <a href="/checkout/builder-sprint" class="block w-full text-center py-3 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition shadow-lg shadow-emerald-600/20">
-              XÂY CÙNG VICTOR &gt;
-            </a>
-          </div>
-        </div>
-
-        <!-- GÓI 03: DFY (MOST POPULAR) -->
-        <div class="flex flex-col justify-between bg-gradient-to-b from-slate-900 via-slate-900 to-[#141b29] rounded-2xl border-2 border-amber-500/80 p-6 lg:p-8 hover:border-amber-400 transition-all duration-300 shadow-2xl relative group transform lg:-translate-y-2">
-          <!-- Top badge -->
-          <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 px-4 py-1 rounded-full text-xs font-black tracking-wider uppercase shadow-md">
-            👑 PHỔ BIẾN NHẤT (MOST POPULAR)
-          </div>
-
-          <div>
-            <div class="text-center pb-6 border-b border-slate-800">
-              <span class="inline-block px-3 py-1 rounded bg-amber-500/10 text-amber-400 text-xs font-bold tracking-wider uppercase mb-2">
-                GÓI 03 — DFY (DONE FOR YOU)
-              </span>
-              <h2 class="text-xl font-bold text-white mb-1">OPC AI REVENUE SYSTEM</h2>
-              <p class="text-xs text-slate-400 mb-4">Victor trực tiếp xây dựng và bàn giao hệ thống AI</p>
-              
-              <div class="flex items-baseline justify-center gap-2">
-                <span class="text-4xl font-extrabold text-amber-400">$388</span>
-                <span class="text-slate-300 text-sm">/ 10.000.000 VNĐ</span>
-              </div>
-              <p class="text-xs text-amber-300 mt-1 font-semibold">Hỗ trợ đặt cọc 50%: 5.000.000 VNĐ</p>
-            </div>
-
-            <!-- Features -->
-            <ul class="space-y-3.5 my-6 text-sm text-slate-300">
-              <li class="flex items-start gap-2.5">
-                <svg class="w-5 h-5 text-amber-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                <span>AI Business Audit chuyên sâu và bản thiết kế giải pháp</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <svg class="w-5 h-5 text-amber-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                <span>Triển khai 01 hệ thống AI trong phạm vi đã thống nhất</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <svg class="w-5 h-5 text-amber-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                <span><strong>Kết nối full luồng:</strong> Landing Page ➔ CRM ➔ Automation ➔ Revenue</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <svg class="w-5 h-5 text-amber-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                <span>Thiết lập workflow tự động và dashboard KPI cơ bản</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <svg class="w-5 h-5 text-amber-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                <span>Kiểm thử, triển khai và bàn giao tài liệu vận hành</span>
-              </li>
-              <li class="flex items-start gap-2.5">
-                <svg class="w-5 h-5 text-amber-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                <span><strong>01 buổi đào tạo sử dụng &amp; 14 ngày hỗ trợ sửa lỗi</strong></span>
-              </li>
-              <li class="flex items-start gap-2.5 bg-amber-950/60 p-2.5 rounded-lg border border-amber-500/50">
-                <span class="text-amber-400 font-bold shrink-0 text-base">👑</span>
-                <span class="text-xs text-amber-200"><strong>Đặc quyền Affiliate Master:</strong> Nhận <strong>30% hoa hồng trọn đời</strong> (Mức cao nhất - Nhận 150k - 1.080k - <strong>3.000.000đ/sale</strong>).</span>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <p class="text-xs text-center text-slate-400 mb-4 italic">
-              Hình thức: Custom Implementation • Nhận đặt cọc 50% bắt đầu ngay
-            </p>
-            <a href="/checkout/revenue-system" class="block w-full text-center py-3.5 px-6 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black transition shadow-lg shadow-amber-500/25">
-              ĐẶT LỊCH TRIỂN KHAI &gt;
-            </a>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- VALUE BADGES FOOTER -->
-      <div class="grid grid-cols-2 sm:grid-cols-5 gap-4 py-8 border-y border-slate-800 text-center mb-12 text-slate-300 text-xs sm:text-sm font-medium">
-        <div class="flex items-center justify-center gap-2">
-          <span>⚡</span> <span>Thực chiến (Practical)</span>
-        </div>
-        <div class="flex items-center justify-center gap-2">
-          <span>⏱️</span> <span>Tiết kiệm thời gian</span>
-        </div>
-        <div class="flex items-center justify-center gap-2">
-          <span>📈</span> <span>Tăng doanh thu</span>
-        </div>
-        <div class="flex items-center justify-center gap-2">
-          <span>🤝</span> <span>Hỗ trợ tận tâm</span>
-        </div>
-        <div class="flex items-center justify-center gap-2 col-span-2 sm:col-span-1">
-          <span>🤖</span> <span>Ứng dụng AI mới nhất</span>
-        </div>
-      </div>
-
-      <!-- AFFILIATE VIP REVENUE SHARING SECTION -->
-      <div class="mb-14 bg-gradient-to-b from-[#0c1626] via-slate-900 to-[#070e1a] border-2 border-amber-500/50 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
-        <div class="absolute -top-24 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="text-center max-w-3xl mx-auto mb-8">
-          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/40 text-amber-400 text-xs font-bold uppercase tracking-wider mb-3 shadow-inner">
-            <span>💎 CHÍNH SÁCH ĐỐI TÁC AFFILIATE VIP (10% — 20% — 30%)</span>
-          </div>
-          <h3 class="text-2xl sm:text-3xl font-extrabold text-white">
-            Mua Giải Pháp — Mở Khóa Quyền Lợi Kiếm Tiền Hoa Hồng <span class="text-amber-400">10% - 20% - 30%</span>
-          </h3>
-          <p class="text-slate-300 text-sm mt-3 leading-relaxed">
-            Mỗi khách hàng và học viên của Victor Chuyen đều được cấp Mã Đối Tác Affiliate độc quyền. Khi bạn giới thiệu giải pháp đến bạn bè hoặc cộng đồng, hoa hồng sẽ được đối soát tự động và chuyển khoản trực tiếp về tài khoản ngân hàng của bạn.
-          </p>
-        </div>
-
-        <!-- Commission Comparison Table -->
-        <div class="overflow-x-auto rounded-xl border border-slate-700/80 bg-slate-950/60 backdrop-blur-md mb-6">
-          <table class="w-full text-left border-collapse min-w-[620px]">
-            <thead>
-              <tr class="border-b border-slate-800 text-xs uppercase tracking-wider text-slate-400 bg-slate-900/90">
-                <th class="py-3.5 px-4 font-semibold">Gói Bạn Sở Hữu</th>
-                <th class="py-3.5 px-4 font-semibold text-amber-400 text-center">% Hoa Hồng</th>
-                <th class="py-3.5 px-4 font-semibold text-center">Bán Gói 01 ($19)</th>
-                <th class="py-3.5 px-4 font-semibold text-center">Bán Gói 02 ($139)</th>
-                <th class="py-3.5 px-4 font-semibold text-amber-300 text-center">Bán Gói 03 ($388)</th>
-                <th class="py-3.5 px-4 font-semibold">Đặc Quyền Vượt Trội</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-slate-800 text-sm">
-              <tr class="hover:bg-slate-900/40 transition">
-                <td class="py-4 px-4 font-bold text-white flex items-center gap-2.5">
-                  <span class="w-2.5 h-2.5 rounded-full bg-blue-400"></span> Gói 01 (DIY Starter)
-                </td>
-                <td class="py-4 px-4 font-black text-blue-400 text-center text-base">10%</td>
-                <td class="py-4 px-4 text-slate-300 text-center">50.000 VNĐ</td>
-                <td class="py-4 px-4 text-slate-300 text-center">360.000 VNĐ</td>
-                <td class="py-4 px-4 font-bold text-emerald-400 text-center">1.000.000 VNĐ</td>
-                <td class="py-4 px-4 text-xs text-slate-400">Khởi đầu tạo nguồn thu nhập phụ</td>
-              </tr>
-              <tr class="hover:bg-emerald-950/20 transition bg-emerald-950/10">
-                <td class="py-4 px-4 font-bold text-white flex items-center gap-2.5">
-                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span> Gói 02 (DWY Builder Sprint)
-                </td>
-                <td class="py-4 px-4 font-black text-emerald-400 text-center text-base">20%</td>
-                <td class="py-4 px-4 text-slate-300 text-center">100.000 VNĐ</td>
-                <td class="py-4 px-4 text-slate-300 text-center">720.000 VNĐ</td>
-                <td class="py-4 px-4 font-bold text-emerald-400 text-center">2.000.000 VNĐ</td>
-                <td class="py-4 px-4 text-xs text-emerald-300 font-semibold">Hoàn vốn toàn bộ chỉ sau 2 sales!</td>
-              </tr>
-              <tr class="hover:bg-amber-950/30 transition bg-amber-950/20 border-l-4 border-amber-400">
-                <td class="py-4 px-4 font-black text-amber-300 flex items-center gap-2.5">
-                  <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span> Gói 03 (DFY Revenue Master)
-                </td>
-                <td class="py-4 px-4 font-black text-amber-400 text-center text-lg">30% 🔥</td>
-                <td class="py-4 px-4 text-slate-200 font-semibold text-center">150.000 VNĐ</td>
-                <td class="py-4 px-4 text-slate-200 font-semibold text-center">1.080.000 VNĐ</td>
-                <td class="py-4 px-4 font-black text-amber-300 text-center text-base">3.000.000 VNĐ</td>
-                <td class="py-4 px-4 text-xs text-amber-200 font-bold">Mức hoa hồng VIP cao nhất hệ thống!</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-300">
-          <div class="flex items-center gap-2 text-slate-400">
-            <span class="text-amber-400 text-base">⚡</span>
-            <span>Hoa hồng được lưu vết tự động qua Google Sheets CRM và đối soát thanh toán trực tiếp.</span>
-          </div>
-          <a href="https://zalo.me/0989890022" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/50 text-amber-300 font-bold transition shadow-md">
-            <span>Nhận Mã Affiliate ID Qua Zalo: 0989890022</span>
-            <span>→</span>
+        <div class="flex items-center space-x-4 w-full sm:w-auto justify-between sm:justify-start">
+          <a
+            href="/"
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800/90 hover:bg-[#c9a54e]/20 border border-slate-700 hover:border-[#c9a54e] text-sm font-semibold text-white hover:text-[#c9a54e] transition-all shadow-md group"
+            id="pricing-back-btn"
+          >
+            <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1 text-[#c9a54e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+            </svg>
+            <span class="lang-en">← Back to Travel4U Portal</span>
+            <span class="lang-vi hidden">← Quay lại Trang Chủ Travel4U</span>
           </a>
+
+          <!-- Breadcrumb trail -->
+          <nav aria-label="Breadcrumb" class="hidden md:flex text-xs text-slate-400 items-center space-x-2">
+            <a href="/" class="hover:text-[#c9a54e] transition flex items-center gap-1">
+              <span>🏛️</span>
+              <span class="lang-en">Home</span>
+              <span class="lang-vi hidden">Trang Chủ</span>
+            </a>
+            <span class="text-slate-600">/</span>
+            <span class="text-amber-400 font-medium lang-en">AI Revenue Solutions</span>
+            <span class="text-amber-400 font-medium lang-vi hidden">Bảng Giá AI Solutions</span>
+          </nav>
         </div>
+
+        <!-- 🌐 Dynamic Language & Currency Switcher -->
+        <div class="flex items-center space-x-2 w-full sm:w-auto justify-center sm:justify-end">
+          <span class="text-xs text-slate-400 mr-1 hidden lg:inline font-medium">Currency / Ngôn ngữ:</span>
+          <div class="inline-flex p-1 bg-slate-950 border border-slate-700/80 rounded-xl shadow-inner">
+            <button
+              id="btn-lang-en"
+              type="button"
+              class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center space-x-1.5 bg-[#c9a54e] text-slate-950 shadow-md"
+            >
+              <span>🇺🇸</span>
+              <span>English (USD $)</span>
+            </button>
+            <button
+              id="btn-lang-vi"
+              type="button"
+              class="px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition flex items-center space-x-1.5"
+            >
+              <span>🇻🇳</span>
+              <span>Tiếng Việt (VNĐ ₫)</span>
+            </button>
+          </div>
+        </div>
+
       </div>
 
-      <!-- 100% RISK-FREE GUARANTEE -->
-      <div class="mb-12 bg-gradient-to-r from-emerald-950/40 via-slate-900 to-emerald-950/40 border border-emerald-500/30 rounded-2xl p-6 sm:p-8 text-center relative overflow-hidden shadow-2xl">
-        <div class="absolute -top-12 left-1/2 -translate-x-1/2 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-3">
-          <span>🛡️ CAM KẾT VÀNG TỪ VICTOR CHUYEN</span>
-        </div>
-        <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">100% Không Rủi Ro — Đảm Bảo Đúng Phạm Vi Cam Kết</h3>
-        <p class="text-slate-300 text-sm max-w-2xl mx-auto leading-relaxed">
-          Nếu sau phiên Audit đầu tiên, chúng tôi không tìm thấy bài toán đòn bẩy rõ ràng cho doanh nghiệp của bạn, hoặc bạn cảm thấy phạm vi không phù hợp, <strong>Victor sẽ hoàn trả 100% khoản đặt cọc ngay trong 24 giờ</strong>. Không có câu hỏi nào làm khó bạn.
-        </p>
-      </div>
-
-      <!-- FAQ SECTION (CÂU HỎI THƯỜNG GẶP) -->
-      <div class="mb-16 max-w-3xl mx-auto">
-        <div class="text-center mb-8">
-          <span class="text-xs font-bold text-amber-400 tracking-wider uppercase">Giải Đáp Mọi Băn Khoăn</span>
-          <h3 class="text-2xl font-bold text-white mt-1">Câu Hỏi Thường Gặp</h3>
-        </div>
-
-        <div class="space-y-4">
-          <details class="group bg-slate-900/80 border border-slate-800 rounded-xl p-4 transition [&_summary::-webkit-details-marker]:hidden">
-            <summary class="flex items-center justify-between cursor-pointer font-semibold text-white text-sm sm:text-base">
-              <span>1. Hình thức Đặt cọc 50% hoạt động như thế nào?</span>
-              <span class="text-amber-400 group-open:rotate-180 transition-transform duration-200">▼</span>
-            </summary>
-            <p class="mt-3 text-xs sm:text-sm text-slate-400 leading-relaxed pl-2 border-l-2 border-amber-500/40">
-              Đối với Gói 02 (Builder Sprint) và Gói 03 (Revenue System), bạn chỉ cần đặt cọc 50% để giữ lịch làm việc và khởi động dự án ngay. Số tiền 50% còn lại chỉ thanh toán sau khi hoàn tất phiên coaching hoặc khi hệ thống đã được bàn giao và nghiệm thu theo đúng cam kết.
-            </p>
-          </details>
-
-          <details class="group bg-slate-900/80 border border-slate-800 rounded-xl p-4 transition [&_summary::-webkit-details-marker]:hidden">
-            <summary class="flex items-center justify-between cursor-pointer font-semibold text-white text-sm sm:text-base">
-              <span>2. Sau khi thanh toán / đặt cọc bao lâu thì bắt đầu triển khai?</span>
-              <span class="text-amber-400 group-open:rotate-180 transition-transform duration-200">▼</span>
-            </summary>
-            <p class="mt-3 text-xs sm:text-sm text-slate-400 leading-relaxed pl-2 border-l-2 border-amber-500/40">
-              Ngay khi hệ thống nhận được chuyển khoản, Telegram Alert sẽ thông báo tức thì cho Victor Chuyen. Victor sẽ chủ động liên hệ bạn qua Zalo trong vòng <strong>2 đến 4 giờ làm việc</strong> để chốt lịch hẹn phiên khởi động (Kickoff).
-            </p>
-          </details>
-
-          <details class="group bg-slate-900/80 border border-slate-800 rounded-xl p-4 transition [&_summary::-webkit-details-marker]:hidden">
-            <summary class="flex items-center justify-between cursor-pointer font-semibold text-white text-sm sm:text-base">
-              <span>3. Tôi không rành về công nghệ hoặc lập trình thì có tự vận hành được không?</span>
-              <span class="text-amber-400 group-open:rotate-180 transition-transform duration-200">▼</span>
-            </summary>
-            <p class="mt-3 text-xs sm:text-sm text-slate-400 leading-relaxed pl-2 border-l-2 border-amber-500/40">
-              Toàn bộ hệ thống được xây dựng theo tiêu chuẩn <strong>"Turnkey - Chìa Khóa Trao Tay"</strong>. Mọi tác vụ phức tạp (code, API, webhook, prompt) đã được Victor đóng gói sẵn. Bạn chỉ cần thao tác trên Google Sheets, đọc báo cáo Telegram và làm theo video hướng dẫn 1-chạm.
-            </p>
-          </details>
-
-          <details class="group bg-slate-900/80 border border-slate-800 rounded-xl p-4 transition [&_summary::-webkit-details-marker]:hidden">
-            <summary class="flex items-center justify-between cursor-pointer font-semibold text-white text-sm sm:text-base">
-              <span>4. Chính sách bảo hành và hỗ trợ sau bàn giao như thế nào?</span>
-              <span class="text-amber-400 group-open:rotate-180 transition-transform duration-200">▼</span>
-            </summary>
-            <p class="mt-3 text-xs sm:text-sm text-slate-400 leading-relaxed pl-2 border-l-2 border-amber-500/40">
-              Gói 03 bao gồm <strong>14 ngày đồng hành sửa lỗi miễn phí</strong> sau khi bàn giao. Nếu có bất kỳ lỗi kỹ thuật nào phát sinh trong quá trình vận hành ban đầu, đội ngũ kỹ thuật sẽ khắc phục trực tiếp trong 24 giờ.
-            </p>
-          </details>
-        </div>
-      </div>
-
-      <!-- ZALO HOTLINE ACTION BAR -->
-      <div class="bg-gradient-to-r from-slate-900 via-blue-950/40 to-slate-900 border border-slate-700/80 rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl">
-        <div class="text-center sm:text-left">
-          <p class="text-amber-400 font-serif italic text-base sm:text-lg mb-1">
-            "Hành động hôm nay — Doanh thu ngày mai"
+      <!-- ========================================================================= -->
+      <!-- ENGLISH VERSION CONTAINER (DEFAULT FOR INTERNATIONAL USERS)              -->
+      <!-- ========================================================================= -->
+      <div id="content-en" class="transition-opacity duration-300">
+        
+        <!-- HEADER HERO -->
+        <div class="text-center mb-16">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs sm:text-sm font-semibold tracking-wider uppercase mb-4">
+            <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+            OPC AI REVENUE LAB • BUILD • AUTOMATE • MONETIZE
+          </div>
+          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-4">
+            TURN AI INTO <span class="bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 bg-clip-text text-transparent">REAL REVENUE</span>
+          </h1>
+          <p class="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto font-medium mb-3 leading-relaxed">
+            Battle-tested AI revenue solutions for Freelancers, Solopreneurs, SMEs and Global Enterprises
           </p>
-          <h3 class="text-xl sm:text-2xl font-bold text-white">
-            Cần tư vấn trực tiếp cùng Victor Chuyen?
-          </h3>
-          <p class="text-slate-400 text-sm mt-1">
-            Build • Automate • Monetize — Giải đáp bài toán AI cho riêng doanh nghiệp của bạn.
+          <p class="text-sm sm:text-base text-amber-300/90 font-serif italic">
+            "Work Smarter, Grow Faster" — Victor Chuyen
           </p>
         </div>
 
-        <div class="flex items-center gap-4">
-          <a href="https://zalo.me/0989890022" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold transition shadow-lg shadow-blue-600/30">
-            <span class="w-7 h-7 rounded-full bg-white text-blue-600 flex items-center justify-center font-black text-xs">Z</span>
-            <span>TƯ VẤN QUA ZALO: 0989890022</span>
-          </a>
+        <!-- 3 PRICING CARDS -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-8 items-stretch mb-16">
+          
+          <!-- TIER 01: DIY -->
+          <div class="flex flex-col justify-between bg-slate-900/90 rounded-2xl border border-slate-800 p-6 lg:p-8 hover:border-blue-500/40 transition-all duration-300 shadow-xl relative group">
+            <div>
+              <div class="text-center pb-6 border-b border-slate-800">
+                <span class="inline-block px-3 py-1 rounded bg-blue-500/10 text-blue-400 text-xs font-bold tracking-wider uppercase mb-2">
+                  TIER 01 — DIY (DO IT YOURSELF)
+                </span>
+                <h2 class="text-xl font-bold text-white mb-1">OPC AI STARTER KIT</h2>
+                <p class="text-xs text-slate-400 mb-4">Build your first autonomous AI system</p>
+                
+                <div class="flex items-baseline justify-center gap-2">
+                  <span class="text-4xl font-extrabold text-white">$19</span>
+                  <span class="text-slate-400 text-sm">USD / Lifetime</span>
+                </div>
+              </div>
+
+              <!-- Features -->
+              <ul class="space-y-3.5 my-6 text-sm text-slate-300">
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-blue-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>eBook: 25 High-Converting AI Automations for SMEs</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-blue-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Curated Prompt Vault &amp; Google Sheets CRM templates</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-blue-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Step-by-step guides for Gemini, AI Studio &amp; Apps Script</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-blue-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Rapid deployment &amp; ROI measurement checklists</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-blue-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Lifetime access to digital assets &amp; future updates</span>
+                </li>
+                <li class="flex items-start gap-2.5 bg-blue-950/40 p-2.5 rounded-lg border border-blue-500/30">
+                  <span class="text-blue-400 font-bold shrink-0 text-base">🎁</span>
+                  <span class="text-xs text-blue-200"><strong>VIP Affiliate Privilege:</strong> Earn <strong>10% direct commission</strong> on every referral ($50 - $360 - $1,000 value).</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <p class="text-xs text-center text-slate-400 mb-4 italic">
+                Format: Digital Asset Vault • Self-Paced • Instant Access
+              </p>
+              <a href="/checkout/starter-kit" class="block w-full text-center py-3 px-6 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold transition shadow-lg shadow-blue-600/20">
+                GET STARTED NOW &gt;
+              </a>
+            </div>
+          </div>
+
+          <!-- TIER 02: DWY -->
+          <div class="flex flex-col justify-between bg-slate-900/90 rounded-2xl border border-slate-800 p-6 lg:p-8 hover:border-emerald-500/40 transition-all duration-300 shadow-xl relative group">
+            <div>
+              <div class="text-center pb-6 border-b border-slate-800">
+                <span class="inline-block px-3 py-1 rounded bg-emerald-500/10 text-emerald-400 text-xs font-bold tracking-wider uppercase mb-2">
+                  TIER 02 — DWY (DONE WITH YOU)
+                </span>
+                <h2 class="text-xl font-bold text-white mb-1">OPC AI BUILDER SPRINT</h2>
+                <p class="text-xs text-slate-400 mb-4">Co-build a live, revenue-generating AI solution with Victor</p>
+                
+                <div class="flex items-baseline justify-center gap-2">
+                  <span class="text-4xl font-extrabold text-white">$139</span>
+                  <span class="text-slate-400 text-sm">USD</span>
+                </div>
+                <p class="text-xs text-emerald-400 mt-1 font-medium">50% Deposit Option: $70 USD</p>
+              </div>
+
+              <!-- Features -->
+              <ul class="space-y-3.5 my-6 text-sm text-slate-300">
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span><strong>Includes 100% of Starter Kit</strong> ($19 value)</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>1-on-1 AI Business Audit &amp; Bottleneck Identification</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span><strong>Two 60-minute live 1-on-1 coaching sessions</strong> with Victor</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Co-architect and deploy 1 targeted revenue AI automation</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Connect Google Sheets, Apps Script, Gmail, Telegram or n8n</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Comprehensive QA Checklist &amp; Handover Documentation</span>
+                </li>
+                <li class="flex items-start gap-2.5 bg-emerald-950/40 p-2.5 rounded-lg border border-emerald-500/30">
+                  <span class="text-emerald-400 font-bold shrink-0 text-base">🔥</span>
+                  <span class="text-xs text-emerald-200"><strong>VIP Affiliate Privilege:</strong> Earn <strong>20% direct commission</strong> ($100 - $720 - $2,000). <em>Break even in just 2 sales!</em></span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <p class="text-xs text-center text-slate-400 mb-4 italic">
+                Format: 1:1 Guided Sprint • 1 Production AI Workflow
+              </p>
+              <a href="/checkout/builder-sprint" class="block w-full text-center py-3 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition shadow-lg shadow-emerald-600/20">
+                BUILD WITH VICTOR &gt;
+              </a>
+            </div>
+          </div>
+
+          <!-- TIER 03: DFY (MOST POPULAR) -->
+          <div class="flex flex-col justify-between bg-gradient-to-b from-slate-900 via-slate-900 to-[#141b29] rounded-2xl border-2 border-amber-500/80 p-6 lg:p-8 hover:border-amber-400 transition-all duration-300 shadow-2xl relative group transform lg:-translate-y-2">
+            <!-- Top badge -->
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 px-4 py-1 rounded-full text-xs font-black tracking-wider uppercase shadow-md">
+              👑 MOST POPULAR (DONE FOR YOU)
+            </div>
+
+            <div>
+              <div class="text-center pb-6 border-b border-slate-800">
+                <span class="inline-block px-3 py-1 rounded bg-amber-500/10 text-amber-400 text-xs font-bold tracking-wider uppercase mb-2">
+                  TIER 03 — DFY (DONE FOR YOU)
+                </span>
+                <h2 class="text-xl font-bold text-white mb-1">OPC AI REVENUE SYSTEM</h2>
+                <p class="text-xs text-slate-400 mb-4">Victor directly engineers and hands over your turnkey AI revenue system</p>
+                
+                <div class="flex items-baseline justify-center gap-2">
+                  <span class="text-4xl font-extrabold text-amber-400">$388</span>
+                  <span class="text-slate-300 text-sm">USD</span>
+                </div>
+                <p class="text-xs text-amber-300 mt-1 font-semibold">50% Deposit Option: $194 USD</p>
+              </div>
+
+              <!-- Features -->
+              <ul class="space-y-3.5 my-6 text-sm text-slate-300">
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-amber-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Deep AI Business Audit &amp; Master Architecture Blueprint</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-amber-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>End-to-end custom deployment of 1 enterprise-grade AI system</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-amber-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span><strong>Full Pipeline:</strong> Landing Page ➔ CRM ➔ Automation ➔ Revenue</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-amber-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Automated multi-agent routing (Gemini + Local Ollama / Claude)</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-amber-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>1 Live Training Session &amp; 14-day dedicated post-launch support</span>
+                </li>
+                <li class="flex items-start gap-2.5 bg-amber-950/60 p-2.5 rounded-lg border border-amber-500/50">
+                  <span class="text-amber-400 font-bold shrink-0 text-base">👑</span>
+                  <span class="text-xs text-amber-200"><strong>VIP Affiliate Master:</strong> Earn <strong>30% lifetime commission</strong> (Highest Tier - Earn $150 - $1,080 - <strong>$3,000 per sale</strong>).</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <p class="text-xs text-center text-slate-400 mb-4 italic">
+                Format: Turnkey White-Glove Build • 50% Deposit to Begin
+              </p>
+              <a href="/checkout/revenue-system" class="block w-full text-center py-3.5 px-6 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black transition shadow-lg shadow-amber-500/25">
+                SCHEDULE DEPLOYMENT &gt;
+              </a>
+            </div>
+          </div>
+
         </div>
+
+        <!-- VALUE BADGES FOOTER -->
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-4 py-8 border-y border-slate-800 text-center mb-12 text-slate-300 text-xs sm:text-sm font-medium">
+          <div class="flex items-center justify-center gap-2">
+            <span>⚡</span> <span>Production Practical</span>
+          </div>
+          <div class="flex items-center justify-center gap-2">
+            <span>⏱️</span> <span>Saves 80% Work Hours</span>
+          </div>
+          <div class="flex items-center justify-center gap-2">
+            <span>📈</span> <span>Proven Measurable ROI</span>
+          </div>
+          <div class="flex items-center justify-center gap-2">
+            <span>🤝</span> <span>Direct Founder Access</span>
+          </div>
+          <div class="flex items-center justify-center gap-2 col-span-2 sm:col-span-1">
+            <span>🤖</span> <span>Flagship Multi-AI Routing</span>
+          </div>
+        </div>
+
+        <!-- AFFILIATE VIP REVENUE SHARING SECTION -->
+        <div class="mb-14 bg-gradient-to-b from-[#0c1626] via-slate-900 to-[#070e1a] border-2 border-amber-500/50 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+          <div class="absolute -top-24 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="text-center max-w-3xl mx-auto mb-8">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/40 text-amber-400 text-xs font-bold uppercase tracking-wider mb-3 shadow-inner">
+              <span>💎 VIP AFFILIATE PARTNER PROGRAM (10% — 20% — 30%)</span>
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-white">
+              Own a Solution — Unlock Lucrative Commissions <span class="text-amber-400">10% - 20% - 30%</span>
+            </h3>
+            <p class="text-slate-300 text-sm mt-3 leading-relaxed">
+              Every client and student is assigned an exclusive VIP Partner Referral Code. Introduce our proven revenue engines to peers, founders, or your audience, and receive automatic direct commission payouts.
+            </p>
+          </div>
+
+          <!-- Commission Comparison Table -->
+          <div class="overflow-x-auto rounded-xl border border-slate-700/80 bg-slate-950/60 backdrop-blur-md mb-6">
+            <table class="w-full text-left border-collapse min-w-[620px]">
+              <thead>
+                <tr class="border-b border-slate-800 text-xs uppercase tracking-wider text-slate-400 bg-slate-900/90">
+                  <th class="py-3.5 px-4 font-semibold">Tier You Own</th>
+                  <th class="py-3.5 px-4 font-semibold text-amber-400 text-center">% Commission</th>
+                  <th class="py-3.5 px-4 font-semibold text-center">Refer Tier 01 ($19)</th>
+                  <th class="py-3.5 px-4 font-semibold text-center">Refer Tier 02 ($139)</th>
+                  <th class="py-3.5 px-4 font-semibold text-amber-300 text-center">Refer Tier 03 ($388)</th>
+                  <th class="py-3.5 px-4 font-semibold">Competitive Advantage</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-800 text-sm">
+                <tr class="hover:bg-slate-900/40 transition">
+                  <td class="py-4 px-4 font-bold text-white flex items-center gap-2.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-blue-400"></span> Tier 01 (DIY Starter)
+                  </td>
+                  <td class="py-4 px-4 font-black text-blue-400 text-center text-base">10%</td>
+                  <td class="py-4 px-4 text-slate-300 text-center">$1.90 USD</td>
+                  <td class="py-4 px-4 text-slate-300 text-center">$13.90 USD</td>
+                  <td class="py-4 px-4 font-bold text-emerald-400 text-center">$38.80 USD</td>
+                  <td class="py-4 px-4 text-xs text-slate-400">Low-friction passive side income</td>
+                </tr>
+                <tr class="hover:bg-emerald-950/20 transition bg-emerald-950/10">
+                  <td class="py-4 px-4 font-bold text-white flex items-center gap-2.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span> Tier 02 (DWY Builder Sprint)
+                  </td>
+                  <td class="py-4 px-4 font-black text-emerald-400 text-center text-base">20%</td>
+                  <td class="py-4 px-4 text-slate-300 text-center">$3.80 USD</td>
+                  <td class="py-4 px-4 text-slate-300 text-center">$27.80 USD</td>
+                  <td class="py-4 px-4 font-bold text-emerald-400 text-center">$77.60 USD</td>
+                  <td class="py-4 px-4 text-xs text-emerald-300 font-semibold">Break even on your investment in 2 sales!</td>
+                </tr>
+                <tr class="hover:bg-amber-950/30 transition bg-amber-950/20 border-l-4 border-amber-400">
+                  <td class="py-4 px-4 font-black text-amber-300 flex items-center gap-2.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span> Tier 03 (DFY Revenue Master)
+                  </td>
+                  <td class="py-4 px-4 font-black text-amber-400 text-center text-lg">30% 🔥</td>
+                  <td class="py-4 px-4 text-slate-200 font-semibold text-center">$5.70 USD</td>
+                  <td class="py-4 px-4 text-slate-200 font-semibold text-center">$41.70 USD</td>
+                  <td class="py-4 px-4 font-black text-amber-300 text-center text-base">$116.40 USD</td>
+                  <td class="py-4 px-4 text-xs text-amber-200 font-bold">Highest VIP Tier (Up to $1,500 on High-Ticket)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-300">
+            <div class="flex items-center gap-2 text-slate-400">
+              <span class="text-amber-400 text-base">⚡</span>
+              <span>All referrals logged transparently via Google Sheets CRM with automated payouts.</span>
+            </div>
+            <a href="https://t.me/victorchuyen" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/50 text-amber-300 font-bold transition shadow-md">
+              <span>Get Your VIP Affiliate ID on Telegram</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 100% RISK-FREE GUARANTEE -->
+        <div class="mb-12 bg-gradient-to-r from-emerald-950/40 via-slate-900 to-emerald-950/40 border border-emerald-500/30 rounded-2xl p-6 sm:p-8 text-center relative overflow-hidden shadow-2xl">
+          <div class="absolute -top-12 left-1/2 -translate-x-1/2 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-3">
+            <span>🛡️ 100% RISK-FREE SATISFACTION GUARANTEE</span>
+          </div>
+          <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">Complete Confidence — Full Deposit Protection</h3>
+          <p class="text-slate-300 text-sm max-w-2xl mx-auto leading-relaxed">
+            If during the initial Audit session we determine that your business model is not an ideal fit for our AI revenue architecture, <strong>Victor will refund 100% of your deposit within 24 hours</strong>. Zero awkward questions.
+          </p>
+        </div>
+
+        <!-- FAQ SECTION -->
+        <div class="mb-16 max-w-3xl mx-auto">
+          <div class="text-center mb-8">
+            <span class="text-xs font-bold text-amber-400 tracking-wider uppercase">Clarity &amp; Transparency</span>
+            <h3 class="text-2xl font-bold text-white mt-1">Frequently Asked Questions</h3>
+          </div>
+
+          <div class="space-y-4">
+            <details class="group bg-slate-900/80 border border-slate-800 rounded-xl p-4 transition [&_summary::-webkit-details-marker]:hidden">
+              <summary class="flex items-center justify-between cursor-pointer font-semibold text-white text-sm sm:text-base">
+                <span>1. How does the 50% deposit option work?</span>
+                <span class="text-amber-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+              </summary>
+              <p class="mt-3 text-xs sm:text-sm text-slate-400 leading-relaxed pl-2 border-l-2 border-amber-500/40">
+                For Tier 02 (Builder Sprint) and Tier 03 (Revenue System), you only need to place a 50% deposit to secure your sprint slot on Victor’s calendar. The remaining 50% is only payable after completion of coaching or successful project handover.
+              </p>
+            </details>
+
+            <details class="group bg-slate-900/80 border border-slate-800 rounded-xl p-4 transition [&_summary::-webkit-details-marker]:hidden">
+              <summary class="flex items-center justify-between cursor-pointer font-semibold text-white text-sm sm:text-base">
+                <span>2. When does project execution start after checkout?</span>
+                <span class="text-amber-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+              </summary>
+              <p class="mt-3 text-xs sm:text-sm text-slate-400 leading-relaxed pl-2 border-l-2 border-amber-500/40">
+                Immediately upon confirmation, an automated alert triggers to Victor Chuyen. Victor will contact you via Telegram or Email within <strong>2 to 4 business hours</strong> to schedule your initial Kickoff session.
+              </p>
+            </details>
+
+            <details class="group bg-slate-900/80 border border-slate-800 rounded-xl p-4 transition [&_summary::-webkit-details-marker]:hidden">
+              <summary class="flex items-center justify-between cursor-pointer font-semibold text-white text-sm sm:text-base">
+                <span>3. Do I need coding or machine learning skills to operate the system?</span>
+                <span class="text-amber-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+              </summary>
+              <p class="mt-3 text-xs sm:text-sm text-slate-400 leading-relaxed pl-2 border-l-2 border-amber-500/40">
+                Not at all. Every solution is delivered as a <strong>"Turnkey System"</strong>. Complex code, webhooks, and prompt engineering are pre-configured. You manage day-to-day operations via intuitive Google Sheets, Telegram bots, and clear 1-click video SOPs.
+              </p>
+            </details>
+
+            <details class="group bg-slate-900/80 border border-slate-800 rounded-xl p-4 transition [&_summary::-webkit-details-marker]:hidden">
+              <summary class="flex items-center justify-between cursor-pointer font-semibold text-white text-sm sm:text-base">
+                <span>4. What is the post-handover support policy?</span>
+                <span class="text-amber-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+              </summary>
+              <p class="mt-3 text-xs sm:text-sm text-slate-400 leading-relaxed pl-2 border-l-2 border-amber-500/40">
+                Tier 03 includes <strong>14 days of direct developer support</strong> following handover. If any API change or technical hitch arises during early production, our engineering desk fixes it within 24 hours.
+              </p>
+            </details>
+          </div>
+        </div>
+
+        <!-- HOTLINE / TELEGRAM ACTION BAR -->
+        <div class="bg-gradient-to-r from-slate-900 via-blue-950/40 to-slate-900 border border-slate-700/80 rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl">
+          <div class="text-center sm:text-left">
+            <p class="text-amber-400 font-serif italic text-base sm:text-lg mb-1">
+              "Act Today — Real Revenue Tomorrow"
+            </p>
+            <h3 class="text-xl sm:text-2xl font-bold text-white">
+              Need a Custom Enterprise Consultation?
+            </h3>
+            <p class="text-slate-400 text-sm mt-1">
+              Build • Automate • Monetize — Tailored AI architectures for your specific business bottlenecks.
+            </p>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <a href="https://t.me/victorchuyen" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold transition shadow-lg shadow-blue-600/30">
+              <span class="w-7 h-7 rounded-full bg-white text-blue-600 flex items-center justify-center font-black text-xs">✈️</span>
+              <span>MESSAGE VICTOR ON TELEGRAM</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ========================================================================= -->
+      <!-- VIETNAMESE VERSION CONTAINER (SHOWN WHEN TIẾNG VIỆT IS TOGGLED)           -->
+      <!-- ========================================================================= -->
+      <div id="content-vi" class="hidden transition-opacity duration-300">
+        
+        <!-- HEADER HERO (VI) -->
+        <div class="text-center mb-16">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs sm:text-sm font-semibold tracking-wider uppercase mb-4">
+            <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+            OPC AI REVENUE LAB • BUILD • AUTOMATE • MONETIZE
+          </div>
+          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-4">
+            BIẾN AI THÀNH <span class="bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500 bg-clip-text text-transparent">DOANH THU THỰC TẾ</span>
+          </h1>
+          <p class="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto font-medium mb-3">
+            Giải pháp AI thực chiến dành cho Freelancer, SME và Doanh nghiệp
+          </p>
+          <p class="text-sm sm:text-base text-amber-300/90 font-serif italic">
+            "Work Smarter, Grow Faster" — Victor Chuyen
+          </p>
+        </div>
+
+        <!-- 3 PRICING CARDS (VI) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-8 items-stretch mb-16">
+          
+          <!-- GÓI 01: DIY -->
+          <div class="flex flex-col justify-between bg-slate-900/90 rounded-2xl border border-slate-800 p-6 lg:p-8 hover:border-blue-500/40 transition-all duration-300 shadow-xl relative group">
+            <div>
+              <div class="text-center pb-6 border-b border-slate-800">
+                <span class="inline-block px-3 py-1 rounded bg-blue-500/10 text-blue-400 text-xs font-bold tracking-wider uppercase mb-2">
+                  GÓI 01 — DIY (DO IT YOURSELF)
+                </span>
+                <h2 class="text-xl font-bold text-white mb-1">OPC AI STARTER KIT</h2>
+                <p class="text-xs text-slate-400 mb-4">Tự xây hệ thống AI đầu tiên cho doanh nghiệp</p>
+                
+                <div class="flex items-baseline justify-center gap-2">
+                  <span class="text-4xl font-extrabold text-white">500.000đ</span>
+                  <span class="text-slate-400 text-sm">/ $19 USD</span>
+                </div>
+              </div>
+
+              <!-- Features -->
+              <ul class="space-y-3.5 my-6 text-sm text-slate-300">
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-blue-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>eBook 25 AI Automations for SMEs</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-blue-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Bộ prompt và template Google Sheets CRM</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-blue-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Hướng dẫn từng bước dùng Gemini, AI Studio và Apps Script</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-blue-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Checklist triển khai và đo hiệu quả</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-blue-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Quyền truy cập tài liệu số và các bản cập nhật</span>
+                </li>
+                <li class="flex items-start gap-2.5 bg-blue-950/40 p-2.5 rounded-lg border border-blue-500/30">
+                  <span class="text-blue-400 font-bold shrink-0 text-base">🎁</span>
+                  <span class="text-xs text-blue-200"><strong>Đặc quyền Affiliate VIP:</strong> Nhận <strong>10% hoa hồng</strong> khi giới thiệu bán bất kỳ gói nào (50k - 360k - 1.000.000đ).</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <p class="text-xs text-center text-slate-400 mb-4 italic">
+                Hình thức: Digital Product • Tự học, tự triển khai • Không kèm hỗ trợ 1:1
+              </p>
+              <a href="/checkout/starter-kit" class="block w-full text-center py-3 px-6 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold transition shadow-lg shadow-blue-600/20">
+                BẮT ĐẦU NGAY &gt;
+              </a>
+            </div>
+          </div>
+
+          <!-- GÓI 02: DWY -->
+          <div class="flex flex-col justify-between bg-slate-900/90 rounded-2xl border border-slate-800 p-6 lg:p-8 hover:border-emerald-500/40 transition-all duration-300 shadow-xl relative group">
+            <div>
+              <div class="text-center pb-6 border-b border-slate-800">
+                <span class="inline-block px-3 py-1 rounded bg-emerald-500/10 text-emerald-400 text-xs font-bold tracking-wider uppercase mb-2">
+                  GÓI 02 — DWY (DONE WITH YOU)
+                </span>
+                <h2 class="text-xl font-bold text-white mb-1">OPC AI BUILDER SPRINT</h2>
+                <p class="text-xs text-slate-400 mb-4">Cùng Victor xây một giải pháp AI chạy được thật</p>
+                
+                <div class="flex items-baseline justify-center gap-2">
+                  <span class="text-4xl font-extrabold text-white">3.600.000đ</span>
+                  <span class="text-slate-400 text-sm">/ $139 USD</span>
+                </div>
+                <p class="text-xs text-emerald-400 mt-1 font-medium">Hỗ trợ đặt cọc 50%: 1.800.000 VNĐ</p>
+              </div>
+
+              <!-- Features -->
+              <ul class="space-y-3.5 my-6 text-sm text-slate-300">
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span><strong>Bao gồm toàn bộ</strong> Starter Kit ($19)</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>01 phiên AI Business Audit &amp; xác định bottleneck</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span><strong>02 phiên coaching 1:1 trực tuyến</strong> (mỗi phiên 60 phút)</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Cùng thiết kế và triển khai 01 workflow AI cụ thể</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Hướng dẫn kết nối Google Sheets, Apps Script, Gmail hoặc Telegram</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Checklist QA và tài liệu bàn giao tự vận hành</span>
+                </li>
+                <li class="flex items-start gap-2.5 bg-emerald-950/40 p-2.5 rounded-lg border border-emerald-500/30">
+                  <span class="text-emerald-400 font-bold shrink-0 text-base">🔥</span>
+                  <span class="text-xs text-emerald-200"><strong>Đặc quyền Affiliate VIP:</strong> Nhận <strong>20% hoa hồng</strong> khi giới thiệu bán bất kỳ gói nào (100k - 720k - 2.000.000đ). <em>Hoàn vốn chỉ sau 2 sales!</em></span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <p class="text-xs text-center text-slate-400 mb-4 italic">
+                Hình thức: Coaching + Guided Build • Tối đa 01 workflow thống nhất
+              </p>
+              <a href="/checkout/builder-sprint" class="block w-full text-center py-3 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition shadow-lg shadow-emerald-600/20">
+                XÂY CÙNG VICTOR &gt;
+              </a>
+            </div>
+          </div>
+
+          <!-- GÓI 03: DFY (PHỔ BIẾN NHẤT) -->
+          <div class="flex flex-col justify-between bg-gradient-to-b from-slate-900 via-slate-900 to-[#141b29] rounded-2xl border-2 border-amber-500/80 p-6 lg:p-8 hover:border-amber-400 transition-all duration-300 shadow-2xl relative group transform lg:-translate-y-2">
+            <!-- Top badge -->
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 px-4 py-1 rounded-full text-xs font-black tracking-wider uppercase shadow-md">
+              👑 PHỔ BIẾN NHẤT (MOST POPULAR)
+            </div>
+
+            <div>
+              <div class="text-center pb-6 border-b border-slate-800">
+                <span class="inline-block px-3 py-1 rounded bg-amber-500/10 text-amber-400 text-xs font-bold tracking-wider uppercase mb-2">
+                  GÓI 03 — DFY (DONE FOR YOU)
+                </span>
+                <h2 class="text-xl font-bold text-white mb-1">OPC AI REVENUE SYSTEM</h2>
+                <p class="text-xs text-slate-400 mb-4">Victor trực tiếp xây dựng và bàn giao hệ thống AI</p>
+                
+                <div class="flex items-baseline justify-center gap-2">
+                  <span class="text-4xl font-extrabold text-amber-400">10.000.000đ</span>
+                  <span class="text-slate-300 text-sm">/ $388 USD</span>
+                </div>
+                <p class="text-xs text-amber-300 mt-1 font-semibold">Hỗ trợ đặt cọc 50%: 5.000.000 VNĐ</p>
+              </div>
+
+              <!-- Features -->
+              <ul class="space-y-3.5 my-6 text-sm text-slate-300">
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-amber-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>AI Business Audit chuyên sâu và bản thiết kế giải pháp</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-amber-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Triển khai 01 hệ thống AI trong phạm vi đã thống nhất</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-amber-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span><strong>Kết nối full luồng:</strong> Landing Page ➔ CRM ➔ Automation ➔ Revenue</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-amber-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Thiết lập workflow tự động và dashboard KPI cơ bản</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-5 h-5 text-amber-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span><strong>01 buổi đào tạo sử dụng &amp; 14 ngày hỗ trợ sửa lỗi</strong></span>
+                </li>
+                <li class="flex items-start gap-2.5 bg-amber-950/60 p-2.5 rounded-lg border border-amber-500/50">
+                  <span class="text-amber-400 font-bold shrink-0 text-base">👑</span>
+                  <span class="text-xs text-amber-200"><strong>Đặc quyền Affiliate Master:</strong> Nhận <strong>30% hoa hồng trọn đời</strong> (Mức cao nhất - Nhận 150k - 1.080k - <strong>3.000.000đ/sale</strong>).</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <p class="text-xs text-center text-slate-400 mb-4 italic">
+                Hình thức: Custom Implementation • Nhận đặt cọc 50% bắt đầu ngay
+              </p>
+              <a href="/checkout/revenue-system" class="block w-full text-center py-3.5 px-6 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black transition shadow-lg shadow-amber-500/25">
+                ĐẶT LỊCH TRIỂN KHAI &gt;
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- VALUE BADGES FOOTER (VI) -->
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-4 py-8 border-y border-slate-800 text-center mb-12 text-slate-300 text-xs sm:text-sm font-medium">
+          <div class="flex items-center justify-center gap-2">
+            <span>⚡</span> <span>Thực chiến (Practical)</span>
+          </div>
+          <div class="flex items-center justify-center gap-2">
+            <span>⏱️</span> <span>Tiết kiệm 80% thời gian</span>
+          </div>
+          <div class="flex items-center justify-center gap-2">
+            <span>📈</span> <span>Tăng trưởng doanh thu</span>
+          </div>
+          <div class="flex items-center justify-center gap-2">
+            <span>🤝</span> <span>Hỗ trợ trực tiếp 1:1</span>
+          </div>
+          <div class="flex items-center justify-center gap-2 col-span-2 sm:col-span-1">
+            <span>🤖</span> <span>Ứng dụng AI đa tác tử mới nhất</span>
+          </div>
+        </div>
+
+        <!-- AFFILIATE VIP REVENUE SHARING SECTION (VI) -->
+        <div class="mb-14 bg-gradient-to-b from-[#0c1626] via-slate-900 to-[#070e1a] border-2 border-amber-500/50 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+          <div class="absolute -top-24 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="text-center max-w-3xl mx-auto mb-8">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/40 text-amber-400 text-xs font-bold uppercase tracking-wider mb-3 shadow-inner">
+              <span>💎 CHÍNH SÁCH ĐỐI TÁC AFFILIATE VIP (10% — 20% — 30%)</span>
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-white">
+              Mua Giải Pháp — Mở Khóa Quyền Lợi Kiếm Tiền Hoa Hồng <span class="text-amber-400">10% - 20% - 30%</span>
+            </h3>
+            <p class="text-slate-300 text-sm mt-3 leading-relaxed">
+              Mỗi khách hàng và học viên của Victor Chuyen đều được cấp Mã Đối Tác Affiliate độc quyền. Khi bạn giới thiệu giải pháp đến bạn bè hoặc cộng đồng, hoa hồng sẽ được đối soát tự động và chuyển khoản trực tiếp về tài khoản ngân hàng của bạn.
+            </p>
+          </div>
+
+          <!-- Commission Comparison Table -->
+          <div class="overflow-x-auto rounded-xl border border-slate-700/80 bg-slate-950/60 backdrop-blur-md mb-6">
+            <table class="w-full text-left border-collapse min-w-[620px]">
+              <thead>
+                <tr class="border-b border-slate-800 text-xs uppercase tracking-wider text-slate-400 bg-slate-900/90">
+                  <th class="py-3.5 px-4 font-semibold">Gói Bạn Sở Hữu</th>
+                  <th class="py-3.5 px-4 font-semibold text-amber-400 text-center">% Hoa Hồng</th>
+                  <th class="py-3.5 px-4 font-semibold text-center">Bán Gói 01 ($19)</th>
+                  <th class="py-3.5 px-4 font-semibold text-center">Bán Gói 02 ($139)</th>
+                  <th class="py-3.5 px-4 font-semibold text-amber-300 text-center">Bán Gói 03 ($388)</th>
+                  <th class="py-3.5 px-4 font-semibold">Đặc Quyền Vượt Trội</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-800 text-sm">
+                <tr class="hover:bg-slate-900/40 transition">
+                  <td class="py-4 px-4 font-bold text-white flex items-center gap-2.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-blue-400"></span> Gói 01 (DIY Starter)
+                  </td>
+                  <td class="py-4 px-4 font-black text-blue-400 text-center text-base">10%</td>
+                  <td class="py-4 px-4 text-slate-300 text-center">50.000 VNĐ</td>
+                  <td class="py-4 px-4 text-slate-300 text-center">360.000 VNĐ</td>
+                  <td class="py-4 px-4 font-bold text-emerald-400 text-center">1.000.000 VNĐ</td>
+                  <td class="py-4 px-4 text-xs text-slate-400">Khởi đầu tạo nguồn thu nhập phụ</td>
+                </tr>
+                <tr class="hover:bg-emerald-950/20 transition bg-emerald-950/10">
+                  <td class="py-4 px-4 font-bold text-white flex items-center gap-2.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span> Gói 02 (DWY Builder Sprint)
+                  </td>
+                  <td class="py-4 px-4 font-black text-emerald-400 text-center text-base">20%</td>
+                  <td class="py-4 px-4 text-slate-300 text-center">100.000 VNĐ</td>
+                  <td class="py-4 px-4 text-slate-300 text-center">720.000 VNĐ</td>
+                  <td class="py-4 px-4 font-bold text-emerald-400 text-center">2.000.000 VNĐ</td>
+                  <td class="py-4 px-4 text-xs text-emerald-300 font-semibold">Hoàn vốn toàn bộ chỉ sau 2 sales!</td>
+                </tr>
+                <tr class="hover:bg-amber-950/30 transition bg-amber-950/20 border-l-4 border-amber-400">
+                  <td class="py-4 px-4 font-black text-amber-300 flex items-center gap-2.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span> Gói 03 (DFY Revenue Master)
+                  </td>
+                  <td class="py-4 px-4 font-black text-amber-400 text-center text-lg">30% 🔥</td>
+                  <td class="py-4 px-4 text-slate-200 font-semibold text-center">150.000 VNĐ</td>
+                  <td class="py-4 px-4 text-slate-200 font-semibold text-center">1.080.000 VNĐ</td>
+                  <td class="py-4 px-4 font-black text-amber-300 text-center text-base">3.000.000 VNĐ</td>
+                  <td class="py-4 px-4 text-xs text-amber-200 font-bold">Mức hoa hồng VIP cao nhất hệ thống!</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-300">
+            <div class="flex items-center gap-2 text-slate-400">
+              <span class="text-amber-400 text-base">⚡</span>
+              <span>Hoa hồng được lưu vết tự động qua Google Sheets CRM và đối soát thanh toán trực tiếp.</span>
+            </div>
+            <a href="https://zalo.me/0989890022" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/50 text-amber-300 font-bold transition shadow-md">
+              <span>Nhận Mã Affiliate ID Qua Zalo: 0989890022</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 100% RISK-FREE GUARANTEE (VI) -->
+        <div class="mb-12 bg-gradient-to-r from-emerald-950/40 via-slate-900 to-emerald-950/40 border border-emerald-500/30 rounded-2xl p-6 sm:p-8 text-center relative overflow-hidden shadow-2xl">
+          <div class="absolute -top-12 left-1/2 -translate-x-1/2 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-3">
+            <span>🛡️ CAM KẾT VÀNG TỪ VICTOR CHUYEN</span>
+          </div>
+          <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">100% Không Rủi Ro — Đảm Bảo Đúng Phạm Vi Cam Kết</h3>
+          <p class="text-slate-300 text-sm max-w-2xl mx-auto leading-relaxed">
+            Nếu sau phiên Audit đầu tiên, chúng tôi không tìm thấy bài toán đòn bẩy rõ ràng cho doanh nghiệp của bạn, hoặc bạn cảm thấy phạm vi không phù hợp, <strong>Victor sẽ hoàn trả 100% khoản đặt cọc ngay trong 24 giờ</strong>. Không có câu hỏi nào làm khó bạn.
+          </p>
+        </div>
+
+        <!-- FAQ SECTION (VI) -->
+        <div class="mb-16 max-w-3xl mx-auto">
+          <div class="text-center mb-8">
+            <span class="text-xs font-bold text-amber-400 tracking-wider uppercase">Giải Đáp Mọi Băn Khoăn</span>
+            <h3 class="text-2xl font-bold text-white mt-1">Câu Hỏi Thường Gặp</h3>
+          </div>
+
+          <div class="space-y-4">
+            <details class="group bg-slate-900/80 border border-slate-800 rounded-xl p-4 transition [&_summary::-webkit-details-marker]:hidden">
+              <summary class="flex items-center justify-between cursor-pointer font-semibold text-white text-sm sm:text-base">
+                <span>1. Hình thức Đặt cọc 50% hoạt động như thế nào?</span>
+                <span class="text-amber-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+              </summary>
+              <p class="mt-3 text-xs sm:text-sm text-slate-400 leading-relaxed pl-2 border-l-2 border-amber-500/40">
+                Đối với Gói 02 (Builder Sprint) và Gói 03 (Revenue System), bạn chỉ cần đặt cọc 50% để giữ lịch làm việc và khởi động dự án ngay. Số tiền 50% còn lại chỉ thanh toán sau khi hoàn tất phiên coaching hoặc khi hệ thống đã được bàn giao và nghiệm thu theo đúng cam kết.
+              </p>
+            </details>
+
+            <details class="group bg-slate-900/80 border border-slate-800 rounded-xl p-4 transition [&_summary::-webkit-details-marker]:hidden">
+              <summary class="flex items-center justify-between cursor-pointer font-semibold text-white text-sm sm:text-base">
+                <span>2. Sau khi thanh toán / đặt cọc bao lâu thì bắt đầu triển khai?</span>
+                <span class="text-amber-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+              </summary>
+              <p class="mt-3 text-xs sm:text-sm text-slate-400 leading-relaxed pl-2 border-l-2 border-amber-500/40">
+                Ngay khi hệ thống nhận được chuyển khoản, Telegram Alert sẽ thông báo tức thì cho Victor Chuyen. Victor sẽ chủ động liên hệ bạn qua Zalo trong vòng <strong>2 đến 4 giờ làm việc</strong> để chốt lịch hẹn phiên khởi động (Kickoff).
+              </p>
+            </details>
+
+            <details class="group bg-slate-900/80 border border-slate-800 rounded-xl p-4 transition [&_summary::-webkit-details-marker]:hidden">
+              <summary class="flex items-center justify-between cursor-pointer font-semibold text-white text-sm sm:text-base">
+                <span>3. Tôi không rành về công nghệ hoặc lập trình thì có tự vận hành được không?</span>
+                <span class="text-amber-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+              </summary>
+              <p class="mt-3 text-xs sm:text-sm text-slate-400 leading-relaxed pl-2 border-l-2 border-amber-500/40">
+                Toàn bộ hệ thống được xây dựng theo tiêu chuẩn <strong>"Turnkey - Chìa Khóa Trao Tay"</strong>. Mọi tác vụ phức tạp (code, API, webhook, prompt) đã được Victor đóng gói sẵn. Bạn chỉ cần thao tác trên Google Sheets, đọc báo cáo Telegram và làm theo video hướng dẫn 1-chạm.
+              </p>
+            </details>
+
+            <details class="group bg-slate-900/80 border border-slate-800 rounded-xl p-4 transition [&_summary::-webkit-details-marker]:hidden">
+              <summary class="flex items-center justify-between cursor-pointer font-semibold text-white text-sm sm:text-base">
+                <span>4. Chính sách bảo hành và hỗ trợ sau bàn giao như thế nào?</span>
+                <span class="text-amber-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+              </summary>
+              <p class="mt-3 text-xs sm:text-sm text-slate-400 leading-relaxed pl-2 border-l-2 border-amber-500/40">
+                Gói 03 bao gồm <strong>14 ngày đồng hành sửa lỗi miễn phí</strong> sau khi bàn giao. Nếu có bất kỳ lỗi kỹ thuật nào phát sinh trong quá trình vận hành ban đầu, đội ngũ kỹ thuật sẽ khắc phục trực tiếp trong 24 giờ.
+              </p>
+            </details>
+          </div>
+        </div>
+
+        <!-- ZALO HOTLINE ACTION BAR (VI) -->
+        <div class="bg-gradient-to-r from-slate-900 via-blue-950/40 to-slate-900 border border-slate-700/80 rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl">
+          <div class="text-center sm:text-left">
+            <p class="text-amber-400 font-serif italic text-base sm:text-lg mb-1">
+              "Hành động hôm nay — Doanh thu ngày mai"
+            </p>
+            <h3 class="text-xl sm:text-2xl font-bold text-white">
+              Cần tư vấn trực tiếp cùng Victor Chuyen?
+            </h3>
+            <p class="text-slate-400 text-sm mt-1">
+              Build • Automate • Monetize — Giải đáp bài toán AI cho riêng doanh nghiệp của bạn.
+            </p>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <a href="https://zalo.me/0989890022" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold transition shadow-lg shadow-blue-600/30">
+              <span class="w-7 h-7 rounded-full bg-white text-blue-600 flex items-center justify-center font-black text-xs">Z</span>
+              <span>TƯ VẤN QUA ZALO: 0989890022</span>
+            </a>
+          </div>
+        </div>
+
       </div>
 
       <!-- BOTTOM RETURN TO HOMEPAGE ACTION -->
@@ -425,12 +841,81 @@ const description = "Biến AI thành doanh thu thực tế cho Freelancer, SME 
           id="pricing-bottom-back-home-btn"
         >
           <span class="text-lg transition-transform group-hover:-translate-x-1">←</span>
-          <span>Quay lại Trang Chủ Travel4U — Khám Phá 50 Khách Sạn Vàng 2026</span>
+          <span class="lang-en">Back to Travel4U Portal — Explore 2026 Gold List Sanctuaries</span>
+          <span class="lang-vi hidden">Quay lại Trang Chủ Travel4U — Khám Phá 50 Khách Sạn Vàng 2026</span>
           <span class="text-[#c9a54e]">👑</span>
         </a>
       </div>
 
     </div>
   </main>
-  <Footer currentLocale="vi" />
+  
+  <Footer currentLocale="en" />
 </Layout>
+
+<script>
+  // Dynamic Pricing Language & Currency Switcher Engine
+  function initPricingLanguage() {
+    const btnEn = document.getElementById('btn-lang-en');
+    const btnVi = document.getElementById('btn-lang-vi');
+    const contentEn = document.getElementById('content-en');
+    const contentVi = document.getElementById('content-vi');
+    const langEnSpans = document.querySelectorAll('.lang-en');
+    const langViSpans = document.querySelectorAll('.lang-vi');
+
+    if (!btnEn || !btnVi || !contentEn || !contentVi) return;
+
+    function setLanguage(lang) {
+      if (lang === 'vi') {
+        // Activate Vietnamese
+        contentEn.classList.add('hidden');
+        contentVi.classList.remove('hidden');
+
+        btnVi.classList.add('bg-[#c9a54e]', 'text-slate-950', 'shadow-md');
+        btnVi.classList.remove('text-slate-400');
+        btnEn.classList.remove('bg-[#c9a54e]', 'text-slate-950', 'shadow-md');
+        btnEn.classList.add('text-slate-400');
+
+        langEnSpans.forEach(el => el.classList.add('hidden'));
+        langViSpans.forEach(el => el.classList.remove('hidden'));
+
+        localStorage.setItem('t4u_pricing_lang', 'vi');
+      } else {
+        // Activate English (Default)
+        contentVi.classList.add('hidden');
+        contentEn.classList.remove('hidden');
+
+        btnEn.classList.add('bg-[#c9a54e]', 'text-slate-950', 'shadow-md');
+        btnEn.classList.remove('text-slate-400');
+        btnVi.classList.remove('bg-[#c9a54e]', 'text-slate-950', 'shadow-md');
+        btnVi.classList.add('text-slate-400');
+
+        langViSpans.forEach(el => el.classList.add('hidden'));
+        langEnSpans.forEach(el => el.classList.remove('hidden'));
+
+        localStorage.setItem('t4u_pricing_lang', 'en');
+      }
+    }
+
+    // Determine initial language
+    const urlParams = new URLSearchParams(window.location.search);
+    const paramLang = urlParams.get('lang');
+    const savedLang = localStorage.getItem('t4u_pricing_lang');
+    
+    // Priority: URL Param (?lang=vi or ?lang=en) -> Saved in localStorage -> English default
+    if (paramLang === 'vi') {
+      setLanguage('vi');
+    } else if (paramLang === 'en') {
+      setLanguage('en');
+    } else if (savedLang === 'vi') {
+      setLanguage('vi');
+    } else {
+      setLanguage('en');
+    }
+
+    btnEn.addEventListener('click', () => setLanguage('en'));
+    btnVi.addEventListener('click', () => setLanguage('vi'));
+  }
+
+  document.addEventListener('DOMContentLoaded', initPricingLanguage);
+</script>

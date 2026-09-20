@@ -51,10 +51,10 @@ const homeUrl = currentLocale === 'en' ? '/' : `/${currentLocale}/`;
       <!-- Desktop Navigation -->
       <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium text-slate-300">
         <a href={homeUrl} class="hover:text-white transition-colors">{dict.nav_home}</a>
-        <a href="#experiences" class="hover:text-[#c9a54e] transition-colors">{dict.nav_experiences}</a>
-        <a href="#destinations" class="hover:text-[#c9a54e] transition-colors">{dict.nav_destinations}</a>
-        <a href="#curator" class="hover:text-[#c9a54e] transition-colors">{dict.nav_curators}</a>
-        <a href="/pricing" class="hover:text-amber-400 text-amber-400 font-semibold transition-colors flex items-center space-x-1">
+        <a href={`${homeUrl}#experiences`} class="hover:text-[#c9a54e] transition-colors">{dict.nav_experiences}</a>
+        <a href={`${homeUrl}#destinations`} class="hover:text-[#c9a54e] transition-colors">{dict.nav_destinations}</a>
+        <a href={`${homeUrl}#curator`} class="hover:text-[#c9a54e] transition-colors">{dict.nav_curators}</a>
+        <a href={currentLocale === 'vi' ? '/pricing?lang=vi' : '/pricing?lang=en'} class="hover:text-amber-400 text-amber-400 font-semibold transition-colors flex items-center space-x-1">
           <span>⚡</span>
           <span>{currentLocale === 'vi' ? 'Bảng Giá AI' : 'AI Solutions'}</span>
         </a>
@@ -141,28 +141,28 @@ const homeUrl = currentLocale === 'en' ? '/' : `/${currentLocale}/`;
         <span class="ml-3">{dict.nav_home}</span>
       </a>
       <a
-        href="#experiences"
+        href={`${homeUrl}#experiences`}
         class="flex items-center h-12 px-4 rounded-lg text-slate-200 hover:text-[#c9a54e] hover:bg-[#0b1b30] text-sm font-semibold transition-colors"
       >
         <span>💎</span>
         <span class="ml-3">{dict.nav_experiences}</span>
       </a>
       <a
-        href="#destinations"
+        href={`${homeUrl}#destinations`}
         class="flex items-center h-12 px-4 rounded-lg text-slate-200 hover:text-[#c9a54e] hover:bg-[#0b1b30] text-sm font-semibold transition-colors"
       >
         <span>📍</span>
         <span class="ml-3">{dict.nav_destinations}</span>
       </a>
       <a
-        href="#curator"
+        href={`${homeUrl}#curator`}
         class="flex items-center h-12 px-4 rounded-lg text-slate-200 hover:text-[#c9a54e] hover:bg-[#0b1b30] text-sm font-semibold transition-colors"
       >
         <span>👑</span>
         <span class="ml-3">{dict.nav_curators}</span>
       </a>
       <a
-        href="/pricing"
+        href={currentLocale === 'vi' ? '/pricing?lang=vi' : '/pricing?lang=en'}
         class="flex items-center h-12 px-4 rounded-lg text-amber-400 bg-amber-500/10 border border-amber-500/30 text-sm font-semibold transition-colors"
       >
         <span>⚡</span>
