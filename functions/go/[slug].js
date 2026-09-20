@@ -229,15 +229,17 @@ export async function onRequest(context) {
     targetExpediaUrl = 'https://www.expedia.com/Hotels';
   }
 
-  // 4. Standby Mode / Direct Redirection Check
-  // If ?direct=1 is supplied, or STANDBY_MODE is enabled in Cloudflare env, route straight to Expedia
-  const isDirectMode = url.searchParams.has('direct') || (env && env.STANDBY_MODE === 'true');
+  // 4. Standby Mode / Affiliate Activation Check
+  // Default is SAFE STANDBY MODE (routes directly to Expedia hotel page to prevent 400/404 errors)
+  // Only activates Travelpayouts tracking when env.EXPEDIA_AFFILIATE_ACTIVE === 'true'
+  const isAffiliateActive = (env && env.EXPEDIA_AFFILIATE_ACTIVE === 'true') && !url.searchParams.has('direct');
+  const expediaProgramId = (env && env.EXPEDIA_PROGRAM_ID) || '4692';
 
   let finalRedirectUrl = targetExpediaUrl;
-  if (!isDirectMode) {
-    // Wrap with Travelpayouts Expedia Deep Link (Program p=4119 for Expedia)
+  if (isAffiliateActive) {
+    // Wrap with verified Travelpayouts Expedia Deep Link when approved
     const fullMarker = `${tpMarker}.${subIdPrefix}_${country.toLowerCase()}_${rawSlug.replace(/[^a-z0-9_-]/g, '')}`;
-    finalRedirectUrl = `https://tp.media/r?marker=${fullMarker}&p=4119&u=${encodeURIComponent(targetExpediaUrl)}`;
+    finalRedirectUrl = `https://tp.media/r?marker=${fullMarker}&p=${expediaProgramId}&u=${encodeURIComponent(targetExpediaUrl)}`;
   }
 
   // 5. Return Clean Edge 302 Redirect with Strict Anti-Bot & Privacy Headers
