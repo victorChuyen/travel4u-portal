@@ -54,19 +54,21 @@ function startServer() {
 }
 
 async function runQA() {
-  const server = await startServer();
+  const remoteUrl = process.argv[2];
+  const baseUrl = remoteUrl ? remoteUrl.replace(/\/$/, '') : `http://127.0.0.1:${PORT}`;
+  const server = remoteUrl ? null : await startServer();
   const browser = await chromium.launch({ channel: 'chrome', headless: true });
   const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
   const page = await context.newPage();
 
   console.log('══════════════════════════════════════════════════════════════════');
-  console.log('🧪 QA VERIFICATION: SEARCH BAR, FILTER TABS & PRICING BACK BUTTON');
+  console.log(`🧪 QA VERIFICATION ON: ${baseUrl}`);
   console.log('══════════════════════════════════════════════════════════════════\n');
 
   try {
     // 1. TEST PRICING PAGE BACK BUTTON
     console.log('1️⃣ [PRICING PAGE] Checking Back to Homepage button...');
-    await page.goto(`http://127.0.0.1:${PORT}/pricing/`, { waitUntil: 'domcontentloaded' });
+    await page.goto(`${baseUrl}/pricing/`, { waitUntil: 'domcontentloaded' });
     
     const topBackBtn = await page.locator('#pricing-back-to-home-btn');
     const topCount = await topBackBtn.count();
@@ -88,7 +90,7 @@ async function runQA() {
 
     // 2. TEST HOMEPAGE SEARCH & FILTER PILLS
     console.log('\n2️⃣ [HOMEPAGE] Checking Search Bar & Category Filter Pills...');
-    await page.goto(`http://127.0.0.1:${PORT}/`, { waitUntil: 'domcontentloaded' });
+    await page.goto(`${baseUrl}/`, { waitUntil: 'domcontentloaded' });
     await page.waitForTimeout(1000);
 
     const initialCardsCount = await page.locator('.destination-card-item').count();
@@ -155,7 +157,7 @@ async function runQA() {
     console.error('Error during QA:', err);
   } finally {
     await browser.close();
-    server.close();
+    if (server) server.close();
   }
 }
 
