@@ -4,6 +4,9 @@
  * Authors: Chairman Victor Chuyen & AI CEO Lucky
  */
 
+import { sendLuxuryOnboardingEmail } from '../_lib/emailService.js';
+import { syncLeadToGoogleSheetCRM } from '../_lib/crmSync.js';
+
 const TELEGRAM_BOT_TOKEN = '8257466148:AAGjwgPgoGWMknWizOvAmQ_78RaJX60owz8';
 const TELEGRAM_CHAT_ID = '-1001828947537';
 
@@ -69,28 +72,37 @@ export async function onRequestPost({ request, env }) {
       }
     }
 
-    // Optional CRM Webhook
-    const crmWebhook = env?.CRM_WEBHOOK_URL;
-    if (crmWebhook) {
+    // 1. Auto-sync to Master Google Sheet CRM (Tab OPC_CRM_CUSTOMERS)
+    try {
+      await syncLeadToGoogleSheetCRM({
+        name,
+        phone,
+        email,
+        tier: interest,
+        tier_name: interest === 'tier_02_dwy' ? 'Gói 02: DWY Builder Sprint ($139)' : (interest === 'tier_03_dfy' ? 'Gói 03: DFY Revenue System ($388)' : 'Gói 01: DIY Starter Kit ($19)'),
+        payment_type: 'Đăng Ký Tư Vấn',
+        ref_code,
+        note,
+        status: 'Mới Tiếp Nhận',
+        env
+      });
+    } catch (crmErr) {
+      console.error('CRM Sheet sync error:', crmErr);
+    }
+
+    // 2. Automated Luxury Onboarding Email via Resend
+    if (email && email.includes('@')) {
       try {
-        await fetch(crmWebhook, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            event: 'lead_captured',
-            name,
-            phone,
-            email,
-            interest,
-            note,
-            ref_code: ref_code || 'direct',
-            source_url,
-            locale: locale || 'vi',
-            created_at: new Date().toISOString()
-          })
+        await sendLuxuryOnboardingEmail({
+          to: email,
+          name,
+          phone,
+          tier_name: interest === 'tier_02_dwy' ? 'Gói 02: DWY Builder Sprint ($139 / 3.6tr)' : (interest === 'tier_03_dfy' ? 'Gói 03: DFY Revenue System ($388 / 10tr)' : 'Gói 01: DIY Starter Kit ($19 / 500k)'),
+          ref_code,
+          env
         });
-      } catch (webhookErr) {
-        console.error('CRM Webhook error:', webhookErr);
+      } catch (emailErr) {
+        console.error('Onboarding email error:', emailErr);
       }
     }
 

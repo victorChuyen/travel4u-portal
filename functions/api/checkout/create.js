@@ -3,6 +3,9 @@
  * Route: POST /api/checkout/create
  */
 
+import { sendLuxuryOnboardingEmail } from '../_lib/emailService.js';
+import { syncLeadToGoogleSheetCRM } from '../_lib/crmSync.js';
+
 const TELEGRAM_BOT_TOKEN = '8257466148:AAGjwgPgoGWMknWizOvAmQ_78RaJX60owz8';
 const TELEGRAM_CHAT_ID = '-1001828947537';
 
@@ -78,30 +81,44 @@ ${ref_code ? `💵 <b>Hoa Hồng Dự Kiến:</b> 10%: ${comm10.toLocaleString('
       }
     }
 
-    // Optional Webhook for CRM (n8n / Google Sheets)
-    const crmWebhook = env?.CRM_WEBHOOK_URL;
-    if (crmWebhook) {
+    // 1. Auto-sync Order to Master Google Sheet CRM (Tab OPC_CRM_CUSTOMERS)
+    try {
+      await syncLeadToGoogleSheetCRM({
+        id: order_id,
+        name,
+        phone,
+        email,
+        business,
+        tier,
+        tier_name,
+        payment_type: isDeposit ? 'Đặt Cọc 50%' : 'Thanh Toán 100%',
+        amount_paid,
+        amount_remaining,
+        ref_code,
+        note: `Mã đơn: ${order_id} | Ref: ${ref_code || 'direct'}`,
+        status: isDeposit ? 'Đã Cọc 50%' : 'Chờ Đối Soát',
+        env
+      });
+    } catch (crmErr) {
+      console.error('CRM Sheet sync error:', crmErr);
+    }
+
+    // 2. Automated Luxury Onboarding Email via Resend
+    if (email && email.includes('@')) {
       try {
-        await fetch(crmWebhook, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            event: 'checkout_order_created',
-            order_id,
-            name,
-            phone,
-            email,
-            business,
-            tier,
-            tier_name,
-            payment_type,
-            amount_paid,
-            amount_remaining,
-            created_at: new Date().toISOString()
-          })
+        await sendLuxuryOnboardingEmail({
+          to: email,
+          name,
+          phone,
+          tier_name,
+          order_id,
+          payment_type,
+          amount: amount_paid,
+          ref_code,
+          env
         });
-      } catch (webhookErr) {
-        console.error('CRM Webhook error:', webhookErr);
+      } catch (emailErr) {
+        console.error('Onboarding email error:', emailErr);
       }
     }
 
