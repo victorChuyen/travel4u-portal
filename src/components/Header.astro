@@ -54,11 +54,7 @@ const homeUrl = currentLocale === 'en' ? '/' : `/${currentLocale}/`;
         <a href={`${homeUrl}#experiences`} class="hover:text-[#c9a54e] transition-colors">{dict.nav_experiences}</a>
         <a href={`${homeUrl}#destinations`} class="hover:text-[#c9a54e] transition-colors">{dict.nav_destinations}</a>
         <a href={`${homeUrl}#curator`} class="hover:text-[#c9a54e] transition-colors">{dict.nav_curators}</a>
-        <a href={currentLocale === 'vi' ? '/pricing?lang=vi' : '/pricing?lang=en'} class="hover:text-amber-400 text-amber-400 font-semibold transition-colors flex items-center space-x-1">
-          <span>⚡</span>
-          <span>{currentLocale === 'vi' ? 'Bảng Giá AI' : 'AI Solutions'}</span>
-        </a>
-        <a href="/aff/" class="hover:text-amber-300 text-amber-300/90 font-semibold transition-colors flex items-center space-x-1">
+        <a href="/aff/" class="hover:text-amber-300 text-amber-300 font-semibold transition-colors flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 hover:border-amber-400">
           <span>💎</span>
           <span>{currentLocale === 'vi' ? 'Đối Tác VIP' : 'VIP Affiliate'}</span>
         </a>
@@ -166,18 +162,11 @@ const homeUrl = currentLocale === 'en' ? '/' : `/${currentLocale}/`;
         <span class="ml-3">{dict.nav_curators}</span>
       </a>
       <a
-        href={currentLocale === 'vi' ? '/pricing?lang=vi' : '/pricing?lang=en'}
-        class="flex items-center h-12 px-4 rounded-lg text-amber-400 bg-amber-500/10 border border-amber-500/30 text-sm font-semibold transition-colors"
-      >
-        <span>⚡</span>
-        <span class="ml-3">{currentLocale === 'vi' ? 'Bảng Giá Giải Pháp AI' : 'AI Solutions & Pricing'}</span>
-      </a>
-      <a
         href="/aff/"
         class="flex items-center h-12 px-4 rounded-lg text-amber-300 bg-amber-500/15 border border-amber-500/40 text-sm font-bold transition-colors"
       >
         <span>💎</span>
-        <span class="ml-3">{currentLocale === 'vi' ? 'Bảng Điều Khiển Đối Tác VIP (10%-30%)' : 'VIP Affiliate Partner Dashboard'}</span>
+        <span class="ml-3">{currentLocale === 'vi' ? 'Đối Tác VIP & Giải Pháp AI' : 'VIP Affiliate & AI Solutions'}</span>
       </a>
     </div>
 
