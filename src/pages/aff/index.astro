@@ -14,7 +14,7 @@ const pageDescription = "Hệ thống quản lý đối tác tiếp thị liên 
 ---
 
 <Layout title={pageTitle} description={pageDescription} locale="vi">
-  <main class="min-h-screen bg-[#07111e] text-slate-100 py-8 px-4 sm:px-6 lg:px-8">
+  <main id="aff-dashboard-container" data-config={JSON.stringify(firebaseConfig)} class="min-h-screen bg-[#07111e] text-slate-100 py-8 px-4 sm:px-6 lg:px-8">
     <div class="max-w-6xl mx-auto">
       
       <!-- TOP NAVIGATION BAR -->
@@ -665,9 +665,13 @@ Lộ trình thực chiến dành riêng cho Cá nhân, Freelancer & Người th�
 
 </Layout>
 
-<script define:vars={{ firebaseConfig }}>
+<script type="module">
   import { initializeApp, getApps, getApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
   import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+
+  // Safely extract Firebase config passed from server component
+  const configEl = document.getElementById('aff-dashboard-container');
+  const firebaseConfig = JSON.parse(configEl?.getAttribute('data-config') || '{}');
 
   // Initialize Firebase Auth Safely
   const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
@@ -776,28 +780,28 @@ Lộ trình thực chiến dành riêng cho Cá nhân, Freelancer & Người th�
 
   // Share buttons
   document.getElementById('btn-share-zalo')?.addEventListener('click', () => {
-    const url = refLinkInput.value;
+    const url = refLinkInput?.value || '';
     window.open(`https://zalo.me/share?url=${encodeURIComponent(url)}`, '_blank');
   });
 
   document.getElementById('btn-share-fb')?.addEventListener('click', () => {
-    const url = refLinkInput.value;
+    const url = refLinkInput?.value || '';
     window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank', 'width=600,height=400');
   });
 
   document.getElementById('btn-share-tele')?.addEventListener('click', () => {
-    const url = refLinkInput.value;
+    const url = refLinkInput?.value || '';
     const text = 'Khám phá Hệ thống AI Doanh Thu & Cẩm Nang Du Lịch Xa Xỉ cùng Victor Chuyen:';
     window.open(`https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`, '_blank');
   });
 
   // QR Modal
   const qrModal = document.getElementById('qr-modal');
-  const qrImg = document.getElementById('qr-modal-image') as HTMLImageElement;
+  const qrImg = document.getElementById('qr-modal-image');
   const qrUrlText = document.getElementById('qr-modal-url');
 
   document.getElementById('btn-view-qr')?.addEventListener('click', () => {
-    if (!qrModal || !qrImg || !qrUrlText) return;
+    if (!qrModal || !qrImg || !qrUrlText || !refLinkInput) return;
     const url = refLinkInput.value;
     qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(url)}`;
     qrUrlText.innerText = url;
@@ -812,8 +816,10 @@ Lộ trình thực chiến dành riêng cho Cá nhân, Freelancer & Người th�
   });
 
   document.getElementById('btn-copy-qr-url')?.addEventListener('click', async () => {
-    await navigator.clipboard.writeText(refLinkInput.value);
-    alert('Đã sao chép link!');
+    if (refLinkInput) {
+      await navigator.clipboard.writeText(refLinkInput.value);
+      alert('Đã sao chép link!');
+    }
   });
 
   // Payout Modal
@@ -838,10 +844,10 @@ Lộ trình thực chiến dành riêng cho Cá nhân, Freelancer & Người th�
   // Handle Payout Form
   document.getElementById('payout-form')?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const bank = (document.getElementById('payout-bank') as HTMLSelectElement)?.value;
-    const accNum = (document.getElementById('payout-acc-number') as HTMLInputElement)?.value.trim();
-    const accName = (document.getElementById('payout-acc-name') as HTMLInputElement)?.value.trim();
-    const amount = Number((document.getElementById('payout-amount') as HTMLInputElement)?.value);
+    const bank = document.getElementById('payout-bank')?.value;
+    const accNum = document.getElementById('payout-acc-number')?.value?.trim();
+    const accName = document.getElementById('payout-acc-name')?.value?.trim();
+    const amount = Number(document.getElementById('payout-amount')?.value);
     const submitBtn = document.getElementById('btn-submit-payout');
 
     if (!bank || !accNum || !accName || !amount) return;
@@ -901,8 +907,8 @@ Lộ trình thực chiến dành riêng cho Cá nhân, Freelancer & Người th�
 
   document.getElementById('profile-form')?.addEventListener('submit', (e) => {
     e.preventDefault();
-    const newName = (document.getElementById('input-partner-name') as HTMLInputElement)?.value.trim();
-    const newRef = (document.getElementById('input-partner-ref') as HTMLInputElement)?.value.trim().toUpperCase();
+    const newName = document.getElementById('input-partner-name')?.value?.trim();
+    const newRef = document.getElementById('input-partner-ref')?.value?.trim()?.toUpperCase();
     if (newName && newRef) {
       currentPartnerName = newName;
       currentRefCode = newRef;
@@ -939,17 +945,17 @@ Lộ trình thực chiến dành riêng cho Cá nhân, Freelancer & Người th�
   // Swipe Copy Buttons
   document.querySelectorAll('.btn-copy-swipe').forEach(btn => {
     btn.addEventListener('click', async (e) => {
-      const targetIdx = (e.currentTarget as HTMLElement).getAttribute('data-target');
+      const targetIdx = e.currentTarget?.getAttribute('data-target');
       const contentEl = document.querySelector(`#tab-content-${targetIdx} div`);
-      if (!contentEl) return;
+      if (!contentEl || !refLinkInput) return;
       const rawText = contentEl.textContent || '';
       const personalizedText = rawText.replace(/\[LINK_AFFILIATE\]/g, refLinkInput.value);
       try {
         await navigator.clipboard.writeText(personalizedText);
-        const originalText = (e.currentTarget as HTMLElement).innerText;
-        (e.currentTarget as HTMLElement).innerText = '✓ Đã sao chép bài đăng kèm link của bạn!';
+        const originalText = e.currentTarget?.innerText;
+        if (e.currentTarget) e.currentTarget.innerText = '✓ Đã sao chép bài đăng kèm link của bạn!';
         setTimeout(() => {
-          (e.currentTarget as HTMLElement).innerText = originalText;
+          if (e.currentTarget && originalText) e.currentTarget.innerText = originalText;
         }, 3000);
       } catch (err) {
         alert('Đã chọn văn bản. Vui lòng bấm Ctrl+C để sao chép!');
