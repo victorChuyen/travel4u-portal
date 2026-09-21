@@ -892,7 +892,7 @@
     "s": "5.0 ★ Luxury Elite",
     "m": "/media/hotels-hotels_017-belmond-hotel-caruso-ravello-01.jpg",
     "u": "/go/belmond-hotel-caruso-ravello",
-    "d": false,
+    "d": true,
     "k": "belmond-hotel-caruso-ravello"
   },
   {
@@ -934,7 +934,7 @@
     "s": "5.0 ★ Luxury Elite",
     "m": "/media/hotels-hotels_023-the-connaught-london-01.jpg",
     "u": "/go/the-connaught-london",
-    "d": false,
+    "d": true,
     "k": "the-connaught-london"
   },
   {
@@ -948,7 +948,7 @@
     "s": "5.0 ★ Luxury Elite",
     "m": "/media/hotels-hotels_024-aman-venice-01.jpg",
     "u": "/go/aman-venice",
-    "d": false,
+    "d": true,
     "k": "aman-venice"
   },
   {
@@ -1018,7 +1018,7 @@
     "s": "5.0 ★ Luxury Elite",
     "m": "/media/hotels-hotels_029-capella-bangkok-01.jpg",
     "u": "/go/capella-bangkok",
-    "d": false,
+    "d": true,
     "k": "capella-bangkok"
   },
   {
@@ -1074,7 +1074,7 @@
     "s": "5.0 ★ Luxury Elite",
     "m": "/media/hotels-hotels_033-huka-lodge-new-zealand-01.jpg",
     "u": "/go/huka-lodge-new-zealand",
-    "d": false,
+    "d": true,
     "k": "huka-lodge-new-zealand"
   },
   {
@@ -1088,7 +1088,7 @@
     "s": "5.0 ★ Luxury Elite",
     "m": "/media/hotels-hotels_035-laucala-island-fiji-01.jpg",
     "u": "/go/laucala-island-fiji",
-    "d": false,
+    "d": true,
     "k": "laucala-island-fiji"
   },
   {
@@ -1158,7 +1158,7 @@
     "s": "5.0 ★ Luxury Elite",
     "m": "/media/hotels-hotels_042-ashford-castle-ireland-01.jpg",
     "u": "/go/ashford-castle-ireland",
-    "d": false,
+    "d": true,
     "k": "ashford-castle-ireland"
   },
   {
@@ -1214,7 +1214,7 @@
     "s": "5.0 ★ Luxury Elite",
     "m": "/media/hotels-hotels_046-the-peninsula-hong-kong-01.jpg",
     "u": "/go/the-peninsula-hong-kong",
-    "d": false,
+    "d": true,
     "k": "the-peninsula-hong-kong"
   },
   {
@@ -1242,7 +1242,7 @@
     "s": "5.0 ★ Luxury Elite",
     "m": "/media/hotels-hotels_049-eden-rock-st-barths-01.jpg",
     "u": "/go/eden-rock-st-barths",
-    "d": false,
+    "d": true,
     "k": "eden-rock-st-barths"
   },
   {
@@ -1662,7 +1662,7 @@
     "s": "5.0 ★ Luxury Elite",
     "m": "/media/hotels-hotels_079-amangalla-galle-fort-sri-lanka-01.jpg",
     "u": "/go/amangalla-galle-fort-sri-lanka",
-    "d": false,
+    "d": true,
     "k": "amangalla-galle-fort-sri-lanka"
   },
   {
@@ -1872,7 +1872,7 @@
     "s": "5.0 ★ Luxury Elite",
     "m": "/media/hotels-hotels_094-amanpuri-phuket-thailand-01.jpg",
     "u": "/go/amanpuri-phuket-thailand",
-    "d": false,
+    "d": true,
     "k": "amanpuri-phuket-thailand"
   },
   {
@@ -3454,7 +3454,7 @@
     "s": "5.0 ★ Luxury Elite",
     "m": "/media/italy-italy_008-belmond-hotel-caruso-ravello-01.jpg",
     "u": "/go/belmond-hotel-caruso-ravello",
-    "d": false,
+    "d": true,
     "k": "belmond-hotel-caruso-ravello"
   },
   {
@@ -3692,7 +3692,7 @@
     "s": "5.0 ★ Luxury Elite",
     "m": "/media/italy-italy_026-aman-venice-palazzo-papadopoli-01.jpg",
     "u": "/go/aman-venice-palazzo-papadopoli",
-    "d": false,
+    "d": true,
     "k": "aman-venice-palazzo-papadopoli"
   },
   {
@@ -4518,7 +4518,7 @@
     "s": "5.0 ★ Luxury Elite",
     "m": "/media/italy-italy_086-grand-hotel-quisisana-capri-01.jpg",
     "u": "/go/grand-hotel-quisisana-capri",
-    "d": false,
+    "d": true,
     "k": "grand-hotel-quisisana-capri"
   },
   {
@@ -5162,7 +5162,7 @@
     "s": "5.0 ★ Luxury Elite",
     "m": "/media/islands-islands_032-four-seasons-resort-bora-bora-01.jpg",
     "u": "/go/four-seasons-resort-bora-bora",
-    "d": false,
+    "d": true,
     "k": "four-seasons-resort-bora-bora"
   },
   {
@@ -5470,7 +5470,7 @@
     "s": "5.0 ★ Luxury Elite",
     "m": "/media/islands-islands_054-amanyara-providenciales-turks-and-c-01.jpg",
     "u": "/go/amanyara-providenciales-turks-and-c",
-    "d": false,
+    "d": true,
     "k": "amanyara-providenciales-turks-and-c"
   },
   {
@@ -5946,7 +5946,7 @@
     "s": "5.0 ★ Luxury Elite",
     "m": "/media/islands-islands_088-miavana-by-time-tide-madagascar-01.jpg",
     "u": "/go/miavana-by-time-tide-madagascar",
-    "d": false,
+    "d": true,
     "k": "miavana-by-time-tide-madagascar"
   },
   {
