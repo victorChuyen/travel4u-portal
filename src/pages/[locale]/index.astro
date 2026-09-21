@@ -384,7 +384,7 @@ const schemaData = {
           </span>
         </div>
 
-        <h1 class="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.14] mb-4 sm:mb-6">
+        <h1 class="luxury-neon-headline font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.14] mb-4 sm:mb-6">
           {dict.hero_headline}
         </h1>
 
@@ -581,3 +581,57 @@ const schemaData = {
   <Footer currentLocale={locale} />
 </Layout>
 
+<style>
+  /* ═══════════════════════════════════════════════════════════════
+     ✨ LUXURY NEON GOLD GLOW — Hero Headline Animation
+     Breathing gold text-shadow pulse + shimmer sweep
+     Design: Dark Obsidian #07111e bg × Gold #c9a54e accent
+     ═══════════════════════════════════════════════════════════════ */
+
+  .luxury-neon-headline {
+    color: #f0e6d3;
+    text-shadow:
+      0 0 7px rgba(201, 165, 78, 0.5),
+      0 0 20px rgba(201, 165, 78, 0.3),
+      0 0 42px rgba(201, 165, 78, 0.15),
+      0 0 80px rgba(201, 165, 78, 0.07);
+    background-image: linear-gradient(
+      90deg,
+      #f0e6d3 0%,
+      #c9a54e 25%,
+      #dfba63 50%,
+      #c9a54e 75%,
+      #f0e6d3 100%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: neonBreath 4s ease-in-out infinite, shimmerSweep 6s linear infinite;
+  }
+
+  @keyframes neonBreath {
+    0%, 100% {
+      filter: drop-shadow(0 0 6px rgba(201, 165, 78, 0.4))
+              drop-shadow(0 0 20px rgba(201, 165, 78, 0.2));
+    }
+    50% {
+      filter: drop-shadow(0 0 12px rgba(223, 186, 99, 0.7))
+              drop-shadow(0 0 40px rgba(201, 165, 78, 0.35))
+              drop-shadow(0 0 80px rgba(255, 112, 67, 0.15));
+    }
+  }
+
+  @keyframes shimmerSweep {
+    0% { background-position: 200% center; }
+    100% { background-position: -200% center; }
+  }
+
+  /* Reduced motion: disable animations but keep the gold gradient */
+  @media (prefers-reduced-motion: reduce) {
+    .luxury-neon-headline {
+      animation: none;
+      filter: drop-shadow(0 0 8px rgba(201, 165, 78, 0.3));
+    }
+  }
+</style>

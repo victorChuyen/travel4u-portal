@@ -177,7 +177,7 @@ const pageDescription = "Hệ thống quản lý đối tác tiếp thị liên 
             </div>
             <div class="my-2">
               <span id="wallet-available-balance" class="text-3xl sm:text-4xl font-black text-emerald-400 tracking-tight font-mono">
-                2.000.000đ
+                0đ
               </span>
             </div>
             <p class="text-xs text-slate-400">
@@ -207,7 +207,7 @@ const pageDescription = "Hệ thống quản lý đối tác tiếp thị liên 
             </div>
             <div class="my-2">
               <span id="wallet-pending-balance" class="text-3xl sm:text-4xl font-black text-amber-400 tracking-tight font-mono">
-                720.000đ
+                0đ
               </span>
             </div>
             <p class="text-xs text-slate-400">
@@ -232,7 +232,7 @@ const pageDescription = "Hệ thống quản lý đối tác tiếp thị liên 
             </div>
             <div class="my-2">
               <span id="wallet-total-earned" class="text-3xl sm:text-4xl font-black text-blue-400 tracking-tight font-mono">
-                8.720.000đ
+                0đ
               </span>
             </div>
             <p class="text-xs text-slate-400">
@@ -248,55 +248,56 @@ const pageDescription = "Hệ thống quản lý đối tác tiếp thị liên 
       </div>
 
       <!-- BLOCK 3: COMMISSION TIERS COMPARISON (ĐIỀU 7 AGENTS.MD) -->
-      <div class="mb-8 rounded-2xl border border-slate-800 bg-slate-900/60 p-6 shadow-xl">
+      <div class="mb-8 rounded-2xl border border-slate-800 bg-slate-900/80 p-6 shadow-xl">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-800">
           <div>
-            <h3 class="text-lg font-bold text-white flex items-center gap-2">
-              <span>🏆</span> <span>Chính Sách Hoa Hồng 3 Cấp Bậc (Theo Gói Đang Sở Hữu)</span>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold uppercase tracking-wider mb-2">
+              <span>💎 CƠ CẤU HOA HỒNG THEO GÓI HỘI VIÊN (ĐIỀU 7 AGENTS.MD)</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">
+              Cơ Chế Phân Bổ Doanh Thu 3 Cấp Bậc (10% — 20% — 30%)
             </h3>
-            <p class="text-xs text-slate-400 mt-1">
-              Bạn sở hữu gói giải pháp nào thì sẽ nhận hoa hồng trực tiếp tương ứng khi giới thiệu bất kỳ ai.
+            <p class="text-xs text-slate-400 mt-0.5">
+              Cấp bậc hoa hồng của bạn tự động kích hoạt theo Gói giải pháp bạn đã sở hữu trong hệ sinh thái Travel4U.
             </p>
           </div>
           <a
             href="/pricing"
-            class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 text-xs font-bold transition"
+            class="inline-flex items-center gap-1 text-xs font-bold text-amber-400 hover:text-amber-300 transition"
           >
-            <span>Nâng Cấp Gói Để Tăng Hoa Hồng</span>
+            <span>Nâng cấp cấp bậc hội viên</span>
             <span>→</span>
           </a>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <!-- CẤP 1 -->
-          <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-4 space-y-2 hover:border-blue-500/50 transition">
+          <!-- CẤP 1 (STARTER) -->
+          <div class="rounded-xl border border-blue-500/30 bg-blue-950/20 p-4 space-y-2 hover:border-blue-500/50 transition">
             <div class="flex justify-between items-center">
               <span class="text-xs font-bold text-blue-400">CẤP 01 — DIY STARTER</span>
-              <span class="text-xs px-2 py-0.5 rounded bg-blue-500/10 text-blue-300 font-mono font-bold">10%</span>
+              <span class="text-xs px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 font-mono font-bold">10%</span>
             </div>
-            <div class="text-sm font-extrabold text-white">OPC AI Starter Kit ($19 / 500k)</div>
-            <ul class="text-xs text-slate-300 space-y-1 pt-2 border-t border-slate-800/80">
-              <li>• Bán Gói 1: Nhận <strong class="text-white">50.000đ</strong></li>
-              <li>• Bán Gói 2: Nhận <strong class="text-white">360.000đ</strong></li>
-              <li>• Bán Gói 3: Nhận <strong class="text-white">1.000.000đ</strong></li>
+            <div class="text-sm font-bold text-white">OPC AI Starter Kit ($19 / 500k)</div>
+            <ul class="text-xs text-slate-300 space-y-1 pt-2 border-t border-blue-900/60">
+              <li>• Bán Gói 1: Nhận <strong class="text-blue-300">50.000đ</strong></li>
+              <li>• Bán Gói 2: Nhận <strong class="text-blue-300">360.000đ</strong></li>
+              <li>• Bán Gói 3: Nhận <strong class="text-blue-300">1.000.000đ</strong></li>
+              <li class="text-[11px] text-slate-400 italic pt-1">Thích hợp tạo nguồn thu nhập phụ nhẹ nhàng.</li>
             </ul>
           </div>
 
-          <!-- CẤP 2 (ACTIVE DEMO) -->
-          <div class="rounded-xl border-2 border-emerald-500/60 bg-emerald-950/20 p-4 space-y-2 relative shadow-lg">
-            <div class="absolute -top-3 right-3 bg-emerald-500 text-slate-950 px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase">
-              CẤP HIỆN TẠI CỦA BẠN
-            </div>
+          <!-- CẤP 2 (BUILDER) -->
+          <div class="rounded-xl border border-emerald-500/40 bg-emerald-950/20 p-4 space-y-2 hover:border-emerald-500/60 transition relative">
             <div class="flex justify-between items-center">
               <span class="text-xs font-bold text-emerald-400">CẤP 02 — DWY BUILDER</span>
-              <span class="text-xs px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono font-black text-sm">20% 🔥</span>
+              <span class="text-xs px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono font-extrabold text-sm">20% 🔥</span>
             </div>
-            <div class="text-sm font-extrabold text-white">OPC AI Builder Sprint ($139 / 3.6tr)</div>
+            <div class="text-sm font-bold text-white">OPC AI Builder Sprint ($139 / 3.6tr)</div>
             <ul class="text-xs text-slate-300 space-y-1 pt-2 border-t border-emerald-900/60">
               <li>• Bán Gói 1: Nhận <strong class="text-emerald-300">100.000đ</strong></li>
-              <li>• Bán Gói 2: Nhận <strong class="text-emerald-300">720.000đ</strong></li>
+              <li>• Bán Gói 2: Nhận <strong class="text-emerald-300 font-bold">720.000đ</strong></li>
               <li>• Bán Gói 3: Nhận <strong class="text-emerald-300 font-bold">2.000.000đ</strong></li>
-              <li class="text-[11px] text-emerald-400 font-semibold italic pt-1">★ Chỉ cần 2 sales là hoàn vốn 100%!</li>
+              <li class="text-[11px] text-emerald-300 font-semibold italic pt-1">★ Chỉ cần 2 sales Gói 2 là hoàn vốn 100%!</li>
             </ul>
           </div>
 
@@ -328,7 +329,7 @@ const pageDescription = "Hệ thống quản lý đối tác tiếp thị liên 
               Cập nhật tự động theo thời gian thực mỗi khi có khách đăng ký hoặc thanh toán qua mã của bạn.
             </p>
           </div>
-          <span class="text-xs text-slate-400">Tổng cộng: <strong class="text-white">4 khách hàng</strong></span>
+          <span class="text-xs text-slate-400">Tổng cộng: <strong id="total-leads-count" class="text-white">0 khách hàng</strong></span>
         </div>
 
         <div class="overflow-x-auto">
@@ -343,59 +344,15 @@ const pageDescription = "Hệ thống quản lý đối tác tiếp thị liên 
               </tr>
             </thead>
             <tbody id="leads-table-body" class="divide-y divide-slate-800 text-xs sm:text-sm">
-              <!-- Row 1: Converted Paid -->
-              <tr class="hover:bg-slate-800/40 transition">
-                <td class="py-3.5 px-4 text-slate-400 font-mono text-xs">Hôm nay, 14:20</td>
-                <td class="py-3.5 px-4 font-bold text-white">Trần Minh T*** (Hà Nội)</td>
-                <td class="py-3.5 px-4 text-slate-300">OPC AI Builder Sprint ($139)</td>
-                <td class="py-3.5 px-4 text-center">
-                  <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-bold border border-emerald-500/30">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                    Đã Thanh Toán
-                  </span>
+              <!-- Empty state: Real data only (ZERO MOCK DATA) -->
+              <tr id="empty-leads-row">
+                <td colspan="5" class="py-12 text-center text-slate-400">
+                  <div class="flex flex-col items-center justify-center space-y-2">
+                    <span class="text-3xl">📭</span>
+                    <p class="font-medium text-slate-300">Chưa có đơn hàng hoặc khách hàng tiềm năng nào</p>
+                    <p class="text-xs text-slate-500 max-w-sm">Chia sẻ liên kết giới thiệu độc quyền của bạn để bắt đầu ghi nhận hoa hồng và khách hàng thực tế vào CRM.</p>
+                  </div>
                 </td>
-                <td class="py-3.5 px-4 text-right font-bold text-emerald-400 font-mono">+720.000đ</td>
-              </tr>
-
-              <!-- Row 2: Converted Paid -->
-              <tr class="hover:bg-slate-800/40 transition">
-                <td class="py-3.5 px-4 text-slate-400 font-mono text-xs">Hôm qua, 09:15</td>
-                <td class="py-3.5 px-4 font-bold text-white">Nguyễn Khánh L*** (TP.HCM)</td>
-                <td class="py-3.5 px-4 text-slate-300">OPC AI Revenue System ($388)</td>
-                <td class="py-3.5 px-4 text-center">
-                  <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-bold border border-emerald-500/30">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                    Đã Thanh Toán
-                  </span>
-                </td>
-                <td class="py-3.5 px-4 text-right font-bold text-emerald-400 font-mono">+2.000.000đ</td>
-              </tr>
-
-              <!-- Row 3: Deposit / In Progress -->
-              <tr class="hover:bg-slate-800/40 transition bg-amber-950/10">
-                <td class="py-3.5 px-4 text-slate-400 font-mono text-xs">19/09/2026</td>
-                <td class="py-3.5 px-4 font-bold text-white">Vũ Thành Đ*** (Đà Nẵng)</td>
-                <td class="py-3.5 px-4 text-slate-300">OPC AI Builder Sprint ($139)</td>
-                <td class="py-3.5 px-4 text-center">
-                  <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-400 text-xs font-bold border border-amber-500/30">
-                    <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
-                    Đã Cọc 50% (Đang duyệt)
-                  </span>
-                </td>
-                <td class="py-3.5 px-4 text-right font-bold text-amber-400 font-mono">+360.000đ</td>
-              </tr>
-
-              <!-- Row 4: New Lead Registered for Starter Kit -->
-              <tr class="hover:bg-slate-800/40 transition">
-                <td class="py-3.5 px-4 text-slate-400 font-mono text-xs">18/09/2026</td>
-                <td class="py-3.5 px-4 font-bold text-slate-300">Phạm Hoàng G*** (Hải Phòng)</td>
-                <td class="py-3.5 px-4 text-slate-300">OPC AI Starter Kit ($19)</td>
-                <td class="py-3.5 px-4 text-center">
-                  <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-semibold border border-blue-500/30">
-                    💬 Đang Tư Vấn Gói 01
-                  </span>
-                </td>
-                <td class="py-3.5 px-4 text-right text-slate-400 font-mono">+100.000đ</td>
               </tr>
             </tbody>
           </table>
@@ -431,17 +388,23 @@ const pageDescription = "Hệ thống quản lý đối tác tiếp thị liên 
         <!-- TAB CONTENT 1 -->
         <div id="tab-content-1" class="space-y-3">
           <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs sm:text-sm text-slate-300 whitespace-pre-line leading-relaxed font-sans select-all">
-            {`🔥 NẾU DOANH NGHIỆP CỦA BẠN VẪN ĐANG LÀM THỦ CÔNG MỖI NGÀY — BẠN ĐANG MẤT ĐI HÀNG TRĂM TRIỆU DOANH THU TIỀM NĂNG!
+            {`🏖️ VỪA VI VU KHÁCH SẠN 5 SAO, VỪA KIẾM $1,000 - $3,000/THÁNG TỪ AFFILIATE DU LỊCH LUXURY BẰNG AI TỰ ĐỘNG!
 
-Tôi vừa hoàn thành việc ứng dụng Hệ thống Tự Động Hóa Doanh Thu Bằng AI của Victor Chuyen (Chủ tịch Travel4U & Founder OPC AI Revenue Lab). Kết quả thực sự đột phá:
-✅ Tiết kiệm hơn 80% thời gian xử lý dữ liệu và chăm sóc khách hàng.
-✅ Tự động hóa kết nối Google Sheets, CRM, Telegram và tạo báo cáo 24/7.
-✅ Phù hợp cho Freelancer, Solopreneur và các doanh nghiệp SME đang cần tối ưu chi phí.
+Bạn mê xê dịch, thích check-in những khu nghỉ dưỡng xa xỉ như Maldives, Como hay Kyoto, nhưng mỗi chuyến đi lại ngốn cả đống tiền?
 
-👉 Xem chi tiết giải pháp và nhận Cẩm nang ứng dụng AI thực chiến tại đây:
+Sự thật là: Các Digital Nomad và Freelancer thông minh không chỉ đi du lịch để "tiêu tiền" — họ biến từng điểm đến thành cỗ máy sinh tiền thụ động từ Affiliate Du Lịch Xa Xỉ!
+
+Mình vừa sở hữu giải pháp AI Affiliate Du Lịch Thực Chiến từ anh Victor Chuyen (Founder Luxury Travel4U) và thực sự mở ra một chân trời mới:
+✨ AI tự động cào ảnh 4K thật, viết cẩm nang review khách sạn 5 sao & tour trải nghiệm VIP chuẩn Condé Nast/Forbes.
+✨ Tự động tích hợp link Affiliate hoa hồng cao: Tour VIP GetYourGuide (8%), Đặt phòng hạng sang ($112+/booking), Xe sang Discover Cars (70% RevShare), eSIM Airalo...
+✨ Không cần biết viết code, không cần đau đầu quản lý — hệ thống tự vận hành ngay cả khi bạn đang trên máy bay hay nằm thư giãn bên bãi biển!
+
+Lộ trình thiết kế riêng cho Cá nhân, Freelancer & Người thích tự do, bắt đầu chỉ từ $19 (500k) hoặc có Victor kèm 1:1.
+
+👉 Nhận cẩm nang và trải nghiệm hệ thống tại đây:
 [LINK_AFFILIATE]
 
-(Chỉ cần bắt đầu từ $19 / 500k là bạn đã có trọn bộ cẩm nang và template chạy được ngay!)`}
+(Ai sở hữu giải pháp còn được kích hoạt quyền Đối Tác VIP nhận hoa hồng 10% - 20% - 30% trực tiếp về tài khoản ngân hàng!)`}
           </div>
           <button
             class="btn-copy-swipe px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs transition shadow flex items-center gap-1.5"
@@ -454,14 +417,18 @@ Tôi vừa hoàn thành việc ứng dụng Hệ thống Tự Động Hóa Doanh
         <!-- TAB CONTENT 2 -->
         <div id="tab-content-2" class="hidden space-y-3">
           <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs sm:text-sm text-slate-300 whitespace-pre-line leading-relaxed font-sans select-all">
-            {`Chào anh/chị, em thấy bên mình đang cần giải pháp tự động hóa quy trình kinh doanh và chăm sóc khách hàng bằng AI. 
+            {`Chào bạn! Dạo này công việc và các chuyến đi du lịch thế nào rồi?
 
-Em vừa tìm được giải pháp thực chiến rất hay của anh Victor Chuyen (OPC AI Revenue Lab). Bên anh ấy có các gói từ tự học đến coaching 1:1 cầm tay chỉ việc, triển khai xong ngay một luồng tự động chạy thật.
+Thấy bạn cũng mê xê dịch và thích phong cách sống tự do giống mình, nên mình muốn chia sẻ một hướng đi mới cực kỳ tiềm năng: Xây kênh Affiliate Du Lịch Xa Xỉ tự động bằng AI để tạo dòng tiền thụ động bền vững.
 
-Anh/chị xem thử lộ trình chi tiết ở link này nhé, có đầy đủ bảng giá và nội dung:
+Trước giờ tụi mình đi du lịch chỉ toàn tốn tiền, nhưng với hệ thống AI của anh Victor Chuyen (Luxury Travel4U), mình có thể tự động xuất bản cẩm nang 5 sao, kết nối tour VIP GetYourGuide và khách sạn hạng sang để nhận hoa hồng ngoại tệ đều đặn.
+
+Bên anh Victor có 3 gói rất sát cho cá nhân/freelancer: từ tự học qua cẩm nang & prompt vault ($19 / 500k), đến được kèm 1:1 dựng hệ thống chạy thật ($139), hoặc bàn giao trọn gói website/app ($388).
+
+Bạn xem thử lộ trình chi tiết ở link này nhé:
 [LINK_AFFILIATE]
 
-Nếu cần tư vấn thêm em có thể kết nối anh/chị trao đổi trực tiếp với bên anh Victor ạ.`}
+Nếu bạn thích tìm hiểu sâu hơn, mình sẵn sàng kết nối bạn trao đổi trực tiếp với anh Victor nhé!`}
           </div>
           <button
             class="btn-copy-swipe px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs transition shadow flex items-center gap-1.5"
@@ -474,13 +441,15 @@ Nếu cần tư vấn thêm em có thể kết nối anh/chị trao đổi trự
         <!-- TAB CONTENT 3 -->
         <div id="tab-content-3" class="hidden space-y-3">
           <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs sm:text-sm text-slate-300 whitespace-pre-line leading-relaxed font-sans select-all">
-            {`3 Bước biến AI thành cỗ máy sinh doanh thu thực tế mà không cần biết viết code! 🚀
+            {`Bí mật để vừa vi vu khách sạn 5 sao, vừa tạo thu nhập thụ động từ Affiliate Du Lịch mà không cần gò bó công việc 8 tiếng! ✈️🏝️
 
-1️⃣ Xác định điểm nghẽn lớn nhất trong quy trình chăm sóc khách hàng.
-2️⃣ Kết nối AI Gemini + Google Sheets + Bot thông báo tự động.
-3️⃣ Tự động hóa tiếp nhận khách hàng và đối soát hoa hồng 24/7.
+3 Bước biến đam mê xê dịch thành dòng tiền tự động bằng AI:
+1️⃣ Dùng AI tạo cẩm nang review resort 5 sao & tour VIP tự động chuẩn quốc tế (không cần biết code hay viết văn).
+2️⃣ Tự động tích hợp link Affiliate hoa hồng cao: GetYourGuide VIP Tours, phòng khách sạn sang trọng, vé xe, eSIM.
+3️⃣ Cỗ máy vận hành 24/7 trên điện thoại — tiền hoa hồng chuyển thẳng về tài khoản ngân hàng ngay cả khi bạn đang nằm nghỉ bên bãi biển!
 
-Chi tiết công thức xem tại link trên bio hoặc bấm vào đây:
+Lộ trình thực chiến dành riêng cho Cá nhân, Freelancer & Người thích tự do:
+👉 Bấm link trên bio hoặc truy cập ngay:
 [LINK_AFFILIATE]`}
           </div>
           <button
@@ -520,7 +489,7 @@ Chi tiết công thức xem tại link trên bio hoặc bấm vào đây:
         </span>
         <h3 class="text-xl font-bold text-white">Rút Hoa Hồng Về Ngân Hàng</h3>
         <p class="text-xs text-slate-400 mt-1">
-          Số dư khả dụng hiện tại: <strong class="text-emerald-400 font-mono text-sm">2.000.000 VNĐ</strong>
+          Số dư khả dụng hiện tại: <strong class="text-emerald-400 font-mono text-sm">0 VNĐ</strong>
         </p>
       </div>
 
@@ -569,8 +538,7 @@ Chi tiết công thức xem tại link trên bio hoặc bấm vào đây:
             type="number"
             required
             min="200000"
-            max="2000000"
-            value="2000000"
+            placeholder="Tối thiểu 200.000 VNĐ"
             class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-emerald-400 font-mono font-bold focus:outline-none focus:border-amber-400"
           />
           <span class="text-[10px] text-slate-400">Tối thiểu: 200.000 VNĐ • Miễn phí giao dịch</span>
