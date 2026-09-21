@@ -4,8 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import DestinationCard from '../components/DestinationCard.astro';
 import SearchBar from '../components/SearchBar.astro';
-import TripIntentDrawer from '../components/TripIntentDrawer.astro';
-import AiTripAssistantModal from '../components/AiTripAssistantModal.astro';
+
 import IntentOfferCards from '../components/IntentOfferCards.astro';
 import destinationsData from '../data/destinations.json';
 import i18n from '../data/i18n.json';
@@ -188,7 +187,7 @@ const schemaData = {
 
         <!-- Subtitle -->
         <p class="text-xs sm:text-base md:text-lg text-slate-300 max-w-3xl mx-auto font-normal leading-relaxed mb-8 sm:mb-10 px-2">
-          Discover the world’s most extraordinary destinations with AI-powered itineraries, handpicked 5-star sanctuaries, and personal storytelling from founders Victor & Lucky.
+          Discover the world's most extraordinary 5-star sanctuaries, private overwater villas, and verified VIP privileges personally curated by founders Victor & Lucky.
         </p>
 
         <!-- 🔍 FLOATING SEARCH BAR & CATEGORY PILLS -->
@@ -439,7 +438,4 @@ const schemaData = {
 
   <Footer currentLocale="en" />
 
-  <!-- 🧭 TRAVELER INTENT DRAWER & AI TRIP ASSISTANT MODALS -->
-  <TripIntentDrawer currentLocale="en" />
-  <AiTripAssistantModal />
 </Layout>

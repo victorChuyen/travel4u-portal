@@ -4,8 +4,7 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import DestinationCard from '../../components/DestinationCard.astro';
 import SearchBar from '../../components/SearchBar.astro';
-import TripIntentDrawer from '../../components/TripIntentDrawer.astro';
-import AiTripAssistantModal from '../../components/AiTripAssistantModal.astro';
+
 import IntentOfferCards from '../../components/IntentOfferCards.astro';
 import destinationsData from '../../data/destinations.json';
 import i18n from '../../data/i18n.json';
@@ -586,7 +585,4 @@ const schemaData = {
 
   <Footer currentLocale={locale} />
 
-  <!-- 🧭 TRAVELER INTENT DRAWER & AI TRIP ASSISTANT MODALS -->
-  <TripIntentDrawer currentLocale={locale} />
-  <AiTripAssistantModal />
 </Layout>
