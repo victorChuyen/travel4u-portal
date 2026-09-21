@@ -13,6 +13,13 @@ const journalContent: Record<string, {
   badge: string;
   title: string;
   subtitle: string;
+  preferenceTitle: string;
+  pref_all: string;
+  pref_islands: string;
+  pref_palaces: string;
+  pref_ryokans: string;
+  pref_safaris: string;
+  pref_vip_hacks: string;
   placeholder: string;
   button: string;
   privacy: string;
@@ -23,121 +30,205 @@ const journalContent: Record<string, {
     badge: "TRAVEL4YOU JOURNAL",
     title: "Receive new luxury travel guides.",
     subtitle: "Join the Travel4You list for new destination guides, private experience ideas, and carefully selected booking links.",
+    preferenceTitle: "Which curated sanctuaries do you wish to explore?",
+    pref_all: "✨ All Sanctuaries",
+    pref_islands: "🏝️ Private Islands",
+    pref_palaces: "🏰 Historic Palaces",
+    pref_ryokans: "♨️ Japanese Ryokans",
+    pref_safaris: "🦁 African Safaris",
+    pref_vip_hacks: "✈️ VIP Upgrade Secrets",
     placeholder: "Your email address *",
     button: "Get the latest guides",
-    privacy: "No spam. Curated monthly dispatches. Unsubscribe anytime in 1 click.",
+    privacy: "Weekly curated dispatch (Saturdays 09:00 AM) • Zero spam • Unsubscribe anytime in 1 click.",
     success: "✨ Welcome to the Travel4You Journal!",
-    successDesc: "Your 2026 Gold List Luxury Guide and unreleased private booking links have been dispatched to your email."
+    successDesc: "Your 2026 Gold List Luxury Guide has been dispatched to your email. Expect your curated weekend dispatch every Saturday at 09:00 AM."
   },
   vi: {
     badge: "CẨM NANG TRAVEL4YOU JOURNAL",
     title: "Nhận cẩm nang du lịch xa xỉ mới nhất.",
     subtitle: "Gia nhập danh sách độc quyền Travel4You để nhận cẩm nang điểm đến mới, ý tưởng trải nghiệm riêng tư và liên kết đặt phòng tuyển chọn.",
+    preferenceTitle: "Chọn chủ đề du lịch bạn yêu thích nhất:",
+    pref_all: "✨ Tất cả cẩm nang",
+    pref_islands: "🏝️ Đảo riêng & Biệt thự nổi",
+    pref_palaces: "🏰 Cung điện & Lâu đài cổ",
+    pref_ryokans: "♨️ Ryokan & Onsen Nhật Bản",
+    pref_safaris: "🦁 Safari hoang dã Châu Phi",
+    pref_vip_hacks: "✈️ Bí kíp nâng hạng 5 sao",
     placeholder: "Địa chỉ email của bạn *",
     button: "Nhận cẩm nang ngay",
-    privacy: "Hoàn toàn bảo mật. Không spam. Hủy đăng ký bất kỳ lúc nào với 1 chạm.",
+    privacy: "1 cẩm nang tuyển chọn mỗi tuần (09:00 Thứ Bảy) • Hoàn toàn bảo mật • Hủy 1-chạm bất kỳ lúc nào.",
     success: "✨ Chúc mừng bạn đã gia nhập Travel4You Journal!",
-    successDesc: "Cẩm nang 2026 Gold List và các đặc quyền đặt phòng VIP bí mật đang được chuyển tới hộp thư của bạn."
+    successDesc: "Cẩm nang 2026 Gold List và đặc quyền VIP đang được chuyển tới hộp thư của bạn. Bản tin chuyên sâu định kỳ sẽ gửi tới bạn vào 09:00 sáng Thứ Bảy hàng tuần."
   },
   de: {
     badge: "TRAVEL4YOU JOURNAL",
     title: "Erhalten Sie neue Luxus-Reiseführer.",
     subtitle: "Treten Sie der Travel4You-Liste bei für neue Reiseführer, exklusive Reiseideen und handverlesene Buchungslinks.",
+    preferenceTitle: "Wählen Sie Ihr bevorzugtes Reisethema:",
+    pref_all: "✨ Alle Reiseziele",
+    pref_islands: "🏝️ Privatinseln & Villen",
+    pref_palaces: "🏰 Historische Paläste",
+    pref_ryokans: "♨️ Japanische Ryokans",
+    pref_safaris: "🦁 Afrikanische Safaris",
+    pref_vip_hacks: "✈️ VIP-Upgrade-Tipps",
     placeholder: "Ihre E-Mail-Adresse *",
     button: "Neueste Guides erhalten",
-    privacy: "Kein Spam. Monatliche Auswahl. Jederzeit mit 1 Klick abbestellbar.",
+    privacy: "Wöchentliche Kuration (Samstags 09:00 Uhr) • Kein Spam • Jederzeit mit 1 Klick abbestellbar.",
     success: "✨ Willkommen im Travel4You Journal!",
-    successDesc: "Ihr Luxus-Reiseführer für die Gold List 2026 ist auf dem Weg zu Ihrer E-Mail-Adresse."
+    successDesc: "Ihr Gold List 2026 Reiseführer wurde an Ihre E-Mail gesendet. Samstags um 09:00 Uhr erhalten Sie die wöchentliche Kuration."
   },
   fr: {
     badge: "JOURNAL TRAVEL4YOU",
     title: "Recevez les nouveaux guides de voyage de luxe.",
     subtitle: "Rejoignez la liste Travel4You pour découvrir de nouvelles destinations, des idées d'expériences privées et des liens de réservation sélectionnés.",
+    preferenceTitle: "Choisissez votre univers de voyage préféré :",
+    pref_all: "✨ Tous les sanctuaires",
+    pref_islands: "🏝️ Îles privées & Villas",
+    pref_palaces: "🏰 Palais & Châteaux",
+    pref_ryokans: "♨️ Ryokans & Onsen",
+    pref_safaris: "🦁 Safaris en Afrique",
+    pref_vip_hacks: "✈️ Secrets VIP 5 Étoiles",
     placeholder: "Votre adresse e-mail *",
     button: "Recevoir les guides",
-    privacy: "Zéro spam. Sélection mensuelle. Désinscription en 1 clic.",
+    privacy: "1 sélection par semaine (Samedi 09h00) • Zéro spam • Désinscription en 1 clic.",
     success: "✨ Bienvenue dans le Journal Travel4You !",
-    successDesc: "Votre guide Gold List 2026 et vos privilèges de réservation privés ont été envoyés à votre adresse e-mail."
+    successDesc: "Votre guide Gold List 2026 a été envoyé à votre adresse e-mail. Rendez-vous chaque samedi à 09h00."
   },
   es: {
     badge: "JOURNAL TRAVEL4YOU",
     title: "Reciba nuevas guías de viajes de lujo.",
     subtitle: "Únase a la lista de Travel4You para recibir guías de nuevos destinos, ideas de experiencias exclusivas y enlaces de reserva seleccionados.",
-    placeholder: "Su correo electrónico *",
-    button: "Obtener las guías",
-    privacy: "Sin spam. Selección mensual curada. Cancela en cualquier momento con 1 clic.",
+    preferenceTitle: "Seleccione su temática de viaje preferida:",
+    pref_all: "✨ Todos los destinos",
+    pref_islands: "🏝️ Islas privadas & Villas",
+    pref_palaces: "🏰 Palacios y Castillos",
+    pref_ryokans: "♨️ Ryokans & Onsen",
+    pref_safaris: "🦁 Safaris en África",
+    pref_vip_hacks: "✈️ Trucos VIP 5 Estrellas",
+    placeholder: "Su correo electrónico *"
+    ,button: "Obtener las guías",
+    privacy: "Envío semanal curado (Sábados 09:00) • Sin spam • Cancela con 1 clic.",
     success: "✨ ¡Bienvenido a Travel4You Journal!",
-    successDesc: "Su guía Gold List 2026 y los enlaces de reserva VIP han sido enviados a su correo."
+    successDesc: "Su guía Gold List 2026 ha sido enviada a su correo. Recibirá nuestra selección los sábados a las 09:00."
   },
   it: {
     badge: "TRAVEL4YOU JOURNAL",
     title: "Ricevi le nuove guide di viaggio di lusso.",
     subtitle: "Iscriviti alla lista Travel4You per nuove guide di destinazione, idee per esperienze esclusive e link di prenotazione selezionati.",
+    preferenceTitle: "Seleziona il tuo tema di viaggio preferito:",
+    pref_all: "✨ Tutte le destinazioni",
+    pref_islands: "🏝️ Isole private & Ville",
+    pref_palaces: "🏰 Palazzi storici",
+    pref_ryokans: "♨️ Ryokan & Onsen",
+    pref_safaris: "🦁 Safari in Africa",
+    pref_vip_hacks: "✈️ Segreti VIP 5 Stelle",
     placeholder: "Il tuo indirizzo email *",
     button: "Ricevi le guide",
-    privacy: "Nessuno spam. Selezione mensile. Disiscriviti quando vuoi in 1 clic.",
+    privacy: "Spedizione settimanale (Sabato 09:00) • Nessuno spam • Disiscriviti in 1 clic.",
     success: "✨ Benvenuto nel Journal Travel4You!",
-    successDesc: "La tua guida Gold List 2026 e i link per le prenotazioni VIP sono stati inviati via email."
+    successDesc: "La tua guida Gold List 2026 è stata inviata alla tua email. Appuntamento ogni sabato alle 09:00."
   },
   ja: {
     badge: "TRAVEL4YOU JOURNAL",
     title: "最新のラグジュアリートラベルガイドをお届けします。",
     subtitle: "Travel4Youリストにご登録いただくと、新しい目的地のガイド、プライベートな体験のアイデア、厳選された予約リンクをお届けします。",
+    preferenceTitle: "ご興味のある旅行テーマをお選びください：",
+    pref_all: "✨ すべての聖域ガイド",
+    pref_islands: "🏝️ プライベートアイランド",
+    pref_palaces: "🏰 歴史的パレス・古城",
+    pref_ryokans: "♨️ 極上温泉旅館",
+    pref_safaris: "🦁 アフリカンサファリ",
+    pref_vip_hacks: "✈️ 5つ星VIPアップグレード術",
     placeholder: "メールアドレス *",
     button: "最新ガイドを受け取る",
-    privacy: "スパムは一切ありません。月刊配信。いつでもワンクリックで解除可能。",
+    privacy: "毎週土曜午前9時にお届け • スパム一切なし • いつでも1クリックで解除可能。",
     success: "✨ Travel4You Journalへようこそ！",
-    successDesc: "2026年ゴールドリストのラグジュアリーガイドとVIP予約リンクをメールでお送りしました。"
+    successDesc: "2026年ゴールドリストのラグジュアリーガイドを送信しました。毎週土曜午前9時の厳選便をお楽しみに。"
   },
   ko: {
     badge: "TRAVEL4YOU 저널",
     title: "새로운 럭셔리 여행 가이드를 받아보세요.",
     subtitle: "Travel4You 뉴스레터에 가입하여 새로운 여행지 가이드, 프라이빗 경험 아이디어, 엄선된 예약 링크를 받아보세요.",
+    preferenceTitle: "관심 있는 여행 테마를 선택하세요:",
+    pref_all: "✨ 모든 럭셔리 여행지",
+    pref_islands: "🏝️ 프라이빗 아일랜드 & 빌라",
+    pref_palaces: "🏰 유서 깊은 궁전 & 고성",
+    pref_ryokans: "♨️ 전통 료칸 & 온천",
+    pref_safaris: "🦁 아프리카 야생 사파리",
+    pref_vip_hacks: "✈️ 5성급 VIP 업그레이드 비법",
     placeholder: "이메일 주소 입력 *",
     button: "최신 가이드 받기",
-    privacy: "스팸 없음. 엄선된 월간 뉴스레터. 언제든지 원클릭 구독 취소 가능.",
+    privacy: "매주 토요일 오전 9시 발송 • 스팸 없음 • 언제든지 원클릭 구독 취소 가능.",
     success: "✨ Travel4You 저널 가입을 환영합니다!",
-    successDesc: "2026 골드 리스트 럭셔리 가이드 및 VIP 예약 링크가 이메일로 발송되었습니다."
+    successDesc: "2026 골드 리스트 럭셔리 가이드가 발송되었습니다. 매주 토요일 오전 9시 엄선된 여행지를 전해드립니다."
   },
   'zh-tw': {
     badge: "TRAVEL4YOU 奢華日誌",
     title: "獲取最新的奢華旅行指南。",
     subtitle: "加入 Travel4You 尊爵名單，第一時間獲取新目的地指南、私人專屬體驗靈感以及精選預訂連結。",
+    preferenceTitle: "請選擇您最感興趣的旅行主題：",
+    pref_all: "✨ 全部奢華聖域",
+    pref_islands: "🏝️ 私人海島與水上別墅",
+    pref_palaces: "🏰 歷史皇宮與古典城堡",
+    pref_ryokans: "♨️ 日本頂級溫泉旅館",
+    pref_safaris: "🦁 非洲荒野奢華遊獵",
+    pref_vip_hacks: "✈️ 五星級客房升等秘技",
     placeholder: "請輸入您的電子郵件 *",
     button: "立即獲取指南",
-    privacy: "絕無垃圾郵件。每月精選特刊。隨時可一鍵取消訂閱。",
+    privacy: "每週六上午09:00準時寄送 • 絕無垃圾郵件 • 隨時可一鍵退訂。",
     success: "✨ 歡迎訂閱 Travel4You 奢華日誌！",
-    successDesc: "2026 金榜奢華指南與獨家預訂連結已發送至您的電子信箱。"
+    successDesc: "2026 金榜奢華指南已寄至您的電子郵箱。敬請期待每週六上午09:00的精選週刊。"
   },
   'zh-cn': {
     badge: "TRAVEL4YOU 奢华日志",
     title: "获取最新的奢华旅行指南。",
     subtitle: "加入 Travel4You 尊享名单，第一时间获取新目的地指南、私人专属体验灵感以及精选预订链接。",
+    preferenceTitle: "请选择您最感兴趣的旅行主题：",
+    pref_all: "✨ 全部奢华圣域",
+    pref_islands: "🏝️ 私人海岛与水上别墅",
+    pref_palaces: "🏰 历史皇宫与古典城堡",
+    pref_ryokans: "♨️ 日本顶级温泉旅馆",
+    pref_safaris: "🦁 非洲荒野奢华游猎",
+    pref_vip_hacks: "✈️ 五星级客房升等秘技",
     placeholder: "请输入您的电子邮箱 *",
     button: "立即获取指南",
-    privacy: "绝无垃圾邮件。每月精选特刊。随时可一键退订。",
+    privacy: "每周六上午09:00准时寄送 • 绝无垃圾邮件 • 随时可一键退订。",
     success: "✨ 欢迎订阅 Travel4You 奢华日志！",
-    successDesc: "2026 金榜奢华指南与独家预订链接已发送至您的电子邮箱。"
+    successDesc: "2026 金榜奢华指南已发送至您的电子邮箱。敬请期待每周六上午09:00的精选周刊。"
   },
   pt: {
     badge: "JOURNAL TRAVEL4YOU",
     title: "Receba novos guias de viagens de luxo.",
     subtitle: "Junte-se à lista Travel4You para novos guias de destinos, ideias de experiências privadas e links de reserva criteriosamente selecionados.",
+    preferenceTitle: "Selecione o seu interesse de viagem favorito:",
+    pref_all: "✨ Todos os santuários",
+    pref_islands: "🏝️ Ilhas privadas & Vilas",
+    pref_palaces: "🏰 Palácios históricos",
+    pref_ryokans: "♨️ Ryokans & Onsen",
+    pref_safaris: "🦁 Safáris em África",
+    pref_vip_hacks: "✈️ Segredos VIP 5 Estrelas",
     placeholder: "O seu endereço de email *",
     button: "Receber os guias",
-    privacy: "Sem spam. Seleção mensal curada. Cancele a qualquer momento com 1 clique.",
+    privacy: "Envio semanal (Sábados às 09:00) • Sem spam • Cancele com 1 clique.",
     success: "✨ Bem-vindo ao Journal Travel4You!",
-    successDesc: "O seu guia Gold List 2026 e os links de reserva VIP foram enviados para o seu email."
+    successDesc: "O seu guia Gold List 2026 foi enviado para o seu email. Todas as semanas aos sábados às 09:00."
   },
   ru: {
     badge: "TRAVEL4YOU JOURNAL",
     title: "Получайте новые гиды по роскошным путешествиям.",
     subtitle: "Присоединяйтесь к списку Travel4You, чтобы первыми получать путеводители, идеи приватного отдыха и проверенные ссылки на бронирование.",
+    preferenceTitle: "Выберите интересующую вас тему путешествий:",
+    pref_all: "✨ Все направления",
+    pref_islands: "🏝️ Частные острова и виллы",
+    pref_palaces: "🏰 Исторические дворцы",
+    pref_ryokans: "♨️ Традиционные рёканы",
+    pref_safaris: "🦁 Сафари в Африке",
+    pref_vip_hacks: "✈️ Секреты апгрейда 5 звёзд",
     placeholder: "Ваш адрес эл. почты *",
     button: "Получить гид",
-    privacy: "Без спама. Ежемесячные эксклюзивные выпуски. Отписка в 1 клик.",
+    privacy: "Еженедельный выпуск (Суббота 09:00) • Без спама • Отписка в 1 клик.",
     success: "✨ Добро пожаловать в Travel4You Journal!",
-    successDesc: "Гид Gold List 2026 и закрытые ссылки на бронирование отправлены на вашу почту."
+    successDesc: "Гид Gold List 2026 отправлен на вашу почту. Ждите новый выпуск каждую субботу в 09:00."
   }
 };
 
@@ -170,8 +261,71 @@ const t = journalContent[currentLocale] || journalContent.en;
         </p>
 
         <!-- Subscription Form -->
-        <form id="footer-journal-form" class="space-y-3" novalidate>
-          <div class="flex flex-col sm:flex-row items-stretch gap-3 w-full max-w-2xl">
+        <form id="footer-journal-form" class="space-y-4" novalidate>
+          <!-- Interactive Preference Selector (Demand-Driven Segment) -->
+          <div>
+            <p class="text-xs text-slate-300 font-semibold mb-2 flex items-center gap-1.5">
+              <span class="text-[#d4a359]">🎯</span>
+              <span>{t.preferenceTitle}</span>
+            </p>
+            <div class="flex flex-wrap gap-2" id="footer-journal-pref-container">
+              <button
+                type="button"
+                data-pref="all"
+                class="footer-pref-btn px-3 py-1.5 rounded-full text-xs font-bold bg-[#d4a359] text-[#07111e] border border-[#d4a359] shadow-sm transition-all cursor-pointer"
+              >
+                {t.pref_all}
+              </button>
+              <button
+                type="button"
+                data-pref="islands"
+                class="footer-pref-btn px-3 py-1.5 rounded-full text-xs font-medium bg-[#040a12] text-slate-300 border border-slate-700/80 hover:border-[#d4a359]/60 hover:text-white transition-all cursor-pointer"
+              >
+                {t.pref_islands}
+              </button>
+              <button
+                type="button"
+                data-pref="palaces"
+                class="footer-pref-btn px-3 py-1.5 rounded-full text-xs font-medium bg-[#040a12] text-slate-300 border border-slate-700/80 hover:border-[#d4a359]/60 hover:text-white transition-all cursor-pointer"
+              >
+                {t.pref_palaces}
+              </button>
+              <button
+                type="button"
+                data-pref="ryokans"
+                class="footer-pref-btn px-3 py-1.5 rounded-full text-xs font-medium bg-[#040a12] text-slate-300 border border-slate-700/80 hover:border-[#d4a359]/60 hover:text-white transition-all cursor-pointer"
+              >
+                {t.pref_ryokans}
+              </button>
+              <button
+                type="button"
+                data-pref="safaris"
+                class="footer-pref-btn px-3 py-1.5 rounded-full text-xs font-medium bg-[#040a12] text-slate-300 border border-slate-700/80 hover:border-[#d4a359]/60 hover:text-white transition-all cursor-pointer"
+              >
+                {t.pref_safaris}
+              </button>
+              <button
+                type="button"
+                data-pref="vip_hacks"
+                class="footer-pref-btn px-3 py-1.5 rounded-full text-xs font-medium bg-[#040a12] text-slate-300 border border-slate-700/80 hover:border-[#d4a359]/60 hover:text-white transition-all cursor-pointer"
+              >
+                {t.pref_vip_hacks}
+              </button>
+            </div>
+          </div>
+
+          <!-- Hidden Honeypot for Anti-Bot Spam Protection -->
+          <input
+            type="text"
+            name="website"
+            id="footer-journal-hp"
+            class="hidden"
+            tabindex="-1"
+            autocomplete="off"
+            style="position:absolute;left:-9999px;opacity:0;"
+          />
+
+          <div class="flex flex-col sm:flex-row items-stretch gap-3 w-full max-w-2xl pt-1">
             <!-- Email Input (iOS 16px font-size prevents unwanted auto-zoom) -->
             <div class="relative flex-1">
               <input
@@ -222,14 +376,18 @@ const t = journalContent[currentLocale] || journalContent.en;
         </form>
 
         <!-- Success Alert Container -->
-        <div id="footer-journal-success" class="hidden p-5 rounded-xl bg-gradient-to-r from-emerald-950/60 via-slate-900/80 to-amber-950/40 border border-emerald-500/40 text-slate-200 text-sm space-y-2">
+        <div id="footer-journal-success" class="hidden p-6 rounded-2xl bg-gradient-to-r from-emerald-950/60 via-slate-900/90 to-amber-950/40 border border-emerald-500/50 text-slate-200 text-sm space-y-3">
           <div class="flex items-center space-x-2 text-emerald-400 font-bold text-base">
             <span>✨</span>
             <span>{t.success}</span>
           </div>
-          <p class="text-xs text-slate-300 leading-relaxed">
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed" id="footer-journal-success-text">
             {t.successDesc}
           </p>
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold">
+            <span>📅</span>
+            <span>{currentLocale === 'vi' ? 'Bản tin tiếp theo: 09:00 Sáng Thứ Bảy tuần này' : 'Next dispatch: This Saturday at 09:00 AM'}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -349,14 +507,46 @@ const t = journalContent[currentLocale] || journalContent.en;
     const errorBox = document.getElementById('footer-journal-error');
     const errorMsg = document.getElementById('footer-journal-error-msg');
     const successBox = document.getElementById('footer-journal-success');
+    const successText = document.getElementById('footer-journal-success-text');
+    const honeypot = document.getElementById('footer-journal-hp');
+    const prefBtns = document.querySelectorAll('.footer-pref-btn');
 
     if (!form || !input || !btn) return;
+
+    let selectedPref = 'all';
+
+    const prefLabels = {
+      all: currentLocale === 'vi' ? 'Tất Cả Cẩm Nang VIP 2026' : 'All 2026 VIP Sanctuaries',
+      islands: currentLocale === 'vi' ? '🏝️ Đảo Riêng & Biệt Thự Nổi' : '🏝️ Private Islands & Overwater Villas',
+      palaces: currentLocale === 'vi' ? '🏰 Cung Điện Hoàng Gia & Lâu Đài Cổ' : '🏰 Historic European Grand Palaces',
+      ryokans: currentLocale === 'vi' ? '♨️ Ryokan Truyền Thống & Suối Khoáng Onsen' : '♨️ Japanese Zen Ryokans & Mineral Onsens',
+      safaris: currentLocale === 'vi' ? '🦁 Safari Hoang Dã Châu Phi (Big Five)' : '🦁 African Big Five Luxury Safaris',
+      vip_hacks: currentLocale === 'vi' ? '✈️ Bí Kíp Săn Phòng & Nâng Hạng VIP 5 Sao' : '✈️ VIP Booking Perks & Suite Upgrades'
+    };
+
+    // Initialize preference buttons
+    prefBtns.forEach((pBtn) => {
+      pBtn.addEventListener('click', () => {
+        selectedPref = pBtn.getAttribute('data-pref') || 'all';
+        prefBtns.forEach((b) => {
+          b.classList.remove('bg-[#d4a359]', 'text-[#07111e]', 'font-bold', 'border-[#d4a359]', 'shadow-sm');
+          b.classList.add('bg-[#040a12]', 'text-slate-300', 'font-medium', 'border-slate-700/80');
+        });
+        pBtn.classList.remove('bg-[#040a12]', 'text-slate-300', 'font-medium', 'border-slate-700/80');
+        pBtn.classList.add('bg-[#d4a359]', 'text-[#07111e]', 'font-bold', 'border-[#d4a359]', 'shadow-sm');
+      });
+    });
 
     // Check if user already subscribed in this browser
     try {
       const alreadySubscribed = localStorage.getItem('t4u_journal_subscribed');
       if (alreadySubscribed) {
         input.value = alreadySubscribed;
+      }
+      const savedPref = localStorage.getItem('t4u_journal_pref');
+      if (savedPref) {
+        const targetBtn = document.querySelector(`.footer-pref-btn[data-pref="${savedPref}"]`);
+        if (targetBtn) targetBtn.click();
       }
     } catch (e) {}
 
@@ -378,6 +568,14 @@ const t = journalContent[currentLocale] || journalContent.en;
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       clearError();
+
+      // Anti-Bot Honeypot Protection
+      if (honeypot && honeypot.value.trim() !== '') {
+        console.warn('Bot detected via honeypot.');
+        form.classList.add('hidden');
+        if (successBox) successBox.classList.remove('hidden');
+        return;
+      }
 
       const email = input.value.trim();
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -401,27 +599,41 @@ const t = journalContent[currentLocale] || journalContent.en;
           refCode = localStorage.getItem('t4u_ref') || localStorage.getItem('t4u_partner_ref') || 'direct';
         } catch (e) {}
 
+        const chosenLabel = prefLabels[selectedPref] || prefLabels.all;
+
         const payload = {
           name: 'VIP Journal Reader',
           email: email,
           interest: 'newsletter_vip_guide',
-          note: 'Subscribed via Footer Travel4You Journal',
+          preference: chosenLabel,
+          preference_key: selectedPref,
+          note: `Subscribed via Footer Travel4You Journal [Gu: ${chosenLabel}]`,
           ref_code: refCode,
           source_url: window.location.pathname,
           locale: currentLocale
         };
 
         // Send to backend Cloudflare Pages Function
-        await fetch('/api/leads/create', {
+        const res = await fetch('/api/leads/create', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
 
-        // Save subscription status
+        // Save subscription status and preferred category
         try {
           localStorage.setItem('t4u_journal_subscribed', email);
+          localStorage.setItem('t4u_journal_pref', selectedPref);
         } catch (e) {}
+
+        // Personalize Success Description
+        if (successText && selectedPref !== 'all') {
+          if (currentLocale === 'vi') {
+            successText.textContent = `Tuyệt vời! Cẩm nang 2026 Gold List cùng chuyên đề "${chosenLabel}" đang được chuyển tới email của bạn. Hãy đón chờ bản tin chuyên sâu vào lúc 09:00 Sáng Thứ Bảy hàng tuần!`;
+          } else {
+            successText.textContent = `Splendid! The 2026 Gold List Guide and your personalized "${chosenLabel}" dispatch are on their way to your email. Expect your curated deep-dive every Saturday at 09:00 AM!`;
+          }
+        }
 
         // Success UI
         form.classList.add('hidden');
@@ -438,6 +650,7 @@ const t = journalContent[currentLocale] || journalContent.en;
         console.warn('Journal submission network fallback:', err);
         try {
           localStorage.setItem('t4u_journal_subscribed', email);
+          localStorage.setItem('t4u_journal_pref', selectedPref);
         } catch (e) {}
         form.classList.add('hidden');
         if (successBox) successBox.classList.remove('hidden');

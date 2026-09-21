@@ -1,13 +1,13 @@
 /**
  * 🏛️ TRAVEL4U & OPC CRM SYNC HELPER
- * Syncs Leads & Orders directly to Google Sheets CRM (Tab OPC_CRM_CUSTOMERS)
+ * Syncs Leads & Orders directly to Google Sheets CRM (Tab OPC_CRM_CUSTOMERS & NEWSLETTER_SUBSCRIBERS)
  * Authors: Chairman Victor Chuyen & AI CEO Lucky
  */
 
 const DEFAULT_APPS_SCRIPT_WEBHOOK = 'https://script.google.com/macros/s/AKfycbxxuKKgbd006k0bGRjXhnkBhrzuqRlsYCpddg9lZlv5KjVFPUmQzYDiyi8cA7qqSWvO/exec';
 
 /**
- * Record Customer Lead or Order to Master Google Sheet CRM
+ * Record Customer Lead or Order to Master Google Sheet CRM (Tab OPC_CRM_CUSTOMERS)
  */
 export async function syncLeadToGoogleSheetCRM({
   id = '',
@@ -59,6 +59,55 @@ export async function syncLeadToGoogleSheetCRM({
     return { ok: true };
   } catch (err) {
     console.error('❌ [CRM Sync] Error syncing to Google Sheet:', err);
+    return { ok: false, error: err.message };
+  }
+}
+
+/**
+ * Record VIP Newsletter Subscriber to Master Google Sheet (Tab NEWSLETTER_SUBSCRIBERS)
+ */
+export async function syncNewsletterSubscriberToGoogleSheet({
+  email = '',
+  name = 'VIP Reader',
+  preference = 'Tất Cả Cẩm Nang VIP 2026',
+  locale = 'vi',
+  ref_code = 'direct',
+  source_url = '/',
+  status = 'Welcome Email Sent',
+  survey_response = '',
+  env = {}
+}) {
+  const webhookUrl = env.APPS_SCRIPT_WEBHOOK_URL || env.CRM_WEBHOOK_URL || DEFAULT_APPS_SCRIPT_WEBHOOK;
+  if (!webhookUrl) {
+    console.warn('⚠️ [CRM Sync] No Google Sheet Webhook URL configured.');
+    return { ok: false, error: 'No webhook URL' };
+  }
+
+  const payload = {
+    type: 'newsletter_subscribe',
+    email,
+    name,
+    preference,
+    locale: (locale || 'vi').toUpperCase(),
+    ref_code: ref_code || 'direct',
+    source_url: source_url || '/',
+    status: status || 'Welcome Email Sent',
+    survey_response: survey_response || '',
+    timestamp: new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' }),
+    source: 'app.travel4u.us'
+  };
+
+  try {
+    const res = await fetch(webhookUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    console.log('✅ [CRM Sync] Synced newsletter subscriber to NEWSLETTER_SUBSCRIBERS tab successfully.');
+    return { ok: true };
+  } catch (err) {
+    console.error('❌ [CRM Sync] Error syncing newsletter subscriber to Google Sheet:', err);
     return { ok: false, error: err.message };
   }
 }
