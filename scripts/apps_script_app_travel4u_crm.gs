@@ -34,7 +34,7 @@ const CONFIG = {
   SENDER_EMAIL: 'Victor Chuyen - OPC AI Revenue Lab <victor@breaths.live>',
   CAL_LINK: 'https://cal.com/victorchuyen/coachai',
   ZALO_HOTLINE: 'https://zalo.me/0989890022',
-  AFFILIATE_PORTAL: 'https://app.travel4u.us/app/',
+  AFFILIATE_PORTAL: 'https://app.travel4u.us/aff/',
   TELEGRAM_BOT_TOKEN: '8257466148:AAGjwgPgoGWMknWizOvAmQ_78RaJX60owz8',
   TELEGRAM_CHAT_ID: '-1001828947537'
 };
@@ -400,7 +400,7 @@ function buildDay0Html(name, tier, phone) {
   '</div>' +
   '<p style="font-size:12px;color:#94a3b8;border-top:1px solid rgba(255,255,255,0.1);padding-top:12px;margin-top:20px;">' +
   '💬 Zalo trực tiếp Victor Chuyen: <a href="' + CONFIG.ZALO_HOTLINE + '" style="color:#38bdf8;">0989890022</a><br>' +
-  '💎 Dashboard Đối Tác Affiliate: <a href="' + CONFIG.AFFILIATE_PORTAL + '" style="color:#c9a54e;">app.travel4u.us/app/</a>' +
+  '💎 Dashboard Đối Tác Affiliate: <a href="' + CONFIG.AFFILIATE_PORTAL + '" style="color:#c9a54e;">app.travel4u.us/aff/</a>' +
   '</p>';
   return buildEmailBase('LỘ TRÌNH ĐỒNG HÀNH & TRIỂN KHAI AI DOANH THU', content);
 }

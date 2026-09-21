@@ -139,7 +139,7 @@ export async function sendLuxuryOnboardingEmail({
                   Tất cả khách hàng của Victor Chuyen đều được cấp Mã Đối Tác độc quyền để nhận hoa hồng từ 50.000đ đến 3.000.000đ khi giới thiệu bạn bè.
                 </p>
                 <div style="margin-top:10px;">
-                  <a href="https://app.travel4u.us/app/" target="_blank" style="background:#10b981;color:#ffffff;font-weight:900;font-size:12px;padding:9px 18px;border-radius:8px;text-decoration:none;display:inline-block;">
+                  <a href="https://app.travel4u.us/aff/" target="_blank" style="background:#10b981;color:#ffffff;font-weight:900;font-size:12px;padding:9px 18px;border-radius:8px;text-decoration:none;display:inline-block;">
                     💎 VÀO DASHBOARD ĐỐI TÁC AFFILIATE &gt;
                   </a>
                 </div>
