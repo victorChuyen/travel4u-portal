@@ -5,7 +5,8 @@
  * Authors: Chairman Victor Chuyen & AI CEO Lucky
  */
 
-const DEFAULT_SENDER = 'Victor Chuyen - Travel4U Luxury Empire <victor@breaths.live>';
+const DEFAULT_SENDER = 'Victor & Lucky - Travel4U Luxury Empire <concierge@travel4u.us>';
+const DEFAULT_JOURNAL_SENDER = 'Victor & Lucky - Travel4U Journal <journal@travel4u.us>';
 const DEFAULT_APPS_SCRIPT_WEBHOOK = 'https://script.google.com/macros/s/AKfycbxxuKKgbd006k0bGRjXhnkBhrzuqRlsYCpddg9lZlv5KjVFPUmQzYDiyi8cA7qqSWvO/exec';
 
 /**
@@ -221,7 +222,7 @@ export async function sendLuxuryTravelNewsletterWelcomeEmail({
   }
 
   const apiKey = env?.RESEND_API_KEY;
-  const sender = env?.RESEND_FROM_EMAIL || DEFAULT_SENDER;
+  const sender = env?.RESEND_JOURNAL_EMAIL || env?.RESEND_FROM_EMAIL || DEFAULT_JOURNAL_SENDER;
   const isVi = (locale || 'vi').toLowerCase().startsWith('vi');
 
   const subject = isVi

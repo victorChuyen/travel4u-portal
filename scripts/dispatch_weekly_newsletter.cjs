@@ -18,7 +18,7 @@ const { readRange, writeRange } = require(path.resolve(ROOT_APP, '../credentials
 
 const TAB_NAME = 'NEWSLETTER_SUBSCRIBERS';
 const RESEND_API_KEY = process.env.RESEND_API_KEY || 're_123456789'; // Fallback or env
-const DEFAULT_SENDER = 'Victor & Lucky - Travel4U Journal <victor@breaths.live>';
+const DEFAULT_SENDER = process.env.RESEND_JOURNAL_EMAIL || process.env.RESEND_FROM_EMAIL || 'Victor & Lucky - Travel4U Journal <journal@travel4u.us>';
 const SURVEY_BASE_URL = 'https://app.travel4u.us/api/newsletter/preference';
 
 // 5 Curated Luxury Editorial Editions
