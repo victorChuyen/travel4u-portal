@@ -28,11 +28,11 @@ const homeUrl = currentLocale === 'en' ? '/' : `/${currentLocale}/`;
 ---
 
 <header class="sticky top-0 z-50 bg-[#07111e]/95 backdrop-blur-md border-b border-slate-800/80 transition-all duration-300">
-  <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16 sm:h-20">
       
       <!-- Brand Logo -->
-      <a href={homeUrl} class="group flex items-center space-x-2 sm:space-x-3 shrink-0">
+      <a href={homeUrl} class="group flex items-center space-x-2.5 sm:space-x-3 shrink-0">
         <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-tr from-[#c9a54e] via-[#dfba63] to-[#ff7043] p-0.5 shadow-lg shadow-[#c9a54e]/20 group-hover:scale-105 transition-transform duration-300 shrink-0">
           <div class="w-full h-full bg-[#07111e] rounded-[6px] sm:rounded-[7px] flex items-center justify-center">
             <span class="text-base sm:text-xl font-bold font-serif text-[#c9a54e]">4U</span>
@@ -48,37 +48,38 @@ const homeUrl = currentLocale === 'en' ? '/' : `/${currentLocale}/`;
         </div>
       </a>
 
-      <!-- Desktop Navigation -->
-      <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium text-slate-300">
+      <!-- Desktop Clean Navigation Links (No clashing buttons) -->
+      <nav class="hidden lg:flex items-center space-x-7 xl:space-x-8 text-sm font-medium text-slate-300">
         <a href={homeUrl} class="hover:text-white transition-colors">{dict.nav_home}</a>
         <a href={`${homeUrl}#experiences`} class="hover:text-[#c9a54e] transition-colors">{dict.nav_experiences}</a>
         <a href={`${homeUrl}#destinations`} class="hover:text-[#c9a54e] transition-colors">{dict.nav_destinations}</a>
         <a href={`${homeUrl}#curator`} class="hover:text-[#c9a54e] transition-colors">{dict.nav_curators}</a>
-        <a href="/aff/" class="hover:text-amber-300 text-amber-300 font-semibold transition-colors flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 hover:border-amber-400">
-          <span>💎</span>
-          <span>{currentLocale === 'vi' ? 'Đối Tác VIP' : 'VIP Affiliate'}</span>
-        </a>
       </nav>
 
-      <!-- Right Actions: Language & VIP CTA & Mobile Toggle -->
+      <!-- Right Actions: Unified Height (h-9 / 36px), Pixel-Perfect Capsule Design -->
       <div class="flex items-center space-x-2 sm:space-x-3 shrink-0">
         
-        <!-- VIP Member / Affiliate Login Button -->
+        <!-- 1. VIP Member & Partner Auth Button (Single line, no text wrapping) -->
         <a
           href="/aff/login"
-          id="header-vip-login-btn"
-          class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 hover:border-[#c9a54e] text-slate-300 hover:text-[#c9a54e] text-xs font-semibold transition shrink-0"
-          title="Cổng Đăng Nhập / Đăng Ký Thành Viên VIP"
+          id="header-vip-auth-btn"
+          class="inline-flex items-center space-x-1.5 h-9 px-3.5 sm:px-4 rounded-full bg-[#0b1726]/90 border border-[#c9a54e]/50 hover:border-[#c9a54e] text-[#dfba63] hover:text-white text-xs font-semibold tracking-wide transition-all duration-200 shadow-sm shadow-[#c9a54e]/10 hover:shadow-[#c9a54e]/25 shrink-0 whitespace-nowrap"
+          title="Cổng Đăng Nhập & Đăng Ký VIP Member"
         >
-          <span>🔑</span>
-          <span class="hidden sm:inline">{currentLocale === 'vi' ? 'Đăng Nhập VIP' : 'VIP Sign In'}</span>
+          <span id="header-vip-icon" class="text-xs">🔑</span>
+          <span id="header-vip-label">{currentLocale === 'vi' ? 'Đăng Nhập VIP' : 'VIP Sign In'}</span>
         </a>
-        <!-- Language Selector Dropdown (Desktop & Tablet & Mobile) -->
+
+        <!-- 2. Language Selector Dropdown (Exact same h-9 height & pill style) -->
         <div class="relative group shrink-0">
-          <button type="button" class="flex items-center space-x-1.5 sm:space-x-2 bg-slate-900/80 border border-slate-700/60 rounded-full px-2.5 py-1 sm:px-3.5 sm:py-1.5 text-[11px] sm:text-xs font-semibold text-slate-200 hover:border-[#c9a54e] transition-all">
-            <span class="text-sm sm:text-base">🌐</span>
-            <span class="uppercase font-bold tracking-wider">{currentLocale}</span>
-            <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 text-slate-400 group-hover:text-[#c9a54e] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <button
+            type="button"
+            class="inline-flex items-center space-x-1.5 h-9 px-3 rounded-full bg-[#0b1726]/90 border border-slate-700/70 hover:border-[#c9a54e] text-xs font-semibold text-slate-200 hover:text-white transition-all duration-200 shrink-0"
+            aria-label="Select Language"
+          >
+            <span class="text-xs">🌐</span>
+            <span class="uppercase font-bold tracking-wider text-[11px] sm:text-xs">{currentLocale}</span>
+            <svg class="w-3 h-3 text-slate-400 group-hover:text-[#c9a54e] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
@@ -104,22 +105,22 @@ const homeUrl = currentLocale === 'en' ? '/' : `/${currentLocale}/`;
           </div>
         </div>
 
-        <!-- Official GYG Partner CTA (Large Desktop) -->
+        <!-- 3. GetYourGuide VIP CTA (Refined Luxury Sunset Button, h-9 height) -->
         <a
           href="https://www.getyourguide.com/?partner_id=4G5BPIE&cmp=t4u_app_header"
           target="_blank"
           rel="nofollow sponsored noopener"
-          class="hidden xl:inline-flex items-center space-x-2 bg-gradient-to-r from-[#ff7043] to-[#f4511e] hover:from-[#f4511e] hover:to-[#e64a19] text-white text-xs font-bold uppercase tracking-wider px-4 py-2.5 rounded-full shadow-lg shadow-[#ff7043]/20 hover:shadow-[#ff7043]/40 transition-all duration-300"
+          class="hidden xl:inline-flex items-center space-x-1.5 h-9 px-4 rounded-full bg-gradient-to-r from-[#e65100] via-[#f4511e] to-[#ff7043] hover:from-[#f4511e] hover:to-[#ff8a65] text-white text-[11px] font-bold uppercase tracking-wider shadow-md shadow-orange-950/40 hover:shadow-orange-500/20 transition-all duration-300 shrink-0 whitespace-nowrap"
         >
           <span>GetYourGuide VIP</span>
-          <span>→</span>
+          <span class="text-xs">→</span>
         </a>
 
-        <!-- Mobile & Tablet Hamburger Toggle Button -->
+        <!-- 4. Mobile & Tablet Hamburger Toggle Button -->
         <button
           id="mobile-menu-toggle"
           type="button"
-          class="lg:hidden flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-slate-900 border border-slate-700/80 text-slate-300 hover:text-white hover:border-[#c9a54e] transition-all focus:outline-none shrink-0"
+          class="lg:hidden flex items-center justify-center w-9 h-9 rounded-lg bg-slate-900 border border-slate-700/80 text-slate-300 hover:text-white hover:border-[#c9a54e] transition-all focus:outline-none shrink-0"
           aria-label="Toggle Mobile Navigation"
           aria-expanded="false"
         >
@@ -225,6 +226,26 @@ const homeUrl = currentLocale === 'en' ? '/' : `/${currentLocale}/`;
   </div>
 
   <script is:inline>
+    // Dynamic Auth Button Check for Header
+    (function checkHeaderAuth() {
+      try {
+        const vipUserStr = localStorage.getItem('t4u_vip_user');
+        const authBtn = document.getElementById('header-vip-auth-btn');
+        const iconEl = document.getElementById('header-vip-icon');
+        const labelEl = document.getElementById('header-vip-label');
+        if (vipUserStr && authBtn && labelEl) {
+          const vipUser = JSON.parse(vipUserStr);
+          const name = vipUser.displayName || vipUser.email?.split('@')[0] || 'VIP';
+          authBtn.href = '/aff/';
+          if (iconEl) iconEl.textContent = '💎';
+          labelEl.textContent = name.length > 12 ? name.substring(0, 10) + '...' : name;
+          authBtn.title = 'Truy cập Bảng điều khiển VIP Affiliate';
+          authBtn.classList.remove('border-[#c9a54e]/50');
+          authBtn.classList.add('border-emerald-500/60', 'text-emerald-300');
+        }
+      } catch (e) {}
+    })();
+
     const toggleBtn = document.getElementById('mobile-menu-toggle');
     const drawer = document.getElementById('mobile-menu-drawer');
     const iconMenu = document.getElementById('icon-menu');
@@ -258,4 +279,3 @@ const homeUrl = currentLocale === 'en' ? '/' : `/${currentLocale}/`;
     }
   </script>
 </header>
-
