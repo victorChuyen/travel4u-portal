@@ -1,15 +1,15 @@
 ---
 /**
  * 🏛️ TRAVEL4U — CỔNG ĐĂNG KÝ & ĐĂNG NHẬP VIP MEMBER / AFFILIATE PARTNER
- * Chuẩn SaaS Quốc Tế (Google 1-Tap + Email Verification Gateway + Eye Password Toggle)
+ * Chuẩn SaaS Quốc Tế (Song ngữ VI / EN + Google 1-Tap + Email Verification + Eye Password Toggle)
  * Authors: Chairman Victor Chuyen & AI CEO Lucky
  */
 
 import Layout from '../../layouts/Layout.astro';
 import { firebaseConfig } from '../../lib/firebaseClient';
 
-const pageTitle = "Cổng Đăng Nhập & Đăng Ký VIP Member | Travel4U Sovereign Portal";
-const pageDescription = "Đăng nhập hoặc đăng ký thành viên VIP / Đối tác Affiliate nhận hoa hồng 10% - 20% - 30% trực tiếp trên mạng lưới Travel4U.";
+const pageTitle = "VIP Member Portal | Cổng Đăng Nhập & Đăng Ký Hội Viên Travel4U";
+const pageDescription = "Đăng nhập hoặc đăng ký thành viên VIP / Đối tác Affiliate nhận hoa hồng 10% - 20% - 30% trực tiếp trên mạng lưới Travel4U. Sign in to manage your VIP affiliate account.";
 ---
 
 <Layout title={pageTitle} description={pageDescription} locale="vi">
@@ -25,26 +25,49 @@ const pageDescription = "Đăng nhập hoặc đăng ký thành viên VIP / Đ�
 
     <div class="w-full max-w-md rounded-3xl border border-[#c9a54e]/40 bg-gradient-to-b from-[#0d1c31] via-[#091424] to-[#060c16] p-6 sm:p-8 shadow-2xl relative z-10">
       
-      <!-- Top Navigation -->
+      <!-- Top Navigation & Language Switcher (VI | EN) -->
       <div class="mb-6 flex items-center justify-between">
-        <a href="/" class="inline-flex items-center text-xs font-semibold text-slate-400 hover:text-[#c9a54e] transition-colors group">
+        <a href="/" id="link-back-home" class="inline-flex items-center text-xs font-semibold text-slate-400 hover:text-[#c9a54e] transition-colors group">
           <span class="mr-1.5 transition-transform group-hover:-translate-x-1">←</span>
-          <span>Trang Chủ Travel4U</span>
+          <span id="text-back-home">Trang Chủ Travel4U</span>
         </a>
-        <a href="/pricing" class="inline-flex items-center text-xs font-bold text-amber-400 hover:text-amber-300 transition-colors">
-          <span>⚡ Bảng Giá 3 Gói AI</span>
-        </a>
+        
+        <div class="flex items-center space-x-2.5">
+          <a href="/pricing" id="link-pricing" class="inline-flex items-center text-xs font-bold text-amber-400 hover:text-amber-300 transition-colors">
+            <span id="text-pricing">⚡ Bảng Giá 3 Gói AI</span>
+          </a>
+          
+          <!-- Language Toggle Pill (VI / EN) -->
+          <div class="flex items-center bg-slate-950 p-0.5 rounded-lg border border-slate-800 text-[10px] font-bold">
+            <button
+              type="button"
+              id="btn-lang-vi"
+              class="px-2 py-0.5 rounded transition bg-[#c9a54e] text-slate-950 shadow cursor-pointer"
+              title="Tiếng Việt"
+            >
+              VI
+            </button>
+            <button
+              type="button"
+              id="btn-lang-en"
+              class="px-2 py-0.5 rounded transition text-slate-400 hover:text-white cursor-pointer"
+              title="English"
+            >
+              EN
+            </button>
+          </div>
+        </div>
       </div>
 
       <!-- Brand Header -->
       <div class="text-center mb-6">
         <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[11px] font-bold uppercase tracking-wider mb-2">
-          <span>👑 TRAVEL4U VIP MEMBER & AFFILIATE GATEWAY</span>
+          <span id="text-gateway-badge">👑 TRAVEL4U VIP MEMBER & AFFILIATE GATEWAY</span>
         </div>
-        <h1 class="font-serif text-2xl sm:text-3xl font-bold text-white tracking-tight">
+        <h1 id="text-heading" class="font-serif text-2xl sm:text-3xl font-bold text-white tracking-tight">
           Cổng Thành Viên VIP
         </h1>
-        <p class="text-xs text-slate-300 mt-1.5">
+        <p id="text-subheading" class="text-xs text-slate-300 mt-1.5">
           Đăng nhập để quản lý mã giới thiệu, theo dõi hoa hồng <strong class="text-amber-400">10% - 20% - 30%</strong> và rút tiền 24/7.
         </p>
       </div>
@@ -70,7 +93,7 @@ const pageDescription = "Đăng nhập hoặc đăng ký thành viên VIP / Đ�
       <!-- Divider -->
       <div id="auth-divider" class="flex items-center my-4">
         <div class="flex-grow border-t border-slate-700/80"></div>
-        <span class="px-3 text-[11px] text-slate-400 uppercase tracking-wider font-semibold">hoặc email</span>
+        <span id="text-divider" class="px-3 text-[11px] text-slate-400 uppercase tracking-wider font-semibold">hoặc email</span>
         <div class="flex-grow border-t border-slate-700/80"></div>
       </div>
 
@@ -99,23 +122,23 @@ const pageDescription = "Đăng nhập hoặc đăng ký thành viên VIP / Đ�
       <div id="verification-notice-view" class="hidden space-y-4 p-5 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-slate-200">
         <div class="flex items-center space-x-2 text-amber-400 font-bold text-sm">
           <span class="text-xl">✉️</span>
-          <span>XÁC NHẬN EMAIL ĐỂ KÍCH HOẠT TÀI KHOẢN VIP</span>
+          <span id="verif-title">XÁC NHẬN EMAIL ĐỂ KÍCH HOẠT TÀI KHOẢN VIP</span>
         </div>
         <p class="text-xs text-slate-300 leading-relaxed">
-          Chúng tôi đã gửi một liên kết xác thực tới: <strong id="verification-target-email" class="text-white underline"></strong>.
+          <span id="verif-sent-to">Chúng tôi đã gửi một liên kết xác thực tới:</span> <strong id="verification-target-email" class="text-white underline"></strong>.
         </p>
         <div class="p-3 bg-slate-950/80 rounded-xl border border-slate-800 text-[11px] text-slate-400 space-y-1.5">
           <p class="flex items-start space-x-1.5">
             <span class="text-amber-400 font-bold">1.</span>
-            <span>Mở ứng dụng Email của bạn (Gmail, Outlook, v.v.).</span>
+            <span id="verif-step-1">Mở ứng dụng Email của bạn (Gmail, Outlook, v.v.).</span>
           </p>
           <p class="flex items-start space-x-1.5">
             <span class="text-amber-400 font-bold">2.</span>
-            <span>Tìm thư từ <strong>Travel4U / Firebase</strong> (kiểm tra cả mục <strong>Spam / Thư rác</strong> nếu không thấy ở Hộp thư đến).</span>
+            <span id="verif-step-2">Tìm thư từ <strong>Travel4U / Firebase</strong> (kiểm tra cả mục <strong>Spam / Thư rác</strong> nếu không thấy ở Hộp thư đến).</span>
           </p>
           <p class="flex items-start space-x-1.5">
             <span class="text-amber-400 font-bold">3.</span>
-            <span>Bấm vào liên kết xác nhận để hoàn tất kích hoạt tài khoản.</span>
+            <span id="verif-step-3">Bấm vào liên kết xác nhận để hoàn tất kích hoạt tài khoản.</span>
           </p>
         </div>
 
@@ -134,7 +157,7 @@ const pageDescription = "Đăng nhập hoặc đăng ký thành viên VIP / Đ�
             class="flex-1 py-2.5 px-3 bg-[#c9a54e] hover:bg-[#dfba63] text-slate-950 text-xs font-bold rounded-xl transition flex items-center justify-center space-x-1.5 cursor-pointer shadow"
           >
             <span>🔑</span>
-            <span>Tôi đã xác nhận → Đăng nhập</span>
+            <span id="text-btn-back-signin">Tôi đã xác nhận → Đăng nhập</span>
           </button>
         </div>
       </div>
@@ -145,7 +168,7 @@ const pageDescription = "Đăng nhập hoặc đăng ký thành viên VIP / Đ�
           
           <!-- Full Name (Only for Registration) -->
           <div id="field-fullname" class="hidden">
-            <label for="auth-fullname" class="block text-xs font-semibold text-slate-300 uppercase mb-1">
+            <label for="auth-fullname" id="label-fullname" class="block text-xs font-semibold text-slate-300 uppercase mb-1">
               Họ và tên của bạn *
             </label>
             <input
@@ -158,7 +181,7 @@ const pageDescription = "Đăng nhập hoặc đăng ký thành viên VIP / Đ�
 
           <!-- Email Field -->
           <div>
-            <label for="auth-email" class="block text-xs font-semibold text-slate-300 uppercase mb-1">
+            <label for="auth-email" id="label-email" class="block text-xs font-semibold text-slate-300 uppercase mb-1">
               Địa chỉ Email *
             </label>
             <input
@@ -177,7 +200,7 @@ const pageDescription = "Đăng nhập hoặc đăng ký thành viên VIP / Đ�
           <!-- Password Field with Show/Hide Eye Toggle -->
           <div>
             <div class="flex items-center justify-between mb-1">
-              <label for="auth-password" class="block text-xs font-semibold text-slate-300 uppercase">
+              <label for="auth-password" id="label-password" class="block text-xs font-semibold text-slate-300 uppercase">
                 Mật khẩu (tối thiểu 6 ký tự) *
               </label>
               <button
@@ -220,7 +243,7 @@ const pageDescription = "Đăng nhập hoặc đăng ký thành viên VIP / Đ�
 
           <!-- Confirm Password Field (Only for Registration) with Eye Toggle -->
           <div id="field-confirm-pwd" class="hidden">
-            <label for="auth-confirm-pwd" class="block text-xs font-semibold text-slate-300 uppercase mb-1">
+            <label for="auth-confirm-pwd" id="label-confirm-pwd" class="block text-xs font-semibold text-slate-300 uppercase mb-1">
               Xác nhận mật khẩu *
             </label>
             <div class="relative">
@@ -277,16 +300,16 @@ const pageDescription = "Đăng nhập hoặc đăng ký thành viên VIP / Đ�
       <div class="mt-6 pt-4 border-t border-slate-800/80 text-center text-xs text-slate-400 space-y-1">
         <p class="flex items-center justify-center space-x-1.5 text-slate-300">
           <span class="text-[#c9a54e]">🔒</span>
-          <span>Bảo mật dữ liệu tiêu chuẩn 256-bit SSL · Tuyệt đối an toàn</span>
+          <span id="text-trust-security">Bảo mật dữ liệu tiêu chuẩn 256-bit SSL · Tuyệt đối an toàn</span>
         </p>
-        <p class="text-slate-500 text-[11px]">Hệ thống tự động kích hoạt mã định danh và bảng điều khiển độc quyền sau khi đăng nhập.</p>
+        <p id="text-trust-activation" class="text-slate-500 text-[11px]">Hệ thống tự động kích hoạt mã định danh và bảng điều khiển độc quyền sau khi đăng nhập.</p>
       </div>
 
     </div>
   </main>
 </Layout>
 
-<!-- PURE ES6 CLIENT MODULE SCRIPT (100% BROWSER COMPLIANT — NO ASTRO CLOSURE BUG) -->
+<!-- BILINGUAL ES6 MODULE CLIENT SCRIPT (VI / EN SWITCHER + FIREBASE AUTH) -->
 <script type="module">
   import { initializeApp, getApps, getApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
   import {
@@ -302,7 +325,112 @@ const pageDescription = "Đăng nhập hoặc đăng ký thành viên VIP / Đ�
     onAuthStateChanged
   } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
 
-  // 1. Initialize Firebase App via DOM attribute
+  // 1. Multilingual Dictionary
+  const I18N = {
+    vi: {
+      backHome: "Trang Chủ Travel4U",
+      pricingLink: "⚡ Bảng Giá 3 Gói AI",
+      gatewayBadge: "👑 TRAVEL4U VIP MEMBER & AFFILIATE GATEWAY",
+      heading: "Cổng Thành Viên VIP",
+      subheading: "Đăng nhập để quản lý mã giới thiệu, theo dõi hoa hồng <strong class=\"text-amber-400\">10% - 20% - 30%</strong> và rút tiền 24/7.",
+      googleBtn: "Đăng nhập 1-Chạm với Google",
+      divider: "hoặc email",
+      tabSignin: "Đăng Nhập",
+      tabSignup: "Đăng Ký Mới",
+      labelFullname: "Họ và tên của bạn *",
+      placeholderFullname: "Ví dụ: Victor Chuyen",
+      labelEmail: "Địa chỉ Email *",
+      labelPassword: "Mật khẩu (tối thiểu 6 ký tự) *",
+      placeholderPassword: "Nhập mật khẩu...",
+      forgotPassword: "Quên mật khẩu?",
+      labelConfirmPassword: "Xác nhận mật khẩu *",
+      placeholderConfirmPassword: "Nhập lại mật khẩu...",
+      btnSubmitSignin: "ĐĂNG NHẬP VIP NGAY",
+      btnSubmitSignup: "ĐĂNG KÝ THÀNH VIÊN VIP",
+      trustSecurity: "Bảo mật dữ liệu tiêu chuẩn 256-bit SSL · Tuyệt đối an toàn",
+      trustActivation: "Hệ thống tự động kích hoạt mã định danh và bảng điều khiển độc quyền sau khi đăng nhập.",
+      // Verification Screen
+      verifTitle: "XÁC NHẬN EMAIL ĐỂ KÍCH HOẠT TÀI KHOẢN VIP",
+      verifSentTo: "Chúng tôi đã gửi một liên kết xác thực tới:",
+      verifStep1: "Mở ứng dụng Email của bạn (Gmail, Outlook, v.v.).",
+      verifStep2: "Tìm thư từ <strong>Travel4U / Firebase</strong> (kiểm tra cả mục <strong>Spam / Thư rác</strong> nếu không thấy ở Hộp thư đến).",
+      verifStep3: "Bấm vào liên kết xác nhận để hoàn tất kích hoạt tài khoản.",
+      btnResendVerif: "Gửi lại email xác thực",
+      btnBackSignin: "Tôi đã xác nhận → Đăng nhập",
+      // Alerts & Errors
+      errFillAll: "Vui lòng điền đầy đủ Email và Mật khẩu.",
+      errEnterName: "Vui lòng nhập Họ và tên của bạn.",
+      errPwdMismatch: "Mật khẩu xác nhận không trùng khớp. Vui lòng kiểm tra lại.",
+      errPwdShort: "Mật khẩu quá ngắn, vui lòng nhập ít nhất 6 ký tự.",
+      errEmailInvalid: "Địa chỉ email không hợp lệ.",
+      errEmailInUse: "Email này đã được đăng ký. Vui lòng chuyển sang tab Đăng Nhập.",
+      errWrongCreds: "Email hoặc mật khẩu không chính xác.",
+      errTooMany: "Quá nhiều yêu cầu không thành công. Vui lòng thử lại sau vài phút.",
+      errGeneric: "Đã có lỗi xảy ra. Vui lòng thử lại.",
+      loginSuccess: "✨ Đăng nhập thành công! Đang chuyển hướng...",
+      resendSuccess: "✅ Đã gửi lại email xác thực! Vui lòng kiểm tra hộp thư.",
+      resetSent: "✅ Đã gửi email hướng dẫn đặt lại mật khẩu! Vui lòng kiểm tra hộp thư.",
+      promptEnterEmailReset: "Vui lòng nhập địa chỉ email vào ô phía trên trước khi yêu cầu cấp lại mật khẩu.",
+      unverifiedWarning: "⚠️ <strong>Email chưa được xác thực:</strong> Tài khoản của bạn cần xác nhận email trước khi đăng nhập.",
+      unverifiedSub: "Vui lòng kiểm tra hộp thư hoặc bấm vào nút bên dưới để nhận lại liên kết kích hoạt.",
+      btnUnverifiedResend: "📩 Gửi lại email xác thực ngay"
+    },
+    en: {
+      backHome: "Travel4U Home",
+      pricingLink: "⚡ 3 AI Solutions Pricing",
+      gatewayBadge: "👑 TRAVEL4U VIP MEMBER & AFFILIATE GATEWAY",
+      heading: "VIP Member Portal",
+      subheading: "Sign in to manage your referral link, track <strong class=\"text-amber-400\">10% - 20% - 30%</strong> commissions, and request 24/7 payouts.",
+      googleBtn: "1-Tap Sign-In with Google",
+      divider: "or with email",
+      tabSignin: "Sign In",
+      tabSignup: "Register",
+      labelFullname: "Your Full Name *",
+      placeholderFullname: "E.g. Victor Chuyen",
+      labelEmail: "Email Address *",
+      labelPassword: "Password (min. 6 characters) *",
+      placeholderPassword: "Enter your password...",
+      forgotPassword: "Forgot password?",
+      labelConfirmPassword: "Confirm Password *",
+      placeholderConfirmPassword: "Re-enter your password...",
+      btnSubmitSignin: "SIGN IN TO VIP PORTAL",
+      btnSubmitSignup: "CREATE VIP ACCOUNT",
+      trustSecurity: "256-Bit SSL Data Encryption · Sovereign Security Protocol",
+      trustActivation: "Your exclusive referral code and partner dashboard are activated automatically upon signing in.",
+      // Verification Screen
+      verifTitle: "VERIFY YOUR EMAIL TO ACTIVATE VIP ACCESS",
+      verifSentTo: "We have dispatched a verification link to:",
+      verifStep1: "Open your email app (Gmail, Outlook, iCloud, etc.).",
+      verifStep2: "Find the message from <strong>Travel4U / Firebase</strong> (check your <strong>Spam/Junk</strong> folder if not in your Inbox).",
+      verifStep3: "Click the verification link to activate your VIP membership.",
+      btnResendVerif: "Resend Verification Email",
+      btnBackSignin: "I Have Verified → Sign In",
+      // Alerts & Errors
+      errFillAll: "Please fill in both Email and Password.",
+      errEnterName: "Please enter your Full Name.",
+      errPwdMismatch: "Passwords do not match. Please re-check.",
+      errPwdShort: "Password is too short. Please enter at least 6 characters.",
+      errEmailInvalid: "Please enter a valid email address.",
+      errEmailInUse: "This email is already registered. Please switch to Sign In.",
+      errWrongCreds: "Incorrect email or password.",
+      errTooMany: "Too many unsuccessful attempts. Please try again later.",
+      errGeneric: "An error occurred. Please try again.",
+      loginSuccess: "✨ Login successful! Redirecting to your dashboard...",
+      resendSuccess: "✅ Verification email re-sent! Please check your inbox.",
+      resetSent: "✅ Password reset instructions sent! Please check your inbox.",
+      promptEnterEmailReset: "Please enter your email address above before requesting a password reset.",
+      unverifiedWarning: "⚠️ <strong>Email Not Verified:</strong> You must verify your email before signing in.",
+      unverifiedSub: "Please check your inbox or click the button below to resend the activation link.",
+      btnUnverifiedResend: "📩 Resend Verification Email"
+    }
+  };
+
+  // Determine Language: Query param > localStorage > default (vi)
+  const urlParams = new URLSearchParams(window.location.search);
+  let currentLang = urlParams.get('lang') || urlParams.get('locale') || localStorage.getItem('t4u_login_lang') || 'vi';
+  if (currentLang !== 'en' && currentLang !== 'vi') currentLang = 'vi';
+
+  // 2. Initialize Firebase App via DOM attribute
   const container = document.getElementById('auth-container');
   let firebaseConfig = {};
   try {
@@ -317,14 +445,30 @@ const pageDescription = "Đăng nhập hoặc đăng ký thành viên VIP / Đ�
   googleProvider.setCustomParameters({ prompt: 'select_account' });
 
   // UI Elements
+  const btnLangVi = document.getElementById('btn-lang-vi');
+  const btnLangEn = document.getElementById('btn-lang-en');
+
+  const textBackHome = document.getElementById('text-back-home');
+  const textPricing = document.getElementById('text-pricing');
+  const textGatewayBadge = document.getElementById('text-gateway-badge');
+  const textHeading = document.getElementById('text-heading');
+  const textSubheading = document.getElementById('text-subheading');
+  const btnGoogleText = document.getElementById('btn-google-text');
+  const textDivider = document.getElementById('text-divider');
+
   const tabSignin = document.getElementById('tab-signin');
   const tabSignup = document.getElementById('tab-signup');
   const fieldFullname = document.getElementById('field-fullname');
+  const labelFullname = document.getElementById('label-fullname');
   const fieldConfirmPwd = document.getElementById('field-confirm-pwd');
+  const labelConfirmPwd = document.getElementById('label-confirm-pwd');
+
   const authFormWrapper = document.getElementById('auth-form-wrapper');
   const authForm = document.getElementById('auth-form');
   const authEmail = document.getElementById('auth-email');
+  const labelEmail = document.getElementById('label-email');
   const authPassword = document.getElementById('auth-password');
+  const labelPassword = document.getElementById('label-password');
   const authConfirmPwd = document.getElementById('auth-confirm-pwd');
   const authFullname = document.getElementById('auth-fullname');
   const pwdMatchError = document.getElementById('pwd-match-error');
@@ -335,18 +479,90 @@ const pageDescription = "Đăng nhập hoặc đăng ký thành viên VIP / Đ�
   const btnSubmitSpinner = document.getElementById('btn-submit-spinner');
 
   const btnGoogleLogin = document.getElementById('btn-google-login');
-  const btnGoogleText = document.getElementById('btn-google-text');
   const btnForgotPassword = document.getElementById('btn-forgot-password');
   const statusBox = document.getElementById('auth-status-box');
 
+  const textTrustSecurity = document.getElementById('text-trust-security');
+  const textTrustActivation = document.getElementById('text-trust-activation');
+
   const verificationNoticeView = document.getElementById('verification-notice-view');
+  const verifTitle = document.getElementById('verif-title');
+  const verifSentTo = document.getElementById('verif-sent-to');
   const verificationTargetEmail = document.getElementById('verification-target-email');
+  const verifStep1 = document.getElementById('verif-step-1');
+  const verifStep2 = document.getElementById('verif-step-2');
+  const verifStep3 = document.getElementById('verif-step-3');
   const btnResendVerification = document.getElementById('btn-resend-verification');
   const btnResendText = document.getElementById('btn-resend-text');
   const btnBackToSignin = document.getElementById('btn-back-to-signin');
+  const textBtnBackSignin = document.getElementById('text-btn-back-signin');
 
   let currentMode = 'signin'; // 'signin' | 'signup'
   let lastRegisteredUser = null;
+
+  // Language Apply Engine
+  function applyLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem('t4u_login_lang', lang);
+    const t = I18N[lang] || I18N.vi;
+
+    // Toggle button active states
+    if (lang === 'vi') {
+      btnLangVi.className = "px-2 py-0.5 rounded transition bg-[#c9a54e] text-slate-950 shadow cursor-pointer font-bold";
+      btnLangEn.className = "px-2 py-0.5 rounded transition text-slate-400 hover:text-white cursor-pointer font-bold";
+    } else {
+      btnLangEn.className = "px-2 py-0.5 rounded transition bg-[#c9a54e] text-slate-950 shadow cursor-pointer font-bold";
+      btnLangVi.className = "px-2 py-0.5 rounded transition text-slate-400 hover:text-white cursor-pointer font-bold";
+    }
+
+    // Static text updates
+    if (textBackHome) textBackHome.textContent = t.backHome;
+    if (textPricing) textPricing.textContent = t.pricingLink;
+    if (textGatewayBadge) textGatewayBadge.textContent = t.gatewayBadge;
+    if (textHeading) textHeading.textContent = t.heading;
+    if (textSubheading) textSubheading.innerHTML = t.subheading;
+    if (btnGoogleText) btnGoogleText.textContent = t.googleBtn;
+    if (textDivider) textDivider.textContent = t.divider;
+
+    if (tabSignin) tabSignin.textContent = t.tabSignin;
+    if (tabSignup) tabSignup.textContent = t.tabSignup;
+
+    if (labelFullname) labelFullname.textContent = t.labelFullname;
+    if (authFullname) authFullname.placeholder = t.placeholderFullname;
+
+    if (labelEmail) labelEmail.textContent = t.labelEmail;
+    if (labelPassword) labelPassword.textContent = t.labelPassword;
+    if (authPassword) authPassword.placeholder = t.placeholderPassword;
+    if (btnForgotPassword) btnForgotPassword.textContent = t.forgotPassword;
+
+    if (labelConfirmPwd) labelConfirmPwd.textContent = t.labelConfirmPassword;
+    if (authConfirmPwd) authConfirmPwd.placeholder = t.placeholderConfirmPassword;
+
+    if (btnSubmitText) {
+      btnSubmitText.textContent = currentMode === 'signin' ? t.btnSubmitSignin : t.btnSubmitSignup;
+    }
+
+    if (textTrustSecurity) textTrustSecurity.textContent = t.trustSecurity;
+    if (textTrustActivation) textTrustActivation.textContent = t.trustActivation;
+
+    // Verification screen text
+    if (verifTitle) verifTitle.textContent = t.verifTitle;
+    if (verifSentTo) verifSentTo.textContent = t.verifSentTo;
+    if (verifStep1) verifStep1.textContent = t.verifStep1;
+    if (verifStep2) verifStep2.innerHTML = t.verifStep2;
+    if (verifStep3) verifStep3.textContent = t.verifStep3;
+    if (btnResendText) btnResendText.textContent = t.btnResendVerif;
+    if (textBtnBackSignin) textBtnBackSignin.textContent = t.btnBackSignin;
+
+    if (pwdMatchError) pwdMatchError.textContent = `⚠️ ${t.errPwdMismatch}`;
+  }
+
+  // Bind Language Switches
+  btnLangVi?.addEventListener('click', () => applyLanguage('vi'));
+  btnLangEn?.addEventListener('click', () => applyLanguage('en'));
+
+  // Initial apply
+  applyLanguage(currentLang);
 
   // Eye toggle helper
   function setupPasswordToggle(inputEl, btnEl) {
@@ -390,6 +606,7 @@ const pageDescription = "Đăng nhập hoặc đăng ký thành viên VIP / Đ�
     currentMode = mode;
     statusBox?.classList.add('hidden');
     pwdMatchError?.classList.add('hidden');
+    const t = I18N[currentLang] || I18N.vi;
 
     if (mode === 'signin') {
       tabSignin.classList.add('bg-[#c9a54e]', 'text-slate-950', 'shadow');
@@ -402,7 +619,7 @@ const pageDescription = "Đăng nhập hoặc đăng ký thành viên VIP / Đ�
       authFullname.removeAttribute('required');
       authConfirmPwd.removeAttribute('required');
       btnForgotPassword.classList.remove('hidden');
-      btnSubmitText.textContent = 'ĐĂNG NHẬP VIP NGAY';
+      btnSubmitText.textContent = t.btnSubmitSignin;
     } else {
       tabSignup.classList.add('bg-[#c9a54e]', 'text-slate-950', 'shadow');
       tabSignup.classList.remove('text-slate-400');
@@ -414,7 +631,7 @@ const pageDescription = "Đăng nhập hoặc đăng ký thành viên VIP / Đ�
       authFullname.setAttribute('required', 'true');
       authConfirmPwd.setAttribute('required', 'true');
       btnForgotPassword.classList.add('hidden');
-      btnSubmitText.textContent = 'ĐĂNG KÝ THÀNH VIÊN VIP';
+      btnSubmitText.textContent = t.btnSubmitSignup;
     }
   }
 
@@ -470,7 +687,7 @@ const pageDescription = "Đăng nhập hoặc đăng ký thành viên VIP / Đ�
       isSuperAdmin: isSuperAdmin,
       role: isSuperAdmin ? 'SUPER_ADMIN' : 'VIP_MEMBER',
       tier: isSuperAdmin ? 'tier_03_dfy' : 'tier_01_free',
-      tierName: isSuperAdmin ? '👑 SUPER ADMIN (30%)' : 'Hội Viên VIP (10%)',
+      tierName: isSuperAdmin ? '👑 SUPER ADMIN (30%)' : (currentLang === 'en' ? 'VIP Member (10%)' : 'Hội Viên VIP (10%)'),
       commissionRate: isSuperAdmin ? 0.30 : 0.10,
       refCode: refCode
     };
@@ -479,7 +696,8 @@ const pageDescription = "Đăng nhập hoặc đăng ký thành viên VIP / Đ�
     localStorage.setItem('t4u_partner_name', displayName);
     localStorage.setItem('t4u_partner_ref', refCode);
 
-    showStatus(`✨ Đăng nhập thành công! Xin chào ${displayName}. Đang chuyển hướng...`, false);
+    const t = I18N[currentLang] || I18N.vi;
+    showStatus(t.loginSuccess, false);
     setTimeout(() => {
       window.location.href = '/aff/';
     }, 800);
@@ -487,21 +705,22 @@ const pageDescription = "Đăng nhập hoặc đăng ký thành viên VIP / Đ�
 
   // 1. Google 1-Tap Login
   btnGoogleLogin?.addEventListener('click', async () => {
+    const t = I18N[currentLang] || I18N.vi;
     try {
       btnGoogleLogin.setAttribute('disabled', 'true');
       btnGoogleLogin.classList.add('opacity-75');
-      if (btnGoogleText) btnGoogleText.textContent = 'Đang mở cửa sổ Google...';
-      showStatus('Đang kết nối xác thực tài khoản Google...', false);
+      if (btnGoogleText) btnGoogleText.textContent = currentLang === 'en' ? 'Connecting to Google...' : 'Đang mở cửa sổ Google...';
+      showStatus(currentLang === 'en' ? 'Opening Google Account authentication...' : 'Đang kết nối xác thực tài khoản Google...', false);
 
       const result = await signInWithPopup(auth, googleProvider);
       handleAuthSuccess(result.user);
     } catch (err) {
       console.error('Google Auth error:', err);
-      showStatus('Không thể hoàn tất đăng nhập Google: ' + (err.message || 'Vui lòng thử lại.'), true);
+      showStatus((currentLang === 'en' ? 'Could not complete Google Sign-In: ' : 'Không thể hoàn tất đăng nhập Google: ') + (err.message || ''), true);
     } finally {
       btnGoogleLogin.removeAttribute('disabled');
       btnGoogleLogin.classList.remove('opacity-75');
-      if (btnGoogleText) btnGoogleText.textContent = 'Đăng nhập 1-Chạm với Google';
+      if (btnGoogleText) btnGoogleText.textContent = t.googleBtn;
     }
   });
 
@@ -518,29 +737,29 @@ const pageDescription = "Đăng nhập hoặc đăng ký thành viên VIP / Đ�
     verificationNoticeView?.classList.add('hidden');
     authFormWrapper?.classList.remove('hidden');
     setMode('signin');
-    showStatus('Sau khi bấm link trong email của bạn, hãy nhập email và mật khẩu để đăng nhập.', false);
+    const t = I18N[currentLang] || I18N.vi;
+    showStatus(currentLang === 'en' ? 'After clicking the verification link in your email, enter your email and password to sign in.' : 'Sau khi bấm link trong email của bạn, hãy nhập email và mật khẩu để đăng nhập.', false);
   });
 
   // Resend verification email
   btnResendVerification?.addEventListener('click', async () => {
+    const t = I18N[currentLang] || I18N.vi;
     try {
       btnResendVerification.setAttribute('disabled', 'true');
-      if (btnResendText) btnResendText.textContent = 'Đang gửi...';
+      if (btnResendText) btnResendText.textContent = currentLang === 'en' ? 'Sending...' : 'Đang gửi...';
 
-      // If user session is active, send verification directly
       if (auth.currentUser) {
         await sendEmailVerification(auth.currentUser);
-        showStatus('✅ Đã gửi lại email xác thực! Vui lòng kiểm tra hộp thư.', false);
+        showStatus(t.resendSuccess, false);
       } else {
-        // Prompt them to sign in
-        showStatus('Vui lòng đăng nhập để hệ thống gửi lại email xác thực.', true);
+        showStatus(currentLang === 'en' ? 'Please sign in to resend the verification email.' : 'Vui lòng đăng nhập để hệ thống gửi lại email xác thực.', true);
       }
     } catch (err) {
-      showStatus('Lỗi khi gửi lại email: ' + err.message, true);
+      showStatus('Error: ' + err.message, true);
     } finally {
       setTimeout(() => {
         btnResendVerification.removeAttribute('disabled');
-        if (btnResendText) btnResendText.textContent = 'Gửi lại email xác thực';
+        if (btnResendText) btnResendText.textContent = t.btnResendVerif;
       }, 5000);
     }
   });
@@ -548,24 +767,25 @@ const pageDescription = "Đăng nhập hoặc đăng ký thành viên VIP / Đ�
   // 3. Form Submit (Email / Password)
   authForm?.addEventListener('submit', async (e) => {
     e.preventDefault();
+    const t = I18N[currentLang] || I18N.vi;
     const email = authEmail.value.trim();
     const password = authPassword.value;
     const fullName = authFullname.value.trim();
     const confirmPwd = authConfirmPwd.value;
 
     if (!email || !password) {
-      showStatus('Vui lòng điền đầy đủ Email và Mật khẩu.', true);
+      showStatus(t.errFillAll, true);
       return;
     }
 
     if (currentMode === 'signup') {
       if (!fullName) {
-        showStatus('Vui lòng nhập Họ và tên của bạn.', true);
+        showStatus(t.errEnterName, true);
         authFullname.focus();
         return;
       }
       if (password !== confirmPwd) {
-        showStatus('Mật khẩu xác nhận không trùng khớp. Vui lòng kiểm tra lại.', true);
+        showStatus(t.errPwdMismatch, true);
         authConfirmPwd.focus();
         return;
       }
@@ -576,81 +796,76 @@ const pageDescription = "Đăng nhập hoặc đăng ký thành viên VIP / Đ�
     btnSubmitAuth.classList.add('opacity-75', 'cursor-not-allowed');
     btnSubmitArrow?.classList.add('hidden');
     btnSubmitSpinner?.classList.remove('hidden');
-    btnSubmitText.textContent = currentMode === 'signup' ? 'Đang tạo tài khoản...' : 'Đang đăng nhập...';
+    btnSubmitText.textContent = currentMode === 'signup' 
+      ? (currentLang === 'en' ? 'Creating VIP account...' : 'Đang tạo tài khoản...') 
+      : (currentLang === 'en' ? 'Signing in...' : 'Đang đăng nhập...');
 
     try {
       if (currentMode === 'signup') {
-        // Create user in Firebase Auth
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        // Update displayName
         if (fullName) {
           await updateProfile(user, { displayName: fullName });
         }
 
-        // Send Email Verification
         try {
           await sendEmailVerification(user);
         } catch (verErr) {
           console.warn('Verification email dispatch warning:', verErr);
         }
 
-        // Sign out temporarily so they must verify email to sign in
         await signOut(auth);
-
-        // Show standard Verification Dispatch screen
         showVerificationView(email, user);
 
       } else {
-        // Sign in with email and password
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        // Check if email is verified (Allow admin bypass)
-        const isSuperAdmin = email === 'coach.chuyen@gmail.com' || email === 'victorchuyen68@gmail.com';
-        
+        const isSuperAdmin = 
+          email === 'coach.chuyen@gmail.com' ||
+          email === 'f0807557459@gmail.com' ||
+          user.uid === 'GM9BYPVvotUqgZq8VYOU1vhFBjr2' ||
+          email === 'victorchuyen68@gmail.com';
+
         if (user.emailVerified || isSuperAdmin) {
           handleAuthSuccess(user);
         } else {
-          // Email not verified -> Show friendly alert with resend option
           showStatus(`
             <div class="space-y-2">
-              <p>⚠️ <strong>Email chưa được xác thực:</strong> Tài khoản của bạn cần xác nhận email trước khi đăng nhập.</p>
-              <p class="text-[11px] text-slate-300">Vui lòng kiểm tra hộp thư hoặc bấm vào nút bên dưới để nhận lại liên kết kích hoạt.</p>
-              <button type="button" id="btn-inline-resend" class="mt-1 px-3 py-1.5 bg-[#c9a54e] text-slate-950 font-bold rounded-lg text-[11px] hover:bg-[#dfba63] transition">
-                📩 Gửi lại email xác thực ngay
+              <p>${t.unverifiedWarning}</p>
+              <p class="text-[11px] text-slate-300">${t.unverifiedSub}</p>
+              <button type="button" id="btn-inline-resend" class="mt-1 px-3 py-1.5 bg-[#c9a54e] text-slate-950 font-bold rounded-lg text-[11px] hover:bg-[#dfba63] transition cursor-pointer">
+                ${t.btnUnverifiedResend}
               </button>
             </div>
           `, true);
 
-          // Attach inline resend listener
           document.getElementById('btn-inline-resend')?.addEventListener('click', async () => {
             try {
               await sendEmailVerification(user);
-              showStatus('✅ Đã gửi lại email xác thực! Vui lòng kiểm tra hộp thư (cả mục Spam/Junk).', false);
+              showStatus(t.resendSuccess, false);
             } catch (err) {
-              showStatus('Lỗi gửi email: ' + err.message, true);
+              showStatus('Error: ' + err.message, true);
             }
           });
 
-          // Sign out unverified session
           await signOut(auth);
         }
       }
     } catch (err) {
       console.error('Auth error:', err);
-      let errorMsg = 'Đã có lỗi xảy ra. Vui lòng thử lại.';
+      let errorMsg = t.errGeneric;
       if (err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential') {
-        errorMsg = 'Email hoặc mật khẩu không chính xác.';
+        errorMsg = t.errWrongCreds;
       } else if (err.code === 'auth/email-already-in-use') {
-        errorMsg = 'Email này đã được đăng ký. Vui lòng chuyển sang tab Đăng Nhập.';
+        errorMsg = t.errEmailInUse;
       } else if (err.code === 'auth/weak-password') {
-        errorMsg = 'Mật khẩu quá ngắn, vui lòng nhập ít nhất 6 ký tự.';
+        errorMsg = t.errPwdShort;
       } else if (err.code === 'auth/invalid-email') {
-        errorMsg = 'Địa chỉ email không hợp lệ.';
+        errorMsg = t.errEmailInvalid;
       } else if (err.code === 'auth/too-many-requests') {
-        errorMsg = 'Quá nhiều yêu cầu không thành công. Vui lòng thử lại sau vài phút.';
+        errorMsg = t.errTooMany;
       }
       showStatus(errorMsg, true);
     } finally {
@@ -658,31 +873,31 @@ const pageDescription = "Đăng nhập hoặc đăng ký thành viên VIP / Đ�
       btnSubmitAuth.classList.remove('opacity-75', 'cursor-not-allowed');
       btnSubmitArrow?.classList.remove('hidden');
       btnSubmitSpinner?.classList.add('hidden');
-      btnSubmitText.textContent = currentMode === 'signin' ? 'ĐĂNG NHẬP VIP NGAY' : 'ĐĂNG KÝ THÀNH VIÊN VIP';
+      btnSubmitText.textContent = currentMode === 'signin' ? t.btnSubmitSignin : t.btnSubmitSignup;
     }
   });
 
   // 4. Forgot Password
   btnForgotPassword?.addEventListener('click', async () => {
+    const t = I18N[currentLang] || I18N.vi;
     const email = authEmail.value.trim();
     if (!email) {
-      showStatus('Vui lòng nhập địa chỉ email vào ô phía trên trước khi yêu cầu cấp lại mật khẩu.', true);
+      showStatus(t.promptEnterEmailReset, true);
       authEmail.focus();
       return;
     }
     try {
       await sendPasswordResetEmail(auth, email);
-      showStatus('✅ Đã gửi email hướng dẫn đặt lại mật khẩu tới: ' + email + '. Vui lòng kiểm tra hộp thư của bạn.', false);
+      showStatus(t.resetSent, false);
     } catch (err) {
-      showStatus('Lỗi gửi email đặt lại mật khẩu: ' + err.message, true);
+      showStatus('Error: ' + err.message, true);
     }
   });
 
   // Check URL params (e.g. ?verified=1)
   try {
-    const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('verified') === '1') {
-      showStatus('✨ Email của bạn đã được xác nhận thành công! Vui lòng đăng nhập để bắt đầu.', false);
+      showStatus(currentLang === 'en' ? '✨ Your email has been verified! Please sign in to access your portal.' : '✨ Email của bạn đã được xác nhận thành công! Vui lòng đăng nhập để bắt đầu.', false);
     }
   } catch (e) {}
 </script>
