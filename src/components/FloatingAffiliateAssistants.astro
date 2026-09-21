@@ -1,0 +1,491 @@
+---
+/**
+ * 🌟 TRAVEL4U VIP AFFILIATE ASSISTANTS FLOATING SPEED-DIAL
+ * Cloned & Adapted from FCS Workforce Luxury Dock Architecture
+ * Exclusively provides 3 AI Travel Assistant Gateways:
+ *   1. Expedia Assistant (5-Star Hotels & Presidential Suites)
+ *   2. GetYourGuide Assistant (VIP Tours & Private Experiences - Partner 4G5BPIE)
+ *   3. Travelpayouts.com Assistant (Flights & Mobility - Marker 770720)
+ *
+ * ⚠️ NOTE: Chairman Victor will provide official assistant links in the next session.
+ * Change URLs easily via props or the DEFAULT_* constants below.
+ */
+
+interface Props {
+  currentLocale?: string;
+  expediaUrl?: string;
+  gygUrl?: string;
+  travelpayoutsUrl?: string;
+}
+
+// 🔗 CẤU HÌNH LIÊN KẾT TRỢ LÝ 3 NỀN TẢNG (CHAIRMAN VICTOR SẼ CẬP NHẬT TRONG PHIÊN SAU)
+const DEFAULT_EXPEDIA_URL = 'https://app.travel4u.us/go/expedia';
+const DEFAULT_GYG_URL = 'https://www.getyourguide.com/?partner_id=4G5BPIE';
+const DEFAULT_TRAVELPAYOUTS_URL = 'https://tp.media/r?marker=770720&p=575871';
+
+const {
+  currentLocale = 'vi',
+  expediaUrl = DEFAULT_EXPEDIA_URL,
+  gygUrl = DEFAULT_GYG_URL,
+  travelpayoutsUrl = DEFAULT_TRAVELPAYOUTS_URL
+} = Astro.props;
+
+// Tooltip dictionary across 12 locales
+const i18nTooltips: Record<string, {
+  expedia: string;
+  gyg: string;
+  travelpayouts: string;
+  toggleOpen: string;
+  toggleClosed: string;
+}> = {
+  vi: {
+    expedia: '🛎️ Trợ Lý Đặt Phòng Expedia VIP (Khách Sạn & Resort 5 Sao)',
+    gyg: '🎟️ Trợ Lý Tour GetYourGuide VIP (Trải Nghiệm Độc Quyền)',
+    travelpayouts: '✈️ Trợ Lý Vé & Di Chuyển Travelpayouts (Flights & Car Rental)',
+    toggleOpen: '✕ Đóng Menu Trợ Lý',
+    toggleClosed: '✨ Trợ Lý Du Lịch VIP 3 Nền Tảng (Expedia • GYG • Travelpayouts)'
+  },
+  en: {
+    expedia: '🛎️ Expedia VIP Stay Concierge (5-Star Hotels & Suites)',
+    gyg: '🎟️ GetYourGuide VIP Tour Guide (Exclusive Experiences)',
+    travelpayouts: '✈️ Travelpayouts Flight & Mobility Assistant',
+    toggleOpen: '✕ Close Assistant Menu',
+    toggleClosed: '✨ VIP Travel Assistants (Expedia • GYG • Travelpayouts)'
+  },
+  de: {
+    expedia: '🛎️ Expedia VIP Concierge (5-Sterne-Hotels & Suiten)',
+    gyg: '🎟️ GetYourGuide VIP Guide (Exklusive Touren & Erlebnisse)',
+    travelpayouts: '✈️ Travelpayouts Assistent (Flüge & Mietwagen)',
+    toggleOpen: '✕ Menü schließen',
+    toggleClosed: '✨ VIP Reiseassistenten (Expedia • GYG • Travelpayouts)'
+  },
+  fr: {
+    expedia: '🛎️ Concierge VIP Expedia (Hôtels 5 étoiles & Suites)',
+    gyg: '🎟️ Guide VIP GetYourGuide (Visites & Expériences Exclusives)',
+    travelpayouts: '✈️ Assistant Travelpayouts (Vols & Voitures)',
+    toggleOpen: '✕ Fermer le menu',
+    toggleClosed: '✨ Assistants VIP Voyage (Expedia • GYG • Travelpayouts)'
+  },
+  es: {
+    expedia: '🛎️ Conserje VIP de Expedia (Hoteles 5 Estrellas y Suites)',
+    gyg: '🎟️ Guía VIP de GetYourGuide (Tours y Experiencias Exclusivas)',
+    travelpayouts: '✈️ Asistente Travelpayouts (Vuelos y Alquiler de Autos)',
+    toggleOpen: '✕ Cerrar menú',
+    toggleClosed: '✨ Asistentes VIP de Viaje (Expedia • GYG • Travelpayouts)'
+  },
+  it: {
+    expedia: '🛎️ Concierge VIP Expedia (Hotel a 5 Stelle e Suite)',
+    gyg: '🎟️ Guida VIP GetYourGuide (Tour ed Esperienze Esclusive)',
+    travelpayouts: '✈️ Assistente Travelpayouts (Voli e Noleggio Auto)',
+    toggleOpen: '✕ Chiudi menu',
+    toggleClosed: '✨ Assistenti di Viaggio VIP (Expedia • GYG • Travelpayouts)'
+  },
+  ja: {
+    expedia: '🛎️ エクスペディア VIP コンシェルジュ（5つ星ホテル＆スイート）',
+    gyg: '🎟️ GetYourGuide VIP ガイド（限定ツアー＆プライベート体験）',
+    travelpayouts: '✈️ Travelpayouts アシスタント（航空券＆レンタカー）',
+    toggleOpen: '✕ メニューを閉じる',
+    toggleClosed: '✨ VIP トラベルアシスタント（Expedia • GYG • Travelpayouts）'
+  },
+  ko: {
+    expedia: '🛎️ 익스피디아 VIP 컨시어지 (5성급 호텔 & 스위트)',
+    gyg: '🎟️ 겟유어가이드 VIP 투어 가이드 (단독 투어 & 체험)',
+    travelpayouts: '✈️ 트래블페이아웃 모빌리티 (항공권 & 렌터카)',
+    toggleOpen: '✕ 메뉴 닫기',
+    toggleClosed: '✨ VIP 여행 어시스턴트 (Expedia • GYG • Travelpayouts)'
+  },
+  'zh-tw': {
+    expedia: '🛎️ Expedia 尊榮專屬禮賓（五星級酒店與套房預訂）',
+    gyg: '🎟️ GetYourGuide VIP 體驗嚮導（專屬遊程與深度活動）',
+    travelpayouts: '✈️ Travelpayouts 全球出行助手（機票與豪華租車）',
+    toggleOpen: '✕ 關閉助理選單',
+    toggleClosed: '✨ VIP 奢華旅行專屬助理（Expedia • GYG • Travelpayouts）'
+  },
+  'zh-cn': {
+    expedia: '🛎️ Expedia 尊享礼宾助手（五星级酒店与套房预订）',
+    gyg: '🎟️ GetYourGuide VIP 体验向导（独家专属行程与体验）',
+    travelpayouts: '✈️ Travelpayouts 全球出行助手（机票与奢华租车）',
+    toggleOpen: '✕ 关闭助理菜单',
+    toggleClosed: '✨ VIP 奢华旅行专属助手（Expedia • GYG • Travelpayouts）'
+  },
+  pt: {
+    expedia: '🛎️ Concierge VIP Expedia (Hotéis 5 Estrelas e Suítes)',
+    gyg: '🎟️ Guia VIP GetYourGuide (Passeios e Experiências Exclusivas)',
+    travelpayouts: '✈️ Assistente Travelpayouts (Voos e Aluguel de Carros)',
+    toggleOpen: '✕ Fechar menu',
+    toggleClosed: '✨ Assistentes de Viagem VIP (Expedia • GYG • Travelpayouts)'
+  },
+  ru: {
+    expedia: '🛎️ VIP Консьерж Expedia (5-звездочные отели и люксы)',
+    gyg: '🎟️ VIP Гид GetYourGuide (Эксклюзивные туры и впечатления)',
+    travelpayouts: '✈️ Помощник Travelpayouts (Авиабилеты и трансферы)',
+    toggleOpen: '✕ Закрыть меню',
+    toggleClosed: '✨ VIP Ассистенты Путешествий (Expedia • GYG • Travelpayouts)'
+  }
+};
+
+const texts = i18nTooltips[currentLocale] || i18nTooltips.en;
+---
+
+<style>
+  /* ── LUXURY FLOATING ASSISTANT DOCK (ARCHITECTED BY CHAIRMAN VICTOR & LUCKY) ── */
+  .luxury-assistant-dock {
+    position: fixed;
+    right: 20px;
+    bottom: max(24px, calc(20px + env(safe-area-inset-bottom)));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    z-index: 99990;
+    pointer-events: auto;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .assistant-items-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform-origin: bottom center;
+  }
+
+  .assistant-items-hidden {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(20px) scale(0.85);
+    pointer-events: none;
+    overflow: hidden;
+    margin: 0;
+    gap: 0;
+  }
+
+  .assistant-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.28s ease, filter 0.28s ease;
+    cursor: pointer;
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    user-select: none;
+  }
+
+  .assistant-icon-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    transition: transform 0.28s ease;
+  }
+
+  .assistant-tooltip {
+    position: absolute;
+    right: 64px;
+    background: rgba(7, 17, 30, 0.96);
+    color: #ffffff;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 7px 13px;
+    border-radius: 10px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(10px);
+    transition: opacity 0.22s ease, transform 0.22s ease;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(201, 165, 78, 0.4);
+    backdrop-filter: blur(12px);
+    letter-spacing: 0.01em;
+  }
+
+  .assistant-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -5px;
+    transform: translateY(-50%);
+    border-width: 5px 0 5px 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent rgba(7, 17, 30, 0.96);
+  }
+
+  .assistant-btn:hover .assistant-tooltip {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .assistant-btn:hover {
+    transform: scale(1.12) translateY(-2px);
+  }
+
+  .assistant-btn:hover .assistant-icon-box {
+    transform: scale(1.1);
+  }
+
+  /* 1. NÚT EXPEDIA CONCIERGE ASSISTANT (Xanh Đậm Hải Quân & Viền Vàng Hoàng Gia) */
+  .btn-expedia {
+    background: linear-gradient(135deg, #00355f, #001f3f);
+    border: 1.5px solid #ffcc00;
+    box-shadow: 0 8px 24px rgba(0, 53, 95, 0.55), 0 0 10px rgba(255, 204, 0, 0.35);
+  }
+  .btn-expedia:hover {
+    box-shadow: 0 12px 30px rgba(0, 53, 95, 0.8), 0 0 16px rgba(255, 204, 0, 0.6);
+  }
+
+  /* 2. NÚT GETYOURGUIDE VIP ASSISTANT (Đỏ San Hô GYG Rực Rỡ) */
+  .btn-gyg {
+    background: linear-gradient(135deg, #ff5533, #d9381e);
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 8px 24px rgba(255, 85, 51, 0.5);
+  }
+  .btn-gyg:hover {
+    box-shadow: 0 12px 30px rgba(255, 85, 51, 0.75);
+  }
+
+  /* 3. NÚT TRAVELPAYOUTS MOBILITY ASSISTANT (Xanh Dương Điện Tử) */
+  .btn-travelpayouts {
+    background: linear-gradient(135deg, #0084ff, #0052cc);
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 8px 24px rgba(0, 132, 255, 0.45);
+  }
+  .btn-travelpayouts:hover {
+    box-shadow: 0 12px 30px rgba(0, 132, 255, 0.7);
+  }
+
+  /* 4. NÚT TOGGLE ĐÓNG / MỞ MENU TRỢ LÝ */
+  .btn-toggle-assistant {
+    background: linear-gradient(135deg, #07111e, #0f2137);
+    border: 1.5px solid #c9a54e;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 12px rgba(201, 165, 78, 0.35);
+  }
+  .btn-toggle-assistant:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 18px rgba(201, 165, 78, 0.6);
+    border-color: #ffd700;
+  }
+  .btn-toggle-close {
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+  .btn-toggle-close:hover {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    border-color: #ffffff;
+    box-shadow: 0 10px 28px rgba(239, 68, 68, 0.5);
+  }
+  .btn-toggle-open {
+    animation: assistantGlow 2.8s infinite;
+  }
+
+  @keyframes assistantGlow {
+    0%, 100% {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 12px rgba(201, 165, 78, 0.35);
+    }
+    50% {
+      box-shadow: 0 12px 28px rgba(201, 165, 78, 0.6), 0 0 20px rgba(201, 165, 78, 0.5);
+      transform: scale(1.04);
+    }
+  }
+
+  /* RESPONSIVE MOBILE TWEAKS */
+  @media (max-width: 768px) {
+    .luxury-assistant-dock {
+      right: 12px !important;
+      bottom: max(72px, calc(68px + env(safe-area-inset-bottom))) !important;
+      gap: 10px !important;
+    }
+    .assistant-items-wrapper {
+      gap: 10px !important;
+    }
+    .assistant-btn {
+      width: 44px !important;
+      height: 44px !important;
+    }
+    .assistant-icon-box svg {
+      width: 20px !important;
+      height: 20px !important;
+    }
+    .assistant-tooltip {
+      display: none !important;
+    }
+  }
+</style>
+
+<!-- LUXURY ASSISTANT FLOATING SPEED-DIAL -->
+<div class="luxury-assistant-dock" id="luxuryAssistantDock">
+  
+  <!-- Group 3 Trợ Lý Nền Tảng Aff (Expedia • GYG • Travelpayouts) -->
+  <div class="assistant-items-wrapper" id="assistantItemsWrapper">
+    
+    <!-- 1. Trợ Lý Expedia VIP (Khách Sạn & Resort 5 Sao) -->
+    <a
+      href={expediaUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="assistant-btn btn-expedia track-assistant-click"
+      data-platform="expedia"
+      aria-label={texts.expedia}
+    >
+      <span class="assistant-tooltip">{texts.expedia}</span>
+      <div class="assistant-icon-box">
+        <!-- Expedia Distinctive Logo: Navy & Gold Cursive 'e' with Airplane Sweep -->
+        <svg viewBox="0 0 32 32" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="14" fill="#00355f" />
+          <path d="M16 4C9.37 4 4 9.37 4 16s5.37 12 12 12 12-5.37 12-12S22.63 4 16 4zm0 2c5.52 0 10 4.48 10 10 0 2.24-.74 4.31-1.99 5.98l-3.23-3.23c.76-.79 1.22-1.85 1.22-3.02 0-2.36-1.91-4.27-4.27-4.27s-4.27 1.91-4.27 4.27c0 1.17.47 2.23 1.22 3.02l-3.23 3.23C10.74 20.31 10 18.24 10 16c0-5.52 4.48-10 10-10z" fill="#ffcc00" opacity="0.3"/>
+          <path d="M19.8 13.5c-.4-.9-1.2-1.5-2.2-1.7-1.4-.2-2.7.4-3.4 1.5-.7 1.1-.7 2.5 0 3.6.7 1.1 2 1.7 3.4 1.5 1-.2 1.8-.8 2.2-1.7h-2.1c-.2.4-.6.7-1.1.7-.7 0-1.3-.5-1.5-1.2h6.2c.1-.4.1-.7.1-1.1 0-.6-.2-1.2-.6-1.6zm-4.3 1.7c.2-.7.8-1.2 1.5-1.2.7 0 1.3.5 1.5 1.2h-3z" fill="#ffcc00"/>
+          <path d="M22.5 8.5L20 11l2 1 3-3-2.5-.5z" fill="#ffffff"/>
+        </svg>
+      </div>
+    </a>
+
+    <!-- 2. Trợ Lý GetYourGuide VIP (Tours & Trải Nghiệm Độc Quyền) -->
+    <a
+      href={gygUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="assistant-btn btn-gyg track-assistant-click"
+      data-platform="getyourguide"
+      aria-label={texts.gyg}
+    >
+      <span class="assistant-tooltip">{texts.gyg}</span>
+      <div class="assistant-icon-box">
+        <!-- GetYourGuide Official Pin / Dual Compass Emblem -->
+        <svg viewBox="0 0 32 32" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="14" fill="#ff5533" />
+          <path d="M16 6C11.58 6 8 9.58 8 14c0 5.25 8 12 8 12s8-6.75 8-12c0-4.42-3.58-8-8-8zm0 11a3 3 0 110-6 3 3 0 010 6z" fill="#ffffff"/>
+          <path d="M16 12l2 4h-4l2-4z" fill="#ff5533"/>
+        </svg>
+      </div>
+    </a>
+
+    <!-- 3. Trợ Lý Travelpayouts (Vé Máy Bay & Di Chuyển Toàn Cầu) -->
+    <a
+      href={travelpayoutsUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="assistant-btn btn-travelpayouts track-assistant-click"
+      data-platform="travelpayouts"
+      aria-label={texts.travelpayouts}
+    >
+      <span class="assistant-tooltip">{texts.travelpayouts}</span>
+      <div class="assistant-icon-box">
+        <!-- Travelpayouts Origami Flight / Compass Mark -->
+        <svg viewBox="0 0 32 32" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="14" fill="#0084ff" />
+          <path d="M7 16l18-9-7 18-2-7-9-2z" fill="#ffffff"/>
+          <path d="M16 18l9-11-9 5v6z" fill="#0052cc" opacity="0.4"/>
+        </svg>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- Nút Toggle Đóng/Mở Trợ Lý -->
+  <button
+    type="button"
+    id="btnToggleAssistantDock"
+    class="assistant-btn btn-toggle-assistant btn-toggle-open"
+    aria-expanded="true"
+    aria-label={texts.toggleOpen}
+    title={texts.toggleClosed}
+  >
+    <span class="assistant-tooltip" id="assistantToggleTooltip">{texts.toggleOpen}</span>
+    <div class="assistant-icon-box" id="assistantToggleIcon">
+      <!-- Icon Close X khi đang mở -->
+      <svg id="iconClose" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+      <!-- Icon Bot Sparkles khi đang đóng -->
+      <div id="iconOpen" class="relative hidden items-center justify-center">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#c9a54e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+        </svg>
+        <span class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-emerald-400 rounded-full ring-2 ring-[#07111e] animate-ping"></span>
+      </div>
+    </div>
+  </button>
+
+</div>
+
+<script is:inline>
+  (function initAssistantDock() {
+    const STORAGE_KEY = 't4u_affiliate_assistants_dock_open';
+    const wrapper = document.getElementById('assistantItemsWrapper');
+    const toggleBtn = document.getElementById('btnToggleAssistantDock');
+    const tooltip = document.getElementById('assistantToggleTooltip');
+    const iconClose = document.getElementById('iconClose');
+    const iconOpen = document.getElementById('iconOpen');
+
+    if (!wrapper || !toggleBtn) return;
+
+    // Read saved dock state: default open on desktop, collapsed on small mobile
+    let isOpen = true;
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved !== null) {
+        isOpen = saved === 'true';
+      } else if (window.innerWidth < 768) {
+        isOpen = false;
+      }
+    } catch (e) {
+      isOpen = true;
+    }
+
+    function renderState(open) {
+      if (open) {
+        wrapper.classList.remove('assistant-items-hidden');
+        toggleBtn.classList.add('btn-toggle-close');
+        toggleBtn.classList.remove('btn-toggle-open');
+        toggleBtn.setAttribute('aria-expanded', 'true');
+        if (iconClose) iconClose.classList.remove('hidden');
+        if (iconOpen) {
+          iconOpen.classList.add('hidden');
+          iconOpen.classList.remove('flex');
+        }
+        if (tooltip) tooltip.textContent = '✕ Đóng Menu Trợ Lý';
+      } else {
+        wrapper.classList.add('assistant-items-hidden');
+        toggleBtn.classList.remove('btn-toggle-close');
+        toggleBtn.classList.add('btn-toggle-open');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+        if (iconClose) iconClose.classList.add('hidden');
+        if (iconOpen) {
+          iconOpen.classList.remove('hidden');
+          iconOpen.classList.add('flex');
+        }
+        if (tooltip) tooltip.textContent = '✨ Mở Menu Trợ Lý VIP (Expedia • GYG • Travelpayouts)';
+      }
+    }
+
+    // Initial render
+    renderState(isOpen);
+
+    // Toggle click handler
+    toggleBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      isOpen = !isOpen;
+      try {
+        localStorage.setItem(STORAGE_KEY, String(isOpen));
+      } catch (err) {}
+      renderState(isOpen);
+    });
+
+    // Track platform click events
+    document.querySelectorAll('.track-assistant-click').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const platform = btn.getAttribute('data-platform');
+        if (window.t4uAnalytics && typeof window.t4uAnalytics.trackEvent === 'function') {
+          window.t4uAnalytics.trackEvent('affiliate_assistant_clicked', { platform });
+        }
+      });
+    });
+  })();
+</script>

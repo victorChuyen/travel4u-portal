@@ -1,5 +1,6 @@
 ---
 import VipConciergeModal from '../components/VipConciergeModal.astro';
+import FloatingAffiliateAssistants from '../components/FloatingAffiliateAssistants.astro';
 
 interface Props {
   title: string;
@@ -273,6 +274,9 @@ if (Object.keys(effectiveAlternates).length === 0) {
 
       document.addEventListener('DOMContentLoaded', initBookmarks);
     </script>
+
+    <!-- Global 3-Platform VIP Travel Assistants Speed-Dial (Expedia • GYG • Travelpayouts) -->
+    <FloatingAffiliateAssistants currentLocale={locale} />
 
     <!-- Global VIP Lead Concierge Drawer Modal -->
     <VipConciergeModal currentLocale={locale} />

@@ -24,19 +24,42 @@ export async function onRequestPost({ request, env }) {
       locale
     } = body;
 
-    if (!name || !phone) {
-      return new Response(JSON.stringify({ error: 'Họ tên và Số điện thoại là bắt buộc.' }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' }
-      });
+    const isNewsletter = interest === 'newsletter_vip_guide' || (!phone && email);
+    const customerName = name || (isNewsletter ? 'VIP Reader' : '');
+
+    if (isNewsletter) {
+      if (!email || !email.includes('@')) {
+        return new Response(JSON.stringify({ error: 'Vui lòng cung cấp địa chỉ email hợp lệ.' }), {
+          status: 400,
+          headers: { 'Content-Type': 'application/json' }
+        });
+      }
+    } else {
+      if (!name || !phone) {
+        return new Response(JSON.stringify({ error: 'Họ tên và Số điện thoại là bắt buộc.' }), {
+          status: 400,
+          headers: { 'Content-Type': 'application/json' }
+        });
+      }
     }
 
     const botToken = env?.TELEGRAM_BOT_TOKEN || TELEGRAM_BOT_TOKEN;
     const chatId = env?.TELEGRAM_CHAT_ID || TELEGRAM_CHAT_ID;
     const phoneClean = (phone || '').replace(/[^0-9]/g, '');
 
-    // Formatted Telegram Lead Alert for Chairman Victor & CSKH Squad
-    const teleMsg = `
+    // Formatted Telegram Alert
+    const teleMsg = isNewsletter ? `
+💌 <b>[BẢN TIN VIP: ĐĂNG KÝ CẨM NANG 2026] ĐỘC GIẢ MỚI GIA NHẬP</b>
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+👤 <b>Độc giả:</b> <b>${customerName}</b>
+📧 <b>Email:</b> <code>${email}</code>
+🎁 <b>Nhận cẩm nang:</b> <b>The 2026 Gold List & Secret Partner Perks</b>
+💎 <b>Ref Code:</b> <code>${ref_code || 'direct'}</code>
+🌐 <b>Từ trang:</b> <code>${source_url || '/'}</code>
+🕒 <b>Thời gian:</b> ${new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' })}
+━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 <i>Độc giả đã được thêm vào luồng gửi Cẩm nang VIP & Bản tin Ưu đãi Đối tác tự động.</i>
+`.trim() : `
 ⚡ <b>[LEAD MỚI: 3 GÓI AI REVENUE] KHÁCH ĐĂNG KÝ TƯ VẤN / ĐỒNG HÀNH</b>
 ━━━━━━━━━━━━━━━━━━━━━━━━━━
 👤 <b>Khách hàng:</b> <b>${name}</b>
@@ -75,14 +98,14 @@ export async function onRequestPost({ request, env }) {
     // 1. Auto-sync to Master Google Sheet CRM (Tab OPC_CRM_CUSTOMERS)
     try {
       await syncLeadToGoogleSheetCRM({
-        name,
-        phone,
+        name: customerName,
+        phone: phone || 'Email Only',
         email,
-        tier: interest,
-        tier_name: interest === 'tier_02_dwy' ? 'Gói 02: DWY Builder Sprint ($139)' : (interest === 'tier_03_dfy' ? 'Gói 03: DFY Revenue System ($388)' : 'Gói 01: DIY Starter Kit ($19)'),
-        payment_type: 'Đăng Ký Tư Vấn',
+        tier: isNewsletter ? 'newsletter_vip_guide' : (interest || 'lead_general'),
+        tier_name: isNewsletter ? 'Cẩm Nang VIP 2026 (Newsletter)' : (interest === 'tier_02_dwy' ? 'Gói 02: DWY Builder Sprint ($139)' : (interest === 'tier_03_dfy' ? 'Gói 03: DFY Revenue System ($388)' : 'Gói 01: DIY Starter Kit ($19)')),
+        payment_type: isNewsletter ? 'Đăng Ký Bản Tin VIP' : 'Đăng Ký Tư Vấn',
         ref_code,
-        note,
+        note: isNewsletter ? 'Đăng ký nhận Cẩm nang VIP 2026 & Ưu đãi đối tác' : note,
         status: 'Mới Tiếp Nhận',
         env
       });
@@ -95,9 +118,9 @@ export async function onRequestPost({ request, env }) {
       try {
         await sendLuxuryOnboardingEmail({
           to: email,
-          name,
-          phone,
-          tier_name: interest === 'tier_02_dwy' ? 'Gói 02: DWY Builder Sprint ($139 / 3.6tr)' : (interest === 'tier_03_dfy' ? 'Gói 03: DFY Revenue System ($388 / 10tr)' : 'Gói 01: DIY Starter Kit ($19 / 500k)'),
+          name: customerName,
+          phone: phone || '',
+          tier_name: isNewsletter ? 'Cẩm Nang VIP 2026 & Bản Tin Đặc Quyền' : (interest === 'tier_02_dwy' ? 'Gói 02: DWY Builder Sprint ($139 / 3.6tr)' : (interest === 'tier_03_dfy' ? 'Gói 03: DFY Revenue System ($388 / 10tr)' : 'Gói 01: DIY Starter Kit ($19 / 500k)')),
           ref_code,
           env
         });
@@ -109,7 +132,7 @@ export async function onRequestPost({ request, env }) {
     return new Response(JSON.stringify({
       ok: true,
       status: 'lead_captured',
-      message: 'Thông tin của bạn đã được ghi nhận. Chuyên gia VIP sẽ liên hệ trong ít phút.'
+      message: isNewsletter ? 'Chúc mừng bạn! Cẩm nang VIP 2026 và ưu đãi đặc quyền đã được gửi tới email.' : 'Thông tin của bạn đã được ghi nhận. Chuyên gia VIP sẽ liên hệ trong ít phút.'
     }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' }
