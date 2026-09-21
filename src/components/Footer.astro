@@ -20,6 +20,9 @@ const journalContent: Record<string, {
   pref_ryokans: string;
   pref_safaris: string;
   pref_vip_hacks: string;
+  perk1: string;
+  perk2: string;
+  perk3: string;
   placeholder: string;
   button: string;
   privacy: string;
@@ -29,7 +32,7 @@ const journalContent: Record<string, {
   en: {
     badge: "TRAVEL4YOU JOURNAL",
     title: "Receive new luxury travel guides.",
-    subtitle: "Join the Travel4You list for new destination guides, private experience ideas, and carefully selected booking links.",
+    subtitle: "Join our discerning circle for curated destination guides, private experience ideas, and unadvertised partner booking privileges.",
     preferenceTitle: "Which curated sanctuaries do you wish to explore?",
     pref_all: "✨ All Sanctuaries",
     pref_islands: "🏝️ Private Islands",
@@ -37,6 +40,9 @@ const journalContent: Record<string, {
     pref_ryokans: "♨️ Japanese Ryokans",
     pref_safaris: "🦁 African Safaris",
     pref_vip_hacks: "✈️ VIP Upgrade Secrets",
+    perk1: "Free 2026 Sovereign Gold List PDF Guide (Top 100)",
+    perk2: "1 curated dispatch delivered every Saturday at 09:00 AM",
+    perk3: "100% Confidential • Zero spam • 1-Click unsubscribe",
     placeholder: "Your email address *",
     button: "Get the latest guides",
     privacy: "Weekly curated dispatch (Saturdays 09:00 AM) • Zero spam • Unsubscribe anytime in 1 click.",
@@ -46,7 +52,7 @@ const journalContent: Record<string, {
   vi: {
     badge: "CẨM NANG TRAVEL4YOU JOURNAL",
     title: "Nhận cẩm nang du lịch xa xỉ mới nhất.",
-    subtitle: "Gia nhập danh sách độc quyền Travel4You để nhận cẩm nang điểm đến mới, ý tưởng trải nghiệm riêng tư và liên kết đặt phòng tuyển chọn.",
+    subtitle: "Gia nhập danh sách độc giả tinh hoa Travel4You để nhận cẩm nang điểm đến mới, ý tưởng trải nghiệm riêng tư và liên kết đặt phòng tuyển chọn.",
     preferenceTitle: "Chọn chủ đề du lịch bạn yêu thích nhất:",
     pref_all: "✨ Tất cả cẩm nang",
     pref_islands: "🏝️ Đảo riêng & Biệt thự nổi",
@@ -54,6 +60,9 @@ const journalContent: Record<string, {
     pref_ryokans: "♨️ Ryokan & Onsen Nhật Bản",
     pref_safaris: "🦁 Safari hoang dã Châu Phi",
     pref_vip_hacks: "✈️ Bí kíp nâng hạng 5 sao",
+    perk1: "Tặng Ebook 100 Khách Sạn Vàng Thế Giới (Gold List 2026)",
+    perk2: "1 cẩm nang chuyên sâu gửi vào 09:00 sáng Thứ Bảy hàng tuần",
+    perk3: "Bảo mật tuyệt đối • Hủy nhận tin bất kỳ lúc nào với 1 chạm",
     placeholder: "Địa chỉ email của bạn *",
     button: "Nhận cẩm nang ngay",
     privacy: "1 cẩm nang tuyển chọn mỗi tuần (09:00 Thứ Bảy) • Hoàn toàn bảo mật • Hủy 1-chạm bất kỳ lúc nào.",
@@ -71,6 +80,9 @@ const journalContent: Record<string, {
     pref_ryokans: "♨️ Japanische Ryokans",
     pref_safaris: "🦁 Afrikanische Safaris",
     pref_vip_hacks: "✈️ VIP-Upgrade-Tipps",
+    perk1: "Kostenloser Ebook-Guide: Die 100 Gold List Refugien 2026",
+    perk2: "Wöchentliche Kuration jeden Samstag um 09:00 Uhr",
+    perk3: "100% vertraulich • Jederzeit mit 1 Klick abbestellbar",
     placeholder: "Ihre E-Mail-Adresse *",
     button: "Neueste Guides erhalten",
     privacy: "Wöchentliche Kuration (Samstags 09:00 Uhr) • Kein Spam • Jederzeit mit 1 Klick abbestellbar.",
@@ -88,6 +100,9 @@ const journalContent: Record<string, {
     pref_ryokans: "♨️ Ryokans & Onsen",
     pref_safaris: "🦁 Safaris en Afrique",
     pref_vip_hacks: "✈️ Secrets VIP 5 Étoiles",
+    perk1: "Guide PDF offert : Les 100 sanctuaires Gold List 2026",
+    perk2: "Édition spéciale envoyée chaque samedi à 09h00",
+    perk3: "100 % confidentiel • Désinscription en 1 clic à tout moment",
     placeholder: "Votre adresse e-mail *",
     button: "Recevoir les guides",
     privacy: "1 sélection par semaine (Samedi 09h00) • Zéro spam • Désinscription en 1 clic.",
@@ -105,8 +120,11 @@ const journalContent: Record<string, {
     pref_ryokans: "♨️ Ryokans & Onsen",
     pref_safaris: "🦁 Safaris en África",
     pref_vip_hacks: "✈️ Trucos VIP 5 Estrellas",
-    placeholder: "Su correo electrónico *"
-    ,button: "Obtener las guías",
+    perk1: "Guía PDF gratis: Los 100 santuarios Gold List 2026",
+    perk2: "Envío exclusivo todos los sábados a las 09:00",
+    perk3: "100% confidencial • Cancela con 1 clic en cualquier momento",
+    placeholder: "Su correo electrónico *",
+    button: "Obtener las guías",
     privacy: "Envío semanal curado (Sábados 09:00) • Sin spam • Cancela con 1 clic.",
     success: "✨ ¡Bienvenido a Travel4You Journal!",
     successDesc: "Su guía Gold List 2026 ha sido enviada a su correo. Recibirá nuestra selección los sábados a las 09:00."
@@ -122,6 +140,9 @@ const journalContent: Record<string, {
     pref_ryokans: "♨️ Ryokan & Onsen",
     pref_safaris: "🦁 Safari in Africa",
     pref_vip_hacks: "✈️ Segreti VIP 5 Stelle",
+    perk1: "Guida PDF esclusiva: I 100 santuari Gold List 2026",
+    perk2: "Invio settimanale ogni sabato alle 09:00",
+    perk3: "100% riservato • Disiscriviti in 1 clic in qualsiasi momento",
     placeholder: "Il tuo indirizzo email *",
     button: "Ricevi le guide",
     privacy: "Spedizione settimanale (Sabato 09:00) • Nessuno spam • Disiscriviti in 1 clic.",
@@ -139,6 +160,9 @@ const journalContent: Record<string, {
     pref_ryokans: "♨️ 極上温泉旅館",
     pref_safaris: "🦁 アフリカンサファリ",
     pref_vip_hacks: "✈️ 5つ星VIPアップグレード術",
+    perk1: "無料特典：2026年ゴールドリスト100選PDFガイド",
+    perk2: "毎週土曜午前9時に極上の厳選便をお届け",
+    perk3: "完全秘密厳守 • いつでもワンクリックで解除可能",
     placeholder: "メールアドレス *",
     button: "最新ガイドを受け取る",
     privacy: "毎週土曜午前9時にお届け • スパム一切なし • いつでも1クリックで解除可能。",
@@ -156,6 +180,9 @@ const journalContent: Record<string, {
     pref_ryokans: "♨️ 전통 료칸 & 온천",
     pref_safaris: "🦁 아프리카 야생 사파리",
     pref_vip_hacks: "✈️ 5성급 VIP 업그레이드 비법",
+    perk1: "무료 증정: 2026 골드 리스트 100대 성지 PDF 가이드",
+    perk2: "매주 토요일 오전 9시 엄선된 럭셔리 여행지 발송",
+    perk3: "100% 비밀 보장 • 언제든 원클릭 구독 해지 가능",
     placeholder: "이메일 주소 입력 *",
     button: "최신 가이드 받기",
     privacy: "매주 토요일 오전 9시 발송 • 스팸 없음 • 언제든지 원클릭 구독 취소 가능.",
@@ -173,6 +200,9 @@ const journalContent: Record<string, {
     pref_ryokans: "♨️ 日本頂級溫泉旅館",
     pref_safaris: "🦁 非洲荒野奢華遊獵",
     pref_vip_hacks: "✈️ 五星級客房升等秘技",
+    perk1: "免費贈送：2026 金榜 100 大奢華聖域 PDF 指南",
+    perk2: "每週六上午 09:00 準時為您寄送深度特刊",
+    perk3: "100% 嚴格保密 • 隨時可一鍵退訂",
     placeholder: "請輸入您的電子郵件 *",
     button: "立即獲取指南",
     privacy: "每週六上午09:00準時寄送 • 絕無垃圾郵件 • 隨時可一鍵退訂。",
@@ -190,6 +220,9 @@ const journalContent: Record<string, {
     pref_ryokans: "♨️ 日本顶级温泉旅馆",
     pref_safaris: "🦁 非洲荒野奢华游猎",
     pref_vip_hacks: "✈️ 五星级客房升等秘技",
+    perk1: "免费赠送：2026 金榜 100 大奢华圣域 PDF 指南",
+    perk2: "每周六上午 09:00 准时为您发送深度特刊",
+    perk3: "100% 严格保密 • 随时可一键退订",
     placeholder: "请输入您的电子邮箱 *",
     button: "立即获取指南",
     privacy: "每周六上午09:00准时寄送 • 绝无垃圾邮件 • 随时可一键退订。",
@@ -207,6 +240,9 @@ const journalContent: Record<string, {
     pref_ryokans: "♨️ Ryokans & Onsen",
     pref_safaris: "🦁 Safáris em África",
     pref_vip_hacks: "✈️ Segredos VIP 5 Estrelas",
+    perk1: "Guia PDF gratuito: Os 100 santuários Gold List 2026",
+    perk2: "Edição especial todos os sábados às 09:00",
+    perk3: "100% confidencial • Cancele com 1 clique a qualquer momento",
     placeholder: "O seu endereço de email *",
     button: "Receber os guias",
     privacy: "Envio semanal (Sábados às 09:00) • Sem spam • Cancele com 1 clique.",
@@ -224,6 +260,9 @@ const journalContent: Record<string, {
     pref_ryokans: "♨️ Традиционные рёканы",
     pref_safaris: "🦁 Сафари в Африке",
     pref_vip_hacks: "✈️ Секреты апгрейда 5 звёзд",
+    perk1: "Бесплатный гид: 100 лучших отелей Gold List 2026 (PDF)",
+    perk2: "Эксклюзивный выпуск каждую субботу в 09:00",
+    perk3: "100% конфиденциальность • Отписка в 1 клик",
     placeholder: "Ваш адрес эл. почты *",
     button: "Получить гид",
     privacy: "Еженедельный выпуск (Суббота 09:00) • Без спама • Отписка в 1 клик.",
@@ -239,156 +278,184 @@ const t = journalContent[currentLocale] || journalContent.en;
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
     <!-- 📰 Top Section: TRAVEL4YOU JOURNAL (Email Lead Capture Banner) -->
-    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-b from-[#081526] to-[#040a12] border border-slate-800/90 p-6 sm:p-10 lg:p-12 mb-16 shadow-2xl">
+    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-b from-[#091526] via-[#060e1a] to-[#03070d] border border-amber-500/25 p-5 sm:p-8 lg:p-12 mb-16 shadow-2xl">
       <!-- Ambient Luxury Glow Background -->
-      <div class="absolute -top-24 -right-24 w-80 sm:w-96 h-80 sm:h-96 bg-[#c9a54e]/10 rounded-full blur-3xl pointer-events-none"></div>
-      <div class="absolute -bottom-24 -left-24 w-80 h-80 bg-blue-600/5 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -top-32 -right-32 w-80 sm:w-96 h-80 sm:h-96 bg-[#c9a54e]/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-32 -left-32 w-80 sm:w-96 h-80 sm:h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
 
-      <div class="relative z-10 max-w-3xl">
-        <!-- Eyebrow Badge -->
-        <p class="text-xs sm:text-sm font-semibold tracking-widest text-[#d4a359] uppercase mb-3">
-          {t.badge}
-        </p>
-
-        <!-- Headline -->
-        <h3 class="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight mb-3">
-          {t.title}
-        </h3>
-
-        <!-- Subtitle -->
-        <p class="text-sm sm:text-base text-slate-300/90 leading-relaxed mb-6 sm:mb-8 max-w-2xl font-sans">
-          {t.subtitle}
-        </p>
-
-        <!-- Subscription Form -->
-        <form id="footer-journal-form" class="space-y-4" novalidate>
-          <!-- Interactive Preference Selector (Demand-Driven Segment) -->
-          <div>
-            <p class="text-xs text-slate-300 font-semibold mb-2 flex items-center gap-1.5">
-              <span class="text-[#d4a359]">🎯</span>
-              <span>{t.preferenceTitle}</span>
-            </p>
-            <div class="flex flex-wrap gap-2" id="footer-journal-pref-container">
-              <button
-                type="button"
-                data-pref="all"
-                class="footer-pref-btn px-3 py-1.5 rounded-full text-xs font-bold bg-[#d4a359] text-[#07111e] border border-[#d4a359] shadow-sm transition-all cursor-pointer"
-              >
-                {t.pref_all}
-              </button>
-              <button
-                type="button"
-                data-pref="islands"
-                class="footer-pref-btn px-3 py-1.5 rounded-full text-xs font-medium bg-[#040a12] text-slate-300 border border-slate-700/80 hover:border-[#d4a359]/60 hover:text-white transition-all cursor-pointer"
-              >
-                {t.pref_islands}
-              </button>
-              <button
-                type="button"
-                data-pref="palaces"
-                class="footer-pref-btn px-3 py-1.5 rounded-full text-xs font-medium bg-[#040a12] text-slate-300 border border-slate-700/80 hover:border-[#d4a359]/60 hover:text-white transition-all cursor-pointer"
-              >
-                {t.pref_palaces}
-              </button>
-              <button
-                type="button"
-                data-pref="ryokans"
-                class="footer-pref-btn px-3 py-1.5 rounded-full text-xs font-medium bg-[#040a12] text-slate-300 border border-slate-700/80 hover:border-[#d4a359]/60 hover:text-white transition-all cursor-pointer"
-              >
-                {t.pref_ryokans}
-              </button>
-              <button
-                type="button"
-                data-pref="safaris"
-                class="footer-pref-btn px-3 py-1.5 rounded-full text-xs font-medium bg-[#040a12] text-slate-300 border border-slate-700/80 hover:border-[#d4a359]/60 hover:text-white transition-all cursor-pointer"
-              >
-                {t.pref_safaris}
-              </button>
-              <button
-                type="button"
-                data-pref="vip_hacks"
-                class="footer-pref-btn px-3 py-1.5 rounded-full text-xs font-medium bg-[#040a12] text-slate-300 border border-slate-700/80 hover:border-[#d4a359]/60 hover:text-white transition-all cursor-pointer"
-              >
-                {t.pref_vip_hacks}
-              </button>
-            </div>
+      <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+        
+        <!-- Left Column: Editorial Authority & Trust Badges (cols 5 on desktop) -->
+        <div class="lg:col-span-5 space-y-3.5 sm:space-y-4">
+          <!-- Eyebrow Badge -->
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-[#d4a359] text-xs font-bold tracking-wider uppercase">
+            <span>👑</span>
+            <span>{t.badge}</span>
           </div>
 
-          <!-- Hidden Honeypot for Anti-Bot Spam Protection -->
-          <input
-            type="text"
-            name="website"
-            id="footer-journal-hp"
-            class="hidden"
-            tabindex="-1"
-            autocomplete="off"
-            style="position:absolute;left:-9999px;opacity:0;"
-          />
+          <!-- Headline -->
+          <h3 class="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight">
+            {t.title}
+          </h3>
 
-          <div class="flex flex-col sm:flex-row items-stretch gap-3 w-full max-w-2xl pt-1">
-            <!-- Email Input (iOS 16px font-size prevents unwanted auto-zoom) -->
-            <div class="relative flex-1">
-              <input
-                type="email"
-                id="footer-journal-email"
-                name="email"
-                placeholder={t.placeholder}
-                required
-                autocomplete="email"
-                inputmode="email"
-                autocapitalize="none"
-                spellcheck="false"
-                class="w-full h-12 sm:h-13 px-4 py-3 bg-[#040a12] border border-slate-700/80 rounded-xl text-white text-base placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#c9a54e]/40 focus:border-[#c9a54e] transition-all duration-200"
-              />
-              <span id="footer-journal-input-icon" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-sm pointer-events-none">
-                ✉️
-              </span>
-            </div>
-
-            <!-- Submit Button (Touch-friendly 48px+ height, active click scale, gold luxury color) -->
-            <button
-              type="submit"
-              id="footer-journal-btn"
-              class="h-12 sm:h-13 px-6 sm:px-8 bg-[#d4a359] hover:bg-[#dfba63] active:bg-[#c9a54e] active:scale-[0.98] text-[#07111e] font-bold text-sm sm:text-base rounded-xl transition-all duration-200 shadow-lg shadow-[#d4a359]/20 hover:shadow-[#d4a359]/30 flex items-center justify-center space-x-2 flex-shrink-0 cursor-pointer"
-            >
-              <span id="footer-journal-btn-text">{t.button}</span>
-              <span id="footer-journal-btn-arrow" class="text-base font-bold">→</span>
-              <span id="footer-journal-btn-spinner" class="hidden animate-spin">
-                <svg class="w-5 h-5 text-[#07111e]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-              </span>
-            </button>
-          </div>
-
-          <!-- Privacy & Trust Microcopy -->
-          <div class="flex items-center space-x-2 text-xs text-slate-400 pt-1">
-            <span class="text-[#d4a359]">🔒</span>
-            <span>{t.privacy}</span>
-          </div>
-
-          <!-- Error Alert Container -->
-          <div id="footer-journal-error" class="hidden p-3 rounded-lg bg-rose-950/60 border border-rose-800/80 text-rose-300 text-xs flex items-center space-x-2">
-            <span>⚠️</span>
-            <span id="footer-journal-error-msg"></span>
-          </div>
-        </form>
-
-        <!-- Success Alert Container -->
-        <div id="footer-journal-success" class="hidden p-6 rounded-2xl bg-gradient-to-r from-emerald-950/60 via-slate-900/90 to-amber-950/40 border border-emerald-500/50 text-slate-200 text-sm space-y-3">
-          <div class="flex items-center space-x-2 text-emerald-400 font-bold text-base">
-            <span>✨</span>
-            <span>{t.success}</span>
-          </div>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed" id="footer-journal-success-text">
-            {t.successDesc}
+          <!-- Subtitle -->
+          <p class="text-xs sm:text-sm text-slate-300/90 leading-relaxed font-sans">
+            {t.subtitle}
           </p>
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold">
-            <span>📅</span>
-            <span>{currentLocale === 'vi' ? 'Bản tin tiếp theo: 09:00 Sáng Thứ Bảy tuần này' : 'Next dispatch: This Saturday at 09:00 AM'}</span>
+
+          <!-- 3 Sovereign Guarantee Badges -->
+          <div class="pt-2 space-y-2 sm:space-y-2.5 text-xs text-slate-300">
+            <div class="flex items-start gap-2.5">
+              <span class="w-4.5 h-4.5 rounded-full bg-amber-500/20 text-[#d4a359] flex items-center justify-center text-[11px] font-bold flex-shrink-0 mt-0.5">✓</span>
+              <span>{t.perk1}</span>
+            </div>
+            <div class="flex items-start gap-2.5">
+              <span class="w-4.5 h-4.5 rounded-full bg-amber-500/20 text-[#d4a359] flex items-center justify-center text-[11px] font-bold flex-shrink-0 mt-0.5">✓</span>
+              <span>{t.perk2}</span>
+            </div>
+            <div class="flex items-start gap-2.5">
+              <span class="w-4.5 h-4.5 rounded-full bg-amber-500/20 text-[#d4a359] flex items-center justify-center text-[11px] font-bold flex-shrink-0 mt-0.5">✓</span>
+              <span>{t.perk3}</span>
+            </div>
           </div>
         </div>
+
+        <!-- Right Column: Interactive Subscription Card (cols 7 on desktop) -->
+        <div class="lg:col-span-7">
+          <div class="bg-[#040a12]/90 backdrop-blur-md border border-slate-700/80 rounded-2xl p-4 sm:p-6 lg:p-7 shadow-2xl">
+            <!-- Form Container -->
+            <form id="footer-journal-form" class="space-y-4" novalidate>
+              <!-- Interactive Preference Selector (Demand-Driven Segment) -->
+              <div>
+                <p class="text-xs sm:text-sm text-slate-200 font-semibold mb-2.5 flex items-center gap-1.5">
+                  <span class="text-[#d4a359] text-base">🎯</span>
+                  <span>{t.preferenceTitle}</span>
+                </p>
+
+                <!-- Responsive Balanced Grid: 2 cols on mobile (<640px), 3 cols on tablet & desktop (>=640px) -->
+                <!-- 6 items = exactly 2 rows of 3, or 3 rows of 2. ZERO orphan buttons! -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2" id="footer-journal-pref-container">
+                  <button
+                    type="button"
+                    data-pref="all"
+                    class="footer-pref-btn group min-h-[42px] px-2.5 py-2 rounded-xl text-xs font-bold bg-[#d4a359] text-[#07111e] border border-[#d4a359] shadow-sm transition-all duration-200 cursor-pointer flex items-center justify-center text-center truncate"
+                  >
+                    <span class="truncate">{t.pref_all}</span>
+                  </button>
+                  <button
+                    type="button"
+                    data-pref="islands"
+                    class="footer-pref-btn group min-h-[42px] px-2.5 py-2 rounded-xl text-xs font-medium bg-[#07111e] text-slate-300 border border-slate-700/80 hover:border-[#d4a359]/60 hover:text-white transition-all duration-200 cursor-pointer flex items-center justify-center text-center truncate"
+                  >
+                    <span class="truncate">{t.pref_islands}</span>
+                  </button>
+                  <button
+                    type="button"
+                    data-pref="palaces"
+                    class="footer-pref-btn group min-h-[42px] px-2.5 py-2 rounded-xl text-xs font-medium bg-[#07111e] text-slate-300 border border-slate-700/80 hover:border-[#d4a359]/60 hover:text-white transition-all duration-200 cursor-pointer flex items-center justify-center text-center truncate"
+                  >
+                    <span class="truncate">{t.pref_palaces}</span>
+                  </button>
+                  <button
+                    type="button"
+                    data-pref="ryokans"
+                    class="footer-pref-btn group min-h-[42px] px-2.5 py-2 rounded-xl text-xs font-medium bg-[#07111e] text-slate-300 border border-slate-700/80 hover:border-[#d4a359]/60 hover:text-white transition-all duration-200 cursor-pointer flex items-center justify-center text-center truncate"
+                  >
+                    <span class="truncate">{t.pref_ryokans}</span>
+                  </button>
+                  <button
+                    type="button"
+                    data-pref="safaris"
+                    class="footer-pref-btn group min-h-[42px] px-2.5 py-2 rounded-xl text-xs font-medium bg-[#07111e] text-slate-300 border border-slate-700/80 hover:border-[#d4a359]/60 hover:text-white transition-all duration-200 cursor-pointer flex items-center justify-center text-center truncate"
+                  >
+                    <span class="truncate">{t.pref_safaris}</span>
+                  </button>
+                  <button
+                    type="button"
+                    data-pref="vip_hacks"
+                    class="footer-pref-btn group min-h-[42px] px-2.5 py-2 rounded-xl text-xs font-medium bg-[#07111e] text-slate-300 border border-slate-700/80 hover:border-[#d4a359]/60 hover:text-white transition-all duration-200 cursor-pointer flex items-center justify-center text-center truncate"
+                  >
+                    <span class="truncate">{t.pref_vip_hacks}</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Hidden Honeypot for Anti-Bot Spam Protection -->
+              <input
+                type="text"
+                name="website"
+                id="footer-journal-hp"
+                class="hidden"
+                tabindex="-1"
+                autocomplete="off"
+                style="position:absolute;left:-9999px;opacity:0;"
+              />
+
+              <!-- Email Input & Submit Button (Side-by-side on tablet/desktop, stacked on mobile) -->
+              <div class="flex flex-col sm:flex-row items-stretch gap-2.5 w-full pt-1">
+                <!-- Email Input (iOS 16px font-size prevents unwanted auto-zoom) -->
+                <div class="relative flex-1">
+                  <input
+                    type="email"
+                    id="footer-journal-email"
+                    name="email"
+                    placeholder={t.placeholder}
+                    required
+                    autocomplete="email"
+                    inputmode="email"
+                    autocapitalize="none"
+                    spellcheck="false"
+                    class="w-full h-12 sm:h-13 px-4 py-3 bg-[#07111e] border border-slate-700/80 rounded-xl text-white text-base placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#c9a54e]/40 focus:border-[#c9a54e] transition-all duration-200 shadow-inner"
+                  />
+                </div>
+
+                <!-- Submit Button -->
+                <button
+                  type="submit"
+                  id="footer-journal-btn"
+                  class="h-12 sm:h-13 px-6 sm:px-7 bg-gradient-to-r from-[#d4a359] via-[#e2be72] to-[#c9a54e] hover:brightness-110 active:scale-[0.98] text-[#07111e] font-bold text-sm sm:text-base rounded-xl transition-all duration-200 shadow-lg shadow-[#d4a359]/25 flex items-center justify-center space-x-2 flex-shrink-0 cursor-pointer"
+                >
+                  <span id="footer-journal-btn-text">{t.button}</span>
+                  <span id="footer-journal-btn-arrow" class="text-base font-bold transition-transform group-hover:translate-x-1">→</span>
+                  <span id="footer-journal-btn-spinner" class="hidden animate-spin">
+                    <svg class="w-5 h-5 text-[#07111e]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                  </span>
+                </button>
+              </div>
+
+              <!-- Privacy & Trust Microcopy -->
+              <div class="flex items-center space-x-2 text-xs text-slate-400 pt-0.5">
+                <span class="text-[#d4a359]">🔒</span>
+                <span>{t.privacy}</span>
+              </div>
+
+              <!-- Error Alert Container -->
+              <div id="footer-journal-error" class="hidden p-3 rounded-lg bg-rose-950/60 border border-rose-800/80 text-rose-300 text-xs flex items-center space-x-2">
+                <span>⚠️</span>
+                <span id="footer-journal-error-msg"></span>
+              </div>
+            </form>
+
+            <!-- Success Alert Container -->
+            <div id="footer-journal-success" class="hidden p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-emerald-950/60 via-slate-900/90 to-amber-950/40 border border-emerald-500/50 text-slate-200 text-sm space-y-2.5">
+              <div class="flex items-center space-x-2 text-emerald-400 font-bold text-base">
+                <span>✨</span>
+                <span>{t.success}</span>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed" id="footer-journal-success-text">
+                {t.successDesc}
+              </p>
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold">
+                <span>📅</span>
+                <span>{currentLocale === 'vi' ? 'Bản tin tiếp theo: 09:00 Sáng Thứ Bảy tuần này' : 'Next dispatch: This Saturday at 09:00 AM'}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -530,9 +597,9 @@ const t = journalContent[currentLocale] || journalContent.en;
         selectedPref = pBtn.getAttribute('data-pref') || 'all';
         prefBtns.forEach((b) => {
           b.classList.remove('bg-[#d4a359]', 'text-[#07111e]', 'font-bold', 'border-[#d4a359]', 'shadow-sm');
-          b.classList.add('bg-[#040a12]', 'text-slate-300', 'font-medium', 'border-slate-700/80');
+          b.classList.add('bg-[#07111e]', 'text-slate-300', 'font-medium', 'border-slate-700/80');
         });
-        pBtn.classList.remove('bg-[#040a12]', 'text-slate-300', 'font-medium', 'border-slate-700/80');
+        pBtn.classList.remove('bg-[#07111e]', 'text-slate-300', 'font-medium', 'border-slate-700/80');
         pBtn.classList.add('bg-[#d4a359]', 'text-[#07111e]', 'font-bold', 'border-[#d4a359]', 'shadow-sm');
       });
     });
