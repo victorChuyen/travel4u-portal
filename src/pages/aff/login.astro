@@ -452,26 +452,34 @@ const pageDescription = "Đăng nhập hoặc đăng ký thành viên VIP / Đ�
   });
 
   function handleAuthSuccess(user) {
-    const displayName = user.displayName || user.email?.split('@')[0] || 'VIP Member';
-    const refBase = displayName.replace(/[^a-zA-Z0-9]/g, '').toUpperCase().slice(0, 8) || 'VIP';
-    const refCode = `${refBase}88`;
+    const isSuperAdmin = 
+      user.email === 'coach.chuyen@gmail.com' ||
+      user.email === 'f0807557459@gmail.com' ||
+      user.uid === 'GM9BYPVvotUqgZq8VYOU1vhFBjr2' ||
+      user.email === 'victorchuyen68@gmail.com';
+
+    const displayName = isSuperAdmin ? 'Chairman Victor' : (user.displayName || user.email?.split('@')[0] || 'VIP Member');
+    const refCode = isSuperAdmin ? 'VICTOR88' : `${displayName.replace(/[^a-zA-Z0-9]/g, '').toUpperCase().slice(0, 8) || 'VIP'}88`;
 
     const vipUser = {
       uid: user.uid,
       email: user.email,
       displayName,
       photoURL: user.photoURL,
-      emailVerified: user.emailVerified,
-      tier: 'tier_02',
-      commissionRate: 0.20,
-      refCode
+      emailVerified: true,
+      isSuperAdmin: isSuperAdmin,
+      role: isSuperAdmin ? 'SUPER_ADMIN' : 'VIP_MEMBER',
+      tier: isSuperAdmin ? 'tier_03_dfy' : 'tier_01_free',
+      tierName: isSuperAdmin ? '👑 SUPER ADMIN (30%)' : 'Hội Viên VIP (10%)',
+      commissionRate: isSuperAdmin ? 0.30 : 0.10,
+      refCode: refCode
     };
 
     localStorage.setItem('t4u_vip_user', JSON.stringify(vipUser));
     localStorage.setItem('t4u_partner_name', displayName);
     localStorage.setItem('t4u_partner_ref', refCode);
 
-    showStatus('✨ Đăng nhập thành công! Đang chuyển hướng vào Bảng điều khiển đối tác...', false);
+    showStatus(`✨ Đăng nhập thành công! Xin chào ${displayName}. Đang chuyển hướng...`, false);
     setTimeout(() => {
       window.location.href = '/aff/';
     }, 800);

@@ -679,12 +679,39 @@ Lộ trình thực chiến dành riêng cho Cá nhân, Freelancer & Người th�
   const btnCopyLink = document.getElementById('btn-copy-ref-link');
   const btnCopyText = document.getElementById('btn-copy-text');
   const userDisplayName = document.getElementById('user-display-name');
+  const userTierBadge = document.getElementById('user-tier-badge');
 
   // Load saved partner code or initialize default
   let currentRefCode = localStorage.getItem('t4u_partner_ref') || 'VICTOR88';
-  let currentPartnerName = localStorage.getItem('t4u_partner_name') || 'Victor Chuyen';
+  let currentPartnerName = localStorage.getItem('t4u_partner_name') || 'Chairman Victor';
 
-  function updateRefUI() {
+  function updateRefUI(user) {
+    let vipUser = null;
+    try {
+      vipUser = JSON.parse(localStorage.getItem('t4u_vip_user') || '{}');
+    } catch (e) {}
+
+    const isSuperAdmin = 
+      user?.email === 'coach.chuyen@gmail.com' ||
+      user?.email === 'f0807557459@gmail.com' ||
+      user?.uid === 'GM9BYPVvotUqgZq8VYOU1vhFBjr2' ||
+      user?.email === 'victorchuyen68@gmail.com' ||
+      vipUser?.isSuperAdmin ||
+      localStorage.getItem('t4u_partner_ref') === 'VICTOR88';
+
+    if (isSuperAdmin) {
+      currentPartnerName = 'Chairman Victor';
+      currentRefCode = 'VICTOR88';
+      if (userTierBadge) {
+        userTierBadge.innerText = '👑 SUPER ADMIN (30%)';
+        userTierBadge.className = 'px-2.5 py-0.5 rounded-md bg-gradient-to-r from-amber-500/30 to-emerald-500/30 border border-amber-400 text-[10px] font-black text-amber-300 uppercase shadow';
+      }
+    } else if (vipUser && vipUser.tierName) {
+      if (userTierBadge) {
+        userTierBadge.innerText = vipUser.tierName;
+      }
+    }
+
     const origin = window.location.origin;
     const fullLink = `${origin}/?ref=${currentRefCode}`;
     if (refCodeEl) refCodeEl.innerText = currentRefCode;
@@ -692,17 +719,29 @@ Lộ trình thực chiến dành riêng cho Cá nhân, Freelancer & Người th�
     if (userDisplayName) userDisplayName.innerText = currentPartnerName;
   }
 
-  updateRefUI();
+  updateRefUI(null);
 
   // Listen to Firebase Real Auth state
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      currentPartnerName = user.displayName || user.email?.split('@')[0] || currentPartnerName;
-      const refBase = currentPartnerName.replace(/[^a-zA-Z0-9]/g, '').toUpperCase().slice(0, 8) || 'VIP';
-      currentRefCode = localStorage.getItem('t4u_partner_ref') || `${refBase}88`;
+      const isSuperAdmin = 
+        user.email === 'coach.chuyen@gmail.com' ||
+        user.email === 'f0807557459@gmail.com' ||
+        user.uid === 'GM9BYPVvotUqgZq8VYOU1vhFBjr2' ||
+        user.email === 'victorchuyen68@gmail.com';
+
+      if (isSuperAdmin) {
+        currentPartnerName = 'Chairman Victor';
+        currentRefCode = 'VICTOR88';
+      } else {
+        currentPartnerName = user.displayName || user.email?.split('@')[0] || currentPartnerName;
+        const refBase = currentPartnerName.replace(/[^a-zA-Z0-9]/g, '').toUpperCase().slice(0, 8) || 'VIP';
+        currentRefCode = localStorage.getItem('t4u_partner_ref') || `${refBase}88`;
+      }
+
       localStorage.setItem('t4u_partner_name', currentPartnerName);
       localStorage.setItem('t4u_partner_ref', currentRefCode);
-      updateRefUI();
+      updateRefUI(user);
     }
   });
 
