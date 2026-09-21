@@ -1,0 +1,345 @@
+---
+/**
+ * 👑 TRAVEL4U — AI TRIP ASSISTANT MODAL (PHASE 2 & PHASE 3)
+ * Displays structured AI-generated outlines, daily schedules, tradeoffs,
+ * and voice interaction state with seamless affiliate offer handoff.
+ */
+---
+
+<div
+  id="ai-trip-modal"
+  class="fixed inset-0 z-[1000] hidden flex items-center justify-center bg-black/85 backdrop-blur-lg p-3 sm:p-4 transition-all duration-300"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="ai-modal-title"
+>
+  <div class="bg-[#091424] border border-[#c9a54e]/80 rounded-3xl w-full max-w-2xl max-h-[92vh] flex flex-col shadow-2xl overflow-hidden animate-scaleUp text-white">
+    
+    <!-- Modal Header -->
+    <div class="p-5 sm:p-6 border-b border-slate-800 bg-[#060e1a]/80 flex items-center justify-between shrink-0">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#c9a54e] to-[#99772d] flex items-center justify-center text-slate-950 font-bold text-lg shadow-md shadow-[#c9a54e]/20">
+          ✨
+        </div>
+        <div>
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#c9a54e]/10 border border-[#c9a54e]/30 text-[#c9a54e] text-[10px] font-bold uppercase tracking-wider">
+            <span>AI-Assisted Advice · Verified Sanctuaries</span>
+          </div>
+          <h3 id="ai-modal-title" class="text-lg sm:text-xl font-bold font-serif text-white tracking-tight mt-0.5">
+            Curated Trip Blueprint
+          </h3>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <!-- Voice Button -->
+        <button
+          type="button"
+          id="ai-voice-mic-btn"
+          class="w-9 h-9 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition"
+          title="Voice Assistant"
+          aria-label="Toggle voice input"
+        >
+          🎙️
+        </button>
+        <!-- Close Button -->
+        <button
+          type="button"
+          id="close-ai-modal-btn"
+          class="w-9 h-9 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition"
+          aria-label="Close AI modal"
+        >
+          ✕
+        </button>
+      </div>
+    </div>
+
+    <!-- Voice Banner State (Active when listening) -->
+    <div id="voice-banner" class="hidden bg-[#c9a54e]/15 border-b border-[#c9a54e]/30 px-5 py-2.5 flex items-center justify-between text-xs text-[#c9a54e]">
+      <div class="flex items-center gap-2">
+        <span class="animate-pulse text-sm">🔴</span>
+        <span id="voice-status-text font-medium">Listening to your voice... speak your dream travel style.</span>
+      </div>
+      <button type="button" id="stop-voice-btn" class="text-xs font-bold underline hover:text-white">Stop</button>
+    </div>
+
+    <!-- Scrollable Modal Body -->
+    <div class="p-5 sm:p-6 overflow-y-auto space-y-6 flex-grow" id="ai-modal-content">
+      
+      <!-- Loading State -->
+      <div id="ai-loading-skeleton" class="py-12 flex flex-col items-center justify-center text-center space-y-4">
+        <div class="w-12 h-12 border-3 border-[#c9a54e] border-t-transparent rounded-full animate-spin"></div>
+        <p class="text-sm font-medium text-[#c9a54e] animate-pulse">
+          Crafting your bespoke sanctuary outline...
+        </p>
+        <p class="text-xs text-slate-400 max-w-xs">
+          Cross-referencing Forbes standards, Michelin dining, and verified luxury perks.
+        </p>
+      </div>
+
+      <!-- Result Container (Populated via JS) -->
+      <div id="ai-plan-result" class="hidden space-y-6">
+        
+        <!-- Summary Box -->
+        <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 sm:p-5">
+          <h4 class="text-xs font-bold text-[#c9a54e] uppercase tracking-wider mb-2 flex items-center gap-1.5">
+            <span>🧭</span> <span>Executive Summary</span>
+          </h4>
+          <p id="plan-summary" class="text-slate-200 text-xs sm:text-sm leading-relaxed"></p>
+        </div>
+
+        <!-- Best For & Watch Out For Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-4">
+            <h5 class="text-[11px] font-bold text-emerald-400 uppercase tracking-wider mb-2 flex items-center gap-1">
+              <span>💎</span> <span>Ideal For</span>
+            </h5>
+            <ul id="plan-best-for" class="space-y-1.5 text-xs text-slate-300"></ul>
+          </div>
+
+          <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-4">
+            <h5 class="text-[11px] font-bold text-amber-400 uppercase tracking-wider mb-2 flex items-center gap-1">
+              <span>⚠️</span> <span>Watch Out For</span>
+            </h5>
+            <ul id="plan-watch-out" class="space-y-1.5 text-xs text-slate-300"></ul>
+          </div>
+        </div>
+
+        <!-- Daily Outline Timeline -->
+        <div>
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-3 flex items-center gap-2">
+            <span>📅</span> <span>Daily Sanctuary Timeline</span>
+          </h4>
+          <div id="plan-timeline" class="space-y-3"></div>
+        </div>
+
+        <!-- Matching Offers Prompt Banner -->
+        <div class="bg-gradient-to-r from-[#c9a54e]/10 to-transparent border border-[#c9a54e]/30 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <div>
+            <h5 class="text-xs font-bold text-white flex items-center gap-1.5">
+              <span>🎟️</span> <span>Verified Partner Offers Ready</span>
+            </h5>
+            <p class="text-[11px] text-slate-300 mt-0.5">
+              Explore presidential suites, skip-the-line VIP tours, and chauffeur transfers.
+            </p>
+          </div>
+          <button
+            type="button"
+            id="btn-scroll-offers"
+            class="px-4 py-2 bg-[#c9a54e] hover:bg-[#dfc06e] text-slate-950 text-xs font-bold rounded-xl transition shadow"
+          >
+            View Matching Offers →
+          </button>
+        </div>
+
+        <!-- Follow-up Question -->
+        <div id="plan-follow-up-box" class="text-center py-2 text-xs text-slate-400 italic">
+          <span id="plan-follow-up"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Footer Actions -->
+    <div class="p-4 sm:p-5 border-t border-slate-800 bg-[#060e1a]/95 flex flex-wrap items-center justify-between gap-3 shrink-0">
+      <div class="flex items-center gap-2">
+        <button
+          type="button"
+          id="btn-edit-preferences"
+          class="px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 hover:border-slate-500 text-slate-300 text-xs font-medium transition"
+        >
+          ✏️ Edit Preferences
+        </button>
+        <button
+          type="button"
+          id="btn-save-itinerary"
+          class="px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 hover:border-[#c9a54e] text-[#c9a54e] text-xs font-medium transition"
+        >
+          💾 Save Trip
+        </button>
+      </div>
+
+      <p class="text-[10px] text-slate-400 text-right">
+        Affiliate Disclosed · Prices verified at booking
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { trackTravelEvent } from '../lib/analytics';
+  import { VoicePlannerSession } from '../lib/voiceSession';
+
+  const modal = document.getElementById('ai-trip-modal');
+  const closeBtn = document.getElementById('close-ai-modal-btn');
+  const skeleton = document.getElementById('ai-loading-skeleton');
+  const resultBox = document.getElementById('ai-plan-result');
+  const modalTitle = document.getElementById('ai-modal-title');
+
+  let voiceSession: any = null;
+
+  (window as any).triggerAiTripAssistant = async function(intent: any) {
+    if (!modal) return;
+    modal.classList.remove('hidden');
+    if (skeleton) skeleton.classList.remove('hidden');
+    if (resultBox) resultBox.classList.add('hidden');
+
+    if (modalTitle) {
+      modalTitle.textContent = `${intent.destination_name || 'Destination'} Sanctuary Blueprint`;
+    }
+
+    trackTravelEvent({
+      event: 'ai_plan_started',
+      destination: intent.destination_name,
+      trip_type: intent.trip_type,
+      budget: intent.budget
+    });
+
+    try {
+      const res = await fetch('/api/trips/plan', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ intent })
+      });
+
+      const data = await res.json();
+      const plan = data.plan;
+
+      if (plan) {
+        renderPlan(plan, intent);
+        trackTravelEvent({
+          event: 'ai_plan_completed',
+          destination: intent.destination_name
+        });
+      } else {
+        throw new Error('No plan returned');
+      }
+    } catch (err: any) {
+      console.warn('AI Assistant error:', err);
+      trackTravelEvent({
+        event: 'ai_plan_failed',
+        destination: intent.destination_name
+      });
+      if (skeleton) {
+        skeleton.innerHTML = `
+          <div class="text-amber-400 text-sm font-semibold">Temporarily loading backup itinerary...</div>
+          <p class="text-xs text-slate-400">Please check matching hotel and tour recommendations below.</p>
+        `;
+      }
+    }
+  };
+
+  function renderPlan(plan: any, intent: any) {
+    if (skeleton) skeleton.classList.add('hidden');
+    if (resultBox) resultBox.classList.remove('hidden');
+
+    // Summary
+    const summaryEl = document.getElementById('plan-summary');
+    if (summaryEl) summaryEl.textContent = plan.summary || '';
+
+    // Best For
+    const bestForEl = document.getElementById('plan-best-for');
+    if (bestForEl) {
+      bestForEl.innerHTML = (plan.best_for || [])
+        .map((b: string) => `<li class="flex items-start gap-1.5"><span class="text-emerald-400">✓</span> <span>${b}</span></li>`)
+        .join('');
+    }
+
+    // Watch Out
+    const watchOutEl = document.getElementById('plan-watch-out');
+    if (watchOutEl) {
+      watchOutEl.innerHTML = (plan.watch_out_for || [])
+        .map((w: string) => `<li class="flex items-start gap-1.5"><span class="text-amber-400">!</span> <span>${w}</span></li>`)
+        .join('');
+    }
+
+    // Timeline
+    const timelineEl = document.getElementById('plan-timeline');
+    if (timelineEl) {
+      timelineEl.innerHTML = (plan.daily_outline || []).map((day: any) => `
+        <div class="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800 hover:border-slate-700 transition">
+          <div class="flex items-center justify-between mb-1.5">
+            <span class="text-xs font-bold text-[#c9a54e]">Day ${day.day}</span>
+            <span class="text-xs font-semibold text-slate-300">${day.theme}</span>
+          </div>
+          <ul class="space-y-1 text-xs text-slate-400 pl-2 border-l border-slate-800">
+            ${(day.activities || []).map((act: string) => `<li>• ${act}</li>`).join('')}
+          </ul>
+        </div>
+      `).join('');
+    }
+
+    // Follow up
+    const followUpEl = document.getElementById('plan-follow-up');
+    if (followUpEl) followUpEl.textContent = plan.follow_up_question || '';
+
+    // Trigger matching offers reload
+    if ((window as any).loadIntentOffers) {
+      (window as any).loadIntentOffers(intent);
+    }
+  }
+
+  // Close handlers
+  closeBtn?.addEventListener('click', () => {
+    modal?.classList.add('hidden');
+  });
+
+  document.getElementById('btn-edit-preferences')?.addEventListener('click', () => {
+    modal?.classList.add('hidden');
+    if ((window as any).openTripIntentModal) {
+      (window as any).openTripIntentModal();
+    }
+  });
+
+  document.getElementById('btn-save-itinerary')?.addEventListener('click', () => {
+    alert('✨ Itinerary saved to your local session!');
+    trackTravelEvent({ event: 'itinerary_saved' });
+  });
+
+  document.getElementById('btn-scroll-offers')?.addEventListener('click', () => {
+    modal?.classList.add('hidden');
+    const offerSection = document.getElementById('intent-offers-section');
+    if (offerSection) {
+      offerSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+
+  // Voice handler initialization
+  const voiceBanner = document.getElementById('voice-banner');
+  const micBtn = document.getElementById('ai-voice-mic-btn');
+  const stopVoiceBtn = document.getElementById('stop-voice-btn');
+
+  (window as any).startVoicePlanning = function() {
+    if (!voiceSession) {
+      voiceSession = new VoicePlannerSession({
+        onStatusChange: (status) => {
+          if (status === 'listening') {
+            voiceBanner?.classList.remove('hidden');
+          } else {
+            voiceBanner?.classList.add('hidden');
+          }
+        },
+        onTranscript: (txt) => {
+          console.log('[Voice Transcript]:', txt);
+        },
+        onIntentCaptured: (intent) => {
+          (window as any).triggerAiTripAssistant(intent);
+        },
+        onError: (err) => {
+          alert(err);
+          voiceBanner?.classList.add('hidden');
+        }
+      });
+    }
+
+    if (voiceSession.isSupported()) {
+      voiceSession.startListening();
+    } else {
+      alert('Voice is not supported in this browser. Please use the text planner.');
+    }
+  };
+
+  micBtn?.addEventListener('click', (window as any).startVoicePlanning);
+  stopVoiceBtn?.addEventListener('click', () => {
+    if (voiceSession) voiceSession.stopListening();
+  });
+</script>

@@ -194,10 +194,21 @@ const t = (searchI18n as any)[currentLocale] || (searchI18n as any).en;
       <button
         type="button"
         id="search-trigger-btn"
-        class="bg-gradient-to-r from-[#ff7043] to-[#e64a19] hover:from-[#f4511e] hover:to-[#d84315] text-white text-xs sm:text-sm font-bold px-5 sm:px-7 py-3 sm:py-3.5 rounded-xl sm:rounded-full shadow-lg shadow-[#ff7043]/30 transition-all duration-300 transform active:scale-95 flex items-center justify-center space-x-1.5 shrink-0"
+        class="bg-gradient-to-r from-[#ff7043] to-[#e64a19] hover:from-[#f4511e] hover:to-[#d84315] text-white text-xs sm:text-sm font-bold px-4 sm:px-6 py-3 sm:py-3.5 rounded-xl sm:rounded-full shadow-lg shadow-[#ff7043]/30 transition-all duration-300 transform active:scale-95 flex items-center justify-center space-x-1.5 shrink-0"
       >
         <span>{t.btn}</span>
         <span>→</span>
+      </button>
+
+      <!-- Action 4b: Plan with AI Button -->
+      <button
+        type="button"
+        id="plan-ai-trigger-btn"
+        class="bg-gradient-to-r from-[#c9a54e] to-[#dfc06e] hover:brightness-110 text-slate-950 text-xs sm:text-sm font-bold px-4 sm:px-5 py-3 sm:py-3.5 rounded-xl sm:rounded-full shadow-lg shadow-[#c9a54e]/20 transition-all duration-300 transform active:scale-95 flex items-center justify-center space-x-1.5 shrink-0 sm:ml-1"
+        title="Plan your trip with AI Concierge"
+      >
+        <span>✨</span>
+        <span>Plan with AI</span>
       </button>
 
     </div>
@@ -885,6 +896,16 @@ const t = (searchI18n as any)[currentLocale] || (searchI18n as any).en;
         const target = document.getElementById('experiences') || document.getElementById('destinations-grid-container');
         if (target) {
           target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    }
+
+    const planAiBtn = document.getElementById('plan-ai-trigger-btn');
+    if (planAiBtn) {
+      planAiBtn.addEventListener('click', () => {
+        const inputVal = searchInput ? searchInput.value.trim() : '';
+        if ((window as any).openTripIntentModal) {
+          (window as any).openTripIntentModal(inputVal);
         }
       });
     }

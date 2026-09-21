@@ -54,4 +54,9 @@ ${urlsXml}</urlset>`;
 
 fs.writeFileSync(path.join(DIST_DIR, 'sitemap.xml'), sitemapXml);
 fs.writeFileSync(path.join(DIST_DIR, 'sitemap-index.xml'), sitemapXml);
-console.log(`✅ Generated sitemap.xml & sitemap-index.xml with full ${LOCALES.length}-locale hreflang clusters (including Vietnamese 'vi')!`);
+
+const PUBLIC_DIR = path.join(ROOT_APP, 'public');
+fs.writeFileSync(path.join(PUBLIC_DIR, 'sitemap.xml'), sitemapXml);
+fs.writeFileSync(path.join(PUBLIC_DIR, 'sitemap-index.xml'), sitemapXml);
+
+console.log(`✅ Generated sitemap.xml & sitemap-index.xml with full ${LOCALES.length}-locale hreflang clusters (including Vietnamese 'vi') in dist/ and public/!`);

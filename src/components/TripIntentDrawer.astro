@@ -1,0 +1,275 @@
+---
+/**
+ * 👑 TRAVEL4U — DESTINATION INTENT DRAWER (PHASE 1)
+ * Captures traveler intent (trip type, budget, duration, month, interests)
+ * and feeds directly into the AI Trip Assistant and Affiliate Offer engine.
+ */
+
+interface Props {
+  currentLocale?: string;
+}
+
+const { currentLocale = 'en' } = Astro.props;
+---
+
+<!-- Trip Intent Drawer Modal Backdrop -->
+<div
+  id="trip-intent-modal"
+  class="fixed inset-0 z-[999] hidden flex items-center justify-center bg-black/80 backdrop-blur-md p-4 transition-opacity duration-300"
+  aria-labelledby="intent-drawer-title"
+  role="dialog"
+  aria-modal="true"
+>
+  <div class="bg-[#091424] border border-[#c9a54e]/60 rounded-3xl w-full max-w-xl max-h-[90vh] overflow-y-auto shadow-2xl p-6 sm:p-8 text-white relative animate-scaleUp">
+    
+    <!-- Close Button -->
+    <button
+      type="button"
+      id="close-intent-modal"
+      class="absolute top-5 right-5 text-slate-400 hover:text-white bg-slate-800/80 hover:bg-slate-700 w-8 h-8 rounded-full flex items-center justify-center transition"
+      aria-label="Close intent modal"
+    >
+      ✕
+    </button>
+
+    <!-- Header -->
+    <div class="mb-6">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9a54e]/10 border border-[#c9a54e]/30 text-[#c9a54e] text-xs font-semibold mb-2">
+        <span>✨</span> <span>AI Travel Discovery Engine</span>
+      </div>
+      <h3 id="intent-drawer-title" class="text-xl sm:text-2xl font-bold font-serif text-white tracking-tight">
+        Personalize Your Sanctuary Journey
+      </h3>
+      <p class="text-slate-400 text-xs sm:text-sm mt-1">
+        Tell our AI Concierge about your travel preferences to generate a tailored outline and verified VIP offers.
+      </p>
+    </div>
+
+    <form id="intent-form" class="space-y-5">
+      <!-- 1. Destination Input -->
+      <div>
+        <label for="intent-dest-input" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
+          1. Destination / Sanctuary
+        </label>
+        <div class="relative">
+          <span class="absolute left-3.5 top-3 text-slate-400">📍</span>
+          <input
+            type="text"
+            id="intent-dest-input"
+            class="w-full bg-[#050b14] border border-slate-700 focus:border-[#c9a54e] rounded-xl pl-10 pr-4 py-2.5 text-sm text-white focus:outline-none transition"
+            placeholder="e.g. Paris, Kyoto, Lake Como, Maldives..."
+            required
+          />
+        </div>
+      </div>
+
+      <!-- 2. Trip Type -->
+      <div>
+        <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
+          2. Who is traveling?
+        </label>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          <label class="cursor-pointer">
+            <input type="radio" name="trip_type" value="couple" class="peer sr-only" checked />
+            <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 peer-checked:border-[#c9a54e] peer-checked:bg-[#c9a54e]/10 text-center text-xs font-medium text-slate-300 peer-checked:text-white transition">
+              💑 Couple
+            </div>
+          </label>
+          <label class="cursor-pointer">
+            <input type="radio" name="trip_type" value="solo" class="peer sr-only" />
+            <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 peer-checked:border-[#c9a54e] peer-checked:bg-[#c9a54e]/10 text-center text-xs font-medium text-slate-300 peer-checked:text-white transition">
+              🧭 Solo
+            </div>
+          </label>
+          <label class="cursor-pointer">
+            <input type="radio" name="trip_type" value="family" class="peer sr-only" />
+            <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 peer-checked:border-[#c9a54e] peer-checked:bg-[#c9a54e]/10 text-center text-xs font-medium text-slate-300 peer-checked:text-white transition">
+              👨‍👩‍👧 Family
+            </div>
+          </label>
+          <label class="cursor-pointer">
+            <input type="radio" name="trip_type" value="business" class="peer sr-only" />
+            <div class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 peer-checked:border-[#c9a54e] peer-checked:bg-[#c9a54e]/10 text-center text-xs font-medium text-slate-300 peer-checked:text-white transition">
+              💼 Executive
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- 3. Duration & Budget -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div>
+          <label for="intent-duration" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
+            3. Duration
+          </label>
+          <select id="intent-duration" class="w-full bg-[#050b14] border border-slate-700 focus:border-[#c9a54e] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none">
+            <option value="3">3 Days (Weekend Escape)</option>
+            <option value="5" selected>5 Days (Curated Sanctuary)</option>
+            <option value="7">7 Days (Full Grand Tour)</option>
+            <option value="10">10+ Days (Extended Stay)</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="intent-budget" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
+            4. Style & Budget
+          </label>
+          <select id="intent-budget" class="w-full bg-[#050b14] border border-slate-700 focus:border-[#c9a54e] rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none">
+            <option value="premium" selected>👑 Sovereign Luxury (5-Star / Suites)</option>
+            <option value="balanced">💎 Balanced Upscale (Boutique & 4-Star)</option>
+            <option value="value">🌟 Value Smart Luxury (Deals & Perks)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 4. Primary Interests -->
+      <div>
+        <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
+          5. Primary Focus & Desires
+        </label>
+        <div class="flex flex-wrap gap-2" id="interest-tags">
+          <button type="button" class="interest-btn active px-3 py-1.5 rounded-full text-xs font-medium border border-[#c9a54e] bg-[#c9a54e]/20 text-white" data-interest="food">
+            🍷 Michelin Gastronomy
+          </button>
+          <button type="button" class="interest-btn active px-3 py-1.5 rounded-full text-xs font-medium border border-[#c9a54e] bg-[#c9a54e]/20 text-white" data-interest="culture">
+            🏛️ Heritage & Art
+          </button>
+          <button type="button" class="interest-btn active px-3 py-1.5 rounded-full text-xs font-medium border border-[#c9a54e] bg-[#c9a54e]/20 text-white" data-interest="relaxation">
+            💆 Acoustic Spa & Wellness
+          </button>
+          <button type="button" class="interest-btn px-3 py-1.5 rounded-full text-xs font-medium border border-slate-700 bg-slate-900 text-slate-400 hover:text-white" data-interest="nature">
+            🌊 Scenic Nature & Ocean
+          </button>
+          <button type="button" class="interest-btn px-3 py-1.5 rounded-full text-xs font-medium border border-slate-700 bg-slate-900 text-slate-400 hover:text-white" data-interest="adventure">
+            🚁 Exclusive Adventure
+          </button>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="pt-4 border-t border-slate-800 flex flex-col sm:flex-row gap-3">
+        <button
+          type="submit"
+          id="btn-generate-ai-plan"
+          class="flex-1 bg-gradient-to-r from-[#c9a54e] to-[#dfc06e] text-slate-950 font-bold py-3 px-5 rounded-xl hover:shadow-lg hover:shadow-[#c9a54e]/20 transition flex items-center justify-center gap-2 text-sm"
+        >
+          <span>✨</span>
+          <span>Generate AI Trip Outline</span>
+        </button>
+
+        <button
+          type="button"
+          id="btn-voice-plan-trigger"
+          class="sm:w-auto px-4 py-3 bg-slate-900 border border-slate-700 hover:border-[#c9a54e] text-slate-300 hover:text-white font-medium rounded-xl transition flex items-center justify-center gap-2 text-xs"
+          title="Voice Planner Beta"
+        >
+          <span>🎙️</span>
+          <span>Voice Beta</span>
+        </button>
+      </div>
+
+      <!-- Consent & FTC Transparency Note -->
+      <p class="text-[11px] text-slate-400 text-center">
+        🔒 Your preferences are stored locally on your device. We never sell your personal data.
+      </p>
+    </form>
+  </div>
+</div>
+
+<script>
+  import { saveIntent, getStoredIntent } from '../lib/intentProfile';
+  import { trackTravelEvent } from '../lib/analytics';
+
+  const modal = document.getElementById('trip-intent-modal');
+  const closeBtn = document.getElementById('close-intent-modal');
+  const form = document.getElementById('intent-form') as HTMLFormElement;
+  const destInput = document.getElementById('intent-dest-input') as HTMLInputElement;
+  const durationSelect = document.getElementById('intent-duration') as HTMLSelectElement;
+  const budgetSelect = document.getElementById('intent-budget') as HTMLSelectElement;
+  const interestBtns = document.querySelectorAll('.interest-btn');
+
+  // Toggle interest tags
+  interestBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('active');
+      btn.classList.toggle('border-[#c9a54e]');
+      btn.classList.toggle('bg-[#c9a54e]/20');
+      btn.classList.toggle('text-white');
+      btn.classList.toggle('border-slate-700');
+      btn.classList.toggle('text-slate-400');
+    });
+  });
+
+  // Open / Close functions
+  (window as any).openTripIntentModal = function(destinationName = '') {
+    if (modal) {
+      if (destinationName && destInput) {
+        destInput.value = destinationName;
+      } else {
+        const stored = getStoredIntent();
+        if (destInput && !destInput.value) destInput.value = stored.destination_name || 'Paris, France';
+      }
+      modal.classList.remove('hidden');
+    }
+  };
+
+  (window as any).closeTripIntentModal = function() {
+    if (modal) modal.classList.add('hidden');
+  };
+
+  closeBtn?.addEventListener('click', (window as any).closeTripIntentModal);
+
+  // Close when clicking outside modal box
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) (window as any).closeTripIntentModal();
+  });
+
+  // Form Submission
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const dest = destInput.value.trim() || 'Paris, France';
+    const tripType = (form.querySelector('input[name="trip_type"]:checked') as HTMLInputElement)?.value || 'couple';
+    const duration = parseInt(durationSelect.value, 10) || 5;
+    const budget = budgetSelect.value || 'premium';
+
+    const selectedInterests: string[] = [];
+    document.querySelectorAll('.interest-btn.active').forEach(b => {
+      const i = b.getAttribute('data-interest');
+      if (i) selectedInterests.push(i);
+    });
+
+    const intent = saveIntent({
+      destination_name: dest,
+      destination_id: dest.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+      trip_type: tripType as any,
+      duration_days: duration,
+      budget: budget as any,
+      interests: selectedInterests.length > 0 ? selectedInterests : ['culture', 'food'],
+      intent_stage: 'planning'
+    });
+
+    trackTravelEvent({
+      event: 'trip_preferences_submitted',
+      destination: dest,
+      trip_type: tripType,
+      budget: budget,
+      intent_stage: 'planning'
+    });
+
+    (window as any).closeTripIntentModal();
+
+    // Trigger AI Trip Assistant Modal
+    if ((window as any).triggerAiTripAssistant) {
+      (window as any).triggerAiTripAssistant(intent);
+    }
+  });
+
+  // Voice Beta Trigger
+  document.getElementById('btn-voice-plan-trigger')?.addEventListener('click', () => {
+    if ((window as any).startVoicePlanning) {
+      (window as any).startVoicePlanning();
+    } else {
+      alert('Voice Beta: Microphone listening active. Please speak your destination and travel style.');
+    }
+  });
+</script>
