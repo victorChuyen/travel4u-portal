@@ -184,7 +184,7 @@ const pageDescription = `Trang xác nhận đặt hàng và thanh toán qua chu�
                 </div>
                 <div class="flex justify-between items-center">
                   <span class="text-slate-400">Chủ tài khoản:</span>
-                  <strong class="text-white uppercase">VICTOR CHUYEN</strong>
+                  <strong class="text-white uppercase">TRAN NGOC CHUYEN</strong>
                 </div>
                 <div class="flex justify-between items-center">
                   <span class="text-slate-400">Số tiền:</span>
@@ -226,7 +226,7 @@ const pageDescription = `Trang xác nhận đặt hàng và thanh toán qua chu�
   // Dynamic order reference generator
   const randomSuffix = Math.floor(1000 + Math.random() * 9000);
   const tierShort = code === 'starter-kit' ? 'OPC19' : (code === 'builder-sprint' ? 'OPC139' : 'OPC388');
-  const orderRef = `${tierShort}_${randomSuffix}`;
+  const orderRef = `${tierShort}${randomSuffix}`;
 
   let currentAmount = depositAllowed ? depositPrice : fullPrice;
 
@@ -238,8 +238,8 @@ const pageDescription = `Trang xác nhận đặt hàng và thanh toán qua chu�
     if (dispAmount) dispAmount.innerText = Number(currentAmount).toLocaleString('vi-VN') + ' VNĐ';
     if (dispRef) dispRef.innerText = orderRef;
 
-    // VietQR quick URL
-    const qrUrl = `https://img.vietqr.io/image/BIDV-96247688688-compact2.png?amount=${currentAmount}&addInfo=${encodeURIComponent(orderRef)}&accountName=VICTOR%20CHUYEN`;
+    // SePay VietQR dynamic URL format
+    const qrUrl = `https://vietqr.app/img?acc=96247688688&bank=BIDV&amount=${currentAmount}&des=${encodeURIComponent(orderRef)}`;
     if (qrImg) qrImg.src = qrUrl;
   }
 

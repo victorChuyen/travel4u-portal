@@ -13,10 +13,12 @@ import PodcastDialogueSection from '../../components/PodcastDialogueSection.astr
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import RelatedSanctuaries from '../../components/RelatedSanctuaries.astro';
 import SanctuaryNav from '../../components/SanctuaryNav.astro';
-import articlesData from '../../data/articles.json';
+import fs from 'node:fs';
+import path from 'node:path';
 import destinationsData from '../../data/destinations.json';
 
 export async function getStaticPaths() {
+  const articlesData = JSON.parse(fs.readFileSync(path.resolve('./src/data/articles.json'), 'utf-8'));
   const enArticles = (articlesData as any[]).filter(art => art.locale === 'en');
   return enArticles.map(article => ({
     params: { slug: article.slug },
