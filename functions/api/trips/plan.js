@@ -2,8 +2,10 @@
  * 👑 TRAVEL4U CLOUDFLARE PAGES API — AI TRIP ASSISTANT ENGINE
  * Endpoint: POST /api/trips/plan
  * Produces structured, non-hallucinatory luxury travel outlines using Gemini API
- * with guaranteed graceful fallback generator.
+ * with multi-key, multi-model rotating pool and guaranteed fallback generator.
  */
+
+import { callGeminiMultiKey } from '../_lib/geminiPool.js';
 
 const FALLBACK_PLANS = {
   paris: {
@@ -117,10 +119,9 @@ export async function onRequestPost({ request, env }) {
     const apiKey = env.GEMINI_API_KEY;
     const model = env.GEMINI_MODEL || "gemini-2.0-flash";
 
-    // If Gemini key is available, attempt live generation
-    if (apiKey) {
-      try {
-        const prompt = `
+    // 1. Attempt generation via Multi-Key, Multi-Model Rotating Pool
+    try {
+      const prompt = `
 You are an expert luxury travel concierge for Travel4U.
 A US traveler is planning a trip with this profile:
 - Destination: ${intent.destination_name || intent.destination_id}
@@ -147,39 +148,25 @@ Return ONLY a valid JSON object with this EXACT schema:
 Do NOT invent live hotel prices or availability. Recommend categories. Keep tone Condé Nast Traveler style.
 `.trim();
 
-        const geminiRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: prompt }] }],
-            generationConfig: {
-              responseMimeType: "application/json",
-              temperature: 0.3
-            }
-          })
-        });
-
-        if (geminiRes.ok) {
-          const geminiData = await geminiRes.json();
-          const rawText = geminiData.candidates?.[0]?.content?.parts?.[0]?.text;
-          if (rawText) {
-            const parsed = JSON.parse(rawText);
-            if (parsed.summary && parsed.daily_outline) {
-              return new Response(JSON.stringify({
-                success: true,
-                provider: "gemini",
-                model: model,
-                plan: parsed
-              }), {
-                status: 200,
-                headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
-              });
-            }
-          }
+      const result = await callGeminiMultiKey(prompt, env);
+      if (result && result.content) {
+        const cleanJson = result.content.replace(/^```json\s*/i, '').replace(/\s*```$/i, '').trim();
+        const parsed = JSON.parse(cleanJson);
+        if (parsed.summary && parsed.daily_outline) {
+          return new Response(JSON.stringify({
+            success: true,
+            provider: "gemini_multi_key_pool",
+            model: result.model,
+            key_mask: result.keyMask,
+            plan: parsed
+          }), {
+            status: 200,
+            headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
+          });
         }
-      } catch (geminiErr) {
-        console.warn("Gemini API call failed, engaging sovereign fallback generator:", geminiErr.message);
       }
+    } catch (poolErr) {
+      console.warn("[Gemini Pool] Multi-key rotation call exhausted, engaging sovereign fallback:", poolErr.message);
     }
 
     // Sovereign Fallback (Instant, 100% reliable)

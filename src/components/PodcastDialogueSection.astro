@@ -100,41 +100,4 @@ const t = (i18nData as any)[locale] || (i18nData as any)['en'];
       </div>
     ))}
   </div>
-
-  <!-- Viral YouTube Shorts Concept Vault -->
-  <div class="pt-8 border-t border-slate-800">
-    <div class="flex items-center justify-between mb-6">
-      <div>
-        <span class="text-[10px] text-[#ff7043] font-bold uppercase tracking-wider block">
-          {t.exp_viral_social_engine || "Viral Social Engine"}
-        </span>
-        <h4 class="font-serif text-lg font-bold text-white">
-          {t.exp_viral_shorts_title || "3 Short-Form Video Scripts Driving Web App Traffic"}
-        </h4>
-      </div>
-      <span class="text-xs text-slate-400 hidden sm:inline">{t.exp_vertical_format || "Format: 9:16 Vertical 4K"}</span>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      {shorts.map((short) => (
-        <div class="p-4 rounded-xl bg-[#08121f] border border-slate-800 flex flex-col justify-between hover:border-[#c9a54e]/40 transition-colors">
-          <div>
-            <span class="text-[10px] font-bold text-[#c9a54e] uppercase tracking-wider block mb-1.5">
-              {short.title}
-            </span>
-            <h5 class="text-xs font-bold text-white mb-2 leading-snug">
-              "{short.hook}"
-            </h5>
-            <p class="text-[11px] text-slate-400 leading-relaxed mb-3">
-              <strong>{t.exp_visual_label || "Visual Scene:"}</strong> {short.visual}
-            </p>
-          </div>
-          <div class="pt-2 border-t border-slate-800/80 text-[10px] text-emerald-400 font-medium">
-            🎯 {t.exp_cta_label || "CTA:"} {short.cta}
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-
 </section>
