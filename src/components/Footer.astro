@@ -7,10 +7,234 @@ interface Props {
 
 const { currentLocale = 'en' } = Astro.props;
 const dict = (i18n as any)[currentLocale] || (i18n as any).en;
+
+// Localized strings for the Luxury Travel4You Journal
+const journalContent: Record<string, {
+  badge: string;
+  title: string;
+  subtitle: string;
+  placeholder: string;
+  button: string;
+  privacy: string;
+  success: string;
+  successDesc: string;
+}> = {
+  en: {
+    badge: "TRAVEL4YOU JOURNAL",
+    title: "Receive new luxury travel guides.",
+    subtitle: "Join the Travel4You list for new destination guides, private experience ideas, and carefully selected booking links.",
+    placeholder: "Your email address *",
+    button: "Get the latest guides",
+    privacy: "No spam. Curated monthly dispatches. Unsubscribe anytime in 1 click.",
+    success: "✨ Welcome to the Travel4You Journal!",
+    successDesc: "Your 2026 Gold List Luxury Guide and unreleased private booking links have been dispatched to your email."
+  },
+  vi: {
+    badge: "CẨM NANG TRAVEL4YOU JOURNAL",
+    title: "Nhận cẩm nang du lịch xa xỉ mới nhất.",
+    subtitle: "Gia nhập danh sách độc quyền Travel4You để nhận cẩm nang điểm đến mới, ý tưởng trải nghiệm riêng tư và liên kết đặt phòng tuyển chọn.",
+    placeholder: "Địa chỉ email của bạn *",
+    button: "Nhận cẩm nang ngay",
+    privacy: "Hoàn toàn bảo mật. Không spam. Hủy đăng ký bất kỳ lúc nào với 1 chạm.",
+    success: "✨ Chúc mừng bạn đã gia nhập Travel4You Journal!",
+    successDesc: "Cẩm nang 2026 Gold List và các đặc quyền đặt phòng VIP bí mật đang được chuyển tới hộp thư của bạn."
+  },
+  de: {
+    badge: "TRAVEL4YOU JOURNAL",
+    title: "Erhalten Sie neue Luxus-Reiseführer.",
+    subtitle: "Treten Sie der Travel4You-Liste bei für neue Reiseführer, exklusive Reiseideen und handverlesene Buchungslinks.",
+    placeholder: "Ihre E-Mail-Adresse *",
+    button: "Neueste Guides erhalten",
+    privacy: "Kein Spam. Monatliche Auswahl. Jederzeit mit 1 Klick abbestellbar.",
+    success: "✨ Willkommen im Travel4You Journal!",
+    successDesc: "Ihr Luxus-Reiseführer für die Gold List 2026 ist auf dem Weg zu Ihrer E-Mail-Adresse."
+  },
+  fr: {
+    badge: "JOURNAL TRAVEL4YOU",
+    title: "Recevez les nouveaux guides de voyage de luxe.",
+    subtitle: "Rejoignez la liste Travel4You pour découvrir de nouvelles destinations, des idées d'expériences privées et des liens de réservation sélectionnés.",
+    placeholder: "Votre adresse e-mail *",
+    button: "Recevoir les guides",
+    privacy: "Zéro spam. Sélection mensuelle. Désinscription en 1 clic.",
+    success: "✨ Bienvenue dans le Journal Travel4You !",
+    successDesc: "Votre guide Gold List 2026 et vos privilèges de réservation privés ont été envoyés à votre adresse e-mail."
+  },
+  es: {
+    badge: "JOURNAL TRAVEL4YOU",
+    title: "Reciba nuevas guías de viajes de lujo.",
+    subtitle: "Únase a la lista de Travel4You para recibir guías de nuevos destinos, ideas de experiencias exclusivas y enlaces de reserva seleccionados.",
+    placeholder: "Su correo electrónico *",
+    button: "Obtener las guías",
+    privacy: "Sin spam. Selección mensual curada. Cancela en cualquier momento con 1 clic.",
+    success: "✨ ¡Bienvenido a Travel4You Journal!",
+    successDesc: "Su guía Gold List 2026 y los enlaces de reserva VIP han sido enviados a su correo."
+  },
+  it: {
+    badge: "TRAVEL4YOU JOURNAL",
+    title: "Ricevi le nuove guide di viaggio di lusso.",
+    subtitle: "Iscriviti alla lista Travel4You per nuove guide di destinazione, idee per esperienze esclusive e link di prenotazione selezionati.",
+    placeholder: "Il tuo indirizzo email *",
+    button: "Ricevi le guide",
+    privacy: "Nessuno spam. Selezione mensile. Disiscriviti quando vuoi in 1 clic.",
+    success: "✨ Benvenuto nel Journal Travel4You!",
+    successDesc: "La tua guida Gold List 2026 e i link per le prenotazioni VIP sono stati inviati via email."
+  },
+  ja: {
+    badge: "TRAVEL4YOU JOURNAL",
+    title: "最新のラグジュアリートラベルガイドをお届けします。",
+    subtitle: "Travel4Youリストにご登録いただくと、新しい目的地のガイド、プライベートな体験のアイデア、厳選された予約リンクをお届けします。",
+    placeholder: "メールアドレス *",
+    button: "最新ガイドを受け取る",
+    privacy: "スパムは一切ありません。月刊配信。いつでもワンクリックで解除可能。",
+    success: "✨ Travel4You Journalへようこそ！",
+    successDesc: "2026年ゴールドリストのラグジュアリーガイドとVIP予約リンクをメールでお送りしました。"
+  },
+  ko: {
+    badge: "TRAVEL4YOU 저널",
+    title: "새로운 럭셔리 여행 가이드를 받아보세요.",
+    subtitle: "Travel4You 뉴스레터에 가입하여 새로운 여행지 가이드, 프라이빗 경험 아이디어, 엄선된 예약 링크를 받아보세요.",
+    placeholder: "이메일 주소 입력 *",
+    button: "최신 가이드 받기",
+    privacy: "스팸 없음. 엄선된 월간 뉴스레터. 언제든지 원클릭 구독 취소 가능.",
+    success: "✨ Travel4You 저널 가입을 환영합니다!",
+    successDesc: "2026 골드 리스트 럭셔리 가이드 및 VIP 예약 링크가 이메일로 발송되었습니다."
+  },
+  'zh-tw': {
+    badge: "TRAVEL4YOU 奢華日誌",
+    title: "獲取最新的奢華旅行指南。",
+    subtitle: "加入 Travel4You 尊爵名單，第一時間獲取新目的地指南、私人專屬體驗靈感以及精選預訂連結。",
+    placeholder: "請輸入您的電子郵件 *",
+    button: "立即獲取指南",
+    privacy: "絕無垃圾郵件。每月精選特刊。隨時可一鍵取消訂閱。",
+    success: "✨ 歡迎訂閱 Travel4You 奢華日誌！",
+    successDesc: "2026 金榜奢華指南與獨家預訂連結已發送至您的電子信箱。"
+  },
+  'zh-cn': {
+    badge: "TRAVEL4YOU 奢华日志",
+    title: "获取最新的奢华旅行指南。",
+    subtitle: "加入 Travel4You 尊享名单，第一时间获取新目的地指南、私人专属体验灵感以及精选预订链接。",
+    placeholder: "请输入您的电子邮箱 *",
+    button: "立即获取指南",
+    privacy: "绝无垃圾邮件。每月精选特刊。随时可一键退订。",
+    success: "✨ 欢迎订阅 Travel4You 奢华日志！",
+    successDesc: "2026 金榜奢华指南与独家预订链接已发送至您的电子邮箱。"
+  },
+  pt: {
+    badge: "JOURNAL TRAVEL4YOU",
+    title: "Receba novos guias de viagens de luxo.",
+    subtitle: "Junte-se à lista Travel4You para novos guias de destinos, ideias de experiências privadas e links de reserva criteriosamente selecionados.",
+    placeholder: "O seu endereço de email *",
+    button: "Receber os guias",
+    privacy: "Sem spam. Seleção mensal curada. Cancele a qualquer momento com 1 clique.",
+    success: "✨ Bem-vindo ao Journal Travel4You!",
+    successDesc: "O seu guia Gold List 2026 e os links de reserva VIP foram enviados para o seu email."
+  },
+  ru: {
+    badge: "TRAVEL4YOU JOURNAL",
+    title: "Получайте новые гиды по роскошным путешествиям.",
+    subtitle: "Присоединяйтесь к списку Travel4You, чтобы первыми получать путеводители, идеи приватного отдыха и проверенные ссылки на бронирование.",
+    placeholder: "Ваш адрес эл. почты *",
+    button: "Получить гид",
+    privacy: "Без спама. Ежемесячные эксклюзивные выпуски. Отписка в 1 клик.",
+    success: "✨ Добро пожаловать в Travel4You Journal!",
+    successDesc: "Гид Gold List 2026 и закрытые ссылки на бронирование отправлены на вашу почту."
+  }
+};
+
+const t = journalContent[currentLocale] || journalContent.en;
 ---
 
 <footer class="bg-[#040a12] border-t border-slate-800/80 pt-16 pb-12 text-slate-400 text-sm mt-auto">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- 📰 Top Section: TRAVEL4YOU JOURNAL (Email Lead Capture Banner) -->
+    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-b from-[#081526] to-[#040a12] border border-slate-800/90 p-6 sm:p-10 lg:p-12 mb-16 shadow-2xl">
+      <!-- Ambient Luxury Glow Background -->
+      <div class="absolute -top-24 -right-24 w-80 sm:w-96 h-80 sm:h-96 bg-[#c9a54e]/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-24 -left-24 w-80 h-80 bg-blue-600/5 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10 max-w-3xl">
+        <!-- Eyebrow Badge -->
+        <p class="text-xs sm:text-sm font-semibold tracking-widest text-[#d4a359] uppercase mb-3">
+          {t.badge}
+        </p>
+
+        <!-- Headline -->
+        <h3 class="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight mb-3">
+          {t.title}
+        </h3>
+
+        <!-- Subtitle -->
+        <p class="text-sm sm:text-base text-slate-300/90 leading-relaxed mb-6 sm:mb-8 max-w-2xl font-sans">
+          {t.subtitle}
+        </p>
+
+        <!-- Subscription Form -->
+        <form id="footer-journal-form" class="space-y-3" novalidate>
+          <div class="flex flex-col sm:flex-row items-stretch gap-3 w-full max-w-2xl">
+            <!-- Email Input (iOS 16px font-size prevents unwanted auto-zoom) -->
+            <div class="relative flex-1">
+              <input
+                type="email"
+                id="footer-journal-email"
+                name="email"
+                placeholder={t.placeholder}
+                required
+                autocomplete="email"
+                inputmode="email"
+                autocapitalize="none"
+                spellcheck="false"
+                class="w-full h-12 sm:h-13 px-4 py-3 bg-[#040a12] border border-slate-700/80 rounded-xl text-white text-base placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#c9a54e]/40 focus:border-[#c9a54e] transition-all duration-200"
+              />
+              <span id="footer-journal-input-icon" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-sm pointer-events-none">
+                ✉️
+              </span>
+            </div>
+
+            <!-- Submit Button (Touch-friendly 48px+ height, active click scale, gold luxury color) -->
+            <button
+              type="submit"
+              id="footer-journal-btn"
+              class="h-12 sm:h-13 px-6 sm:px-8 bg-[#d4a359] hover:bg-[#dfba63] active:bg-[#c9a54e] active:scale-[0.98] text-[#07111e] font-bold text-sm sm:text-base rounded-xl transition-all duration-200 shadow-lg shadow-[#d4a359]/20 hover:shadow-[#d4a359]/30 flex items-center justify-center space-x-2 flex-shrink-0 cursor-pointer"
+            >
+              <span id="footer-journal-btn-text">{t.button}</span>
+              <span id="footer-journal-btn-arrow" class="text-base font-bold">→</span>
+              <span id="footer-journal-btn-spinner" class="hidden animate-spin">
+                <svg class="w-5 h-5 text-[#07111e]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+              </span>
+            </button>
+          </div>
+
+          <!-- Privacy & Trust Microcopy -->
+          <div class="flex items-center space-x-2 text-xs text-slate-400 pt-1">
+            <span class="text-[#d4a359]">🔒</span>
+            <span>{t.privacy}</span>
+          </div>
+
+          <!-- Error Alert Container -->
+          <div id="footer-journal-error" class="hidden p-3 rounded-lg bg-rose-950/60 border border-rose-800/80 text-rose-300 text-xs flex items-center space-x-2">
+            <span>⚠️</span>
+            <span id="footer-journal-error-msg"></span>
+          </div>
+        </form>
+
+        <!-- Success Alert Container -->
+        <div id="footer-journal-success" class="hidden p-5 rounded-xl bg-gradient-to-r from-emerald-950/60 via-slate-900/80 to-amber-950/40 border border-emerald-500/40 text-slate-200 text-sm space-y-2">
+          <div class="flex items-center space-x-2 text-emerald-400 font-bold text-base">
+            <span>✨</span>
+            <span>{t.success}</span>
+          </div>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            {t.successDesc}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4-Column Directory Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
       
       <!-- Col 1: Brand & Sovereign Authority -->
@@ -113,3 +337,116 @@ const dict = (i18n as any)[currentLocale] || (i18n as any).en;
     </div>
   </div>
 </footer>
+
+<script is:inline define:vars={{ currentLocale }}>
+  (function initFooterJournal() {
+    const form = document.getElementById('footer-journal-form');
+    const input = document.getElementById('footer-journal-email');
+    const btn = document.getElementById('footer-journal-btn');
+    const btnText = document.getElementById('footer-journal-btn-text');
+    const btnArrow = document.getElementById('footer-journal-btn-arrow');
+    const btnSpinner = document.getElementById('footer-journal-btn-spinner');
+    const errorBox = document.getElementById('footer-journal-error');
+    const errorMsg = document.getElementById('footer-journal-error-msg');
+    const successBox = document.getElementById('footer-journal-success');
+
+    if (!form || !input || !btn) return;
+
+    // Check if user already subscribed in this browser
+    try {
+      const alreadySubscribed = localStorage.getItem('t4u_journal_subscribed');
+      if (alreadySubscribed) {
+        input.value = alreadySubscribed;
+      }
+    } catch (e) {}
+
+    function showError(msg) {
+      if (!errorBox || !errorMsg) return;
+      errorMsg.textContent = msg;
+      errorBox.classList.remove('hidden');
+      input.classList.add('border-rose-500');
+    }
+
+    function clearError() {
+      if (!errorBox) return;
+      errorBox.classList.add('hidden');
+      input.classList.remove('border-rose-500');
+    }
+
+    input.addEventListener('input', clearError);
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearError();
+
+      const email = input.value.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!email || !emailRegex.test(email)) {
+        showError(currentLocale === 'vi' ? 'Vui lòng nhập địa chỉ email hợp lệ.' : 'Please enter a valid email address.');
+        input.focus();
+        return;
+      }
+
+      // UI: Loading State
+      btn.disabled = true;
+      btn.classList.add('opacity-80', 'cursor-not-allowed');
+      if (btnArrow) btnArrow.classList.add('hidden');
+      if (btnSpinner) btnSpinner.classList.remove('hidden');
+      if (btnText) btnText.textContent = currentLocale === 'vi' ? 'Đang kích hoạt...' : 'Activating...';
+
+      try {
+        let refCode = 'direct';
+        try {
+          refCode = localStorage.getItem('t4u_ref') || localStorage.getItem('t4u_partner_ref') || 'direct';
+        } catch (e) {}
+
+        const payload = {
+          name: 'VIP Journal Reader',
+          email: email,
+          interest: 'newsletter_vip_guide',
+          note: 'Subscribed via Footer Travel4You Journal',
+          ref_code: refCode,
+          source_url: window.location.pathname,
+          locale: currentLocale
+        };
+
+        // Send to backend Cloudflare Pages Function
+        await fetch('/api/leads/create', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        // Save subscription status
+        try {
+          localStorage.setItem('t4u_journal_subscribed', email);
+        } catch (e) {}
+
+        // Success UI
+        form.classList.add('hidden');
+        if (successBox) successBox.classList.remove('hidden');
+
+        // Trigger global toast if present
+        if (typeof window.showToast === 'function') {
+          window.showToast(
+            currentLocale === 'vi' ? 'Đăng ký cẩm nang thành công! ✨' : 'Subscribed to Travel4You Journal! ✨',
+            '👑'
+          );
+        }
+      } catch (err) {
+        console.warn('Journal submission network fallback:', err);
+        try {
+          localStorage.setItem('t4u_journal_subscribed', email);
+        } catch (e) {}
+        form.classList.add('hidden');
+        if (successBox) successBox.classList.remove('hidden');
+      } finally {
+        btn.disabled = false;
+        btn.classList.remove('opacity-80', 'cursor-not-allowed');
+        if (btnArrow) btnArrow.classList.remove('hidden');
+        if (btnSpinner) btnSpinner.classList.add('hidden');
+      }
+    });
+  })();
+</script>

@@ -53,6 +53,14 @@ const pageDescription = "Hệ thống quản lý đối tác tiếp thị liên 
           >
             ⚙️ Cài đặt
           </button>
+          <button
+            id="btn-logout"
+            type="button"
+            class="text-xs text-rose-400 hover:text-rose-300 px-2 py-1 rounded transition border border-rose-500/20 hover:border-rose-500/40"
+            title="Đăng xuất khỏi tài khoản"
+          >
+            🚪 Thoát
+          </button>
         </div>
       </div>
 
@@ -657,10 +665,17 @@ Lộ trình thực chiến dành riêng cho Cá nhân, Freelancer & Người th�
 
 </Layout>
 
-<script>
+<script define:vars={{ firebaseConfig }}>
+  import { initializeApp, getApps, getApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
+  import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+
+  // Initialize Firebase Auth Safely
+  const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
   // DOM Elements
   const refCodeEl = document.getElementById('display-ref-code');
-  const refLinkInput = document.getElementById('ref-link-input') as HTMLInputElement;
+  const refLinkInput = document.getElementById('ref-link-input');
   const btnCopyLink = document.getElementById('btn-copy-ref-link');
   const btnCopyText = document.getElementById('btn-copy-text');
   const userDisplayName = document.getElementById('user-display-name');
@@ -678,6 +693,29 @@ Lộ trình thực chiến dành riêng cho Cá nhân, Freelancer & Người th�
   }
 
   updateRefUI();
+
+  // Listen to Firebase Real Auth state
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      currentPartnerName = user.displayName || user.email?.split('@')[0] || currentPartnerName;
+      const refBase = currentPartnerName.replace(/[^a-zA-Z0-9]/g, '').toUpperCase().slice(0, 8) || 'VIP';
+      currentRefCode = localStorage.getItem('t4u_partner_ref') || `${refBase}88`;
+      localStorage.setItem('t4u_partner_name', currentPartnerName);
+      localStorage.setItem('t4u_partner_ref', currentRefCode);
+      updateRefUI();
+    }
+  });
+
+  // Logout Handler
+  document.getElementById('btn-logout')?.addEventListener('click', async () => {
+    if (confirm('Bạn có muốn đăng xuất khỏi tài khoản Đối tác VIP?')) {
+      try {
+        await signOut(auth);
+      } catch (err) {}
+      localStorage.removeItem('t4u_vip_user');
+      window.location.href = '/aff/login';
+    }
+  });
 
   // 1-Click Copy Link
   btnCopyLink?.addEventListener('click', async () => {

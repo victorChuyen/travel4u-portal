@@ -61,8 +61,18 @@ const homeUrl = currentLocale === 'en' ? '/' : `/${currentLocale}/`;
       </nav>
 
       <!-- Right Actions: Language & VIP CTA & Mobile Toggle -->
-      <div class="flex items-center space-x-2 sm:space-x-4 shrink-0">
+      <div class="flex items-center space-x-2 sm:space-x-3 shrink-0">
         
+        <!-- VIP Member / Affiliate Login Button -->
+        <a
+          href="/aff/login"
+          id="header-vip-login-btn"
+          class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 hover:border-[#c9a54e] text-slate-300 hover:text-[#c9a54e] text-xs font-semibold transition shrink-0"
+          title="Cổng Đăng Nhập / Đăng Ký Thành Viên VIP"
+        >
+          <span>🔑</span>
+          <span class="hidden sm:inline">{currentLocale === 'vi' ? 'Đăng Nhập VIP' : 'VIP Sign In'}</span>
+        </a>
         <!-- Language Selector Dropdown (Desktop & Tablet & Mobile) -->
         <div class="relative group shrink-0">
           <button type="button" class="flex items-center space-x-1.5 sm:space-x-2 bg-slate-900/80 border border-slate-700/60 rounded-full px-2.5 py-1 sm:px-3.5 sm:py-1.5 text-[11px] sm:text-xs font-semibold text-slate-200 hover:border-[#c9a54e] transition-all">
@@ -166,7 +176,14 @@ const homeUrl = currentLocale === 'en' ? '/' : `/${currentLocale}/`;
         class="flex items-center h-12 px-4 rounded-lg text-amber-300 bg-amber-500/15 border border-amber-500/40 text-sm font-bold transition-colors"
       >
         <span>💎</span>
-        <span class="ml-3">{currentLocale === 'vi' ? 'Đối Tác VIP & Giải Pháp AI' : 'VIP Affiliate & AI Solutions'}</span>
+        <span class="ml-3">{currentLocale === 'vi' ? 'Đối Tác VIP & Bảng Điều Khiển' : 'VIP Affiliate & Dashboard'}</span>
+      </a>
+      <a
+        href="/aff/login"
+        class="flex items-center h-12 px-4 rounded-lg text-slate-200 hover:text-amber-400 bg-slate-900 border border-slate-700/80 text-sm font-bold transition-colors"
+      >
+        <span>🔑</span>
+        <span class="ml-3">{currentLocale === 'vi' ? 'Đăng Nhập / Đăng Ký VIP Member' : 'VIP Member Sign In / Sign Up'}</span>
       </a>
     </div>
 
